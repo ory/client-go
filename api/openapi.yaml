@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.0.1-alpha.21
+  version: v0.0.1-alpha.23
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
@@ -19,85 +19,6 @@ servers:
       default: playground
       description: Project slug as provided by the Ory Console.
 paths:
-  /api/kratos/public/.well-known/ory/webauthn.js:
-    get:
-      description: |-
-        This endpoint provides JavaScript which is needed in order to perform WebAuthn login and registration.
-
-        If you are building a JavaScript Browser App (e.g. in ReactJS or AngularJS) you will need to load this file:
-
-        ```html
-        <script src="https://public-kratos.example.org/.well-known/ory/webauthn.js" type="script" async />
-        ```
-
-        More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
-      operationId: getWebAuthnJavaScript
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/webAuthnJavaScript'
-          description: webAuthnJavaScript
-      summary: Get WebAuthn JavaScript
-      tags:
-      - v0alpha2
-  /api/kratos/public/health/alive:
-    get:
-      description: |-
-        This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incoming
-        HTTP requests. This status does currently not include checks whether the database connection is working.
-
-        If the service supports TLS Edge Termination, this endpoint does not require the
-        `X-Forwarded-Proto` header to be set.
-
-        Be aware that if you are running multiple nodes of this service, the health status will never
-        refer to the cluster state, only to a single instance.
-      operationId: isAlive
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/inline_response_200'
-          description: Ory Kratos is ready to accept connections.
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
-      summary: Check HTTP Server Status
-      tags:
-      - metadata
-  /api/kratos/public/health/ready:
-    get:
-      description: |-
-        This endpoint returns a HTTP 200 status code when Ory Kratos is up running and the environment dependencies (e.g.
-        the database) are responsive as well.
-
-        If the service supports TLS Edge Termination, this endpoint does not require the
-        `X-Forwarded-Proto` header to be set.
-
-        Be aware that if you are running multiple nodes of Ory Kratos, the health status will never
-        refer to the cluster state, only to a single instance.
-      operationId: isReady
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/inline_response_200'
-          description: Ory Kratos is ready to accept requests.
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/inline_response_503'
-          description: Ory Kratos is not yet ready to accept requests.
-      summary: Check HTTP Server and Database Status
-      tags:
-      - metadata
   /api/kratos/admin/identities:
     get:
       description: |-
@@ -213,8 +134,9 @@ paths:
         style: simple
       responses:
         "204":
-          description: Empty responses are sent when, for example, resources are deleted.
-            The HTTP status code for empty responses is typically 201.
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
         "404":
           content:
             application/json:
@@ -361,8 +283,9 @@ paths:
         style: simple
       responses:
         "204":
-          description: Empty responses are sent when, for example, resources are deleted.
-            The HTTP status code for empty responses is typically 201.
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
         "400":
           content:
             application/json:
@@ -393,25 +316,6 @@ paths:
         all sessions that belong to the given Identity.
       tags:
       - v0alpha2
-  /api/kratos/public/metrics/prometheus:
-    get:
-      description: |-
-        ```
-        metadata:
-        annotations:
-        prometheus.io/port: "4434"
-        prometheus.io/path: "/metrics/prometheus"
-        ```
-      operationId: prometheus
-      responses:
-        "200":
-          description: Empty responses are sent when, for example, resources are deleted.
-            The HTTP status code for empty responses is typically 201.
-      summary: |-
-        Get snapshot metrics from the service. If you're using k8s, you can then add annotations to
-        your deployment like so:
-      tags:
-      - metadata
   /api/kratos/admin/recovery/link:
     post:
       description: |-
@@ -454,6 +358,85 @@ paths:
       summary: Create a Recovery Link
       tags:
       - v0alpha2
+  /api/kratos/public/.well-known/ory/webauthn.js:
+    get:
+      description: |-
+        This endpoint provides JavaScript which is needed in order to perform WebAuthn login and registration.
+
+        If you are building a JavaScript Browser App (e.g. in ReactJS or AngularJS) you will need to load this file:
+
+        ```html
+        <script src="https://public-kratos.example.org/.well-known/ory/webauthn.js" type="script" async />
+        ```
+
+        More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
+      operationId: getWebAuthnJavaScript
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webAuthnJavaScript'
+          description: webAuthnJavaScript
+      summary: Get WebAuthn JavaScript
+      tags:
+      - v0alpha2
+  /api/kratos/public/health/alive:
+    get:
+      description: |-
+        This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incoming
+        HTTP requests. This status does currently not include checks whether the database connection is working.
+
+        If the service supports TLS Edge Termination, this endpoint does not require the
+        `X-Forwarded-Proto` header to be set.
+
+        Be aware that if you are running multiple nodes of this service, the health status will never
+        refer to the cluster state, only to a single instance.
+      operationId: isAlive
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+          description: Ory Kratos is ready to accept connections.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      summary: Check HTTP Server Status
+      tags:
+      - metadata
+  /api/kratos/public/health/ready:
+    get:
+      description: |-
+        This endpoint returns a HTTP 200 status code when Ory Kratos is up running and the environment dependencies (e.g.
+        the database) are responsive as well.
+
+        If the service supports TLS Edge Termination, this endpoint does not require the
+        `X-Forwarded-Proto` header to be set.
+
+        Be aware that if you are running multiple nodes of Ory Kratos, the health status will never
+        refer to the cluster state, only to a single instance.
+      operationId: isReady
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+          description: Ory Kratos is ready to accept requests.
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_503'
+          description: Ory Kratos is not yet ready to accept requests.
+      summary: Check HTTP Server and Database Status
+      tags:
+      - metadata
   /api/kratos/public/schemas:
     get:
       description: Get all Identity Schemas
@@ -611,9 +594,9 @@ paths:
         If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the
         case of an error, the `error.id` of the JSON response body can be one of:
 
-        `has_session_already`: The user is already signed in.
-        `csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-        `forbidden_return_to`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+        `session_already_available`: The user is already signed in.
+        `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+        `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
         `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
         Most likely used in Social Sign In flows.
 
@@ -657,8 +640,9 @@ paths:
                 $ref: '#/components/schemas/successfulSelfServiceLoginWithoutBrowser'
           description: successfulSelfServiceLoginWithoutBrowser
         "302":
-          description: Empty responses are sent when, for example, resources are deleted.
-            The HTTP status code for empty responses is typically 201.
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
         "400":
           content:
             application/json:
@@ -696,9 +680,9 @@ paths:
 
         In the case of an error, the `error.id` of the JSON response body can be one of:
 
-        `has_session_already`: The user is already signed in.
-        `aal_needs_session`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet.
-        `csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+        `session_already_available`: The user is already signed in.
+        `session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet.
+        `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 
         This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
@@ -776,10 +760,10 @@ paths:
         If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
         case of an error, the `error.id` of the JSON response body can be one of:
 
-        `has_session_already`: The user is already signed in.
-        `aal_needs_session`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet.
-        `csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-        `forbidden_return_to`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+        `session_already_available`: The user is already signed in.
+        `session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet.
+        `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+        `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
 
         This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.
 
@@ -829,8 +813,9 @@ paths:
                 $ref: '#/components/schemas/selfServiceLoginFlow'
           description: selfServiceLoginFlow
         "302":
-          description: Empty responses are sent when, for example, resources are deleted.
-            The HTTP status code for empty responses is typically 201.
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
         "400":
           content:
             application/json:
@@ -868,7 +853,7 @@ paths:
 
         This request may fail due to several reasons. The `error.id` can be one of:
 
-        `has_session_already`: The user is already signed in.
+        `session_already_available`: The user is already signed in.
         `self_service_flow_expired`: The flow is expired and you should request a new one.
 
         More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
@@ -972,11 +957,13 @@ paths:
         style: form
       responses:
         "204":
-          description: Empty responses are sent when, for example, resources are deleted.
-            The HTTP status code for empty responses is typically 201.
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
         "302":
-          description: Empty responses are sent when, for example, resources are deleted.
-            The HTTP status code for empty responses is typically 201.
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
         "500":
           content:
             application/json:
@@ -1007,8 +994,9 @@ paths:
         x-originalParamName: Body
       responses:
         "204":
-          description: Empty responses are sent when, for example, resources are deleted.
-            The HTTP status code for empty responses is typically 201.
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
         "400":
           content:
             application/json:
@@ -1137,8 +1125,9 @@ paths:
                 $ref: '#/components/schemas/selfServiceRecoveryFlow'
           description: selfServiceRecoveryFlow
         "302":
-          description: Empty responses are sent when, for example, resources are deleted.
-            The HTTP status code for empty responses is typically 201.
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
         "400":
           content:
             application/json:
@@ -1225,8 +1214,9 @@ paths:
                 $ref: '#/components/schemas/selfServiceRecoveryFlow'
           description: selfServiceRecoveryFlow
         "302":
-          description: Empty responses are sent when, for example, resources are deleted.
-            The HTTP status code for empty responses is typically 201.
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
         "400":
           content:
             application/json:
@@ -1341,9 +1331,9 @@ paths:
         If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the
         case of an error, the `error.id` of the JSON response body can be one of:
 
-        `has_session_already`: The user is already signed in.
-        `csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-        `forbidden_return_to`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+        `session_already_available`: The user is already signed in.
+        `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+        `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
         `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
         Most likely used in Social Sign In flows.
 
@@ -1379,8 +1369,9 @@ paths:
                 $ref: '#/components/schemas/successfulSelfServiceRegistrationWithoutBrowser'
           description: successfulSelfServiceRegistrationWithoutBrowser
         "302":
-          description: Empty responses are sent when, for example, resources are deleted.
-            The HTTP status code for empty responses is typically 201.
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
         "400":
           content:
             application/json:
@@ -1418,8 +1409,8 @@ paths:
 
         In the case of an error, the `error.id` of the JSON response body can be one of:
 
-        `has_session_already`: The user is already signed in.
-        `csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+        `session_already_available`: The user is already signed in.
+        `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 
         This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
@@ -1466,9 +1457,9 @@ paths:
         If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
         case of an error, the `error.id` of the JSON response body can be one of:
 
-        `has_session_already`: The user is already signed in.
-        `csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-        `forbidden_return_to`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+        `session_already_available`: The user is already signed in.
+        `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+        `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
 
         If this endpoint is called via an AJAX request, the response contains the registration flow without a redirect.
 
@@ -1493,8 +1484,9 @@ paths:
                 $ref: '#/components/schemas/selfServiceRegistrationFlow'
           description: selfServiceRegistrationFlow
         "302":
-          description: Empty responses are sent when, for example, resources are deleted.
-            The HTTP status code for empty responses is typically 201.
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
         "500":
           content:
             application/json:
@@ -1526,7 +1518,7 @@ paths:
 
         This request may fail due to several reasons. The `error.id` can be one of:
 
-        `has_session_already`: The user is already signed in.
+        `session_already_available`: The user is already signed in.
         `self_service_flow_expired`: The flow is expired and you should request a new one.
 
         More information can be found at [Ory Kratos User Login and User Registration Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-login-user-registration).
@@ -1624,14 +1616,14 @@ paths:
         If this endpoint is called with a `Accept: application/json` HTTP header, the response contains the flow without a redirect. In the
         case of an error, the `error.id` of the JSON response body can be one of:
 
-        `needs_privileged_session`: The identity requested to change something that needs a privileged session. Redirect
+        `session_refresh_required`: The identity requested to change something that needs a privileged session. Redirect
         the identity to the login init endpoint with query parameters `?refresh=true&return_to=<the-current-browser-url>`,
         or initiate a refresh login flow otherwise.
-        `csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-        `no_active_session`: No Ory Session was found - sign in a user first.
-        `intended_for_someone_else`: The flow was interrupted with `needs_privileged_session` but apparently some other
+        `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+        `session_inactive`: No Ory Session was found - sign in a user first.
+        `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other
         identity logged in instead.
-        `forbidden_return_to`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+        `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
         `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
         Most likely used in Social Sign In flows.
 
@@ -1675,8 +1667,9 @@ paths:
                 $ref: '#/components/schemas/selfServiceSettingsFlow'
           description: selfServiceSettingsFlow
         "302":
-          description: Empty responses are sent when, for example, resources are deleted.
-            The HTTP status code for empty responses is typically 201.
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
         "400":
           content:
             application/json:
@@ -1731,8 +1724,8 @@ paths:
 
         In the case of an error, the `error.id` of the JSON response body can be one of:
 
-        `csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-        `no_active_session`: No Ory Session was found - sign in a user first.
+        `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+        `session_inactive`: No Ory Session was found - sign in a user first.
 
         This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
@@ -1791,9 +1784,9 @@ paths:
         If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
         case of an error, the `error.id` of the JSON response body can be one of:
 
-        `csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-        `no_active_session`: No Ory Session was found - sign in a user first.
-        `forbidden_return_to`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+        `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+        `session_inactive`: No Ory Session was found - sign in a user first.
+        `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
 
         This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.
 
@@ -1816,8 +1809,9 @@ paths:
                 $ref: '#/components/schemas/selfServiceSettingsFlow'
           description: selfServiceSettingsFlow
         "302":
-          description: Empty responses are sent when, for example, resources are deleted.
-            The HTTP status code for empty responses is typically 201.
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
         "400":
           content:
             application/json:
@@ -1861,9 +1855,9 @@ paths:
         If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
         case of an error, the `error.id` of the JSON response body can be one of:
 
-        `csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-        `no_active_session`: No Ory Session was found - sign in a user first.
-        `intended_for_someone_else`: The flow was interrupted with `needs_privileged_session` but apparently some other
+        `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+        `session_inactive`: No Ory Session was found - sign in a user first.
+        `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other
         identity logged in instead.
 
         More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
@@ -2010,8 +2004,9 @@ paths:
                 $ref: '#/components/schemas/selfServiceVerificationFlow'
           description: selfServiceVerificationFlow
         "302":
-          description: Empty responses are sent when, for example, resources are deleted.
-            The HTTP status code for empty responses is typically 201.
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
         "400":
           content:
             application/json:
@@ -2093,8 +2088,9 @@ paths:
                 $ref: '#/components/schemas/selfServiceVerificationFlow'
           description: selfServiceVerificationFlow
         "302":
-          description: Empty responses are sent when, for example, resources are deleted.
-            The HTTP status code for empty responses is typically 201.
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
         "500":
           content:
             application/json:
@@ -2227,8 +2223,8 @@ paths:
 
         As explained above, this request may fail due to several reasons. The `error.id` can be one of:
 
-        `no_active_session`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token).
-        `aal_needs_upgrade`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
+        `session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token).
+        `session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
       operationId: toSession
       parameters:
       - description: Set the Session Token when calling from non-browser clients.
@@ -2304,11 +2300,206 @@ paths:
       summary: Return Running Software Version.
       tags:
       - metadata
+  /backoffice/public/projects:
+    get:
+      description: Lists all projects you have access to.
+      operationId: listProjects
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projects'
+          description: projects
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: List All Projects
+      tags:
+      - v0alpha0
+    post:
+      description: Creates a new project.
+      operationId: createProject
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/projectPatch'
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/project'
+          description: project
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Create a Project
+      tags:
+      - v0alpha0
+  /backoffice/public/projects/{project_id}:
+    get:
+      description: Get a projects you have access to by its ID.
+      operationId: getProject
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/project'
+          description: project
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Get a Project
+      tags:
+      - v0alpha0
+    put:
+      description: Creates a new configuration revision for a project.
+      operationId: updateProject
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/projectPatch'
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/project'
+          description: project
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Update a Project
+      tags:
+      - v0alpha0
 components:
   responses:
     emptyResponse:
-      description: Empty responses are sent when, for example, resources are deleted.
-        The HTTP status code for empty responses is typically 201.
+      description: |-
+        Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+        typically 201.
   schemas:
     AdminUpdateIdentityBody:
       example:
@@ -2346,6 +2537,51 @@ components:
       title: JSONRawMessage represents a json.RawMessage that works well with JSON,
         SQL, and Swagger.
       type: object
+    NullString:
+      description: |-
+        var s NullString
+        err := db.QueryRow("SELECT name FROM foo WHERE id=?", id).Scan(&s)
+        ...
+        if s.Valid {
+        use s.String
+        } else {
+        NULL value
+        }
+      example:
+        Valid: true
+        String: String
+      properties:
+        String:
+          type: string
+        Valid:
+          type: boolean
+      title: |-
+        NullString represents a string that may be null.
+        NullString implements the Scanner interface so
+        it can be used as a scan destination:
+      type: object
+    NullUUID:
+      description: |-
+        NullUUID can be used with the standard sql package to represent a
+        UUID value that can be NULL in the database.
+      example:
+        Valid: true
+        UUID: UUID
+      properties:
+        UUID:
+          format: uuid4
+          type: string
+        Valid:
+          type: boolean
+      type: object
+    ProvisionProjectPayload:
+      properties:
+        subscription_id:
+          description: The stripe subscription ID to use for provisioning the project.
+          type: string
+      required:
+      - subscription_id
+      type: object
     RecoveryAddress:
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
@@ -2376,9 +2612,100 @@ components:
       type: object
     RecoveryAddressType:
       type: string
+    RedirectionConfig:
+      example:
+        settings:
+          password: password
+          profile: profile
+          main: main
+          oidc: oidc
+        logout:
+          password: password
+          profile: profile
+          main: main
+          oidc: oidc
+        url_allowlist:
+        - url_allowlist
+        - url_allowlist
+        global:
+          password: password
+          profile: profile
+          main: main
+          oidc: oidc
+        registration:
+          password: password
+          profile: profile
+          main: main
+          oidc: oidc
+        recovery:
+          password: password
+          profile: profile
+          main: main
+          oidc: oidc
+        login:
+          password: password
+          profile: profile
+          main: main
+          oidc: oidc
+        verification:
+          password: password
+          profile: profile
+          main: main
+          oidc: oidc
+      properties:
+        global:
+          $ref: '#/components/schemas/RedirectionField'
+        login:
+          $ref: '#/components/schemas/RedirectionField'
+        logout:
+          $ref: '#/components/schemas/RedirectionField'
+        recovery:
+          $ref: '#/components/schemas/RedirectionField'
+        registration:
+          $ref: '#/components/schemas/RedirectionField'
+        settings:
+          $ref: '#/components/schemas/RedirectionField'
+        url_allowlist:
+          items:
+            type: string
+          type: array
+        verification:
+          $ref: '#/components/schemas/RedirectionField'
+      type: object
+    RedirectionField:
+      example:
+        password: password
+        profile: profile
+        main: main
+        oidc: oidc
+      properties:
+        main:
+          type: string
+        oidc:
+          type: string
+        password:
+          type: string
+        profile:
+          type: string
+      type: object
+    StringSlicePipeDelimiter:
+      items:
+        type: string
+      title: StringSlicePipeDelimiter de/encodes the string slice to/from a SQL string.
+      type: array
     UUID:
       format: uuid4
       type: string
+    activeProject:
+      description: The Active Project ID
+      properties:
+        project_id:
+          description: |-
+            The Active Project ID
+
+            format: uuid
+          type: string
+      type: object
     adminCreateIdentityBody:
       properties:
         schema_id:
@@ -2413,6 +2740,36 @@ components:
       required:
       - identity_id
       type: object
+    apiToken:
+      properties:
+        id:
+          format: uuid4
+          type: string
+        name:
+          description: |-
+            The Token's Name
+
+            Set this to help you remember, for example, where you use the token.
+          type: string
+        owner_id:
+          format: uuid4
+          type: string
+        project_id:
+          format: uuid4
+          type: string
+        value:
+          description: The token's value
+          readOnly: true
+          type: string
+      required:
+      - id
+      - name
+      - owner_id
+      type: object
+    apiTokens:
+      items:
+        $ref: '#/components/schemas/apiToken'
+      type: array
     authenticatorAssuranceLevel:
       description: |-
         The authenticator assurance level can be one of "aal1", "aal2", or "aal3". A higher number means that it is harder
@@ -2429,6 +2786,16 @@ components:
       - aal3
       title: Authenticator Assurance Level (AAL)
       type: string
+    createCustomHostnameBody:
+      properties:
+        cookie_domain:
+          description: The domain where cookies will be set. Has to be a parent domain
+            of the custom hostname to work.
+          type: string
+        hostname:
+          description: The custom hostname where the API will be exposed.
+          type: string
+      type: object
     errorAuthenticatorAssuranceLevelNotSatisfied:
       properties:
         code:
@@ -2485,6 +2852,8 @@ components:
         requested AAL is not satisfied.
       type: object
     genericError:
+      description: Error responses are sent when an error (e.g. unauthorized, bad
+        request, ...) occurred.
       properties:
         code:
           description: The status code
@@ -2492,17 +2861,23 @@ components:
           format: int64
           type: integer
         debug:
-          description: |-
-            Debug information
-
-            This field is often not exposed to protect against leaking
-            sensitive information.
-          example: SQL field "foo" is not a bool.
+          description: Debug contains debug information. This is usually not available
+            and has to be enabled.
+          example: The database adapter was unable to find the element
           type: string
         details:
           additionalProperties: false
           description: Further error details
           type: object
+        error:
+          description: Name is the error name.
+          example: The requested resource could not be found
+          type: string
+        error_description:
+          description: Description contains further information on the nature of the
+            error.
+          example: Object with ID 12345 does not exist
+          type: string
         id:
           description: |-
             The error ID
@@ -2510,10 +2885,7 @@ components:
             Useful when trying to identify various errors in application logic.
           type: string
         message:
-          description: |-
-            Error message
-
-            The error's message.
+          description: Message contains the error message.
           example: The resource could not be found
           type: string
         reason:
@@ -2532,8 +2904,14 @@ components:
           description: The status description
           example: Not Found
           type: string
+        status_code:
+          description: Code represents the error status code (404, 403, 401, ...).
+          example: 404
+          format: int64
+          type: integer
       required:
       - message
+      title: Error response
       type: object
     healthNotReadyStatus:
       properties:
@@ -2703,17 +3081,77 @@ components:
         $ref: '#/components/schemas/identity'
       title: A list of identities.
       type: array
+    identityMetaSchema:
+      type: object
+    identityPreset:
+      properties:
+        schema:
+          description: Schema is the Identity JSON Schema
+          type: object
+        url:
+          description: URL is the preset identifier
+          type: string
+      required:
+      - schema
+      - url
+      type: object
+    identityPresets:
+      items:
+        $ref: '#/components/schemas/identityPreset'
+      type: array
     identitySchema:
+      description: |-
+        Together the name and identity uuid are a unique index constraint.
+        This prevents a user from having schemas with the same name.
+        This also allows schemas to have the same name across the system.
       example:
         schema: '{}'
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        name: CustomerIdentity
+        created_at: 2000-01-23T04:56:07.000+00:00
         id: id
       properties:
+        created_at:
+          description: The Schema's Creation Date
+          format: date-time
+          readOnly: true
+          type: string
         id:
-          description: The ID of the Identity JSON Schema
+          format: uuid4
+          type: string
+        name:
+          description: |-
+            The schema name
+
+            This is set by the user and is for them to easily recognise their schema
+          example: CustomerIdentity
           type: string
         schema:
           description: The actual Identity JSON Schema
           type: object
+        updated_at:
+          description: Last Time Schema was Updated
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - created_at
+      - id
+      - name
+      - updated_at
+      title: Schema represents an Ory Kratos Identity Schema
+      type: object
+    identitySchemaLocation:
+      properties:
+        location:
+          type: string
+      type: object
+    identitySchemaValidationResult:
+      properties:
+        message:
+          type: string
+        valid:
+          type: boolean
       type: object
     identitySchemas:
       description: Raw identity Schema list
@@ -2740,6 +3178,35 @@ components:
       description: VerifiableAddressType must not exceed 16 characters as that is
         the limitation in the SQL Schema
       type: string
+    isOwnerForProjectBySlug:
+      properties:
+        ProjectSlug:
+          description: ProjectSlug is the project's slug.
+          type: string
+        Subject:
+          description: Subject is the subject from the API Token.
+          type: string
+      required:
+      - ProjectSlug
+      - Subject
+      type: object
+    isOwnerForProjectBySlugPayload:
+      properties:
+        project_scope:
+          description: |-
+            ProjectScope is the project_id resolved from the
+            API Token.
+          type: string
+        project_slug:
+          description: ProjectSlug is the project's slug.
+          type: string
+        subject:
+          description: Subject is the subject from the API Token.
+          type: string
+      required:
+      - project_slug
+      - subject
+      type: object
     jsonError:
       description: The standard Ory JSON API error format.
       properties:
@@ -2809,21 +3276,1108 @@ components:
       title: Is sent when a privileged session is required to perform the settings
         update.
       type: object
-    nullJsonRawMessage:
-      description: NullJSONRawMessage represents a json.RawMessage that works well
-        with JSON, SQL, and Swagger and is NULLable-
-      type: object
     nullTime:
       format: date-time
       title: NullTime implements sql.NullTime functionality.
       type: string
+    project:
+      example:
+        subscription_id:
+          Valid: true
+          UUID: UUID
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        current_revision:
+          verification_ui_url: verification_ui_url
+          totp:
+            enabled: true
+            issuer: ory.sh
+          error_ui_url: error_ui_url
+          api_url: api_url
+          kratos_config_version: kratos_config_version
+          registration_ui_url: registration_ui_url
+          session_soft_2fa: true
+          created_at: 2000-01-23T04:56:07.000+00:00
+          lookup_secret:
+            enabled: true
+          recovery:
+            enabled: true
+          redirection_config:
+            settings:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+            logout:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+            url_allowlist:
+            - url_allowlist
+            - url_allowlist
+            global:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+            registration:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+            recovery:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+            login:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+            verification:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+          recovery_ui_url: recovery_ui_url
+          password:
+            revoke_active_sessions: true
+            enabled: true
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          project_id: project_id
+          default_identity_schema_url: default_identity_schema_url
+          id: id
+          login_ui_url: login_ui_url
+          verification:
+            require_verified_address: true
+            enabled: true
+          hosts:
+          - hosts
+          - hosts
+          settings_ui_url: settings_ui_url
+          oidc_providers:
+          - issuer_url: issuer_url
+            string: string
+            label: label
+            mapper_url: mapper_url
+            client_id: client_id
+            requested_claims: '{}'
+            provider: provider
+            scope:
+            - scope
+            - scope
+            auth_url: auth_url
+            client_secret: client_secret
+            id: id
+            token_url: token_url
+            tenant: tenant
+          - issuer_url: issuer_url
+            string: string
+            label: label
+            mapper_url: mapper_url
+            client_id: client_id
+            requested_claims: '{}'
+            provider: provider
+            scope:
+            - scope
+            - scope
+            auth_url: auth_url
+            client_secret: client_secret
+            id: id
+            token_url: token_url
+            tenant: tenant
+          settings_soft_2fa: true
+          application_url: application_url
+          settings_privileged_session_max_age_seconds: 0
+          kratos_custom_schema_id:
+            Valid: true
+            UUID: UUID
+          name: name
+          webauthn:
+            rp_id: example.org
+            rp_display_name: Ory Corp
+            rp_origin: https://example.org/
+            rp_icon: https://example.org/icon.png
+            enabled: true
+          session_after_sign_up: true
+        created_at: 2000-01-23T04:56:07.000+00:00
+        revisions:
+        - verification_ui_url: verification_ui_url
+          totp:
+            enabled: true
+            issuer: ory.sh
+          error_ui_url: error_ui_url
+          api_url: api_url
+          kratos_config_version: kratos_config_version
+          registration_ui_url: registration_ui_url
+          session_soft_2fa: true
+          created_at: 2000-01-23T04:56:07.000+00:00
+          lookup_secret:
+            enabled: true
+          recovery:
+            enabled: true
+          redirection_config:
+            settings:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+            logout:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+            url_allowlist:
+            - url_allowlist
+            - url_allowlist
+            global:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+            registration:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+            recovery:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+            login:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+            verification:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+          recovery_ui_url: recovery_ui_url
+          password:
+            revoke_active_sessions: true
+            enabled: true
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          project_id: project_id
+          default_identity_schema_url: default_identity_schema_url
+          id: id
+          login_ui_url: login_ui_url
+          verification:
+            require_verified_address: true
+            enabled: true
+          hosts:
+          - hosts
+          - hosts
+          settings_ui_url: settings_ui_url
+          oidc_providers:
+          - issuer_url: issuer_url
+            string: string
+            label: label
+            mapper_url: mapper_url
+            client_id: client_id
+            requested_claims: '{}'
+            provider: provider
+            scope:
+            - scope
+            - scope
+            auth_url: auth_url
+            client_secret: client_secret
+            id: id
+            token_url: token_url
+            tenant: tenant
+          - issuer_url: issuer_url
+            string: string
+            label: label
+            mapper_url: mapper_url
+            client_id: client_id
+            requested_claims: '{}'
+            provider: provider
+            scope:
+            - scope
+            - scope
+            auth_url: auth_url
+            client_secret: client_secret
+            id: id
+            token_url: token_url
+            tenant: tenant
+          settings_soft_2fa: true
+          application_url: application_url
+          settings_privileged_session_max_age_seconds: 0
+          kratos_custom_schema_id:
+            Valid: true
+            UUID: UUID
+          name: name
+          webauthn:
+            rp_id: example.org
+            rp_display_name: Ory Corp
+            rp_origin: https://example.org/
+            rp_icon: https://example.org/icon.png
+            enabled: true
+          session_after_sign_up: true
+        - verification_ui_url: verification_ui_url
+          totp:
+            enabled: true
+            issuer: ory.sh
+          error_ui_url: error_ui_url
+          api_url: api_url
+          kratos_config_version: kratos_config_version
+          registration_ui_url: registration_ui_url
+          session_soft_2fa: true
+          created_at: 2000-01-23T04:56:07.000+00:00
+          lookup_secret:
+            enabled: true
+          recovery:
+            enabled: true
+          redirection_config:
+            settings:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+            logout:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+            url_allowlist:
+            - url_allowlist
+            - url_allowlist
+            global:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+            registration:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+            recovery:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+            login:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+            verification:
+              password: password
+              profile: profile
+              main: main
+              oidc: oidc
+          recovery_ui_url: recovery_ui_url
+          password:
+            revoke_active_sessions: true
+            enabled: true
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          project_id: project_id
+          default_identity_schema_url: default_identity_schema_url
+          id: id
+          login_ui_url: login_ui_url
+          verification:
+            require_verified_address: true
+            enabled: true
+          hosts:
+          - hosts
+          - hosts
+          settings_ui_url: settings_ui_url
+          oidc_providers:
+          - issuer_url: issuer_url
+            string: string
+            label: label
+            mapper_url: mapper_url
+            client_id: client_id
+            requested_claims: '{}'
+            provider: provider
+            scope:
+            - scope
+            - scope
+            auth_url: auth_url
+            client_secret: client_secret
+            id: id
+            token_url: token_url
+            tenant: tenant
+          - issuer_url: issuer_url
+            string: string
+            label: label
+            mapper_url: mapper_url
+            client_id: client_id
+            requested_claims: '{}'
+            provider: provider
+            scope:
+            - scope
+            - scope
+            auth_url: auth_url
+            client_secret: client_secret
+            id: id
+            token_url: token_url
+            tenant: tenant
+          settings_soft_2fa: true
+          application_url: application_url
+          settings_privileged_session_max_age_seconds: 0
+          kratos_custom_schema_id:
+            Valid: true
+            UUID: UUID
+          name: name
+          webauthn:
+            rp_id: example.org
+            rp_display_name: Ory Corp
+            rp_origin: https://example.org/
+            rp_icon: https://example.org/icon.png
+            enabled: true
+          session_after_sign_up: true
+        id: id
+        state: running
+        ongoing_stripe_checkout_id:
+          Valid: true
+          String: String
+        slug: slug
+      properties:
+        created_at:
+          description: The Project's Creation Date
+          format: date-time
+          readOnly: true
+          type: string
+        current_revision:
+          $ref: '#/components/schemas/projectRevision'
+        id:
+          format: uuid4
+          type: string
+        ongoing_stripe_checkout_id:
+          $ref: '#/components/schemas/NullString'
+        revisions:
+          items:
+            $ref: '#/components/schemas/projectRevision'
+          type: array
+        slug:
+          description: The project's slug
+          readOnly: true
+          type: string
+        state:
+          description: The state of the project.
+          enum:
+          - running
+          - halted
+          readOnly: true
+          type: string
+        subscription_id:
+          $ref: '#/components/schemas/NullUUID'
+        updated_at:
+          description: Last Time Project was Updated
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - created_at
+      - current_revision
+      - id
+      - revisions
+      - slug
+      - state
+      - updated_at
+      type: object
+    projectHost:
+      properties:
+        host:
+          description: The project's host.
+          type: string
+        id:
+          format: uuid4
+          type: string
+        project_id:
+          format: uuid4
+          type: string
+      required:
+      - host
+      - id
+      - project_id
+      type: object
+    projectLookupSecretConfig:
+      example:
+        enabled: true
+      properties:
+        enabled:
+          description: Set to true to enable the WebAuthn authentication method.
+          type: boolean
+      type: object
+    projectOidcConfig:
+      example:
+        issuer_url: issuer_url
+        string: string
+        label: label
+        mapper_url: mapper_url
+        client_id: client_id
+        requested_claims: '{}'
+        provider: provider
+        scope:
+        - scope
+        - scope
+        auth_url: auth_url
+        client_secret: client_secret
+        id: id
+        token_url: token_url
+        tenant: tenant
+      properties:
+        auth_url:
+          description: |-
+            AuthURL is the authorize url, typically something like: https://example.org/oauth2/auth
+            Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when
+            `provider` is set to `generic`.
+          type: string
+        client_id:
+          description: ClientID is the application's Client ID.
+          type: string
+        client_secret:
+          description: ClientSecret is the application's secret.
+          type: string
+        id:
+          description: ID is the provider's ID
+          type: string
+        issuer_url:
+          description: |-
+            IssuerURL is the OpenID Connect Server URL. You can leave this empty if `provider` is not set to `generic`.
+            If set, neither `auth_url` nor `token_url` are required.
+          type: string
+        label:
+          description: Label represents an optional label which can be used in the
+            UI generation.
+          type: string
+        mapper_url:
+          description: |-
+            Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google
+            profile information) to hydrate the identity's data.
+
+            It can be either a URL (file://, http(s)://, base64://) or an inline JSONNet code snippet.
+          type: string
+        provider:
+          description: |-
+            Provider is either "generic" for a generic OAuth 2.0 / OpenID Connect Provider or one of:
+            generic
+            google
+            github
+            gitlab
+            microsoft
+            discord
+            slack
+            facebook
+            vk
+            yandex
+          type: string
+        requested_claims:
+          description: |-
+            RequestedClaims string encoded json object that specifies claims and optionally their properties which should be
+            included in the id_token or returned from the UserInfo Endpoint.
+
+            More information: https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter
+          type: object
+        scope:
+          description: Scope specifies optional requested permissions.
+          items:
+            type: string
+          type: array
+        string:
+          type: string
+        tenant:
+          description: |-
+            Tenant is the Azure AD Tenant to use for authentication, and must be set when `provider` is set to `microsoft`.
+            Can be either `common`, `organizations`, `consumers` for a multitenant application or a specific tenant like
+            `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` or `contoso.onmicrosoft.com`.
+          type: string
+        token_url:
+          description: |-
+            TokenURL is the token url, typically something like: https://example.org/oauth2/token
+            Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when
+            `provider` is set to `generic`.
+          type: string
+      type: object
+    projectOidcConfigs:
+      items:
+        $ref: '#/components/schemas/projectOidcConfig'
+      type: array
+    projectPasswordConfig:
+      example:
+        revoke_active_sessions: true
+        enabled: true
+      properties:
+        enabled:
+          description: Set to true to enable the password authentication method.
+          type: boolean
+        revoke_active_sessions:
+          description: Set to true to remove active sessions when the users logs in.
+          type: boolean
+      type: object
+    projectPatch:
+      properties:
+        api_url:
+          description: |-
+            URL of Project API
+
+            In the future will allow to override Kratos project URL.
+            If set, error is returned. If left empty our hosted URL is used
+          type: string
+        application_url:
+          description: |-
+            URL where your application is available.
+
+            Your users will be redirected to this URL when they successfully complete a login, logout, verification,
+            recovery, or registration flow. More fine-grained redirection patterns are available for the individual flows
+            (login, registration, ...).
+
+            If left empty, our hosted URL will be used instead. It contains technical information on the
+            identities and is useful when developing a new project or trying out Ory Cloud.
+          type: string
+        default_identity_schema_url:
+          description: |-
+            Default Identity Schema URL
+
+            This represents your Ory Kratos Default Identity Schema. It is your identity's default schema.
+            This allows setting custom fields such as "address", specifying whether you want to log in
+            using email or a username, and more. For more information on this topic, please check out
+            the identity documentation.
+
+            If KratosCustomSchemaID is also added to the payload, it will be preferred and replace
+            the value of DefaultIdentitySchemaURL set by the client.
+
+            The value of this field can be either any "https://" URL - for example a file hosted at GitHub,
+            or a `preset://`-prefixed string.
+
+            Available presets are:
+
+            preset://email
+            preset://username
+            preset://basic
+            preset://blank
+          type: string
+        error_ui_url:
+          description: |-
+            Self-Service Error UI URL
+
+            Sets the UI URL for the error UI. If left empty, this will use Ory's hosted pages.
+          example: https://example.org/error
+          type: string
+        kratos_custom_schema_id:
+          description: |-
+            The Custom Schema ID
+
+            The custom schema ID is a preferred field over DefaultIdentitySchemaURL, meaning it will
+            override the DefaultIdentitySchemaURL with the custom schema's URL instead of accepting it
+            from the client-side.
+            Once this field is set the given custom schema will be associated with this project.
+          type: string
+        login_ui_url:
+          description: |-
+            Self-Service Login UI URL
+
+            Sets the UI URL for the login UI. If left empty, this will use Ory's hosted pages.
+          example: https://example.org/login
+          type: string
+        lookup_secret:
+          $ref: '#/components/schemas/projectLookupSecretConfig'
+        name:
+          description: |-
+            The project name.
+
+            Helps you identify your project.
+
+            in: body
+          example: ACME App
+          type: string
+        password:
+          $ref: '#/components/schemas/projectPasswordConfig'
+        recovery:
+          $ref: '#/components/schemas/projectRecoveryConfig'
+        recovery_ui_url:
+          description: |-
+            Self-Service Login UI URL
+
+            Sets the UI URL for the recovery UI. If left empty, this will use Ory's hosted pages.
+          example: https://example.org/recover
+          type: string
+        redirection_config:
+          $ref: '#/components/schemas/RedirectionConfig'
+        registration_ui_url:
+          description: |-
+            Self-Service Login UI URL
+
+            Sets the UI URL for the registration UI. If left empty, this will use Ory's hosted pages.
+          example: https://example.org/signup
+          type: string
+        session_after_sign_up:
+          description: |-
+            Issue Session after Sign Up
+
+            If set to true, users will receive a session after they successfully signed up. Enabling this option
+            allows account enumeration during registration flows. Read more: https://www.ory.sh/kratos/docs/self-service/flows/user-registration#successful-registration
+          type: boolean
+        session_soft_2fa:
+          description: Enable Soft 2FA for Login Sessions
+          type: boolean
+        settings_privileged_session_max_age_seconds:
+          description: |-
+            Duration in Seconds of how long a Session is Privileged
+
+            Defines how long a session is considered privileged in seconds. If the session's authenticated_at is older than the value
+            specified here, the user needs to re-authenticate to perform certain actions (e.g. password change).
+          example: 900
+          format: int64
+          type: integer
+        settings_soft_2fa:
+          description: Enable Soft 2FA for Self-Service Settings Flows
+          type: boolean
+        settings_ui_url:
+          description: |-
+            Self-Service Settings UI URL
+
+            Sets the UI URL for the settings UI. If left empty, this will use Ory's hosted pages.
+          example: https://example.org/settings
+          type: string
+        totp:
+          $ref: '#/components/schemas/projectTotpConfig'
+        verification:
+          $ref: '#/components/schemas/projectVerificationConfig'
+        verification_ui_url:
+          description: |-
+            Self-Service Login UI URL
+
+            Sets the UI URL for the verification UI. If left empty, this will use Ory's hosted pages.
+          example: https://example.org/verify
+          type: string
+        webauthn:
+          $ref: '#/components/schemas/projectWebAuthnConfig'
+      required:
+      - error_ui_url
+      - login_ui_url
+      - lookup_secret
+      - password
+      - recovery
+      - recovery_ui_url
+      - registration_ui_url
+      - session_after_sign_up
+      - session_soft_2fa
+      - settings_privileged_session_max_age_seconds
+      - settings_soft_2fa
+      - settings_ui_url
+      - totp
+      - verification
+      - verification_ui_url
+      - webauthn
+      type: object
+    projectRecoveryConfig:
+      example:
+        enabled: true
+      properties:
+        enabled:
+          description: Set to true to enable account recovery.
+          type: boolean
+      type: object
+    projectRevision:
+      example:
+        verification_ui_url: verification_ui_url
+        totp:
+          enabled: true
+          issuer: ory.sh
+        error_ui_url: error_ui_url
+        api_url: api_url
+        kratos_config_version: kratos_config_version
+        registration_ui_url: registration_ui_url
+        session_soft_2fa: true
+        created_at: 2000-01-23T04:56:07.000+00:00
+        lookup_secret:
+          enabled: true
+        recovery:
+          enabled: true
+        redirection_config:
+          settings:
+            password: password
+            profile: profile
+            main: main
+            oidc: oidc
+          logout:
+            password: password
+            profile: profile
+            main: main
+            oidc: oidc
+          url_allowlist:
+          - url_allowlist
+          - url_allowlist
+          global:
+            password: password
+            profile: profile
+            main: main
+            oidc: oidc
+          registration:
+            password: password
+            profile: profile
+            main: main
+            oidc: oidc
+          recovery:
+            password: password
+            profile: profile
+            main: main
+            oidc: oidc
+          login:
+            password: password
+            profile: profile
+            main: main
+            oidc: oidc
+          verification:
+            password: password
+            profile: profile
+            main: main
+            oidc: oidc
+        recovery_ui_url: recovery_ui_url
+        password:
+          revoke_active_sessions: true
+          enabled: true
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        project_id: project_id
+        default_identity_schema_url: default_identity_schema_url
+        id: id
+        login_ui_url: login_ui_url
+        verification:
+          require_verified_address: true
+          enabled: true
+        hosts:
+        - hosts
+        - hosts
+        settings_ui_url: settings_ui_url
+        oidc_providers:
+        - issuer_url: issuer_url
+          string: string
+          label: label
+          mapper_url: mapper_url
+          client_id: client_id
+          requested_claims: '{}'
+          provider: provider
+          scope:
+          - scope
+          - scope
+          auth_url: auth_url
+          client_secret: client_secret
+          id: id
+          token_url: token_url
+          tenant: tenant
+        - issuer_url: issuer_url
+          string: string
+          label: label
+          mapper_url: mapper_url
+          client_id: client_id
+          requested_claims: '{}'
+          provider: provider
+          scope:
+          - scope
+          - scope
+          auth_url: auth_url
+          client_secret: client_secret
+          id: id
+          token_url: token_url
+          tenant: tenant
+        settings_soft_2fa: true
+        application_url: application_url
+        settings_privileged_session_max_age_seconds: 0
+        kratos_custom_schema_id:
+          Valid: true
+          UUID: UUID
+        name: name
+        webauthn:
+          rp_id: example.org
+          rp_display_name: Ory Corp
+          rp_origin: https://example.org/
+          rp_icon: https://example.org/icon.png
+          enabled: true
+        session_after_sign_up: true
+      properties:
+        api_url:
+          description: |-
+            The Project API URL
+
+            The URL where the Project's APIs are available.
+          type: string
+        application_url:
+          description: |-
+            Your Application URL
+
+            The URL where your application is available.
+            Your users will be redirected to this URL when they successfully complete a login, logout, verification,
+            recovery, or registration flow.
+
+            More fine-grained redirection patterns are available for the individual flows.
+          type: string
+        created_at:
+          description: The Project's Revision Creation Date
+          format: date-time
+          readOnly: true
+          type: string
+        default_identity_schema_url:
+          description: |-
+            Default Identity Schema URL
+
+            This represents your Ory Kratos Default Identity Schema. It is your identity's default schema.
+            This allows setting custom fields such as "address", specifying whether you want to log in
+            using email or a username, and more. For more information on this topic, please check out
+            the identity documentation.
+
+            The value of this field can be either any "https://" URL - for example a file hosted at GitHub,
+            or a `preset://`-prefixed string. Available profiles are:
+
+            profile://email
+            profile://username
+          type: string
+        error_ui_url:
+          description: |-
+            Self-Service Error UI URL
+
+            Sets the UI URL for the error UI. If left empty, this will use Ory's hosted pages.
+          type: string
+        hosts:
+          items:
+            type: string
+          title: StringSlicePipeDelimiter de/encodes the string slice to/from a SQL
+            string.
+          type: array
+        id:
+          format: uuid4
+          type: string
+        kratos_config_version:
+          description: The Project's Kratos Config Version
+          readOnly: true
+          type: string
+        kratos_custom_schema_id:
+          $ref: '#/components/schemas/NullUUID'
+        login_ui_url:
+          description: |-
+            Self-Service Login UI URL
+
+            Sets the UI URL for the login UI. If left empty, this will use Ory's hosted pages.
+          type: string
+        lookup_secret:
+          $ref: '#/components/schemas/projectLookupSecretConfig'
+        name:
+          description: The project's name.
+          type: string
+        oidc_providers:
+          items:
+            $ref: '#/components/schemas/projectOidcConfig'
+          type: array
+        password:
+          $ref: '#/components/schemas/projectPasswordConfig'
+        project_id:
+          format: uuid4
+          type: string
+        recovery:
+          $ref: '#/components/schemas/projectRecoveryConfig'
+        recovery_ui_url:
+          description: |-
+            Self-Service Login UI URL
+
+            Sets the UI URL for the recovery UI. If left empty, this will use Ory's hosted pages.
+          type: string
+        redirection_config:
+          $ref: '#/components/schemas/RedirectionConfig'
+        registration_ui_url:
+          description: |-
+            Self-Service Login UI URL
+
+            Sets the UI URL for the registration UI. If left empty, this will use Ory's hosted pages.
+          type: string
+        session_after_sign_up:
+          description: |-
+            Issue Session after Sign Up
+
+            If set to true, users will receive a session after they successfully signed up. Enabling this option
+            allows account enumeration during registration flows. Read more: https://www.ory.sh/kratos/docs/self-service/flows/user-registration#successful-registration
+          type: boolean
+        session_soft_2fa:
+          description: Enable Soft 2FA for Login Sessions
+          type: boolean
+        settings_privileged_session_max_age_seconds:
+          description: |-
+            Duration in Seconds of how long a Session is Privileged
+
+            Defines how long a session is considered privileged in seconds. If the session's authenticated_at is older than the value
+            specified here, the user needs to re-authenticate to perform certain actions (e.g. password change).
+          format: int64
+          type: integer
+        settings_soft_2fa:
+          description: Enable Soft 2FA for Self-Service Settings Flows
+          type: boolean
+        settings_ui_url:
+          description: |-
+            Self-Service Settings UI URL
+
+            Sets the UI URL for the settings UI. If left empty, this will use Ory's hosted pages.
+          type: string
+        totp:
+          $ref: '#/components/schemas/projectTotpConfig'
+        updated_at:
+          description: Last Time Project's Revision was Updated
+          format: date-time
+          readOnly: true
+          type: string
+        verification:
+          $ref: '#/components/schemas/projectVerificationConfig'
+        verification_ui_url:
+          description: |-
+            Self-Service Login UI URL
+
+            Sets the UI URL for the verification UI. If left empty, this will use Ory's hosted pages.
+          type: string
+        webauthn:
+          $ref: '#/components/schemas/projectWebAuthnConfig'
+      required:
+      - api_url
+      - application_url
+      - created_at
+      - default_identity_schema_url
+      - hosts
+      - id
+      - name
+      - project_id
+      - session_after_sign_up
+      - updated_at
+      type: object
+    projectRevisions:
+      items:
+        $ref: '#/components/schemas/projectRevision'
+      type: array
+    projectSlug:
+      properties:
+        slug:
+          description: The Project Slug
+          type: string
+      type: object
+    projectTotpConfig:
+      example:
+        enabled: true
+        issuer: ory.sh
+      properties:
+        enabled:
+          description: Set to true to enable the TOTP authentication method.
+          type: boolean
+        issuer:
+          description: The issuer is the name which will appear in the Authenticator
+            app.
+          example: ory.sh
+          type: string
+      type: object
+    projectVerificationConfig:
+      example:
+        require_verified_address: true
+        enabled: true
+      properties:
+        enabled:
+          description: Set to true to enable email / phone verification.
+          type: boolean
+        require_verified_address:
+          description: Set to true to only allow users with a verified address to
+            sign in.
+          type: boolean
+      type: object
+    projectWebAuthnConfig:
+      example:
+        rp_id: example.org
+        rp_display_name: Ory Corp
+        rp_origin: https://example.org/
+        rp_icon: https://example.org/icon.png
+        enabled: true
+      properties:
+        enabled:
+          description: Set to true to enable the WebAuthn authentication method.
+          type: boolean
+        rp_display_name:
+          description: The display name to show in the authenticator.
+          example: Ory Corp
+          type: string
+        rp_icon:
+          description: A URL to an icon which might be shown in the authenticator.
+          example: https://example.org/icon.png
+          format: uri
+          type: string
+        rp_id:
+          description: This must be the hostname of the login page.
+          example: example.org
+          format: hostname
+          type: string
+        rp_origin:
+          description: This must be the scheme://hostname of the login page.
+          example: https://example.org/
+          format: uri
+          type: string
+      type: object
+    projects:
+      items:
+        $ref: '#/components/schemas/project'
+      type: array
+    schemaPatch:
+      properties:
+        data:
+          description: The json schema
+          type: object
+        name:
+          description: The user defined schema name
+          type: string
+      required:
+      - data
+      - name
+      type: object
     selfServiceBrowserLocationChangeRequiredError:
       properties:
-        error:
-          $ref: '#/components/schemas/genericError'
+        code:
+          description: The status code
+          example: 404
+          format: int64
+          type: integer
+        debug:
+          description: |-
+            Debug information
+
+            This field is often not exposed to protect against leaking
+            sensitive information.
+          example: SQL field "foo" is not a bool.
+          type: string
+        details:
+          additionalProperties: true
+          description: Further error details
+          type: object
+        id:
+          description: |-
+            The error ID
+
+            Useful when trying to identify various errors in application logic.
+          type: string
+        message:
+          description: |-
+            Error message
+
+            The error's message.
+          example: The resource could not be found
+          type: string
+        reason:
+          description: A human-readable reason for the error
+          example: User with ID 1234 does not exist.
+          type: string
         redirect_browser_to:
           description: Since when the flow has expired
           type: string
+        request:
+          description: |-
+            The request ID
+
+            The request ID is often exposed internally in order to trace
+            errors across service architectures. This is often a UUID.
+          example: d7ef54b1-ec15-46e6-bccb-524b82c035e6
+          type: string
+        status:
+          description: The status description
+          example: Not Found
+          type: string
+      required:
+      - message
       title: Is sent when a flow requires a browser to change its location.
       type: object
     selfServiceError:
@@ -2852,8 +4406,48 @@ components:
     selfServiceFlowExpiredError:
       description: Is sent when a flow is expired
       properties:
-        error:
-          $ref: '#/components/schemas/genericError'
+        code:
+          description: The status code
+          example: 404
+          format: int64
+          type: integer
+        debug:
+          description: |-
+            Debug information
+
+            This field is often not exposed to protect against leaking
+            sensitive information.
+          example: SQL field "foo" is not a bool.
+          type: string
+        details:
+          additionalProperties: true
+          description: Further error details
+          type: object
+        id:
+          description: |-
+            The error ID
+
+            Useful when trying to identify various errors in application logic.
+          type: string
+        message:
+          description: |-
+            Error message
+
+            The error's message.
+          example: The resource could not be found
+          type: string
+        reason:
+          description: A human-readable reason for the error
+          example: User with ID 1234 does not exist.
+          type: string
+        request:
+          description: |-
+            The request ID
+
+            The request ID is often exposed internally in order to trace
+            errors across service architectures. This is often a UUID.
+          example: d7ef54b1-ec15-46e6-bccb-524b82c035e6
+          type: string
         since:
           description: |-
             A Duration represents the elapsed time between two instants
@@ -2861,9 +4455,15 @@ components:
             largest representable duration to approximately 290 years.
           format: int64
           type: integer
+        status:
+          description: The status description
+          example: Not Found
+          type: string
         use_flow_id:
           format: uuid4
           type: string
+      required:
+      - message
       type: object
     selfServiceFlowType:
       description: The flow type can either be `api` or `browser`.
@@ -3628,6 +5228,7 @@ components:
           - password
           - totp
           - oidc
+          - webauthn
           title: The method used
           type: string
       title: AuthenticationMethod identifies an authentication method
@@ -3665,6 +5266,11 @@ components:
       - action
       - method
       - nodes
+      type: object
+    stripeCustomerResponse:
+      properties:
+        id:
+          type: string
       type: object
     submitSelfServiceLoginFlowBody:
       discriminator:
