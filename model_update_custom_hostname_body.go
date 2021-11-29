@@ -15,33 +15,33 @@ import (
 	"encoding/json"
 )
 
-// CreateCustomHostnameBody struct for CreateCustomHostnameBody
-type CreateCustomHostnameBody struct {
+// UpdateCustomHostnameBody struct for UpdateCustomHostnameBody
+type UpdateCustomHostnameBody struct {
 	// The domain where cookies will be set. Has to be a parent domain of the custom hostname to work.
 	CookieDomain *string `json:"cookie_domain,omitempty"`
 	// The custom hostname where the API will be exposed.
 	Hostname *string `json:"hostname,omitempty"`
 }
 
-// NewCreateCustomHostnameBody instantiates a new CreateCustomHostnameBody object
+// NewUpdateCustomHostnameBody instantiates a new UpdateCustomHostnameBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateCustomHostnameBody() *CreateCustomHostnameBody {
-	this := CreateCustomHostnameBody{}
+func NewUpdateCustomHostnameBody() *UpdateCustomHostnameBody {
+	this := UpdateCustomHostnameBody{}
 	return &this
 }
 
-// NewCreateCustomHostnameBodyWithDefaults instantiates a new CreateCustomHostnameBody object
+// NewUpdateCustomHostnameBodyWithDefaults instantiates a new UpdateCustomHostnameBody object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateCustomHostnameBodyWithDefaults() *CreateCustomHostnameBody {
-	this := CreateCustomHostnameBody{}
+func NewUpdateCustomHostnameBodyWithDefaults() *UpdateCustomHostnameBody {
+	this := UpdateCustomHostnameBody{}
 	return &this
 }
 
 // GetCookieDomain returns the CookieDomain field value if set, zero value otherwise.
-func (o *CreateCustomHostnameBody) GetCookieDomain() string {
+func (o *UpdateCustomHostnameBody) GetCookieDomain() string {
 	if o == nil || o.CookieDomain == nil {
 		var ret string
 		return ret
@@ -51,7 +51,7 @@ func (o *CreateCustomHostnameBody) GetCookieDomain() string {
 
 // GetCookieDomainOk returns a tuple with the CookieDomain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateCustomHostnameBody) GetCookieDomainOk() (*string, bool) {
+func (o *UpdateCustomHostnameBody) GetCookieDomainOk() (*string, bool) {
 	if o == nil || o.CookieDomain == nil {
 		return nil, false
 	}
@@ -59,7 +59,7 @@ func (o *CreateCustomHostnameBody) GetCookieDomainOk() (*string, bool) {
 }
 
 // HasCookieDomain returns a boolean if a field has been set.
-func (o *CreateCustomHostnameBody) HasCookieDomain() bool {
+func (o *UpdateCustomHostnameBody) HasCookieDomain() bool {
 	if o != nil && o.CookieDomain != nil {
 		return true
 	}
@@ -68,12 +68,12 @@ func (o *CreateCustomHostnameBody) HasCookieDomain() bool {
 }
 
 // SetCookieDomain gets a reference to the given string and assigns it to the CookieDomain field.
-func (o *CreateCustomHostnameBody) SetCookieDomain(v string) {
+func (o *UpdateCustomHostnameBody) SetCookieDomain(v string) {
 	o.CookieDomain = &v
 }
 
 // GetHostname returns the Hostname field value if set, zero value otherwise.
-func (o *CreateCustomHostnameBody) GetHostname() string {
+func (o *UpdateCustomHostnameBody) GetHostname() string {
 	if o == nil || o.Hostname == nil {
 		var ret string
 		return ret
@@ -83,7 +83,7 @@ func (o *CreateCustomHostnameBody) GetHostname() string {
 
 // GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateCustomHostnameBody) GetHostnameOk() (*string, bool) {
+func (o *UpdateCustomHostnameBody) GetHostnameOk() (*string, bool) {
 	if o == nil || o.Hostname == nil {
 		return nil, false
 	}
@@ -91,7 +91,7 @@ func (o *CreateCustomHostnameBody) GetHostnameOk() (*string, bool) {
 }
 
 // HasHostname returns a boolean if a field has been set.
-func (o *CreateCustomHostnameBody) HasHostname() bool {
+func (o *UpdateCustomHostnameBody) HasHostname() bool {
 	if o != nil && o.Hostname != nil {
 		return true
 	}
@@ -100,11 +100,11 @@ func (o *CreateCustomHostnameBody) HasHostname() bool {
 }
 
 // SetHostname gets a reference to the given string and assigns it to the Hostname field.
-func (o *CreateCustomHostnameBody) SetHostname(v string) {
+func (o *UpdateCustomHostnameBody) SetHostname(v string) {
 	o.Hostname = &v
 }
 
-func (o CreateCustomHostnameBody) MarshalJSON() ([]byte, error) {
+func (o UpdateCustomHostnameBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.CookieDomain != nil {
 		toSerialize["cookie_domain"] = o.CookieDomain
@@ -115,38 +115,38 @@ func (o CreateCustomHostnameBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableCreateCustomHostnameBody struct {
-	value *CreateCustomHostnameBody
+type NullableUpdateCustomHostnameBody struct {
+	value *UpdateCustomHostnameBody
 	isSet bool
 }
 
-func (v NullableCreateCustomHostnameBody) Get() *CreateCustomHostnameBody {
+func (v NullableUpdateCustomHostnameBody) Get() *UpdateCustomHostnameBody {
 	return v.value
 }
 
-func (v *NullableCreateCustomHostnameBody) Set(val *CreateCustomHostnameBody) {
+func (v *NullableUpdateCustomHostnameBody) Set(val *UpdateCustomHostnameBody) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateCustomHostnameBody) IsSet() bool {
+func (v NullableUpdateCustomHostnameBody) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateCustomHostnameBody) Unset() {
+func (v *NullableUpdateCustomHostnameBody) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateCustomHostnameBody(val *CreateCustomHostnameBody) *NullableCreateCustomHostnameBody {
-	return &NullableCreateCustomHostnameBody{value: val, isSet: true}
+func NewNullableUpdateCustomHostnameBody(val *UpdateCustomHostnameBody) *NullableUpdateCustomHostnameBody {
+	return &NullableUpdateCustomHostnameBody{value: val, isSet: true}
 }
 
-func (v NullableCreateCustomHostnameBody) MarshalJSON() ([]byte, error) {
+func (v NullableUpdateCustomHostnameBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateCustomHostnameBody) UnmarshalJSON(src []byte) error {
+func (v *NullableUpdateCustomHostnameBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
