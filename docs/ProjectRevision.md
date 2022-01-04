@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Hosts** | **[]string** |  | 
 **Id** | **string** |  | 
 **KratosConfigVersion** | Pointer to **string** | The Project&#39;s Kratos Config Version | [optional] [readonly] 
-**KratosCustomSchemaId** | Pointer to [**NullUUID**](NullUUID.md) |  | [optional] 
+**KratosCustomSchemaId** | Pointer to **string** |  | [optional] 
 **LoginUiUrl** | Pointer to **string** | Self-Service Login UI URL  Sets the UI URL for the login UI. If left empty, this will use Ory&#39;s hosted pages. | [optional] 
 **LookupSecret** | Pointer to [**ProjectLookupSecretConfig**](ProjectLookupSecretConfig.md) |  | [optional] 
 **Name** | **string** | The project&#39;s name. | 
@@ -225,20 +225,20 @@ HasKratosConfigVersion returns a boolean if a field has been set.
 
 ### GetKratosCustomSchemaId
 
-`func (o *ProjectRevision) GetKratosCustomSchemaId() NullUUID`
+`func (o *ProjectRevision) GetKratosCustomSchemaId() string`
 
 GetKratosCustomSchemaId returns the KratosCustomSchemaId field if non-nil, zero value otherwise.
 
 ### GetKratosCustomSchemaIdOk
 
-`func (o *ProjectRevision) GetKratosCustomSchemaIdOk() (*NullUUID, bool)`
+`func (o *ProjectRevision) GetKratosCustomSchemaIdOk() (*string, bool)`
 
 GetKratosCustomSchemaIdOk returns a tuple with the KratosCustomSchemaId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosCustomSchemaId
 
-`func (o *ProjectRevision) SetKratosCustomSchemaId(v NullUUID)`
+`func (o *ProjectRevision) SetKratosCustomSchemaId(v string)`
 
 SetKratosCustomSchemaId sets KratosCustomSchemaId field to given value.
 

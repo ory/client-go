@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.31
+ * API version: v0.0.1-alpha.36
  * Contact: support@ory.sh
  */
 
@@ -32,7 +32,7 @@ type ProjectRevision struct {
 	Id string `json:"id"`
 	// The Project's Kratos Config Version
 	KratosConfigVersion *string `json:"kratos_config_version,omitempty"`
-	KratosCustomSchemaId *NullUUID `json:"kratos_custom_schema_id,omitempty"`
+	KratosCustomSchemaId *string `json:"kratos_custom_schema_id,omitempty"`
 	// Self-Service Login UI URL  Sets the UI URL for the login UI. If left empty, this will use Ory's hosted pages.
 	LoginUiUrl *string `json:"login_ui_url,omitempty"`
 	LookupSecret *ProjectLookupSecretConfig `json:"lookup_secret,omitempty"`
@@ -302,9 +302,9 @@ func (o *ProjectRevision) SetKratosConfigVersion(v string) {
 }
 
 // GetKratosCustomSchemaId returns the KratosCustomSchemaId field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosCustomSchemaId() NullUUID {
+func (o *ProjectRevision) GetKratosCustomSchemaId() string {
 	if o == nil || o.KratosCustomSchemaId == nil {
-		var ret NullUUID
+		var ret string
 		return ret
 	}
 	return *o.KratosCustomSchemaId
@@ -312,7 +312,7 @@ func (o *ProjectRevision) GetKratosCustomSchemaId() NullUUID {
 
 // GetKratosCustomSchemaIdOk returns a tuple with the KratosCustomSchemaId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosCustomSchemaIdOk() (*NullUUID, bool) {
+func (o *ProjectRevision) GetKratosCustomSchemaIdOk() (*string, bool) {
 	if o == nil || o.KratosCustomSchemaId == nil {
 		return nil, false
 	}
@@ -328,8 +328,8 @@ func (o *ProjectRevision) HasKratosCustomSchemaId() bool {
 	return false
 }
 
-// SetKratosCustomSchemaId gets a reference to the given NullUUID and assigns it to the KratosCustomSchemaId field.
-func (o *ProjectRevision) SetKratosCustomSchemaId(v NullUUID) {
+// SetKratosCustomSchemaId gets a reference to the given string and assigns it to the KratosCustomSchemaId field.
+func (o *ProjectRevision) SetKratosCustomSchemaId(v string) {
 	o.KratosCustomSchemaId = &v
 }
 

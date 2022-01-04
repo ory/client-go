@@ -16,6 +16,7 @@ docs/ApiToken.md
 docs/AuthenticatorAssuranceLevel.md
 docs/CnameSettings.md
 docs/CreateCustomHostnameBody.md
+docs/CreateSubscriptionPayload.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
 docs/GenericError.md
 docs/HealthNotReadyStatus.md
@@ -36,8 +37,7 @@ docs/IsOwnerForProjectBySlugPayload.md
 docs/JsonError.md
 docs/MetadataApi.md
 docs/NeedsPrivilegedSessionError.md
-docs/NullString.md
-docs/NullUUID.md
+docs/NullPlan.md
 docs/Project.md
 docs/ProjectHost.md
 docs/ProjectLookupSecretConfig.md
@@ -50,7 +50,6 @@ docs/ProjectSlug.md
 docs/ProjectTotpConfig.md
 docs/ProjectVerificationConfig.md
 docs/ProjectWebAuthnConfig.md
-docs/ProvisionProjectPayload.md
 docs/RecoveryAddress.md
 docs/RedirectionConfig.md
 docs/RedirectionField.md
@@ -94,6 +93,7 @@ docs/SubmitSelfServiceSettingsFlowWithTotpMethodBody.md
 docs/SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody.md
 docs/SubmitSelfServiceVerificationFlowBody.md
 docs/SubmitSelfServiceVerificationFlowWithLinkMethodBody.md
+docs/Subscription.md
 docs/SuccessfulSelfServiceLoginWithoutBrowser.md
 docs/SuccessfulSelfServiceRegistrationWithoutBrowser.md
 docs/UiContainer.md
@@ -107,6 +107,7 @@ docs/UiNodeScriptAttributes.md
 docs/UiNodeTextAttributes.md
 docs/UiText.md
 docs/UpdateCustomHostnameBody.md
+docs/UpdateSubscriptionPayload.md
 docs/V0alpha0Api.md
 docs/V0alpha2Api.md
 docs/VerifiableIdentityAddress.md
@@ -122,6 +123,7 @@ model_api_token.go
 model_authenticator_assurance_level.go
 model_cname_settings.go
 model_create_custom_hostname_body.go
+model_create_subscription_payload.go
 model_error_authenticator_assurance_level_not_satisfied.go
 model_generic_error.go
 model_health_not_ready_status.go
@@ -141,8 +143,7 @@ model_is_owner_for_project_by_slug.go
 model_is_owner_for_project_by_slug_payload.go
 model_json_error.go
 model_needs_privileged_session_error.go
-model_null_string.go
-model_null_uuid.go
+model_null_plan.go
 model_project.go
 model_project_host.go
 model_project_lookup_secret_config.go
@@ -155,7 +156,6 @@ model_project_slug.go
 model_project_totp_config.go
 model_project_verification_config.go
 model_project_web_authn_config.go
-model_provision_project_payload.go
 model_recovery_address.go
 model_redirection_config.go
 model_redirection_field.go
@@ -199,6 +199,7 @@ model_submit_self_service_settings_flow_with_totp_method_body.go
 model_submit_self_service_settings_flow_with_web_authn_method_body.go
 model_submit_self_service_verification_flow_body.go
 model_submit_self_service_verification_flow_with_link_method_body.go
+model_subscription.go
 model_successful_self_service_login_without_browser.go
 model_successful_self_service_registration_without_browser.go
 model_ui_container.go
@@ -212,6 +213,7 @@ model_ui_node_script_attributes.go
 model_ui_node_text_attributes.go
 model_ui_text.go
 model_update_custom_hostname_body.go
+model_update_subscription_payload.go
 model_verifiable_identity_address.go
 model_version.go
 response.go

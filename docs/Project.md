@@ -7,11 +7,10 @@ Name | Type | Description | Notes
 **CreatedAt** | **time.Time** | The Project&#39;s Creation Date | [readonly] 
 **CurrentRevision** | [**ProjectRevision**](ProjectRevision.md) |  | 
 **Id** | **string** |  | 
-**OngoingStripeCheckoutId** | Pointer to [**NullString**](NullString.md) |  | [optional] 
 **Revisions** | [**[]ProjectRevision**](ProjectRevision.md) |  | 
 **Slug** | **string** | The project&#39;s slug | [readonly] 
 **State** | **string** | The state of the project. | [readonly] 
-**SubscriptionId** | Pointer to [**NullUUID**](NullUUID.md) |  | [optional] 
+**SubscriptionId** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | **time.Time** | Last Time Project was Updated | [readonly] 
 
 ## Methods
@@ -93,31 +92,6 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetOngoingStripeCheckoutId
-
-`func (o *Project) GetOngoingStripeCheckoutId() NullString`
-
-GetOngoingStripeCheckoutId returns the OngoingStripeCheckoutId field if non-nil, zero value otherwise.
-
-### GetOngoingStripeCheckoutIdOk
-
-`func (o *Project) GetOngoingStripeCheckoutIdOk() (*NullString, bool)`
-
-GetOngoingStripeCheckoutIdOk returns a tuple with the OngoingStripeCheckoutId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOngoingStripeCheckoutId
-
-`func (o *Project) SetOngoingStripeCheckoutId(v NullString)`
-
-SetOngoingStripeCheckoutId sets OngoingStripeCheckoutId field to given value.
-
-### HasOngoingStripeCheckoutId
-
-`func (o *Project) HasOngoingStripeCheckoutId() bool`
-
-HasOngoingStripeCheckoutId returns a boolean if a field has been set.
-
 ### GetRevisions
 
 `func (o *Project) GetRevisions() []ProjectRevision`
@@ -180,20 +154,20 @@ SetState sets State field to given value.
 
 ### GetSubscriptionId
 
-`func (o *Project) GetSubscriptionId() NullUUID`
+`func (o *Project) GetSubscriptionId() string`
 
 GetSubscriptionId returns the SubscriptionId field if non-nil, zero value otherwise.
 
 ### GetSubscriptionIdOk
 
-`func (o *Project) GetSubscriptionIdOk() (*NullUUID, bool)`
+`func (o *Project) GetSubscriptionIdOk() (*string, bool)`
 
 GetSubscriptionIdOk returns a tuple with the SubscriptionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubscriptionId
 
-`func (o *Project) SetSubscriptionId(v NullUUID)`
+`func (o *Project) SetSubscriptionId(v string)`
 
 SetSubscriptionId sets SubscriptionId field to given value.
 

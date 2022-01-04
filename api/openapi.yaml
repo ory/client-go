@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.0.1-alpha.31
+  version: v0.0.1-alpha.36
 servers:
 - url: https://{project}.projects.oryapis.com/
   variables:
@@ -2350,7 +2350,7 @@ paths:
               $ref: '#/components/schemas/projectPatch'
         x-originalParamName: Body
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
@@ -2523,6 +2523,19 @@ components:
       - state
       - traits
       type: object
+    CreateSubscriptionPayload:
+      properties:
+        plan_or_price:
+          type: string
+        provision_first_project:
+          format: uuid4
+          type: string
+        return_to:
+          type: string
+      required:
+      - plan_or_price
+      - provision_first_project
+      type: object
     CustomHostnameStatus:
       description: CustomHostnameStatus is the enumeration of valid state values in
         the CustomHostnameSSL
@@ -2541,51 +2554,23 @@ components:
       title: JSONRawMessage represents a json.RawMessage that works well with JSON,
         SQL, and Swagger.
       type: object
+    NullPlan:
+      enum:
+      - unknown
+      - free
+      - start_up_monthly
+      - start_up_yearly
+      - custom
+      type: string
     NullString:
-      description: |-
-        var s NullString
-        err := db.QueryRow("SELECT name FROM foo WHERE id=?", id).Scan(&s)
-        ...
-        if s.Valid {
-        use s.String
-        } else {
-        NULL value
-        }
-      example:
-        Valid: true
-        String: String
-      properties:
-        String:
-          type: string
-        Valid:
-          type: boolean
-      title: |-
-        NullString represents a string that may be null.
-        NullString implements the Scanner interface so
-        it can be used as a scan destination:
-      type: object
+      type: string
+    NullTime:
+      format: date-time
+      nullable: true
+      type: string
     NullUUID:
-      description: |-
-        NullUUID can be used with the standard sql package to represent a
-        UUID value that can be NULL in the database.
-      example:
-        Valid: true
-        UUID: UUID
-      properties:
-        UUID:
-          format: uuid4
-          type: string
-        Valid:
-          type: boolean
-      type: object
-    ProvisionProjectPayload:
-      properties:
-        subscription_id:
-          description: The stripe subscription ID to use for provisioning the project.
-          type: string
-      required:
-      - subscription_id
-      type: object
+      format: uuid4
+      type: string
     RecoveryAddress:
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
@@ -2692,14 +2677,32 @@ components:
         profile:
           type: string
       type: object
+    String:
+      $ref: '#/components/schemas/NullString'
     StringSlicePipeDelimiter:
       items:
         type: string
       title: StringSlicePipeDelimiter de/encodes the string slice to/from a SQL string.
       type: array
+    SubscriptionStatus:
+      title: SubscriptionStatus is the list of allowed values for the subscription's
+        status.
+      type: string
+    Time:
+      format: date-time
+      type: string
     UUID:
       format: uuid4
       type: string
+    UpdateSubscriptionPayload:
+      properties:
+        plan_or_price:
+          type: string
+        return_to:
+          type: string
+      required:
+      - plan_or_price
+      type: object
     activeProject:
       description: The Active Project ID
       properties:
@@ -3314,9 +3317,7 @@ components:
       type: string
     project:
       example:
-        subscription_id:
-          Valid: true
-          UUID: UUID
+        subscription_id: subscription_id
         updated_at: 2000-01-23T04:56:07.000+00:00
         current_revision:
           verification_ui_url: verification_ui_url
@@ -3422,9 +3423,7 @@ components:
           settings_soft_2fa: true
           application_url: application_url
           settings_privileged_session_max_age_seconds: 0
-          kratos_custom_schema_id:
-            Valid: true
-            UUID: UUID
+          kratos_custom_schema_id: kratos_custom_schema_id
           name: name
           webauthn:
             rp_id: example.org
@@ -3538,9 +3537,7 @@ components:
           settings_soft_2fa: true
           application_url: application_url
           settings_privileged_session_max_age_seconds: 0
-          kratos_custom_schema_id:
-            Valid: true
-            UUID: UUID
+          kratos_custom_schema_id: kratos_custom_schema_id
           name: name
           webauthn:
             rp_id: example.org
@@ -3652,9 +3649,7 @@ components:
           settings_soft_2fa: true
           application_url: application_url
           settings_privileged_session_max_age_seconds: 0
-          kratos_custom_schema_id:
-            Valid: true
-            UUID: UUID
+          kratos_custom_schema_id: kratos_custom_schema_id
           name: name
           webauthn:
             rp_id: example.org
@@ -3665,9 +3660,6 @@ components:
           session_after_sign_up: true
         id: id
         state: running
-        ongoing_stripe_checkout_id:
-          Valid: true
-          String: String
         slug: slug
       properties:
         created_at:
@@ -3680,8 +3672,6 @@ components:
         id:
           format: uuid4
           type: string
-        ongoing_stripe_checkout_id:
-          $ref: '#/components/schemas/NullString'
         revisions:
           items:
             $ref: '#/components/schemas/projectRevision'
@@ -3698,7 +3688,8 @@ components:
           readOnly: true
           type: string
         subscription_id:
-          $ref: '#/components/schemas/NullUUID'
+          format: uuid4
+          type: string
         updated_at:
           description: Last Time Project was Updated
           format: date-time
@@ -4112,9 +4103,7 @@ components:
         settings_soft_2fa: true
         application_url: application_url
         settings_privileged_session_max_age_seconds: 0
-        kratos_custom_schema_id:
-          Valid: true
-          UUID: UUID
+        kratos_custom_schema_id: kratos_custom_schema_id
         name: name
         webauthn:
           rp_id: example.org
@@ -4180,7 +4169,8 @@ components:
           readOnly: true
           type: string
         kratos_custom_schema_id:
-          $ref: '#/components/schemas/NullUUID'
+          format: uuid4
+          type: string
         login_ui_url:
           description: |-
             Self-Service Login UI URL
@@ -5732,6 +5722,59 @@ components:
       - email
       - method
       type: object
+    subscription:
+      properties:
+        created_at:
+          format: date-time
+          readOnly: true
+          type: string
+        current_plan:
+          description: The currently active plan of the subscription
+          enum:
+          - unknown
+          - free
+          - start_up_monthly
+          - start_up_yearly
+          - custom
+          readOnly: true
+          type: string
+        customer_id:
+          description: The ID of the stripe customer
+          readOnly: true
+          type: string
+        id:
+          format: uuid4
+          type: string
+        ongoing_stripe_checkout_id:
+          type: string
+        payed_until:
+          description: Until when the subscription is payed
+          format: date-time
+          readOnly: true
+          type: string
+        plan_changes_at:
+          format: date-time
+          type: string
+        plan_changes_to:
+          $ref: '#/components/schemas/NullPlan'
+        status:
+          title: SubscriptionStatus is the list of allowed values for the subscription's
+            status.
+          type: string
+        updated_at:
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - created_at
+      - current_plan
+      - customer_id
+      - id
+      - payed_until
+      - plan_changes_to
+      - status
+      - updated_at
+      type: object
     successfulSelfServiceLoginWithoutBrowser:
       description: The Response for Login Flows via API
       example:
@@ -6356,8 +6399,7 @@ components:
       type: object
   securitySchemes:
     oryAccessToken:
-      in: header
-      name: Authorization
-      type: apiKey
+      scheme: bearer
+      type: http
 x-forwarded-proto: string
 x-request-id: string

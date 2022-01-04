@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.31
+ * API version: v0.0.1-alpha.36
  * Contact: support@ory.sh
  */
 
@@ -22,13 +22,12 @@ type Project struct {
 	CreatedAt time.Time `json:"created_at"`
 	CurrentRevision ProjectRevision `json:"current_revision"`
 	Id string `json:"id"`
-	OngoingStripeCheckoutId *NullString `json:"ongoing_stripe_checkout_id,omitempty"`
 	Revisions []ProjectRevision `json:"revisions"`
 	// The project's slug
 	Slug string `json:"slug"`
 	// The state of the project.
 	State string `json:"state"`
-	SubscriptionId *NullUUID `json:"subscription_id,omitempty"`
+	SubscriptionId *string `json:"subscription_id,omitempty"`
 	// Last Time Project was Updated
 	UpdatedAt time.Time `json:"updated_at"`
 }
@@ -129,38 +128,6 @@ func (o *Project) SetId(v string) {
 	o.Id = v
 }
 
-// GetOngoingStripeCheckoutId returns the OngoingStripeCheckoutId field value if set, zero value otherwise.
-func (o *Project) GetOngoingStripeCheckoutId() NullString {
-	if o == nil || o.OngoingStripeCheckoutId == nil {
-		var ret NullString
-		return ret
-	}
-	return *o.OngoingStripeCheckoutId
-}
-
-// GetOngoingStripeCheckoutIdOk returns a tuple with the OngoingStripeCheckoutId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Project) GetOngoingStripeCheckoutIdOk() (*NullString, bool) {
-	if o == nil || o.OngoingStripeCheckoutId == nil {
-		return nil, false
-	}
-	return o.OngoingStripeCheckoutId, true
-}
-
-// HasOngoingStripeCheckoutId returns a boolean if a field has been set.
-func (o *Project) HasOngoingStripeCheckoutId() bool {
-	if o != nil && o.OngoingStripeCheckoutId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetOngoingStripeCheckoutId gets a reference to the given NullString and assigns it to the OngoingStripeCheckoutId field.
-func (o *Project) SetOngoingStripeCheckoutId(v NullString) {
-	o.OngoingStripeCheckoutId = &v
-}
-
 // GetRevisions returns the Revisions field value
 func (o *Project) GetRevisions() []ProjectRevision {
 	if o == nil {
@@ -234,9 +201,9 @@ func (o *Project) SetState(v string) {
 }
 
 // GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise.
-func (o *Project) GetSubscriptionId() NullUUID {
+func (o *Project) GetSubscriptionId() string {
 	if o == nil || o.SubscriptionId == nil {
-		var ret NullUUID
+		var ret string
 		return ret
 	}
 	return *o.SubscriptionId
@@ -244,7 +211,7 @@ func (o *Project) GetSubscriptionId() NullUUID {
 
 // GetSubscriptionIdOk returns a tuple with the SubscriptionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetSubscriptionIdOk() (*NullUUID, bool) {
+func (o *Project) GetSubscriptionIdOk() (*string, bool) {
 	if o == nil || o.SubscriptionId == nil {
 		return nil, false
 	}
@@ -260,8 +227,8 @@ func (o *Project) HasSubscriptionId() bool {
 	return false
 }
 
-// SetSubscriptionId gets a reference to the given NullUUID and assigns it to the SubscriptionId field.
-func (o *Project) SetSubscriptionId(v NullUUID) {
+// SetSubscriptionId gets a reference to the given string and assigns it to the SubscriptionId field.
+func (o *Project) SetSubscriptionId(v string) {
 	o.SubscriptionId = &v
 }
 
@@ -299,9 +266,6 @@ func (o Project) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["id"] = o.Id
-	}
-	if o.OngoingStripeCheckoutId != nil {
-		toSerialize["ongoing_stripe_checkout_id"] = o.OngoingStripeCheckoutId
 	}
 	if true {
 		toSerialize["revisions"] = o.Revisions
