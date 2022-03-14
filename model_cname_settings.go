@@ -23,7 +23,7 @@ type CnameSettings struct {
 	Hostname *string `json:"hostname,omitempty"`
 	Id *string `json:"id,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	VerificationErrors *[]string `json:"verification_errors,omitempty"`
+	VerificationErrors []string `json:"verification_errors,omitempty"`
 	// CustomHostnameStatus is the enumeration of valid state values in the CustomHostnameSSL
 	VerificationStatus *string `json:"verification_status,omitempty"`
 }
@@ -211,12 +211,12 @@ func (o *CnameSettings) GetVerificationErrors() []string {
 		var ret []string
 		return ret
 	}
-	return *o.VerificationErrors
+	return o.VerificationErrors
 }
 
 // GetVerificationErrorsOk returns a tuple with the VerificationErrors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CnameSettings) GetVerificationErrorsOk() (*[]string, bool) {
+func (o *CnameSettings) GetVerificationErrorsOk() ([]string, bool) {
 	if o == nil || o.VerificationErrors == nil {
 		return nil, false
 	}
@@ -234,7 +234,7 @@ func (o *CnameSettings) HasVerificationErrors() bool {
 
 // SetVerificationErrors gets a reference to the given []string and assigns it to the VerificationErrors field.
 func (o *CnameSettings) SetVerificationErrors(v []string) {
-	o.VerificationErrors = &v
+	o.VerificationErrors = v
 }
 
 // GetVerificationStatus returns the VerificationStatus field value if set, zero value otherwise.

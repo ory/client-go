@@ -23,7 +23,9 @@ type SubmitSelfServiceRecoveryFlowBody struct {
 
 // SubmitSelfServiceRecoveryFlowWithLinkMethodBodyAsSubmitSelfServiceRecoveryFlowBody is a convenience function that returns SubmitSelfServiceRecoveryFlowWithLinkMethodBody wrapped in SubmitSelfServiceRecoveryFlowBody
 func SubmitSelfServiceRecoveryFlowWithLinkMethodBodyAsSubmitSelfServiceRecoveryFlowBody(v *SubmitSelfServiceRecoveryFlowWithLinkMethodBody) SubmitSelfServiceRecoveryFlowBody {
-	return SubmitSelfServiceRecoveryFlowBody{ SubmitSelfServiceRecoveryFlowWithLinkMethodBody: v}
+	return SubmitSelfServiceRecoveryFlowBody{
+		SubmitSelfServiceRecoveryFlowWithLinkMethodBody: v,
+	}
 }
 
 
@@ -32,7 +34,7 @@ func (dst *SubmitSelfServiceRecoveryFlowBody) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into SubmitSelfServiceRecoveryFlowWithLinkMethodBody
-	err = json.Unmarshal(data, &dst.SubmitSelfServiceRecoveryFlowWithLinkMethodBody)
+	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceRecoveryFlowWithLinkMethodBody)
 	if err == nil {
 		jsonSubmitSelfServiceRecoveryFlowWithLinkMethodBody, _ := json.Marshal(dst.SubmitSelfServiceRecoveryFlowWithLinkMethodBody)
 		if string(jsonSubmitSelfServiceRecoveryFlowWithLinkMethodBody) == "{}" { // empty struct
@@ -67,6 +69,9 @@ func (src SubmitSelfServiceRecoveryFlowBody) MarshalJSON() ([]byte, error) {
 
 // Get the actual instance
 func (obj *SubmitSelfServiceRecoveryFlowBody) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
 	if obj.SubmitSelfServiceRecoveryFlowWithLinkMethodBody != nil {
 		return obj.SubmitSelfServiceRecoveryFlowWithLinkMethodBody
 	}

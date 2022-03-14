@@ -24,7 +24,7 @@ type Identity struct {
 	Credentials *map[string]IdentityCredentials `json:"credentials,omitempty"`
 	Id string `json:"id"`
 	// RecoveryAddresses contains all the addresses that can be used to recover an identity.
-	RecoveryAddresses *[]RecoveryAddress `json:"recovery_addresses,omitempty"`
+	RecoveryAddresses []RecoveryAddress `json:"recovery_addresses,omitempty"`
 	// SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
 	SchemaId string `json:"schema_id"`
 	// SchemaURL is the URL of the endpoint where the identity's traits schema can be fetched from.  format: url
@@ -36,7 +36,7 @@ type Identity struct {
 	// UpdatedAt is a helper struct field for gobuffalo.pop.
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// VerifiableAddresses contains all the addresses that can be verified by the user.
-	VerifiableAddresses *[]VerifiableIdentityAddress `json:"verifiable_addresses,omitempty"`
+	VerifiableAddresses []VerifiableIdentityAddress `json:"verifiable_addresses,omitempty"`
 }
 
 // NewIdentity instantiates a new Identity object
@@ -154,12 +154,12 @@ func (o *Identity) GetRecoveryAddresses() []RecoveryAddress {
 		var ret []RecoveryAddress
 		return ret
 	}
-	return *o.RecoveryAddresses
+	return o.RecoveryAddresses
 }
 
 // GetRecoveryAddressesOk returns a tuple with the RecoveryAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Identity) GetRecoveryAddressesOk() (*[]RecoveryAddress, bool) {
+func (o *Identity) GetRecoveryAddressesOk() ([]RecoveryAddress, bool) {
 	if o == nil || o.RecoveryAddresses == nil {
 		return nil, false
 	}
@@ -177,7 +177,7 @@ func (o *Identity) HasRecoveryAddresses() bool {
 
 // SetRecoveryAddresses gets a reference to the given []RecoveryAddress and assigns it to the RecoveryAddresses field.
 func (o *Identity) SetRecoveryAddresses(v []RecoveryAddress) {
-	o.RecoveryAddresses = &v
+	o.RecoveryAddresses = v
 }
 
 // GetSchemaId returns the SchemaId field value
@@ -356,12 +356,12 @@ func (o *Identity) GetVerifiableAddresses() []VerifiableIdentityAddress {
 		var ret []VerifiableIdentityAddress
 		return ret
 	}
-	return *o.VerifiableAddresses
+	return o.VerifiableAddresses
 }
 
 // GetVerifiableAddressesOk returns a tuple with the VerifiableAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Identity) GetVerifiableAddressesOk() (*[]VerifiableIdentityAddress, bool) {
+func (o *Identity) GetVerifiableAddressesOk() ([]VerifiableIdentityAddress, bool) {
 	if o == nil || o.VerifiableAddresses == nil {
 		return nil, false
 	}
@@ -379,7 +379,7 @@ func (o *Identity) HasVerifiableAddresses() bool {
 
 // SetVerifiableAddresses gets a reference to the given []VerifiableIdentityAddress and assigns it to the VerifiableAddresses field.
 func (o *Identity) SetVerifiableAddresses(v []VerifiableIdentityAddress) {
-	o.VerifiableAddresses = &v
+	o.VerifiableAddresses = v
 }
 
 func (o Identity) MarshalJSON() ([]byte, error) {

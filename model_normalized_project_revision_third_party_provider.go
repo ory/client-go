@@ -44,8 +44,8 @@ type NormalizedProjectRevisionThirdPartyProvider struct {
 	Provider *string `json:"provider,omitempty"`
 	// ID is the provider's ID
 	ProviderId *string `json:"provider_id,omitempty"`
-	RequestedClaims *map[string]interface{} `json:"requested_claims,omitempty"`
-	Scope *[]string `json:"scope,omitempty"`
+	RequestedClaims map[string]interface{} `json:"requested_claims,omitempty"`
+	Scope []string `json:"scope,omitempty"`
 	// TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`.
 	TokenUrl *string `json:"token_url,omitempty"`
 	// Last Time Project's Revision was Updated
@@ -555,12 +555,12 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) GetRequestedClaims() map[s
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.RequestedClaims
+	return o.RequestedClaims
 }
 
 // GetRequestedClaimsOk returns a tuple with the RequestedClaims field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NormalizedProjectRevisionThirdPartyProvider) GetRequestedClaimsOk() (*map[string]interface{}, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetRequestedClaimsOk() (map[string]interface{}, bool) {
 	if o == nil || o.RequestedClaims == nil {
 		return nil, false
 	}
@@ -578,7 +578,7 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) HasRequestedClaims() bool 
 
 // SetRequestedClaims gets a reference to the given map[string]interface{} and assigns it to the RequestedClaims field.
 func (o *NormalizedProjectRevisionThirdPartyProvider) SetRequestedClaims(v map[string]interface{}) {
-	o.RequestedClaims = &v
+	o.RequestedClaims = v
 }
 
 // GetScope returns the Scope field value if set, zero value otherwise.
@@ -587,12 +587,12 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) GetScope() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Scope
+	return o.Scope
 }
 
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NormalizedProjectRevisionThirdPartyProvider) GetScopeOk() (*[]string, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetScopeOk() ([]string, bool) {
 	if o == nil || o.Scope == nil {
 		return nil, false
 	}
@@ -610,7 +610,7 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) HasScope() bool {
 
 // SetScope gets a reference to the given []string and assigns it to the Scope field.
 func (o *NormalizedProjectRevisionThirdPartyProvider) SetScope(v []string) {
-	o.Scope = &v
+	o.Scope = v
 }
 
 // GetTokenUrl returns the TokenUrl field value if set, zero value otherwise.

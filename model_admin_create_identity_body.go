@@ -19,14 +19,14 @@ import (
 type AdminCreateIdentityBody struct {
 	Credentials *AdminIdentityImportCredentials `json:"credentials,omitempty"`
 	// RecoveryAddresses contains all the addresses that can be used to recover an identity.  Use this structure to import recovery addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update.
-	RecoveryAddresses *[]RecoveryAddress `json:"recovery_addresses,omitempty"`
+	RecoveryAddresses []RecoveryAddress `json:"recovery_addresses,omitempty"`
 	// SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
 	SchemaId string `json:"schema_id"`
 	State *IdentityState `json:"state,omitempty"`
 	// Traits represent an identity's traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in `schema_url`.
 	Traits map[string]interface{} `json:"traits"`
 	// VerifiableAddresses contains all the addresses that can be verified by the user.  Use this structure to import verified addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update.
-	VerifiableAddresses *[]VerifiableIdentityAddress `json:"verifiable_addresses,omitempty"`
+	VerifiableAddresses []VerifiableIdentityAddress `json:"verifiable_addresses,omitempty"`
 }
 
 // NewAdminCreateIdentityBody instantiates a new AdminCreateIdentityBody object
@@ -86,12 +86,12 @@ func (o *AdminCreateIdentityBody) GetRecoveryAddresses() []RecoveryAddress {
 		var ret []RecoveryAddress
 		return ret
 	}
-	return *o.RecoveryAddresses
+	return o.RecoveryAddresses
 }
 
 // GetRecoveryAddressesOk returns a tuple with the RecoveryAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminCreateIdentityBody) GetRecoveryAddressesOk() (*[]RecoveryAddress, bool) {
+func (o *AdminCreateIdentityBody) GetRecoveryAddressesOk() ([]RecoveryAddress, bool) {
 	if o == nil || o.RecoveryAddresses == nil {
 		return nil, false
 	}
@@ -109,7 +109,7 @@ func (o *AdminCreateIdentityBody) HasRecoveryAddresses() bool {
 
 // SetRecoveryAddresses gets a reference to the given []RecoveryAddress and assigns it to the RecoveryAddresses field.
 func (o *AdminCreateIdentityBody) SetRecoveryAddresses(v []RecoveryAddress) {
-	o.RecoveryAddresses = &v
+	o.RecoveryAddresses = v
 }
 
 // GetSchemaId returns the SchemaId field value
@@ -180,11 +180,11 @@ func (o *AdminCreateIdentityBody) GetTraits() map[string]interface{} {
 
 // GetTraitsOk returns a tuple with the Traits field value
 // and a boolean to check if the value has been set.
-func (o *AdminCreateIdentityBody) GetTraitsOk() (*map[string]interface{}, bool) {
+func (o *AdminCreateIdentityBody) GetTraitsOk() (map[string]interface{}, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Traits, true
+	return o.Traits, true
 }
 
 // SetTraits sets field value
@@ -198,12 +198,12 @@ func (o *AdminCreateIdentityBody) GetVerifiableAddresses() []VerifiableIdentityA
 		var ret []VerifiableIdentityAddress
 		return ret
 	}
-	return *o.VerifiableAddresses
+	return o.VerifiableAddresses
 }
 
 // GetVerifiableAddressesOk returns a tuple with the VerifiableAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminCreateIdentityBody) GetVerifiableAddressesOk() (*[]VerifiableIdentityAddress, bool) {
+func (o *AdminCreateIdentityBody) GetVerifiableAddressesOk() ([]VerifiableIdentityAddress, bool) {
 	if o == nil || o.VerifiableAddresses == nil {
 		return nil, false
 	}
@@ -221,7 +221,7 @@ func (o *AdminCreateIdentityBody) HasVerifiableAddresses() bool {
 
 // SetVerifiableAddresses gets a reference to the given []VerifiableIdentityAddress and assigns it to the VerifiableAddresses field.
 func (o *AdminCreateIdentityBody) SetVerifiableAddresses(v []VerifiableIdentityAddress) {
-	o.VerifiableAddresses = &v
+	o.VerifiableAddresses = v
 }
 
 func (o AdminCreateIdentityBody) MarshalJSON() ([]byte, error) {

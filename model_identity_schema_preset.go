@@ -54,11 +54,11 @@ func (o *IdentitySchemaPreset) GetSchema() map[string]interface{} {
 
 // GetSchemaOk returns a tuple with the Schema field value
 // and a boolean to check if the value has been set.
-func (o *IdentitySchemaPreset) GetSchemaOk() (*map[string]interface{}, bool) {
+func (o *IdentitySchemaPreset) GetSchemaOk() (map[string]interface{}, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Schema, true
+	return o.Schema, true
 }
 
 // SetSchema sets field value

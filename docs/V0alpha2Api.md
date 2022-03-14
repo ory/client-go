@@ -70,8 +70,8 @@ func main() {
     adminCreateIdentityBody := *openapiclient.NewAdminCreateIdentityBody("SchemaId_example", map[string]interface{}(123)) // AdminCreateIdentityBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.AdminCreateIdentity(context.Background()).AdminCreateIdentityBody(adminCreateIdentityBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.AdminCreateIdentity(context.Background()).AdminCreateIdentityBody(adminCreateIdentityBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.AdminCreateIdentity``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -136,8 +136,8 @@ func main() {
     adminCreateSelfServiceRecoveryLinkBody := *openapiclient.NewAdminCreateSelfServiceRecoveryLinkBody("IdentityId_example") // AdminCreateSelfServiceRecoveryLinkBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.AdminCreateSelfServiceRecoveryLink(context.Background()).AdminCreateSelfServiceRecoveryLinkBody(adminCreateSelfServiceRecoveryLinkBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.AdminCreateSelfServiceRecoveryLink(context.Background()).AdminCreateSelfServiceRecoveryLinkBody(adminCreateSelfServiceRecoveryLinkBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.AdminCreateSelfServiceRecoveryLink``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -202,8 +202,8 @@ func main() {
     id := "id_example" // string | ID is the identity's ID.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.AdminDeleteIdentity(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.AdminDeleteIdentity(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.AdminDeleteIdentity``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -270,8 +270,8 @@ func main() {
     id := "id_example" // string | ID is the identity's ID.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.AdminDeleteIdentitySessions(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.AdminDeleteIdentitySessions(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.AdminDeleteIdentitySessions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -339,8 +339,8 @@ func main() {
     includeCredential := []string{"Inner_example"} // []string | DeclassifyCredentials will declassify one or more identity's credentials  Currently, only `oidc` is supported. This will return the initial OAuth 2.0 Access, Refresh and (optionally) OpenID Connect ID Token. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.AdminGetIdentity(context.Background(), id).IncludeCredential(includeCredential).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.AdminGetIdentity(context.Background(), id).IncludeCredential(includeCredential).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.AdminGetIdentity``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -411,8 +411,8 @@ func main() {
     page := int64(789) // int64 | Pagination Page (optional) (default to 1)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.AdminListIdentities(context.Background()).PerPage(perPage).Page(page).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.AdminListIdentities(context.Background()).PerPage(perPage).Page(page).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.AdminListIdentities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -481,8 +481,8 @@ func main() {
     active := true // bool | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.AdminListIdentitySessions(context.Background(), id).PerPage(perPage).Page(page).Active(active).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.AdminListIdentitySessions(context.Background(), id).PerPage(perPage).Page(page).Active(active).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.AdminListIdentitySessions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -555,8 +555,8 @@ func main() {
     adminUpdateIdentityBody := *openapiclient.NewAdminUpdateIdentityBody("SchemaId_example", openapiclient.identityState("active"), map[string]interface{}(123)) // AdminUpdateIdentityBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.AdminUpdateIdentity(context.Background(), id).AdminUpdateIdentityBody(adminUpdateIdentityBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.AdminUpdateIdentity(context.Background(), id).AdminUpdateIdentityBody(adminUpdateIdentityBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.AdminUpdateIdentity``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -626,8 +626,8 @@ func main() {
     cookie := "cookie_example" // string | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.CreateSelfServiceLogoutFlowUrlForBrowsers(context.Background()).Cookie(cookie).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.CreateSelfServiceLogoutFlowUrlForBrowsers(context.Background()).Cookie(cookie).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.CreateSelfServiceLogoutFlowUrlForBrowsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -692,8 +692,8 @@ func main() {
     id := "id_example" // string | ID must be set to the ID of schema you want to get
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.GetJsonSchema(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.GetJsonSchema(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.GetJsonSchema``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -762,8 +762,8 @@ func main() {
     id := "id_example" // string | Error is the error's ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.GetSelfServiceError(context.Background()).Id(id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.GetSelfServiceError(context.Background()).Id(id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.GetSelfServiceError``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -829,8 +829,8 @@ func main() {
     cookie := "cookie_example" // string | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.GetSelfServiceLoginFlow(context.Background()).Id(id).Cookie(cookie).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.GetSelfServiceLoginFlow(context.Background()).Id(id).Cookie(cookie).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.GetSelfServiceLoginFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -897,8 +897,8 @@ func main() {
     cookie := "cookie_example" // string | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.GetSelfServiceRecoveryFlow(context.Background()).Id(id).Cookie(cookie).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.GetSelfServiceRecoveryFlow(context.Background()).Id(id).Cookie(cookie).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.GetSelfServiceRecoveryFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -965,8 +965,8 @@ func main() {
     cookie := "cookie_example" // string | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.GetSelfServiceRegistrationFlow(context.Background()).Id(id).Cookie(cookie).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.GetSelfServiceRegistrationFlow(context.Background()).Id(id).Cookie(cookie).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.GetSelfServiceRegistrationFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1034,8 +1034,8 @@ func main() {
     cookie := "cookie_example" // string | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. You only need to do this for browser- based flows. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.GetSelfServiceSettingsFlow(context.Background()).Id(id).XSessionToken(xSessionToken).Cookie(cookie).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.GetSelfServiceSettingsFlow(context.Background()).Id(id).XSessionToken(xSessionToken).Cookie(cookie).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.GetSelfServiceSettingsFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1103,8 +1103,8 @@ func main() {
     cookie := "cookie_example" // string | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.GetSelfServiceVerificationFlow(context.Background()).Id(id).Cookie(cookie).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.GetSelfServiceVerificationFlow(context.Background()).Id(id).Cookie(cookie).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.GetSelfServiceVerificationFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1169,8 +1169,8 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.GetWebAuthnJavaScript(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.GetWebAuthnJavaScript(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.GetWebAuthnJavaScript``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1233,8 +1233,8 @@ func main() {
     returnTo := "returnTo_example" // string | The URL to return the browser to after the flow was completed. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.InitializeSelfServiceLoginFlowForBrowsers(context.Background()).Refresh(refresh).Aal(aal).ReturnTo(returnTo).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.InitializeSelfServiceLoginFlowForBrowsers(context.Background()).Refresh(refresh).Aal(aal).ReturnTo(returnTo).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.InitializeSelfServiceLoginFlowForBrowsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1303,8 +1303,8 @@ func main() {
     xSessionToken := "xSessionToken_example" // string | The Session Token of the Identity performing the settings flow. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.InitializeSelfServiceLoginFlowWithoutBrowser(context.Background()).Refresh(refresh).Aal(aal).XSessionToken(xSessionToken).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.InitializeSelfServiceLoginFlowWithoutBrowser(context.Background()).Refresh(refresh).Aal(aal).XSessionToken(xSessionToken).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.InitializeSelfServiceLoginFlowWithoutBrowser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1371,8 +1371,8 @@ func main() {
     returnTo := "returnTo_example" // string | The URL to return the browser to after the flow was completed. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.InitializeSelfServiceRecoveryFlowForBrowsers(context.Background()).ReturnTo(returnTo).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.InitializeSelfServiceRecoveryFlowForBrowsers(context.Background()).ReturnTo(returnTo).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.InitializeSelfServiceRecoveryFlowForBrowsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1436,8 +1436,8 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.InitializeSelfServiceRecoveryFlowWithoutBrowser(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.InitializeSelfServiceRecoveryFlowWithoutBrowser(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.InitializeSelfServiceRecoveryFlowWithoutBrowser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1498,8 +1498,8 @@ func main() {
     returnTo := "returnTo_example" // string | The URL to return the browser to after the flow was completed. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.InitializeSelfServiceRegistrationFlowForBrowsers(context.Background()).ReturnTo(returnTo).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.InitializeSelfServiceRegistrationFlowForBrowsers(context.Background()).ReturnTo(returnTo).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.InitializeSelfServiceRegistrationFlowForBrowsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1563,8 +1563,8 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.InitializeSelfServiceRegistrationFlowWithoutBrowser(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.InitializeSelfServiceRegistrationFlowWithoutBrowser(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.InitializeSelfServiceRegistrationFlowWithoutBrowser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1625,8 +1625,8 @@ func main() {
     returnTo := "returnTo_example" // string | The URL to return the browser to after the flow was completed. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.InitializeSelfServiceSettingsFlowForBrowsers(context.Background()).ReturnTo(returnTo).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.InitializeSelfServiceSettingsFlowForBrowsers(context.Background()).ReturnTo(returnTo).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.InitializeSelfServiceSettingsFlowForBrowsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1691,8 +1691,8 @@ func main() {
     xSessionToken := "xSessionToken_example" // string | The Session Token of the Identity performing the settings flow. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.InitializeSelfServiceSettingsFlowWithoutBrowser(context.Background()).XSessionToken(xSessionToken).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.InitializeSelfServiceSettingsFlowWithoutBrowser(context.Background()).XSessionToken(xSessionToken).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.InitializeSelfServiceSettingsFlowWithoutBrowser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1757,8 +1757,8 @@ func main() {
     returnTo := "returnTo_example" // string | The URL to return the browser to after the flow was completed. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.InitializeSelfServiceVerificationFlowForBrowsers(context.Background()).ReturnTo(returnTo).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.InitializeSelfServiceVerificationFlowForBrowsers(context.Background()).ReturnTo(returnTo).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.InitializeSelfServiceVerificationFlowForBrowsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1822,8 +1822,8 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.InitializeSelfServiceVerificationFlowWithoutBrowser(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.InitializeSelfServiceVerificationFlowWithoutBrowser(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.InitializeSelfServiceVerificationFlowWithoutBrowser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1885,8 +1885,8 @@ func main() {
     page := int64(789) // int64 | Pagination Page (optional) (default to 1)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.ListIdentitySchemas(context.Background()).PerPage(perPage).Page(page).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.ListIdentitySchemas(context.Background()).PerPage(perPage).Page(page).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.ListIdentitySchemas``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1955,8 +1955,8 @@ func main() {
     page := int64(789) // int64 | Pagination Page (optional) (default to 1)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.ListSessions(context.Background()).XSessionToken(xSessionToken).Cookie(cookie).PerPage(perPage).Page(page).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.ListSessions(context.Background()).XSessionToken(xSessionToken).Cookie(cookie).PerPage(perPage).Page(page).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.ListSessions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2024,8 +2024,8 @@ func main() {
     id := "id_example" // string | ID is the session's ID.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.RevokeSession(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.RevokeSession(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.RevokeSession``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2093,8 +2093,8 @@ func main() {
     cookie := "cookie_example" // string | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.RevokeSessions(context.Background()).XSessionToken(xSessionToken).Cookie(cookie).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.RevokeSessions(context.Background()).XSessionToken(xSessionToken).Cookie(cookie).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.RevokeSessions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2162,8 +2162,8 @@ func main() {
     submitSelfServiceLoginFlowBody := openapiclient.submitSelfServiceLoginFlowBody{SubmitSelfServiceLoginFlowWithLookupSecretMethodBody: openapiclient.NewSubmitSelfServiceLoginFlowWithLookupSecretMethodBody("LookupSecret_example", "Method_example")} // SubmitSelfServiceLoginFlowBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.SubmitSelfServiceLoginFlow(context.Background()).Flow(flow).XSessionToken(xSessionToken).SubmitSelfServiceLoginFlowBody(submitSelfServiceLoginFlowBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.SubmitSelfServiceLoginFlow(context.Background()).Flow(flow).XSessionToken(xSessionToken).SubmitSelfServiceLoginFlowBody(submitSelfServiceLoginFlowBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.SubmitSelfServiceLoginFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2231,8 +2231,8 @@ func main() {
     returnTo := "returnTo_example" // string | The URL to return to after the logout was completed. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.SubmitSelfServiceLogoutFlow(context.Background()).Token(token).ReturnTo(returnTo).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.SubmitSelfServiceLogoutFlow(context.Background()).Token(token).ReturnTo(returnTo).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.SubmitSelfServiceLogoutFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2296,8 +2296,8 @@ func main() {
     submitSelfServiceLogoutFlowWithoutBrowserBody := *openapiclient.NewSubmitSelfServiceLogoutFlowWithoutBrowserBody("SessionToken_example") // SubmitSelfServiceLogoutFlowWithoutBrowserBody | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.SubmitSelfServiceLogoutFlowWithoutBrowser(context.Background()).SubmitSelfServiceLogoutFlowWithoutBrowserBody(submitSelfServiceLogoutFlowWithoutBrowserBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.SubmitSelfServiceLogoutFlowWithoutBrowser(context.Background()).SubmitSelfServiceLogoutFlowWithoutBrowserBody(submitSelfServiceLogoutFlowWithoutBrowserBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.SubmitSelfServiceLogoutFlowWithoutBrowser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2362,8 +2362,8 @@ func main() {
     submitSelfServiceRecoveryFlowBody := openapiclient.submitSelfServiceRecoveryFlowBody{SubmitSelfServiceRecoveryFlowWithLinkMethodBody: openapiclient.NewSubmitSelfServiceRecoveryFlowWithLinkMethodBody("Email_example", "Method_example")} // SubmitSelfServiceRecoveryFlowBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.SubmitSelfServiceRecoveryFlow(context.Background()).Flow(flow).Token(token).SubmitSelfServiceRecoveryFlowBody(submitSelfServiceRecoveryFlowBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.SubmitSelfServiceRecoveryFlow(context.Background()).Flow(flow).Token(token).SubmitSelfServiceRecoveryFlowBody(submitSelfServiceRecoveryFlowBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.SubmitSelfServiceRecoveryFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2431,8 +2431,8 @@ func main() {
     submitSelfServiceRegistrationFlowBody := openapiclient.submitSelfServiceRegistrationFlowBody{SubmitSelfServiceRegistrationFlowWithOidcMethodBody: openapiclient.NewSubmitSelfServiceRegistrationFlowWithOidcMethodBody("Method_example", "Provider_example")} // SubmitSelfServiceRegistrationFlowBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.SubmitSelfServiceRegistrationFlow(context.Background()).Flow(flow).SubmitSelfServiceRegistrationFlowBody(submitSelfServiceRegistrationFlowBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.SubmitSelfServiceRegistrationFlow(context.Background()).Flow(flow).SubmitSelfServiceRegistrationFlowBody(submitSelfServiceRegistrationFlowBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.SubmitSelfServiceRegistrationFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2500,8 +2500,8 @@ func main() {
     submitSelfServiceSettingsFlowBody := openapiclient.submitSelfServiceSettingsFlowBody{SubmitSelfServiceSettingsFlowWithLookupMethodBody: openapiclient.NewSubmitSelfServiceSettingsFlowWithLookupMethodBody("Method_example")} // SubmitSelfServiceSettingsFlowBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.SubmitSelfServiceSettingsFlow(context.Background()).Flow(flow).XSessionToken(xSessionToken).SubmitSelfServiceSettingsFlowBody(submitSelfServiceSettingsFlowBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.SubmitSelfServiceSettingsFlow(context.Background()).Flow(flow).XSessionToken(xSessionToken).SubmitSelfServiceSettingsFlowBody(submitSelfServiceSettingsFlowBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.SubmitSelfServiceSettingsFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2570,8 +2570,8 @@ func main() {
     submitSelfServiceVerificationFlowBody := openapiclient.submitSelfServiceVerificationFlowBody{SubmitSelfServiceVerificationFlowWithLinkMethodBody: openapiclient.NewSubmitSelfServiceVerificationFlowWithLinkMethodBody("Email_example", "Method_example")} // SubmitSelfServiceVerificationFlowBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.SubmitSelfServiceVerificationFlow(context.Background()).Flow(flow).Token(token).SubmitSelfServiceVerificationFlowBody(submitSelfServiceVerificationFlowBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.SubmitSelfServiceVerificationFlow(context.Background()).Flow(flow).Token(token).SubmitSelfServiceVerificationFlowBody(submitSelfServiceVerificationFlowBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.SubmitSelfServiceVerificationFlow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2639,8 +2639,8 @@ func main() {
     cookie := "ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==" // string | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha2Api.ToSession(context.Background()).XSessionToken(xSessionToken).Cookie(cookie).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.ToSession(context.Background()).XSessionToken(xSessionToken).Cookie(cookie).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.ToSession``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

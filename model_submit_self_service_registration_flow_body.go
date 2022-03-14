@@ -25,17 +25,23 @@ type SubmitSelfServiceRegistrationFlowBody struct {
 
 // SubmitSelfServiceRegistrationFlowWithOidcMethodBodyAsSubmitSelfServiceRegistrationFlowBody is a convenience function that returns SubmitSelfServiceRegistrationFlowWithOidcMethodBody wrapped in SubmitSelfServiceRegistrationFlowBody
 func SubmitSelfServiceRegistrationFlowWithOidcMethodBodyAsSubmitSelfServiceRegistrationFlowBody(v *SubmitSelfServiceRegistrationFlowWithOidcMethodBody) SubmitSelfServiceRegistrationFlowBody {
-	return SubmitSelfServiceRegistrationFlowBody{ SubmitSelfServiceRegistrationFlowWithOidcMethodBody: v}
+	return SubmitSelfServiceRegistrationFlowBody{
+		SubmitSelfServiceRegistrationFlowWithOidcMethodBody: v,
+	}
 }
 
 // SubmitSelfServiceRegistrationFlowWithPasswordMethodBodyAsSubmitSelfServiceRegistrationFlowBody is a convenience function that returns SubmitSelfServiceRegistrationFlowWithPasswordMethodBody wrapped in SubmitSelfServiceRegistrationFlowBody
 func SubmitSelfServiceRegistrationFlowWithPasswordMethodBodyAsSubmitSelfServiceRegistrationFlowBody(v *SubmitSelfServiceRegistrationFlowWithPasswordMethodBody) SubmitSelfServiceRegistrationFlowBody {
-	return SubmitSelfServiceRegistrationFlowBody{ SubmitSelfServiceRegistrationFlowWithPasswordMethodBody: v}
+	return SubmitSelfServiceRegistrationFlowBody{
+		SubmitSelfServiceRegistrationFlowWithPasswordMethodBody: v,
+	}
 }
 
 // SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBodyAsSubmitSelfServiceRegistrationFlowBody is a convenience function that returns SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody wrapped in SubmitSelfServiceRegistrationFlowBody
 func SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBodyAsSubmitSelfServiceRegistrationFlowBody(v *SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody) SubmitSelfServiceRegistrationFlowBody {
-	return SubmitSelfServiceRegistrationFlowBody{ SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody: v}
+	return SubmitSelfServiceRegistrationFlowBody{
+		SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody: v,
+	}
 }
 
 
@@ -44,7 +50,7 @@ func (dst *SubmitSelfServiceRegistrationFlowBody) UnmarshalJSON(data []byte) err
 	var err error
 	match := 0
 	// try to unmarshal data into SubmitSelfServiceRegistrationFlowWithOidcMethodBody
-	err = json.Unmarshal(data, &dst.SubmitSelfServiceRegistrationFlowWithOidcMethodBody)
+	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceRegistrationFlowWithOidcMethodBody)
 	if err == nil {
 		jsonSubmitSelfServiceRegistrationFlowWithOidcMethodBody, _ := json.Marshal(dst.SubmitSelfServiceRegistrationFlowWithOidcMethodBody)
 		if string(jsonSubmitSelfServiceRegistrationFlowWithOidcMethodBody) == "{}" { // empty struct
@@ -57,7 +63,7 @@ func (dst *SubmitSelfServiceRegistrationFlowBody) UnmarshalJSON(data []byte) err
 	}
 
 	// try to unmarshal data into SubmitSelfServiceRegistrationFlowWithPasswordMethodBody
-	err = json.Unmarshal(data, &dst.SubmitSelfServiceRegistrationFlowWithPasswordMethodBody)
+	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceRegistrationFlowWithPasswordMethodBody)
 	if err == nil {
 		jsonSubmitSelfServiceRegistrationFlowWithPasswordMethodBody, _ := json.Marshal(dst.SubmitSelfServiceRegistrationFlowWithPasswordMethodBody)
 		if string(jsonSubmitSelfServiceRegistrationFlowWithPasswordMethodBody) == "{}" { // empty struct
@@ -70,7 +76,7 @@ func (dst *SubmitSelfServiceRegistrationFlowBody) UnmarshalJSON(data []byte) err
 	}
 
 	// try to unmarshal data into SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody
-	err = json.Unmarshal(data, &dst.SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody)
+	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody)
 	if err == nil {
 		jsonSubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody, _ := json.Marshal(dst.SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody)
 		if string(jsonSubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody) == "{}" { // empty struct
@@ -115,6 +121,9 @@ func (src SubmitSelfServiceRegistrationFlowBody) MarshalJSON() ([]byte, error) {
 
 // Get the actual instance
 func (obj *SubmitSelfServiceRegistrationFlowBody) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
 	if obj.SubmitSelfServiceRegistrationFlowWithOidcMethodBody != nil {
 		return obj.SubmitSelfServiceRegistrationFlowWithOidcMethodBody
 	}

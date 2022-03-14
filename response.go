@@ -33,7 +33,7 @@ type APIResponse struct {
 	Payload []byte `json:"-"`
 }
 
-// NewAPIResponse returns a new APIResponse object.
+// NewAPIResponse returns a new APIResonse object.
 func NewAPIResponse(r *http.Response) *APIResponse {
 
 	response := &APIResponse{Response: r}

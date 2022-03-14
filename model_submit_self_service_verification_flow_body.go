@@ -23,7 +23,9 @@ type SubmitSelfServiceVerificationFlowBody struct {
 
 // SubmitSelfServiceVerificationFlowWithLinkMethodBodyAsSubmitSelfServiceVerificationFlowBody is a convenience function that returns SubmitSelfServiceVerificationFlowWithLinkMethodBody wrapped in SubmitSelfServiceVerificationFlowBody
 func SubmitSelfServiceVerificationFlowWithLinkMethodBodyAsSubmitSelfServiceVerificationFlowBody(v *SubmitSelfServiceVerificationFlowWithLinkMethodBody) SubmitSelfServiceVerificationFlowBody {
-	return SubmitSelfServiceVerificationFlowBody{ SubmitSelfServiceVerificationFlowWithLinkMethodBody: v}
+	return SubmitSelfServiceVerificationFlowBody{
+		SubmitSelfServiceVerificationFlowWithLinkMethodBody: v,
+	}
 }
 
 
@@ -32,7 +34,7 @@ func (dst *SubmitSelfServiceVerificationFlowBody) UnmarshalJSON(data []byte) err
 	var err error
 	match := 0
 	// try to unmarshal data into SubmitSelfServiceVerificationFlowWithLinkMethodBody
-	err = json.Unmarshal(data, &dst.SubmitSelfServiceVerificationFlowWithLinkMethodBody)
+	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceVerificationFlowWithLinkMethodBody)
 	if err == nil {
 		jsonSubmitSelfServiceVerificationFlowWithLinkMethodBody, _ := json.Marshal(dst.SubmitSelfServiceVerificationFlowWithLinkMethodBody)
 		if string(jsonSubmitSelfServiceVerificationFlowWithLinkMethodBody) == "{}" { // empty struct
@@ -67,6 +69,9 @@ func (src SubmitSelfServiceVerificationFlowBody) MarshalJSON() ([]byte, error) {
 
 // Get the actual instance
 func (obj *SubmitSelfServiceVerificationFlowBody) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
 	if obj.SubmitSelfServiceVerificationFlowWithLinkMethodBody != nil {
 		return obj.SubmitSelfServiceVerificationFlowWithLinkMethodBody
 	}

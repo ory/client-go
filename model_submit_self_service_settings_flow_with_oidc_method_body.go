@@ -24,7 +24,7 @@ type SubmitSelfServiceSettingsFlowWithOidcMethodBody struct {
 	// Method  Should be set to profile when trying to update a profile.
 	Method string `json:"method"`
 	// The identity's traits  in: body
-	Traits *map[string]interface{} `json:"traits,omitempty"`
+	Traits map[string]interface{} `json:"traits,omitempty"`
 	// Unlink this provider  Either this or `link` must be set.  type: string in: body
 	Unlink *string `json:"unlink,omitempty"`
 }
@@ -141,12 +141,12 @@ func (o *SubmitSelfServiceSettingsFlowWithOidcMethodBody) GetTraits() map[string
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Traits
+	return o.Traits
 }
 
 // GetTraitsOk returns a tuple with the Traits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SubmitSelfServiceSettingsFlowWithOidcMethodBody) GetTraitsOk() (*map[string]interface{}, bool) {
+func (o *SubmitSelfServiceSettingsFlowWithOidcMethodBody) GetTraitsOk() (map[string]interface{}, bool) {
 	if o == nil || o.Traits == nil {
 		return nil, false
 	}
@@ -164,7 +164,7 @@ func (o *SubmitSelfServiceSettingsFlowWithOidcMethodBody) HasTraits() bool {
 
 // SetTraits gets a reference to the given map[string]interface{} and assigns it to the Traits field.
 func (o *SubmitSelfServiceSettingsFlowWithOidcMethodBody) SetTraits(v map[string]interface{}) {
-	o.Traits = &v
+	o.Traits = v
 }
 
 // GetUnlink returns the Unlink field value if set, zero value otherwise.

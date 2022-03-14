@@ -22,7 +22,7 @@ type GenericError struct {
 	// Debug contains debug information. This is usually not available and has to be enabled.
 	Debug *string `json:"debug,omitempty"`
 	// Further error details
-	Details *map[string]interface{} `json:"details,omitempty"`
+	Details map[string]interface{} `json:"details,omitempty"`
 	// Name is the error name.
 	Error *string `json:"error,omitempty"`
 	// Description contains further information on the nature of the error.
@@ -129,12 +129,12 @@ func (o *GenericError) GetDetails() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Details
+	return o.Details
 }
 
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GenericError) GetDetailsOk() (*map[string]interface{}, bool) {
+func (o *GenericError) GetDetailsOk() (map[string]interface{}, bool) {
 	if o == nil || o.Details == nil {
 		return nil, false
 	}
@@ -152,7 +152,7 @@ func (o *GenericError) HasDetails() bool {
 
 // SetDetails gets a reference to the given map[string]interface{} and assigns it to the Details field.
 func (o *GenericError) SetDetails(v map[string]interface{}) {
-	o.Details = &v
+	o.Details = v
 }
 
 // GetError returns the Error field value if set, zero value otherwise.

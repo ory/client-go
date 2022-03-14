@@ -24,7 +24,7 @@ type SubmitSelfServiceLoginFlowWithOidcMethodBody struct {
 	// The provider to register with
 	Provider string `json:"provider"`
 	// The identity traits. This is a placeholder for the registration flow.
-	Traits *map[string]interface{} `json:"traits,omitempty"`
+	Traits map[string]interface{} `json:"traits,omitempty"`
 }
 
 // NewSubmitSelfServiceLoginFlowWithOidcMethodBody instantiates a new SubmitSelfServiceLoginFlowWithOidcMethodBody object
@@ -132,12 +132,12 @@ func (o *SubmitSelfServiceLoginFlowWithOidcMethodBody) GetTraits() map[string]in
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Traits
+	return o.Traits
 }
 
 // GetTraitsOk returns a tuple with the Traits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SubmitSelfServiceLoginFlowWithOidcMethodBody) GetTraitsOk() (*map[string]interface{}, bool) {
+func (o *SubmitSelfServiceLoginFlowWithOidcMethodBody) GetTraitsOk() (map[string]interface{}, bool) {
 	if o == nil || o.Traits == nil {
 		return nil, false
 	}
@@ -155,7 +155,7 @@ func (o *SubmitSelfServiceLoginFlowWithOidcMethodBody) HasTraits() bool {
 
 // SetTraits gets a reference to the given map[string]interface{} and assigns it to the Traits field.
 func (o *SubmitSelfServiceLoginFlowWithOidcMethodBody) SetTraits(v map[string]interface{}) {
-	o.Traits = &v
+	o.Traits = v
 }
 
 func (o SubmitSelfServiceLoginFlowWithOidcMethodBody) MarshalJSON() ([]byte, error) {

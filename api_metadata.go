@@ -13,15 +13,15 @@ package client
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 type MetadataApi interface {
@@ -35,16 +35,16 @@ If the service supports TLS Edge Termination, this endpoint does not require the
 
 Be aware that if you are running multiple nodes of this service, the version will never
 refer to the cluster state, only to a single instance.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return MetadataApiApiGetVersionRequest
 	 */
-	GetVersion(ctx _context.Context) MetadataApiApiGetVersionRequest
+	GetVersion(ctx context.Context) MetadataApiApiGetVersionRequest
 
 	/*
 	 * GetVersionExecute executes the request
 	 * @return InlineResponse2001
 	 */
-	GetVersionExecute(r MetadataApiApiGetVersionRequest) (InlineResponse2001, *_nethttp.Response, error)
+	GetVersionExecute(r MetadataApiApiGetVersionRequest) (*InlineResponse2001, *http.Response, error)
 
 	/*
 	 * IsAlive Check HTTP Server Status
@@ -56,16 +56,16 @@ If the service supports TLS Edge Termination, this endpoint does not require the
 
 Be aware that if you are running multiple nodes of this service, the health status will never
 refer to the cluster state, only to a single instance.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return MetadataApiApiIsAliveRequest
 	 */
-	IsAlive(ctx _context.Context) MetadataApiApiIsAliveRequest
+	IsAlive(ctx context.Context) MetadataApiApiIsAliveRequest
 
 	/*
 	 * IsAliveExecute executes the request
 	 * @return InlineResponse200
 	 */
-	IsAliveExecute(r MetadataApiApiIsAliveRequest) (InlineResponse200, *_nethttp.Response, error)
+	IsAliveExecute(r MetadataApiApiIsAliveRequest) (*InlineResponse200, *http.Response, error)
 
 	/*
 	 * IsReady Check HTTP Server and Database Status
@@ -77,28 +77,28 @@ If the service supports TLS Edge Termination, this endpoint does not require the
 
 Be aware that if you are running multiple nodes of Ory Kratos, the health status will never
 refer to the cluster state, only to a single instance.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return MetadataApiApiIsReadyRequest
 	 */
-	IsReady(ctx _context.Context) MetadataApiApiIsReadyRequest
+	IsReady(ctx context.Context) MetadataApiApiIsReadyRequest
 
 	/*
 	 * IsReadyExecute executes the request
 	 * @return InlineResponse200
 	 */
-	IsReadyExecute(r MetadataApiApiIsReadyRequest) (InlineResponse200, *_nethttp.Response, error)
+	IsReadyExecute(r MetadataApiApiIsReadyRequest) (*InlineResponse200, *http.Response, error)
 }
 
 // MetadataApiService MetadataApi service
 type MetadataApiService service
 
 type MetadataApiApiGetVersionRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService MetadataApi
 }
 
 
-func (r MetadataApiApiGetVersionRequest) Execute() (InlineResponse2001, *_nethttp.Response, error) {
+func (r MetadataApiApiGetVersionRequest) Execute() (*InlineResponse2001, *http.Response, error) {
 	return r.ApiService.GetVersionExecute(r)
 }
 
@@ -111,10 +111,10 @@ If the service supports TLS Edge Termination, this endpoint does not require the
 
 Be aware that if you are running multiple nodes of this service, the version will never
 refer to the cluster state, only to a single instance.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return MetadataApiApiGetVersionRequest
  */
-func (a *MetadataApiService) GetVersion(ctx _context.Context) MetadataApiApiGetVersionRequest {
+func (a *MetadataApiService) GetVersion(ctx context.Context) MetadataApiApiGetVersionRequest {
 	return MetadataApiApiGetVersionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -125,26 +125,26 @@ func (a *MetadataApiService) GetVersion(ctx _context.Context) MetadataApiApiGetV
  * Execute executes the request
  * @return InlineResponse2001
  */
-func (a *MetadataApiService) GetVersionExecute(r MetadataApiApiGetVersionRequest) (InlineResponse2001, *_nethttp.Response, error) {
+func (a *MetadataApiService) GetVersionExecute(r MetadataApiApiGetVersionRequest) (*InlineResponse2001, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2001
+		localVarReturnValue  *InlineResponse2001
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataApiService.GetVersion")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/version"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -173,15 +173,15 @@ func (a *MetadataApiService) GetVersionExecute(r MetadataApiApiGetVersionRequest
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -190,7 +190,7 @@ func (a *MetadataApiService) GetVersionExecute(r MetadataApiApiGetVersionRequest
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -201,12 +201,12 @@ func (a *MetadataApiService) GetVersionExecute(r MetadataApiApiGetVersionRequest
 }
 
 type MetadataApiApiIsAliveRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService MetadataApi
 }
 
 
-func (r MetadataApiApiIsAliveRequest) Execute() (InlineResponse200, *_nethttp.Response, error) {
+func (r MetadataApiApiIsAliveRequest) Execute() (*InlineResponse200, *http.Response, error) {
 	return r.ApiService.IsAliveExecute(r)
 }
 
@@ -220,10 +220,10 @@ If the service supports TLS Edge Termination, this endpoint does not require the
 
 Be aware that if you are running multiple nodes of this service, the health status will never
 refer to the cluster state, only to a single instance.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return MetadataApiApiIsAliveRequest
  */
-func (a *MetadataApiService) IsAlive(ctx _context.Context) MetadataApiApiIsAliveRequest {
+func (a *MetadataApiService) IsAlive(ctx context.Context) MetadataApiApiIsAliveRequest {
 	return MetadataApiApiIsAliveRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -234,26 +234,26 @@ func (a *MetadataApiService) IsAlive(ctx _context.Context) MetadataApiApiIsAlive
  * Execute executes the request
  * @return InlineResponse200
  */
-func (a *MetadataApiService) IsAliveExecute(r MetadataApiApiIsAliveRequest) (InlineResponse200, *_nethttp.Response, error) {
+func (a *MetadataApiService) IsAliveExecute(r MetadataApiApiIsAliveRequest) (*InlineResponse200, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse200
+		localVarReturnValue  *InlineResponse200
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataApiService.IsAlive")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/health/alive"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -282,15 +282,15 @@ func (a *MetadataApiService) IsAliveExecute(r MetadataApiApiIsAliveRequest) (Inl
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -308,7 +308,7 @@ func (a *MetadataApiService) IsAliveExecute(r MetadataApiApiIsAliveRequest) (Inl
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -319,12 +319,12 @@ func (a *MetadataApiService) IsAliveExecute(r MetadataApiApiIsAliveRequest) (Inl
 }
 
 type MetadataApiApiIsReadyRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService MetadataApi
 }
 
 
-func (r MetadataApiApiIsReadyRequest) Execute() (InlineResponse200, *_nethttp.Response, error) {
+func (r MetadataApiApiIsReadyRequest) Execute() (*InlineResponse200, *http.Response, error) {
 	return r.ApiService.IsReadyExecute(r)
 }
 
@@ -338,10 +338,10 @@ If the service supports TLS Edge Termination, this endpoint does not require the
 
 Be aware that if you are running multiple nodes of Ory Kratos, the health status will never
 refer to the cluster state, only to a single instance.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return MetadataApiApiIsReadyRequest
  */
-func (a *MetadataApiService) IsReady(ctx _context.Context) MetadataApiApiIsReadyRequest {
+func (a *MetadataApiService) IsReady(ctx context.Context) MetadataApiApiIsReadyRequest {
 	return MetadataApiApiIsReadyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -352,26 +352,26 @@ func (a *MetadataApiService) IsReady(ctx _context.Context) MetadataApiApiIsReady
  * Execute executes the request
  * @return InlineResponse200
  */
-func (a *MetadataApiService) IsReadyExecute(r MetadataApiApiIsReadyRequest) (InlineResponse200, *_nethttp.Response, error) {
+func (a *MetadataApiService) IsReadyExecute(r MetadataApiApiIsReadyRequest) (*InlineResponse200, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse200
+		localVarReturnValue  *InlineResponse200
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataApiService.IsReady")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/health/ready"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -400,15 +400,15 @@ func (a *MetadataApiService) IsReadyExecute(r MetadataApiApiIsReadyRequest) (Inl
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -426,7 +426,7 @@ func (a *MetadataApiService) IsReadyExecute(r MetadataApiApiIsReadyRequest) (Inl
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

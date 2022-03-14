@@ -139,11 +139,11 @@ func (o *SubmitSelfServiceRegistrationFlowWithPasswordMethodBody) GetTraits() ma
 
 // GetTraitsOk returns a tuple with the Traits field value
 // and a boolean to check if the value has been set.
-func (o *SubmitSelfServiceRegistrationFlowWithPasswordMethodBody) GetTraitsOk() (*map[string]interface{}, bool) {
+func (o *SubmitSelfServiceRegistrationFlowWithPasswordMethodBody) GetTraitsOk() (map[string]interface{}, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Traits, true
+	return o.Traits, true
 }
 
 // SetTraits sets field value

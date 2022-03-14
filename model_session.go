@@ -23,7 +23,7 @@ type Session struct {
 	// The Session Authentication Timestamp  When this session was authenticated at. If multi-factor authentication was used this is the time when the last factor was authenticated (e.g. the TOTP code challenge was completed).
 	AuthenticatedAt *time.Time `json:"authenticated_at,omitempty"`
 	// A list of authenticators which were used to authenticate the session.
-	AuthenticationMethods *[]SessionAuthenticationMethod `json:"authentication_methods,omitempty"`
+	AuthenticationMethods []SessionAuthenticationMethod `json:"authentication_methods,omitempty"`
 	AuthenticatorAssuranceLevel *AuthenticatorAssuranceLevel `json:"authenticator_assurance_level,omitempty"`
 	// The Session Expiry  When this session expires at.
 	ExpiresAt *time.Time `json:"expires_at,omitempty"`
@@ -122,12 +122,12 @@ func (o *Session) GetAuthenticationMethods() []SessionAuthenticationMethod {
 		var ret []SessionAuthenticationMethod
 		return ret
 	}
-	return *o.AuthenticationMethods
+	return o.AuthenticationMethods
 }
 
 // GetAuthenticationMethodsOk returns a tuple with the AuthenticationMethods field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Session) GetAuthenticationMethodsOk() (*[]SessionAuthenticationMethod, bool) {
+func (o *Session) GetAuthenticationMethodsOk() ([]SessionAuthenticationMethod, bool) {
 	if o == nil || o.AuthenticationMethods == nil {
 		return nil, false
 	}
@@ -145,7 +145,7 @@ func (o *Session) HasAuthenticationMethods() bool {
 
 // SetAuthenticationMethods gets a reference to the given []SessionAuthenticationMethod and assigns it to the AuthenticationMethods field.
 func (o *Session) SetAuthenticationMethods(v []SessionAuthenticationMethod) {
-	o.AuthenticationMethods = &v
+	o.AuthenticationMethods = v
 }
 
 // GetAuthenticatorAssuranceLevel returns the AuthenticatorAssuranceLevel field value if set, zero value otherwise.

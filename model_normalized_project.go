@@ -118,11 +118,11 @@ func (o *NormalizedProject) GetHosts() []string {
 
 // GetHostsOk returns a tuple with the Hosts field value
 // and a boolean to check if the value has been set.
-func (o *NormalizedProject) GetHostsOk() (*[]string, bool) {
+func (o *NormalizedProject) GetHostsOk() ([]string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Hosts, true
+	return o.Hosts, true
 }
 
 // SetHosts sets field value
@@ -166,11 +166,11 @@ func (o *NormalizedProject) GetRevisions() []NormalizedProjectRevision {
 
 // GetRevisionsOk returns a tuple with the Revisions field value
 // and a boolean to check if the value has been set.
-func (o *NormalizedProject) GetRevisionsOk() (*[]NormalizedProjectRevision, bool) {
+func (o *NormalizedProject) GetRevisionsOk() ([]NormalizedProjectRevision, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Revisions, true
+	return o.Revisions, true
 }
 
 // SetRevisions sets field value

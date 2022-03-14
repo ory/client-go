@@ -77,11 +77,11 @@ func (o *SuccessfulProjectUpdate) GetWarnings() []Warning {
 
 // GetWarningsOk returns a tuple with the Warnings field value
 // and a boolean to check if the value has been set.
-func (o *SuccessfulProjectUpdate) GetWarningsOk() (*[]Warning, bool) {
+func (o *SuccessfulProjectUpdate) GetWarningsOk() ([]Warning, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Warnings, true
+	return o.Warnings, true
 }
 
 // SetWarnings sets field value

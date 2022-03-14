@@ -107,7 +107,7 @@ func selectHeaderAccept(accepts []string) string {
 	return strings.Join(accepts, ",")
 }
 
-// contains is a case insensitive match, finding needle in a haystack
+// contains is a case insenstive match, finding needle in a haystack
 func contains(haystack []string, needle string) bool {
 	for _, a := range haystack {
 		if strings.ToLower(a) == strings.ToLower(needle) {
@@ -409,6 +409,13 @@ func addFile(w *multipart.Writer, fieldName, path string) error {
 // Prevent trying to import "fmt"
 func reportError(format string, a ...interface{}) error {
 	return fmt.Errorf(format, a...)
+}
+
+// A wrapper for strict JSON decoding
+func newStrictDecoder(data []byte) *json.Decoder {
+	dec := json.NewDecoder(bytes.NewBuffer(data))
+	dec.DisallowUnknownFields()
+	return dec
 }
 
 // Set request body from an interface{}

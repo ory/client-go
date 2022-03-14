@@ -54,11 +54,11 @@ func (o *SchemaPatch) GetData() map[string]interface{} {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *SchemaPatch) GetDataOk() (*map[string]interface{}, bool) {
+func (o *SchemaPatch) GetDataOk() (map[string]interface{}, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Data, true
+	return o.Data, true
 }
 
 // SetData sets field value

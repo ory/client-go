@@ -30,7 +30,7 @@ type IdentitySchema struct {
 	// The schema name  This is set by the user and is for them to easily recognise their schema
 	Name string `json:"name"`
 	// The actual Identity JSON Schema
-	Schema *map[string]interface{} `json:"schema,omitempty"`
+	Schema map[string]interface{} `json:"schema,omitempty"`
 	// Last Time Schema was Updated
 	UpdatedAt time.Time `json:"updated_at"`
 }
@@ -216,12 +216,12 @@ func (o *IdentitySchema) GetSchema() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Schema
+	return o.Schema
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdentitySchema) GetSchemaOk() (*map[string]interface{}, bool) {
+func (o *IdentitySchema) GetSchemaOk() (map[string]interface{}, bool) {
 	if o == nil || o.Schema == nil {
 		return nil, false
 	}
@@ -239,7 +239,7 @@ func (o *IdentitySchema) HasSchema() bool {
 
 // SetSchema gets a reference to the given map[string]interface{} and assigns it to the Schema field.
 func (o *IdentitySchema) SetSchema(v map[string]interface{}) {
-	o.Schema = &v
+	o.Schema = v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value

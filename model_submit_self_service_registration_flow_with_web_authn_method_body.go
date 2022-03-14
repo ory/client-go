@@ -116,11 +116,11 @@ func (o *SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody) GetTraits() ma
 
 // GetTraitsOk returns a tuple with the Traits field value
 // and a boolean to check if the value has been set.
-func (o *SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody) GetTraitsOk() (*map[string]interface{}, bool) {
+func (o *SubmitSelfServiceRegistrationFlowWithWebAuthnMethodBody) GetTraitsOk() (map[string]interface{}, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Traits, true
+	return o.Traits, true
 }
 
 // SetTraits sets field value

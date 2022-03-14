@@ -38,8 +38,8 @@ func main() {
     createProjectBody := *openapiclient.NewCreateProjectBody("Name_example") // CreateProjectBody |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha0Api.CreateProject(context.Background()).CreateProjectBody(createProjectBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha0Api.CreateProject(context.Background()).CreateProjectBody(createProjectBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha0Api.CreateProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -104,8 +104,8 @@ func main() {
     projectId := "projectId_example" // string | Project ID  The project's ID.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha0Api.GetProject(context.Background(), projectId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha0Api.GetProject(context.Background(), projectId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha0Api.GetProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -174,8 +174,8 @@ func main() {
     projectId := "projectId_example" // string | Project ID  The project's ID.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha0Api.GetProjectMembers(context.Background(), projectId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha0Api.GetProjectMembers(context.Background(), projectId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha0Api.GetProjectMembers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -243,8 +243,8 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha0Api.ListProjects(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha0Api.ListProjects(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha0Api.ListProjects``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -305,8 +305,8 @@ func main() {
     projectId := "projectId_example" // string | Project ID  The project's ID.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha0Api.PurgeProject(context.Background(), projectId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha0Api.PurgeProject(context.Background(), projectId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha0Api.PurgeProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -374,8 +374,8 @@ func main() {
     memberId := "memberId_example" // string | Member ID
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha0Api.RemoveProjectMember(context.Background(), projectId, memberId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha0Api.RemoveProjectMember(context.Background(), projectId, memberId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha0Api.RemoveProjectMember``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -445,8 +445,8 @@ func main() {
     updateProject := *openapiclient.NewUpdateProject("Name_example", *openapiclient.NewProjectServices(*openapiclient.NewProjectServiceIdentity(map[string]interface{}(123)))) // UpdateProject |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.V0alpha0Api.UpdateProject(context.Background(), projectId).UpdateProject(updateProject).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha0Api.UpdateProject(context.Background(), projectId).UpdateProject(updateProject).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha0Api.UpdateProject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

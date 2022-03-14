@@ -19,7 +19,7 @@ import (
 type SettingsProfileFormConfig struct {
 	// Action should be used as the form action URL `<form action=\"{{ .Action }}\" method=\"post\">`.
 	Action string `json:"action"`
-	Messages *[]UiText `json:"messages,omitempty"`
+	Messages []UiText `json:"messages,omitempty"`
 	// Method is the form method (e.g. POST)
 	Method string `json:"method"`
 	Nodes []UiNode `json:"nodes"`
@@ -75,12 +75,12 @@ func (o *SettingsProfileFormConfig) GetMessages() []UiText {
 		var ret []UiText
 		return ret
 	}
-	return *o.Messages
+	return o.Messages
 }
 
 // GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SettingsProfileFormConfig) GetMessagesOk() (*[]UiText, bool) {
+func (o *SettingsProfileFormConfig) GetMessagesOk() ([]UiText, bool) {
 	if o == nil || o.Messages == nil {
 		return nil, false
 	}
@@ -98,7 +98,7 @@ func (o *SettingsProfileFormConfig) HasMessages() bool {
 
 // SetMessages gets a reference to the given []UiText and assigns it to the Messages field.
 func (o *SettingsProfileFormConfig) SetMessages(v []UiText) {
-	o.Messages = &v
+	o.Messages = v
 }
 
 // GetMethod returns the Method field value
@@ -137,11 +137,11 @@ func (o *SettingsProfileFormConfig) GetNodes() []UiNode {
 
 // GetNodesOk returns a tuple with the Nodes field value
 // and a boolean to check if the value has been set.
-func (o *SettingsProfileFormConfig) GetNodesOk() (*[]UiNode, bool) {
+func (o *SettingsProfileFormConfig) GetNodesOk() ([]UiNode, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Nodes, true
+	return o.Nodes, true
 }
 
 // SetNodes sets field value

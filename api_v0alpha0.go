@@ -13,16 +13,16 @@ package client
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 type V0alpha0Api interface {
@@ -30,60 +30,60 @@ type V0alpha0Api interface {
 	/*
 	 * CreateProject Create a Project
 	 * Creates a new project.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return V0alpha0ApiApiCreateProjectRequest
 	 */
-	CreateProject(ctx _context.Context) V0alpha0ApiApiCreateProjectRequest
+	CreateProject(ctx context.Context) V0alpha0ApiApiCreateProjectRequest
 
 	/*
 	 * CreateProjectExecute executes the request
 	 * @return Project
 	 */
-	CreateProjectExecute(r V0alpha0ApiApiCreateProjectRequest) (Project, *_nethttp.Response, error)
+	CreateProjectExecute(r V0alpha0ApiApiCreateProjectRequest) (*Project, *http.Response, error)
 
 	/*
 	 * GetProject Get a Project
 	 * Get a projects you have access to by its ID.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param projectId Project ID  The project's ID.
 	 * @return V0alpha0ApiApiGetProjectRequest
 	 */
-	GetProject(ctx _context.Context, projectId string) V0alpha0ApiApiGetProjectRequest
+	GetProject(ctx context.Context, projectId string) V0alpha0ApiApiGetProjectRequest
 
 	/*
 	 * GetProjectExecute executes the request
 	 * @return Project
 	 */
-	GetProjectExecute(r V0alpha0ApiApiGetProjectRequest) (Project, *_nethttp.Response, error)
+	GetProjectExecute(r V0alpha0ApiApiGetProjectRequest) (*Project, *http.Response, error)
 
 	/*
 	 * GetProjectMembers Get all members associated with this project.
 	 * This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param projectId Project ID  The project's ID.
 	 * @return V0alpha0ApiApiGetProjectMembersRequest
 	 */
-	GetProjectMembers(ctx _context.Context, projectId string) V0alpha0ApiApiGetProjectMembersRequest
+	GetProjectMembers(ctx context.Context, projectId string) V0alpha0ApiApiGetProjectMembersRequest
 
 	/*
 	 * GetProjectMembersExecute executes the request
 	 * @return []CloudAccount
 	 */
-	GetProjectMembersExecute(r V0alpha0ApiApiGetProjectMembersRequest) ([]CloudAccount, *_nethttp.Response, error)
+	GetProjectMembersExecute(r V0alpha0ApiApiGetProjectMembersRequest) ([]CloudAccount, *http.Response, error)
 
 	/*
 	 * ListProjects List All Projects
 	 * Lists all projects you have access to.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return V0alpha0ApiApiListProjectsRequest
 	 */
-	ListProjects(ctx _context.Context) V0alpha0ApiApiListProjectsRequest
+	ListProjects(ctx context.Context) V0alpha0ApiApiListProjectsRequest
 
 	/*
 	 * ListProjectsExecute executes the request
 	 * @return []Project
 	 */
-	ListProjectsExecute(r V0alpha0ApiApiListProjectsRequest) ([]Project, *_nethttp.Response, error)
+	ListProjectsExecute(r V0alpha0ApiApiListProjectsRequest) ([]Project, *http.Response, error)
 
 	/*
 	 * PurgeProject Irrecoverably Purge a Project
@@ -93,31 +93,31 @@ Using this API endpoint you can purge (completely delete) a project and its data
 This action can not be undone and will delete ALL your data.
 
 !! Use with extreme caution !!
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param projectId Project ID  The project's ID.
 	 * @return V0alpha0ApiApiPurgeProjectRequest
 	 */
-	PurgeProject(ctx _context.Context, projectId string) V0alpha0ApiApiPurgeProjectRequest
+	PurgeProject(ctx context.Context, projectId string) V0alpha0ApiApiPurgeProjectRequest
 
 	/*
 	 * PurgeProjectExecute executes the request
 	 */
-	PurgeProjectExecute(r V0alpha0ApiApiPurgeProjectRequest) (*_nethttp.Response, error)
+	PurgeProjectExecute(r V0alpha0ApiApiPurgeProjectRequest) (*http.Response, error)
 
 	/*
 	 * RemoveProjectMember Remove a member associated with this project. This also sets their invite status to `REMOVED`.
 	 * This endpoint requires the user to be a member of the project with the role `OWNER`.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param projectId Project ID  The project's ID.
 	 * @param memberId Member ID
 	 * @return V0alpha0ApiApiRemoveProjectMemberRequest
 	 */
-	RemoveProjectMember(ctx _context.Context, projectId string, memberId string) V0alpha0ApiApiRemoveProjectMemberRequest
+	RemoveProjectMember(ctx context.Context, projectId string, memberId string) V0alpha0ApiApiRemoveProjectMemberRequest
 
 	/*
 	 * RemoveProjectMemberExecute executes the request
 	 */
-	RemoveProjectMemberExecute(r V0alpha0ApiApiRemoveProjectMemberRequest) (*_nethttp.Response, error)
+	RemoveProjectMemberExecute(r V0alpha0ApiApiRemoveProjectMemberRequest) (*http.Response, error)
 
 	/*
 	 * UpdateProject Update an Ory Cloud Project Configuration
@@ -139,24 +139,24 @@ to help you understand which parts of your config could not be processed.
 
 Be aware that updating any service's configuration will completely override your current configuration for that
 service!
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param projectId Project ID  The project's ID.
 	 * @return V0alpha0ApiApiUpdateProjectRequest
 	 */
-	UpdateProject(ctx _context.Context, projectId string) V0alpha0ApiApiUpdateProjectRequest
+	UpdateProject(ctx context.Context, projectId string) V0alpha0ApiApiUpdateProjectRequest
 
 	/*
 	 * UpdateProjectExecute executes the request
 	 * @return SuccessfulProjectUpdate
 	 */
-	UpdateProjectExecute(r V0alpha0ApiApiUpdateProjectRequest) (SuccessfulProjectUpdate, *_nethttp.Response, error)
+	UpdateProjectExecute(r V0alpha0ApiApiUpdateProjectRequest) (*SuccessfulProjectUpdate, *http.Response, error)
 }
 
 // V0alpha0ApiService V0alpha0Api service
 type V0alpha0ApiService service
 
 type V0alpha0ApiApiCreateProjectRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService V0alpha0Api
 	createProjectBody *CreateProjectBody
 }
@@ -166,17 +166,17 @@ func (r V0alpha0ApiApiCreateProjectRequest) CreateProjectBody(createProjectBody 
 	return r
 }
 
-func (r V0alpha0ApiApiCreateProjectRequest) Execute() (Project, *_nethttp.Response, error) {
+func (r V0alpha0ApiApiCreateProjectRequest) Execute() (*Project, *http.Response, error) {
 	return r.ApiService.CreateProjectExecute(r)
 }
 
 /*
  * CreateProject Create a Project
  * Creates a new project.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return V0alpha0ApiApiCreateProjectRequest
  */
-func (a *V0alpha0ApiService) CreateProject(ctx _context.Context) V0alpha0ApiApiCreateProjectRequest {
+func (a *V0alpha0ApiService) CreateProject(ctx context.Context) V0alpha0ApiApiCreateProjectRequest {
 	return V0alpha0ApiApiCreateProjectRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -187,26 +187,26 @@ func (a *V0alpha0ApiService) CreateProject(ctx _context.Context) V0alpha0ApiApiC
  * Execute executes the request
  * @return Project
  */
-func (a *V0alpha0ApiService) CreateProjectExecute(r V0alpha0ApiApiCreateProjectRequest) (Project, *_nethttp.Response, error) {
+func (a *V0alpha0ApiService) CreateProjectExecute(r V0alpha0ApiApiCreateProjectRequest) (*Project, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Project
+		localVarReturnValue  *Project
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha0ApiService.CreateProject")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/backoffice/public/projects"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -237,15 +237,15 @@ func (a *V0alpha0ApiService) CreateProjectExecute(r V0alpha0ApiApiCreateProjectR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -291,7 +291,7 @@ func (a *V0alpha0ApiService) CreateProjectExecute(r V0alpha0ApiApiCreateProjectR
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -302,24 +302,24 @@ func (a *V0alpha0ApiService) CreateProjectExecute(r V0alpha0ApiApiCreateProjectR
 }
 
 type V0alpha0ApiApiGetProjectRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService V0alpha0Api
 	projectId string
 }
 
 
-func (r V0alpha0ApiApiGetProjectRequest) Execute() (Project, *_nethttp.Response, error) {
+func (r V0alpha0ApiApiGetProjectRequest) Execute() (*Project, *http.Response, error) {
 	return r.ApiService.GetProjectExecute(r)
 }
 
 /*
  * GetProject Get a Project
  * Get a projects you have access to by its ID.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId Project ID  The project's ID.
  * @return V0alpha0ApiApiGetProjectRequest
  */
-func (a *V0alpha0ApiService) GetProject(ctx _context.Context, projectId string) V0alpha0ApiApiGetProjectRequest {
+func (a *V0alpha0ApiService) GetProject(ctx context.Context, projectId string) V0alpha0ApiApiGetProjectRequest {
 	return V0alpha0ApiApiGetProjectRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -331,27 +331,27 @@ func (a *V0alpha0ApiService) GetProject(ctx _context.Context, projectId string) 
  * Execute executes the request
  * @return Project
  */
-func (a *V0alpha0ApiService) GetProjectExecute(r V0alpha0ApiApiGetProjectRequest) (Project, *_nethttp.Response, error) {
+func (a *V0alpha0ApiService) GetProjectExecute(r V0alpha0ApiApiGetProjectRequest) (*Project, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Project
+		localVarReturnValue  *Project
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha0ApiService.GetProject")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/backoffice/public/projects/{project_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", _neturl.PathEscape(parameterToString(r.projectId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -380,15 +380,15 @@ func (a *V0alpha0ApiService) GetProjectExecute(r V0alpha0ApiApiGetProjectRequest
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -434,7 +434,7 @@ func (a *V0alpha0ApiService) GetProjectExecute(r V0alpha0ApiApiGetProjectRequest
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -445,24 +445,24 @@ func (a *V0alpha0ApiService) GetProjectExecute(r V0alpha0ApiApiGetProjectRequest
 }
 
 type V0alpha0ApiApiGetProjectMembersRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService V0alpha0Api
 	projectId string
 }
 
 
-func (r V0alpha0ApiApiGetProjectMembersRequest) Execute() ([]CloudAccount, *_nethttp.Response, error) {
+func (r V0alpha0ApiApiGetProjectMembersRequest) Execute() ([]CloudAccount, *http.Response, error) {
 	return r.ApiService.GetProjectMembersExecute(r)
 }
 
 /*
  * GetProjectMembers Get all members associated with this project.
  * This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId Project ID  The project's ID.
  * @return V0alpha0ApiApiGetProjectMembersRequest
  */
-func (a *V0alpha0ApiService) GetProjectMembers(ctx _context.Context, projectId string) V0alpha0ApiApiGetProjectMembersRequest {
+func (a *V0alpha0ApiService) GetProjectMembers(ctx context.Context, projectId string) V0alpha0ApiApiGetProjectMembersRequest {
 	return V0alpha0ApiApiGetProjectMembersRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -474,9 +474,9 @@ func (a *V0alpha0ApiService) GetProjectMembers(ctx _context.Context, projectId s
  * Execute executes the request
  * @return []CloudAccount
  */
-func (a *V0alpha0ApiService) GetProjectMembersExecute(r V0alpha0ApiApiGetProjectMembersRequest) ([]CloudAccount, *_nethttp.Response, error) {
+func (a *V0alpha0ApiService) GetProjectMembersExecute(r V0alpha0ApiApiGetProjectMembersRequest) ([]CloudAccount, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -486,15 +486,15 @@ func (a *V0alpha0ApiService) GetProjectMembersExecute(r V0alpha0ApiApiGetProject
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha0ApiService.GetProjectMembers")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/backoffice/public/projects/{project_id}/members"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", _neturl.PathEscape(parameterToString(r.projectId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -523,15 +523,15 @@ func (a *V0alpha0ApiService) GetProjectMembersExecute(r V0alpha0ApiApiGetProject
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -569,7 +569,7 @@ func (a *V0alpha0ApiService) GetProjectMembersExecute(r V0alpha0ApiApiGetProject
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -580,22 +580,22 @@ func (a *V0alpha0ApiService) GetProjectMembersExecute(r V0alpha0ApiApiGetProject
 }
 
 type V0alpha0ApiApiListProjectsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService V0alpha0Api
 }
 
 
-func (r V0alpha0ApiApiListProjectsRequest) Execute() ([]Project, *_nethttp.Response, error) {
+func (r V0alpha0ApiApiListProjectsRequest) Execute() ([]Project, *http.Response, error) {
 	return r.ApiService.ListProjectsExecute(r)
 }
 
 /*
  * ListProjects List All Projects
  * Lists all projects you have access to.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return V0alpha0ApiApiListProjectsRequest
  */
-func (a *V0alpha0ApiService) ListProjects(ctx _context.Context) V0alpha0ApiApiListProjectsRequest {
+func (a *V0alpha0ApiService) ListProjects(ctx context.Context) V0alpha0ApiApiListProjectsRequest {
 	return V0alpha0ApiApiListProjectsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -606,9 +606,9 @@ func (a *V0alpha0ApiService) ListProjects(ctx _context.Context) V0alpha0ApiApiLi
  * Execute executes the request
  * @return []Project
  */
-func (a *V0alpha0ApiService) ListProjectsExecute(r V0alpha0ApiApiListProjectsRequest) ([]Project, *_nethttp.Response, error) {
+func (a *V0alpha0ApiService) ListProjectsExecute(r V0alpha0ApiApiListProjectsRequest) ([]Project, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -618,14 +618,14 @@ func (a *V0alpha0ApiService) ListProjectsExecute(r V0alpha0ApiApiListProjectsReq
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha0ApiService.ListProjects")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/backoffice/public/projects"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -654,15 +654,15 @@ func (a *V0alpha0ApiService) ListProjectsExecute(r V0alpha0ApiApiListProjectsReq
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -708,7 +708,7 @@ func (a *V0alpha0ApiService) ListProjectsExecute(r V0alpha0ApiApiListProjectsReq
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -719,13 +719,13 @@ func (a *V0alpha0ApiService) ListProjectsExecute(r V0alpha0ApiApiListProjectsReq
 }
 
 type V0alpha0ApiApiPurgeProjectRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService V0alpha0Api
 	projectId string
 }
 
 
-func (r V0alpha0ApiApiPurgeProjectRequest) Execute() (*_nethttp.Response, error) {
+func (r V0alpha0ApiApiPurgeProjectRequest) Execute() (*http.Response, error) {
 	return r.ApiService.PurgeProjectExecute(r)
 }
 
@@ -737,11 +737,11 @@ Using this API endpoint you can purge (completely delete) a project and its data
 This action can not be undone and will delete ALL your data.
 
 !! Use with extreme caution !!
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId Project ID  The project's ID.
  * @return V0alpha0ApiApiPurgeProjectRequest
  */
-func (a *V0alpha0ApiService) PurgeProject(ctx _context.Context, projectId string) V0alpha0ApiApiPurgeProjectRequest {
+func (a *V0alpha0ApiService) PurgeProject(ctx context.Context, projectId string) V0alpha0ApiApiPurgeProjectRequest {
 	return V0alpha0ApiApiPurgeProjectRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -752,9 +752,9 @@ func (a *V0alpha0ApiService) PurgeProject(ctx _context.Context, projectId string
 /*
  * Execute executes the request
  */
-func (a *V0alpha0ApiService) PurgeProjectExecute(r V0alpha0ApiApiPurgeProjectRequest) (*_nethttp.Response, error) {
+func (a *V0alpha0ApiService) PurgeProjectExecute(r V0alpha0ApiApiPurgeProjectRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -763,15 +763,15 @@ func (a *V0alpha0ApiService) PurgeProjectExecute(r V0alpha0ApiApiPurgeProjectReq
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha0ApiService.PurgeProject")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/backoffice/public/projects/{project_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", _neturl.PathEscape(parameterToString(r.projectId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -800,15 +800,15 @@ func (a *V0alpha0ApiService) PurgeProjectExecute(r V0alpha0ApiApiPurgeProjectReq
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -856,26 +856,26 @@ func (a *V0alpha0ApiService) PurgeProjectExecute(r V0alpha0ApiApiPurgeProjectReq
 }
 
 type V0alpha0ApiApiRemoveProjectMemberRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService V0alpha0Api
 	projectId string
 	memberId string
 }
 
 
-func (r V0alpha0ApiApiRemoveProjectMemberRequest) Execute() (*_nethttp.Response, error) {
+func (r V0alpha0ApiApiRemoveProjectMemberRequest) Execute() (*http.Response, error) {
 	return r.ApiService.RemoveProjectMemberExecute(r)
 }
 
 /*
  * RemoveProjectMember Remove a member associated with this project. This also sets their invite status to `REMOVED`.
  * This endpoint requires the user to be a member of the project with the role `OWNER`.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId Project ID  The project's ID.
  * @param memberId Member ID
  * @return V0alpha0ApiApiRemoveProjectMemberRequest
  */
-func (a *V0alpha0ApiService) RemoveProjectMember(ctx _context.Context, projectId string, memberId string) V0alpha0ApiApiRemoveProjectMemberRequest {
+func (a *V0alpha0ApiService) RemoveProjectMember(ctx context.Context, projectId string, memberId string) V0alpha0ApiApiRemoveProjectMemberRequest {
 	return V0alpha0ApiApiRemoveProjectMemberRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -887,9 +887,9 @@ func (a *V0alpha0ApiService) RemoveProjectMember(ctx _context.Context, projectId
 /*
  * Execute executes the request
  */
-func (a *V0alpha0ApiService) RemoveProjectMemberExecute(r V0alpha0ApiApiRemoveProjectMemberRequest) (*_nethttp.Response, error) {
+func (a *V0alpha0ApiService) RemoveProjectMemberExecute(r V0alpha0ApiApiRemoveProjectMemberRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -898,16 +898,16 @@ func (a *V0alpha0ApiService) RemoveProjectMemberExecute(r V0alpha0ApiApiRemovePr
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha0ApiService.RemoveProjectMember")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/backoffice/public/projects/{project_id}/members/{member_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", _neturl.PathEscape(parameterToString(r.projectId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"member_id"+"}", _neturl.PathEscape(parameterToString(r.memberId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"member_id"+"}", url.PathEscape(parameterToString(r.memberId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -936,15 +936,15 @@ func (a *V0alpha0ApiService) RemoveProjectMemberExecute(r V0alpha0ApiApiRemovePr
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -994,7 +994,7 @@ func (a *V0alpha0ApiService) RemoveProjectMemberExecute(r V0alpha0ApiApiRemovePr
 }
 
 type V0alpha0ApiApiUpdateProjectRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService V0alpha0Api
 	projectId string
 	updateProject *UpdateProject
@@ -1005,7 +1005,7 @@ func (r V0alpha0ApiApiUpdateProjectRequest) UpdateProject(updateProject UpdatePr
 	return r
 }
 
-func (r V0alpha0ApiApiUpdateProjectRequest) Execute() (SuccessfulProjectUpdate, *_nethttp.Response, error) {
+func (r V0alpha0ApiApiUpdateProjectRequest) Execute() (*SuccessfulProjectUpdate, *http.Response, error) {
 	return r.ApiService.UpdateProjectExecute(r)
 }
 
@@ -1029,11 +1029,11 @@ to help you understand which parts of your config could not be processed.
 
 Be aware that updating any service's configuration will completely override your current configuration for that
 service!
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId Project ID  The project's ID.
  * @return V0alpha0ApiApiUpdateProjectRequest
  */
-func (a *V0alpha0ApiService) UpdateProject(ctx _context.Context, projectId string) V0alpha0ApiApiUpdateProjectRequest {
+func (a *V0alpha0ApiService) UpdateProject(ctx context.Context, projectId string) V0alpha0ApiApiUpdateProjectRequest {
 	return V0alpha0ApiApiUpdateProjectRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1045,27 +1045,27 @@ func (a *V0alpha0ApiService) UpdateProject(ctx _context.Context, projectId strin
  * Execute executes the request
  * @return SuccessfulProjectUpdate
  */
-func (a *V0alpha0ApiService) UpdateProjectExecute(r V0alpha0ApiApiUpdateProjectRequest) (SuccessfulProjectUpdate, *_nethttp.Response, error) {
+func (a *V0alpha0ApiService) UpdateProjectExecute(r V0alpha0ApiApiUpdateProjectRequest) (*SuccessfulProjectUpdate, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  SuccessfulProjectUpdate
+		localVarReturnValue  *SuccessfulProjectUpdate
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha0ApiService.UpdateProject")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/backoffice/public/projects/{project_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", _neturl.PathEscape(parameterToString(r.projectId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1096,15 +1096,15 @@ func (a *V0alpha0ApiService) UpdateProjectExecute(r V0alpha0ApiApiUpdateProjectR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1160,7 +1160,7 @@ func (a *V0alpha0ApiService) UpdateProjectExecute(r V0alpha0ApiApiUpdateProjectR
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
