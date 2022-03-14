@@ -17,16 +17,19 @@ import (
 
 // CreateProjectResponse struct for CreateProjectResponse
 type CreateProjectResponse struct {
-	Id *string `json:"id,omitempty"`
-	Slug *string `json:"slug,omitempty"`
+	Id string `json:"id"`
+	// The Slug of the project
+	Slug string `json:"slug"`
 }
 
 // NewCreateProjectResponse instantiates a new CreateProjectResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateProjectResponse() *CreateProjectResponse {
+func NewCreateProjectResponse(id string, slug string) *CreateProjectResponse {
 	this := CreateProjectResponse{}
+	this.Id = id
+	this.Slug = slug
 	return &this
 }
 
@@ -38,76 +41,60 @@ func NewCreateProjectResponseWithDefaults() *CreateProjectResponse {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value
 func (o *CreateProjectResponse) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *CreateProjectResponse) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *CreateProjectResponse) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId sets field value
 func (o *CreateProjectResponse) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
-// GetSlug returns the Slug field value if set, zero value otherwise.
+// GetSlug returns the Slug field value
 func (o *CreateProjectResponse) GetSlug() string {
-	if o == nil || o.Slug == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Slug
+
+	return o.Slug
 }
 
-// GetSlugOk returns a tuple with the Slug field value if set, nil otherwise
+// GetSlugOk returns a tuple with the Slug field value
 // and a boolean to check if the value has been set.
 func (o *CreateProjectResponse) GetSlugOk() (*string, bool) {
-	if o == nil || o.Slug == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Slug, true
+	return &o.Slug, true
 }
 
-// HasSlug returns a boolean if a field has been set.
-func (o *CreateProjectResponse) HasSlug() bool {
-	if o != nil && o.Slug != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSlug gets a reference to the given string and assigns it to the Slug field.
+// SetSlug sets field value
 func (o *CreateProjectResponse) SetSlug(v string) {
-	o.Slug = &v
+	o.Slug = v
 }
 
 func (o CreateProjectResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
+	if true {
 		toSerialize["id"] = o.Id
 	}
-	if o.Slug != nil {
+	if true {
 		toSerialize["slug"] = o.Slug
 	}
 	return json.Marshal(toSerialize)

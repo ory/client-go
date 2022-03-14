@@ -17,15 +17,16 @@ import (
 
 // ProjectServices struct for ProjectServices
 type ProjectServices struct {
-	Identity *ProjectServiceIdentity `json:"identity,omitempty"`
+	Identity ProjectServiceIdentity `json:"identity"`
 }
 
 // NewProjectServices instantiates a new ProjectServices object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectServices() *ProjectServices {
+func NewProjectServices(identity ProjectServiceIdentity) *ProjectServices {
 	this := ProjectServices{}
+	this.Identity = identity
 	return &this
 }
 
@@ -37,41 +38,33 @@ func NewProjectServicesWithDefaults() *ProjectServices {
 	return &this
 }
 
-// GetIdentity returns the Identity field value if set, zero value otherwise.
+// GetIdentity returns the Identity field value
 func (o *ProjectServices) GetIdentity() ProjectServiceIdentity {
-	if o == nil || o.Identity == nil {
+	if o == nil {
 		var ret ProjectServiceIdentity
 		return ret
 	}
-	return *o.Identity
+
+	return o.Identity
 }
 
-// GetIdentityOk returns a tuple with the Identity field value if set, nil otherwise
+// GetIdentityOk returns a tuple with the Identity field value
 // and a boolean to check if the value has been set.
 func (o *ProjectServices) GetIdentityOk() (*ProjectServiceIdentity, bool) {
-	if o == nil || o.Identity == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Identity, true
+	return &o.Identity, true
 }
 
-// HasIdentity returns a boolean if a field has been set.
-func (o *ProjectServices) HasIdentity() bool {
-	if o != nil && o.Identity != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetIdentity gets a reference to the given ProjectServiceIdentity and assigns it to the Identity field.
+// SetIdentity sets field value
 func (o *ProjectServices) SetIdentity(v ProjectServiceIdentity) {
-	o.Identity = &v
+	o.Identity = v
 }
 
 func (o ProjectServices) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Identity != nil {
+	if true {
 		toSerialize["identity"] = o.Identity
 	}
 	return json.Marshal(toSerialize)

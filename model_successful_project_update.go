@@ -17,17 +17,19 @@ import (
 
 // SuccessfulProjectUpdate struct for SuccessfulProjectUpdate
 type SuccessfulProjectUpdate struct {
-	Project *ProjectNext `json:"project,omitempty"`
+	Project Project `json:"project"`
 	// Import Warnings  Not all configuration items can be imported to Ory Cloud. For example, setting the port does not make sense because Ory Cloud provides the runtime and networking.  This field contains warnings where configuration keys were found but can not be imported. These keys will be ignored by Ory Cloud. This field will help you understand why certain configuration keys might not be respected!
-	Warnings *[]Warning `json:"warnings,omitempty"`
+	Warnings []Warning `json:"warnings"`
 }
 
 // NewSuccessfulProjectUpdate instantiates a new SuccessfulProjectUpdate object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSuccessfulProjectUpdate() *SuccessfulProjectUpdate {
+func NewSuccessfulProjectUpdate(project Project, warnings []Warning) *SuccessfulProjectUpdate {
 	this := SuccessfulProjectUpdate{}
+	this.Project = project
+	this.Warnings = warnings
 	return &this
 }
 
@@ -39,76 +41,60 @@ func NewSuccessfulProjectUpdateWithDefaults() *SuccessfulProjectUpdate {
 	return &this
 }
 
-// GetProject returns the Project field value if set, zero value otherwise.
-func (o *SuccessfulProjectUpdate) GetProject() ProjectNext {
-	if o == nil || o.Project == nil {
-		var ret ProjectNext
+// GetProject returns the Project field value
+func (o *SuccessfulProjectUpdate) GetProject() Project {
+	if o == nil {
+		var ret Project
 		return ret
 	}
-	return *o.Project
+
+	return o.Project
 }
 
-// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
+// GetProjectOk returns a tuple with the Project field value
 // and a boolean to check if the value has been set.
-func (o *SuccessfulProjectUpdate) GetProjectOk() (*ProjectNext, bool) {
-	if o == nil || o.Project == nil {
+func (o *SuccessfulProjectUpdate) GetProjectOk() (*Project, bool) {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Project, true
+	return &o.Project, true
 }
 
-// HasProject returns a boolean if a field has been set.
-func (o *SuccessfulProjectUpdate) HasProject() bool {
-	if o != nil && o.Project != nil {
-		return true
-	}
-
-	return false
+// SetProject sets field value
+func (o *SuccessfulProjectUpdate) SetProject(v Project) {
+	o.Project = v
 }
 
-// SetProject gets a reference to the given ProjectNext and assigns it to the Project field.
-func (o *SuccessfulProjectUpdate) SetProject(v ProjectNext) {
-	o.Project = &v
-}
-
-// GetWarnings returns the Warnings field value if set, zero value otherwise.
+// GetWarnings returns the Warnings field value
 func (o *SuccessfulProjectUpdate) GetWarnings() []Warning {
-	if o == nil || o.Warnings == nil {
+	if o == nil {
 		var ret []Warning
 		return ret
 	}
-	return *o.Warnings
+
+	return o.Warnings
 }
 
-// GetWarningsOk returns a tuple with the Warnings field value if set, nil otherwise
+// GetWarningsOk returns a tuple with the Warnings field value
 // and a boolean to check if the value has been set.
 func (o *SuccessfulProjectUpdate) GetWarningsOk() (*[]Warning, bool) {
-	if o == nil || o.Warnings == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Warnings, true
+	return &o.Warnings, true
 }
 
-// HasWarnings returns a boolean if a field has been set.
-func (o *SuccessfulProjectUpdate) HasWarnings() bool {
-	if o != nil && o.Warnings != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetWarnings gets a reference to the given []Warning and assigns it to the Warnings field.
+// SetWarnings sets field value
 func (o *SuccessfulProjectUpdate) SetWarnings(v []Warning) {
-	o.Warnings = &v
+	o.Warnings = v
 }
 
 func (o SuccessfulProjectUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Project != nil {
+	if true {
 		toSerialize["project"] = o.Project
 	}
-	if o.Warnings != nil {
+	if true {
 		toSerialize["warnings"] = o.Warnings
 	}
 	return json.Marshal(toSerialize)

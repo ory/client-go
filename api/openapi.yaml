@@ -476,8 +476,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/projectsNext'
-          description: projectsNext
+                $ref: '#/components/schemas/projects'
+          description: projects
         "401":
           content:
             application/json:
@@ -514,15 +514,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateProjectBody'
+              $ref: '#/components/schemas/createProjectBody'
         x-originalParamName: Body
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createProjectResponse'
-          description: createProjectResponse
+                $ref: '#/components/schemas/project'
+          description: project
         "401":
           content:
             application/json:
@@ -553,6 +553,61 @@ paths:
       tags:
       - v0alpha0
   /backoffice/public/projects/{project_id}:
+    delete:
+      description: |-
+        !! Use with extreme caution !!
+
+        Using this API endpoint you can purge (completely delete) a project and its data.
+        This action can not be undone and will delete ALL your data.
+
+        !! Use with extreme caution !!
+      operationId: purgeProject
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Irrecoverably Purge a Project
+      tags:
+      - v0alpha0
     get:
       description: Get a projects you have access to by its ID.
       operationId: getProject
@@ -573,8 +628,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/projectNext'
-          description: projectNext
+                $ref: '#/components/schemas/project'
+          description: project
         "401":
           content:
             application/json:
@@ -2942,13 +2997,6 @@ components:
       - state
       - traits
       type: object
-    CreateProjectBody:
-      example:
-        name: name
-      properties:
-        name:
-          type: string
-      type: object
     CreateSubscriptionPayload:
       properties:
         plan_or_price:
@@ -3298,16 +3346,13 @@ components:
           description: The custom hostname where the API will be exposed.
           type: string
       type: object
-    createProjectResponse:
-      example:
-        id: id
-        slug: slug
+    createProjectBody:
       properties:
-        id:
-          format: uuid4
+        name:
+          description: The name of the project to be created
           type: string
-        slug:
-          type: string
+      required:
+      - name
       type: object
     errorAuthenticatorAssuranceLevelNotSatisfied:
       properties:
@@ -3858,34 +3903,7 @@ components:
       title: Is sent when a privileged session is required to perform the settings
         update.
       type: object
-    nullJsonRawMessage:
-      description: NullJSONRawMessage represents a json.RawMessage that works well
-        with JSON, SQL, and Swagger and is NULLable-
-      type: object
-    nullTime:
-      format: date-time
-      title: NullTime implements sql.NullTime functionality.
-      type: string
-    pagination:
-      properties:
-        page:
-          default: 1
-          description: Pagination Page
-          format: int64
-          minimum: 1
-          type: integer
-        per_page:
-          default: 250
-          description: |-
-            Items per Page
-
-            This is the number of items per page.
-          format: int64
-          maximum: 1000
-          minimum: 1
-          type: integer
-      type: object
-    project:
+    normalizedProject:
       properties:
         created_at:
           description: The Project's Creation Date
@@ -3893,7 +3911,7 @@ components:
           readOnly: true
           type: string
         current_revision:
-          $ref: '#/components/schemas/projectRevision'
+          $ref: '#/components/schemas/normalizedProjectRevision'
         hosts:
           items:
             type: string
@@ -3905,7 +3923,7 @@ components:
           type: string
         revisions:
           items:
-            $ref: '#/components/schemas/projectRevision'
+            $ref: '#/components/schemas/normalizedProjectRevision'
           type: array
         slug:
           description: The project's slug
@@ -3936,120 +3954,7 @@ components:
       - state
       - updated_at
       type: object
-    projectHost:
-      properties:
-        host:
-          description: The project's host.
-          type: string
-        id:
-          format: uuid4
-          type: string
-        project_id:
-          format: uuid4
-          type: string
-      required:
-      - host
-      - id
-      - project_id
-      type: object
-    projectInvite:
-      properties:
-        created_at:
-          description: The Project's Revision Creation Date
-          format: date-time
-          readOnly: true
-          type: string
-        id:
-          format: uuid4
-          type: string
-        invitee_email:
-          description: The invitee's email
-          type: string
-        invitee_id:
-          format: uuid4
-          type: string
-        owner_email:
-          description: |-
-            The invite owner's email
-            Usually the project's owner email
-          type: string
-        owner_id:
-          format: uuid4
-          type: string
-        project_id:
-          format: uuid4
-          type: string
-        status:
-          description: |-
-            The invite's status
-            Keeps track of the invites status such as pending, accepted, declined, expired
-          type: string
-        updated_at:
-          description: Last Time Project's Revision was Updated
-          format: date-time
-          readOnly: true
-          type: string
-      required:
-      - created_at
-      - id
-      - invitee_email
-      - owner_email
-      - owner_id
-      - project_id
-      - status
-      - updated_at
-      type: object
-    projectInvites:
-      items:
-        $ref: '#/components/schemas/projectInvite'
-      type: array
-    projectMember:
-      $ref: '#/components/schemas/cloudAccount'
-    projectMembers:
-      items:
-        $ref: '#/components/schemas/projectMember'
-      type: array
-    projectNext:
-      example:
-        name: name
-        id: id
-        services:
-          identity:
-            config: '{}'
-        state: running
-        slug: slug
-        revision_id: revision_id
-      properties:
-        id:
-          format: uuid4
-          type: string
-        name:
-          description: The name of the project.
-          type: string
-        revision_id:
-          format: uuid4
-          type: string
-        services:
-          $ref: '#/components/schemas/projectServices'
-        slug:
-          description: The project's slug
-          readOnly: true
-          type: string
-        state:
-          description: The state of the project.
-          enum:
-          - running
-          - halted
-          readOnly: true
-          type: string
-      required:
-      - id
-      - revision_id
-      - services
-      - slug
-      - state
-      type: object
-    projectRevision:
+    normalizedProjectRevision:
       properties:
         created_at:
           description: The Project's Revision Creation Date
@@ -4137,7 +4042,7 @@ components:
           type: string
         kratos_identity_schemas:
           items:
-            $ref: '#/components/schemas/projectRevisionIdentitySchema'
+            $ref: '#/components/schemas/normalizedProjectRevisionIdentitySchema'
           type: array
         kratos_secrets_cipher:
           items:
@@ -4177,7 +4082,7 @@ components:
           type: string
         kratos_selfservice_flows_hooks:
           items:
-            $ref: '#/components/schemas/projectRevisionHook'
+            $ref: '#/components/schemas/normalizedProjectRevisionHook'
           type: array
         kratos_selfservice_flows_login_after_default_browser_return_url:
           description: |-
@@ -4379,7 +4284,7 @@ components:
           type: string
         kratos_selfservice_methods_oidc_config_providers:
           items:
-            $ref: '#/components/schemas/projectRevisionThirdPartyLoginProvider'
+            $ref: '#/components/schemas/normalizedProjectRevisionThirdPartyProvider'
           type: array
         kratos_selfservice_methods_oidc_enabled:
           description: |-
@@ -4493,7 +4398,7 @@ components:
       required:
       - name
       type: object
-    projectRevisionHook:
+    normalizedProjectRevisionHook:
       properties:
         config_key:
           description: The Hooks Config Key
@@ -4560,11 +4465,7 @@ components:
       - config_key
       - hook
       type: object
-    projectRevisionHooks:
-      items:
-        $ref: '#/components/schemas/projectRevisionHook'
-      type: array
-    projectRevisionIdentitySchema:
+    normalizedProjectRevisionIdentitySchema:
       properties:
         created_at:
           description: The Project's Revision Creation Date
@@ -4613,11 +4514,7 @@ components:
           readOnly: true
           type: string
       type: object
-    projectRevisionIdentitySchemas:
-      items:
-        $ref: '#/components/schemas/projectRevisionIdentitySchema'
-      type: array
-    projectRevisionThirdPartyLoginProvider:
+    normalizedProjectRevisionThirdPartyProvider:
       properties:
         apple_private_key:
           $ref: '#/components/schemas/SQLNullString'
@@ -4726,13 +4623,166 @@ components:
           readOnly: true
           type: string
       type: object
+    normalizedProjects:
+      items:
+        $ref: '#/components/schemas/normalizedProject'
+      type: array
+    nullJsonRawMessage:
+      description: NullJSONRawMessage represents a json.RawMessage that works well
+        with JSON, SQL, and Swagger and is NULLable-
+      type: object
+    nullTime:
+      format: date-time
+      title: NullTime implements sql.NullTime functionality.
+      type: string
+    pagination:
+      properties:
+        page:
+          default: 1
+          description: Pagination Page
+          format: int64
+          minimum: 1
+          type: integer
+        per_page:
+          default: 250
+          description: |-
+            Items per Page
+
+            This is the number of items per page.
+          format: int64
+          maximum: 1000
+          minimum: 1
+          type: integer
+      type: object
+    project:
+      example:
+        name: name
+        id: id
+        services:
+          identity:
+            config: '{}'
+        state: running
+        slug: slug
+        revision_id: revision_id
+      properties:
+        id:
+          format: uuid4
+          type: string
+        name:
+          description: The name of the project.
+          type: string
+        revision_id:
+          format: uuid4
+          type: string
+        services:
+          $ref: '#/components/schemas/projectServices'
+        slug:
+          description: The project's slug
+          readOnly: true
+          type: string
+        state:
+          description: The state of the project.
+          enum:
+          - running
+          - halted
+          readOnly: true
+          type: string
+      required:
+      - id
+      - name
+      - revision_id
+      - services
+      - slug
+      - state
+      type: object
+    projectHost:
+      properties:
+        host:
+          description: The project's host.
+          type: string
+        id:
+          format: uuid4
+          type: string
+        project_id:
+          format: uuid4
+          type: string
+      required:
+      - host
+      - id
+      - project_id
+      type: object
+    projectInvite:
+      properties:
+        created_at:
+          description: The Project's Revision Creation Date
+          format: date-time
+          readOnly: true
+          type: string
+        id:
+          format: uuid4
+          type: string
+        invitee_email:
+          description: The invitee's email
+          type: string
+        invitee_id:
+          format: uuid4
+          type: string
+        owner_email:
+          description: |-
+            The invite owner's email
+            Usually the project's owner email
+          type: string
+        owner_id:
+          format: uuid4
+          type: string
+        project_id:
+          format: uuid4
+          type: string
+        status:
+          description: |-
+            The invite's status
+            Keeps track of the invites status such as pending, accepted, declined, expired
+          type: string
+        updated_at:
+          description: Last Time Project's Revision was Updated
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - created_at
+      - id
+      - invitee_email
+      - owner_email
+      - owner_id
+      - project_id
+      - status
+      - updated_at
+      type: object
+    projectInvites:
+      items:
+        $ref: '#/components/schemas/projectInvite'
+      type: array
+    projectMember:
+      $ref: '#/components/schemas/cloudAccount'
+    projectMembers:
+      items:
+        $ref: '#/components/schemas/projectMember'
+      type: array
+    projectRevisionHooks:
+      items:
+        $ref: '#/components/schemas/normalizedProjectRevisionHook'
+      type: array
+    projectRevisionIdentitySchemas:
+      items:
+        $ref: '#/components/schemas/normalizedProjectRevisionIdentitySchema'
+      type: array
     projectRevisionThirdPartyLoginProviders:
       items:
-        $ref: '#/components/schemas/projectRevisionThirdPartyLoginProvider'
+        $ref: '#/components/schemas/normalizedProjectRevisionThirdPartyProvider'
       type: array
     projectRevisions:
       items:
-        $ref: '#/components/schemas/projectRevision'
+        $ref: '#/components/schemas/normalizedProjectRevision'
       type: array
     projectServiceIdentity:
       example:
@@ -4740,6 +4790,8 @@ components:
       properties:
         config:
           type: object
+      required:
+      - config
       type: object
     projectServices:
       example:
@@ -4748,6 +4800,8 @@ components:
       properties:
         identity:
           $ref: '#/components/schemas/projectServiceIdentity'
+      required:
+      - identity
       type: object
     projectSlug:
       properties:
@@ -4758,10 +4812,6 @@ components:
     projects:
       items:
         $ref: '#/components/schemas/project'
-      type: array
-    projectsNext:
-      items:
-        $ref: '#/components/schemas/projectNext'
       type: array
     revokedSessions:
       example:
@@ -6308,7 +6358,7 @@ components:
           revision_id: revision_id
       properties:
         project:
-          $ref: '#/components/schemas/projectNext'
+          $ref: '#/components/schemas/project'
         warnings:
           description: |-
             Import Warnings
@@ -6323,6 +6373,9 @@ components:
           items:
             $ref: '#/components/schemas/Warning'
           type: array
+      required:
+      - project
+      - warnings
       type: object
     successfulSelfServiceLoginWithoutBrowser:
       description: The Response for Login Flows via API

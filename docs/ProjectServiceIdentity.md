@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Config** | Pointer to **map[string]interface{}** |  | [optional] 
+**Config** | **map[string]interface{}** |  | 
 
 ## Methods
 
 ### NewProjectServiceIdentity
 
-`func NewProjectServiceIdentity() *ProjectServiceIdentity`
+`func NewProjectServiceIdentity(config map[string]interface{}, ) *ProjectServiceIdentity`
 
 NewProjectServiceIdentity instantiates a new ProjectServiceIdentity object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetConfig sets Config field to given value.
 
-### HasConfig
-
-`func (o *ProjectServiceIdentity) HasConfig() bool`
-
-HasConfig returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

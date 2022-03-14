@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
+**Name** | **string** | The name of the project to be created | 
 
 ## Methods
 
 ### NewCreateProjectBody
 
-`func NewCreateProjectBody() *CreateProjectBody`
+`func NewCreateProjectBody(name string, ) *CreateProjectBody`
 
 NewCreateProjectBody instantiates a new CreateProjectBody object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *CreateProjectBody) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

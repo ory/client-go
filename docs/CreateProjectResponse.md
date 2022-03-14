@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Slug** | Pointer to **string** |  | [optional] 
+**Id** | **string** |  | 
+**Slug** | **string** | The Slug of the project | 
 
 ## Methods
 
 ### NewCreateProjectResponse
 
-`func NewCreateProjectResponse() *CreateProjectResponse`
+`func NewCreateProjectResponse(id string, slug string, ) *CreateProjectResponse`
 
 NewCreateProjectResponse instantiates a new CreateProjectResponse object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *CreateProjectResponse) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetSlug
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetSlug sets Slug field to given value.
 
-### HasSlug
-
-`func (o *CreateProjectResponse) HasSlug() bool`
-
-HasSlug returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -17,15 +17,16 @@ import (
 
 // ProjectServiceIdentity struct for ProjectServiceIdentity
 type ProjectServiceIdentity struct {
-	Config *map[string]interface{} `json:"config,omitempty"`
+	Config map[string]interface{} `json:"config"`
 }
 
 // NewProjectServiceIdentity instantiates a new ProjectServiceIdentity object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectServiceIdentity() *ProjectServiceIdentity {
+func NewProjectServiceIdentity(config map[string]interface{}) *ProjectServiceIdentity {
 	this := ProjectServiceIdentity{}
+	this.Config = config
 	return &this
 }
 
@@ -37,41 +38,33 @@ func NewProjectServiceIdentityWithDefaults() *ProjectServiceIdentity {
 	return &this
 }
 
-// GetConfig returns the Config field value if set, zero value otherwise.
+// GetConfig returns the Config field value
 func (o *ProjectServiceIdentity) GetConfig() map[string]interface{} {
-	if o == nil || o.Config == nil {
+	if o == nil {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Config
+
+	return o.Config
 }
 
-// GetConfigOk returns a tuple with the Config field value if set, nil otherwise
+// GetConfigOk returns a tuple with the Config field value
 // and a boolean to check if the value has been set.
 func (o *ProjectServiceIdentity) GetConfigOk() (*map[string]interface{}, bool) {
-	if o == nil || o.Config == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Config, true
+	return &o.Config, true
 }
 
-// HasConfig returns a boolean if a field has been set.
-func (o *ProjectServiceIdentity) HasConfig() bool {
-	if o != nil && o.Config != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetConfig gets a reference to the given map[string]interface{} and assigns it to the Config field.
+// SetConfig sets field value
 func (o *ProjectServiceIdentity) SetConfig(v map[string]interface{}) {
-	o.Config = &v
+	o.Config = v
 }
 
 func (o ProjectServiceIdentity) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Config != nil {
+	if true {
 		toSerialize["config"] = o.Config
 	}
 	return json.Marshal(toSerialize)

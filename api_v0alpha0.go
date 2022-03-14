@@ -37,9 +37,9 @@ type V0alpha0Api interface {
 
 	/*
 	 * CreateProjectExecute executes the request
-	 * @return CreateProjectResponse
+	 * @return Project
 	 */
-	CreateProjectExecute(r V0alpha0ApiApiCreateProjectRequest) (CreateProjectResponse, *_nethttp.Response, error)
+	CreateProjectExecute(r V0alpha0ApiApiCreateProjectRequest) (Project, *_nethttp.Response, error)
 
 	/*
 	 * GetProject Get a Project
@@ -52,9 +52,9 @@ type V0alpha0Api interface {
 
 	/*
 	 * GetProjectExecute executes the request
-	 * @return ProjectNext
+	 * @return Project
 	 */
-	GetProjectExecute(r V0alpha0ApiApiGetProjectRequest) (ProjectNext, *_nethttp.Response, error)
+	GetProjectExecute(r V0alpha0ApiApiGetProjectRequest) (Project, *_nethttp.Response, error)
 
 	/*
 	 * GetProjectMembers Get all members associated with this project.
@@ -81,9 +81,28 @@ type V0alpha0Api interface {
 
 	/*
 	 * ListProjectsExecute executes the request
-	 * @return []ProjectNext
+	 * @return []Project
 	 */
-	ListProjectsExecute(r V0alpha0ApiApiListProjectsRequest) ([]ProjectNext, *_nethttp.Response, error)
+	ListProjectsExecute(r V0alpha0ApiApiListProjectsRequest) ([]Project, *_nethttp.Response, error)
+
+	/*
+	 * PurgeProject Irrecoverably Purge a Project
+	 * !! Use with extreme caution !!
+
+Using this API endpoint you can purge (completely delete) a project and its data.
+This action can not be undone and will delete ALL your data.
+
+!! Use with extreme caution !!
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param projectId Project ID  The project's ID.
+	 * @return V0alpha0ApiApiPurgeProjectRequest
+	 */
+	PurgeProject(ctx _context.Context, projectId string) V0alpha0ApiApiPurgeProjectRequest
+
+	/*
+	 * PurgeProjectExecute executes the request
+	 */
+	PurgeProjectExecute(r V0alpha0ApiApiPurgeProjectRequest) (*_nethttp.Response, error)
 
 	/*
 	 * RemoveProjectMember Remove a member associated with this project. This also sets their invite status to `REMOVED`.
@@ -147,7 +166,7 @@ func (r V0alpha0ApiApiCreateProjectRequest) CreateProjectBody(createProjectBody 
 	return r
 }
 
-func (r V0alpha0ApiApiCreateProjectRequest) Execute() (CreateProjectResponse, *_nethttp.Response, error) {
+func (r V0alpha0ApiApiCreateProjectRequest) Execute() (Project, *_nethttp.Response, error) {
 	return r.ApiService.CreateProjectExecute(r)
 }
 
@@ -166,16 +185,16 @@ func (a *V0alpha0ApiService) CreateProject(ctx _context.Context) V0alpha0ApiApiC
 
 /*
  * Execute executes the request
- * @return CreateProjectResponse
+ * @return Project
  */
-func (a *V0alpha0ApiService) CreateProjectExecute(r V0alpha0ApiApiCreateProjectRequest) (CreateProjectResponse, *_nethttp.Response, error) {
+func (a *V0alpha0ApiService) CreateProjectExecute(r V0alpha0ApiApiCreateProjectRequest) (Project, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  CreateProjectResponse
+		localVarReturnValue  Project
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha0ApiService.CreateProject")
@@ -289,7 +308,7 @@ type V0alpha0ApiApiGetProjectRequest struct {
 }
 
 
-func (r V0alpha0ApiApiGetProjectRequest) Execute() (ProjectNext, *_nethttp.Response, error) {
+func (r V0alpha0ApiApiGetProjectRequest) Execute() (Project, *_nethttp.Response, error) {
 	return r.ApiService.GetProjectExecute(r)
 }
 
@@ -310,16 +329,16 @@ func (a *V0alpha0ApiService) GetProject(ctx _context.Context, projectId string) 
 
 /*
  * Execute executes the request
- * @return ProjectNext
+ * @return Project
  */
-func (a *V0alpha0ApiService) GetProjectExecute(r V0alpha0ApiApiGetProjectRequest) (ProjectNext, *_nethttp.Response, error) {
+func (a *V0alpha0ApiService) GetProjectExecute(r V0alpha0ApiApiGetProjectRequest) (Project, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  ProjectNext
+		localVarReturnValue  Project
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha0ApiService.GetProject")
@@ -566,7 +585,7 @@ type V0alpha0ApiApiListProjectsRequest struct {
 }
 
 
-func (r V0alpha0ApiApiListProjectsRequest) Execute() ([]ProjectNext, *_nethttp.Response, error) {
+func (r V0alpha0ApiApiListProjectsRequest) Execute() ([]Project, *_nethttp.Response, error) {
 	return r.ApiService.ListProjectsExecute(r)
 }
 
@@ -585,16 +604,16 @@ func (a *V0alpha0ApiService) ListProjects(ctx _context.Context) V0alpha0ApiApiLi
 
 /*
  * Execute executes the request
- * @return []ProjectNext
+ * @return []Project
  */
-func (a *V0alpha0ApiService) ListProjectsExecute(r V0alpha0ApiApiListProjectsRequest) ([]ProjectNext, *_nethttp.Response, error) {
+func (a *V0alpha0ApiService) ListProjectsExecute(r V0alpha0ApiApiListProjectsRequest) ([]Project, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []ProjectNext
+		localVarReturnValue  []Project
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha0ApiService.ListProjects")
@@ -697,6 +716,143 @@ func (a *V0alpha0ApiService) ListProjectsExecute(r V0alpha0ApiApiListProjectsReq
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha0ApiApiPurgeProjectRequest struct {
+	ctx _context.Context
+	ApiService V0alpha0Api
+	projectId string
+}
+
+
+func (r V0alpha0ApiApiPurgeProjectRequest) Execute() (*_nethttp.Response, error) {
+	return r.ApiService.PurgeProjectExecute(r)
+}
+
+/*
+ * PurgeProject Irrecoverably Purge a Project
+ * !! Use with extreme caution !!
+
+Using this API endpoint you can purge (completely delete) a project and its data.
+This action can not be undone and will delete ALL your data.
+
+!! Use with extreme caution !!
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param projectId Project ID  The project's ID.
+ * @return V0alpha0ApiApiPurgeProjectRequest
+ */
+func (a *V0alpha0ApiService) PurgeProject(ctx _context.Context, projectId string) V0alpha0ApiApiPurgeProjectRequest {
+	return V0alpha0ApiApiPurgeProjectRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectId: projectId,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *V0alpha0ApiService) PurgeProjectExecute(r V0alpha0ApiApiPurgeProjectRequest) (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha0ApiService.PurgeProject")
+	if err != nil {
+		return nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/backoffice/public/projects/{project_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", _neturl.PathEscape(parameterToString(r.projectId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }
 
 type V0alpha0ApiApiRemoveProjectMemberRequest struct {

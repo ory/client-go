@@ -87,6 +87,7 @@ Class | Method | HTTP request | Description
 *V0alpha0Api* | [**GetProject**](docs/V0alpha0Api.md#getproject) | **Get** /backoffice/public/projects/{project_id} | Get a Project
 *V0alpha0Api* | [**GetProjectMembers**](docs/V0alpha0Api.md#getprojectmembers) | **Get** /backoffice/public/projects/{project_id}/members | Get all members associated with this project.
 *V0alpha0Api* | [**ListProjects**](docs/V0alpha0Api.md#listprojects) | **Get** /backoffice/public/projects | List All Projects
+*V0alpha0Api* | [**PurgeProject**](docs/V0alpha0Api.md#purgeproject) | **Delete** /backoffice/public/projects/{project_id} | Irrecoverably Purge a Project
 *V0alpha0Api* | [**RemoveProjectMember**](docs/V0alpha0Api.md#removeprojectmember) | **Delete** /backoffice/public/projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;.
 *V0alpha0Api* | [**UpdateProject**](docs/V0alpha0Api.md#updateproject) | **Put** /backoffice/public/projects/{project_id} | Update an Ory Cloud Project Configuration
 *V0alpha2Api* | [**AdminCreateIdentity**](docs/V0alpha2Api.md#admincreateidentity) | **Post** /admin/identities | Create an Identity
@@ -148,7 +149,6 @@ Class | Method | HTTP request | Description
  - [CnameSettings](docs/CnameSettings.md)
  - [CreateCustomHostnameBody](docs/CreateCustomHostnameBody.md)
  - [CreateProjectBody](docs/CreateProjectBody.md)
- - [CreateProjectResponse](docs/CreateProjectResponse.md)
  - [CreateSubscriptionPayload](docs/CreateSubscriptionPayload.md)
  - [ErrorAuthenticatorAssuranceLevelNotSatisfied](docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md)
  - [GenericError](docs/GenericError.md)
@@ -173,16 +173,16 @@ Class | Method | HTTP request | Description
  - [IsOwnerForProjectBySlugPayload](docs/IsOwnerForProjectBySlugPayload.md)
  - [JsonError](docs/JsonError.md)
  - [NeedsPrivilegedSessionError](docs/NeedsPrivilegedSessionError.md)
+ - [NormalizedProject](docs/NormalizedProject.md)
+ - [NormalizedProjectRevision](docs/NormalizedProjectRevision.md)
+ - [NormalizedProjectRevisionHook](docs/NormalizedProjectRevisionHook.md)
+ - [NormalizedProjectRevisionIdentitySchema](docs/NormalizedProjectRevisionIdentitySchema.md)
+ - [NormalizedProjectRevisionThirdPartyProvider](docs/NormalizedProjectRevisionThirdPartyProvider.md)
  - [NullPlan](docs/NullPlan.md)
  - [Pagination](docs/Pagination.md)
  - [Project](docs/Project.md)
  - [ProjectHost](docs/ProjectHost.md)
  - [ProjectInvite](docs/ProjectInvite.md)
- - [ProjectNext](docs/ProjectNext.md)
- - [ProjectRevision](docs/ProjectRevision.md)
- - [ProjectRevisionHook](docs/ProjectRevisionHook.md)
- - [ProjectRevisionIdentitySchema](docs/ProjectRevisionIdentitySchema.md)
- - [ProjectRevisionThirdPartyLoginProvider](docs/ProjectRevisionThirdPartyLoginProvider.md)
  - [ProjectServiceIdentity](docs/ProjectServiceIdentity.md)
  - [ProjectServices](docs/ProjectServices.md)
  - [ProjectSlug](docs/ProjectSlug.md)

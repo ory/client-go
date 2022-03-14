@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Identity** | Pointer to [**ProjectServiceIdentity**](ProjectServiceIdentity.md) |  | [optional] 
+**Identity** | [**ProjectServiceIdentity**](ProjectServiceIdentity.md) |  | 
 
 ## Methods
 
 ### NewProjectServices
 
-`func NewProjectServices() *ProjectServices`
+`func NewProjectServices(identity ProjectServiceIdentity, ) *ProjectServices`
 
 NewProjectServices instantiates a new ProjectServices object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetIdentity sets Identity field to given value.
 
-### HasIdentity
-
-`func (o *ProjectServices) HasIdentity() bool`
-
-HasIdentity returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
