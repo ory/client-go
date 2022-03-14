@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.124
+ * API version: latest
  * Contact: support@ory.sh
  */
 
@@ -30,23 +30,41 @@ type ProjectRevision struct {
 	// Configures the Ory Kratos SMTP From Name  This governs the \"courier.smtp.from_name\" setting.
 	KratosCourierSmtpFromName *string `json:"kratos_courier_smtp_from_name,omitempty"`
 	// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
-	KratosCourierSmtpHeaders map[string]interface{} `json:"kratos_courier_smtp_headers,omitempty"`
-	KratosIdentitySchemas []ProjectRevisionIdentitySchema `json:"kratos_identity_schemas,omitempty"`
-	KratosSecretsCipher []string `json:"kratos_secrets_cipher,omitempty"`
-	KratosSecretsCookie []string `json:"kratos_secrets_cookie,omitempty"`
-	KratosSecretsDefault []string `json:"kratos_secrets_default,omitempty"`
-	KratosSelfserviceAllowedReturnUrls []string `json:"kratos_selfservice_allowed_return_urls,omitempty"`
+	KratosCourierSmtpHeaders *map[string]interface{} `json:"kratos_courier_smtp_headers,omitempty"`
+	// Configures the Ory Kratos Invalid Recovery Email HTML Template  This governs the \"courier.smtp.templates.recovery.invalid.email.html\" setting.
+	KratosCourierTemplatesRecoveryInvalidEmailHtml *string `json:"kratos_courier_templates_recovery_invalid_email_html,omitempty"`
+	// Configures the Ory Kratos Invalid Recovery Email Plaintext Template  This governs the \"courier.smtp.templates.recovery.invalid.email.plaintext\" setting.
+	KratosCourierTemplatesRecoveryInvalidEmailPlaintext *string `json:"kratos_courier_templates_recovery_invalid_email_plaintext,omitempty"`
+	// Configures the Ory Kratos Valid Recovery Email HTML Template  This governs the \"courier.smtp.templates.recovery.valid.email.html\" setting.
+	KratosCourierTemplatesRecoveryValidEmailHtml *string `json:"kratos_courier_templates_recovery_valid_email_html,omitempty"`
+	// Configures the Ory Kratos Valid Recovery Email Plaintext Template  This governs the \"courier.smtp.templates.recovery.valid.email.plaintext\" setting.
+	KratosCourierTemplatesRecoveryValidEmailPlaintext *string `json:"kratos_courier_templates_recovery_valid_email_plaintext,omitempty"`
+	// Configures the Ory Kratos Invalid Verification Email HTML Template  This governs the \"courier.smtp.templates.verification.invalid.email.html\" setting.
+	KratosCourierTemplatesVerificationInvalidEmailHtml *string `json:"kratos_courier_templates_verification_invalid_email_html,omitempty"`
+	// Configures the Ory Kratos Invalid Verification Email Plaintext Template  This governs the \"courier.smtp.templates.recovery.invalid.email.plaintext\" setting.
+	KratosCourierTemplatesVerificationInvalidEmailPlaintext *string `json:"kratos_courier_templates_verification_invalid_email_plaintext,omitempty"`
+	// Configures the Ory Kratos Valid Verification Email HTML Template  This governs the \"courier.smtp.templates.verification.valid.email.html\" setting.
+	KratosCourierTemplatesVerificationValidEmailHtml *string `json:"kratos_courier_templates_verification_valid_email_html,omitempty"`
+	// Configures the Ory Kratos Valid Verification Email Plaintext Template  This governs the \"courier.smtp.templates.recovery.valid.email.plaintext\" setting.
+	KratosCourierTemplatesVerificationValidEmailPlaintext *string `json:"kratos_courier_templates_verification_valid_email_plaintext,omitempty"`
+	KratosIdentitySchemas *[]ProjectRevisionIdentitySchema `json:"kratos_identity_schemas,omitempty"`
+	KratosSecretsCipher *[]string `json:"kratos_secrets_cipher,omitempty"`
+	KratosSecretsCookie *[]string `json:"kratos_secrets_cookie,omitempty"`
+	KratosSecretsDefault *[]string `json:"kratos_secrets_default,omitempty"`
+	KratosSelfserviceAllowedReturnUrls *[]string `json:"kratos_selfservice_allowed_return_urls,omitempty"`
 	// Configures the Ory Kratos Default Return URL  This governs the \"selfservice.allowed_return_urls\" setting.
 	KratosSelfserviceDefaultBrowserReturnUrl *string `json:"kratos_selfservice_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Error UI URL  This governs the \"selfservice.flows.error.ui_url\" setting.
 	KratosSelfserviceFlowsErrorUiUrl *string `json:"kratos_selfservice_flows_error_ui_url,omitempty"`
-	KratosSelfserviceFlowsHooks []ProjectRevisionHook `json:"kratos_selfservice_flows_hooks,omitempty"`
+	KratosSelfserviceFlowsHooks *[]ProjectRevisionHook `json:"kratos_selfservice_flows_hooks,omitempty"`
 	// Configures the Ory Kratos Login Default Return URL  This governs the \"selfservice.flows.login.after.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login After OIDC Default Return URL  This governs the \"selfservice.flows.login.after.oidc.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_oidc_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.login.after.password.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_password_default_browser_return_url,omitempty"`
+	// Configures the Ory Kratos Login After WebAuthn Default Return URL  This governs the \"selfservice.flows.login.after.webauthn.default_browser_return_url\" setting.
+	KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_webauthn_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login Lifespan  This governs the \"selfservice.flows.login.lifespan\" setting.
 	KratosSelfserviceFlowsLoginLifespan *string `json:"kratos_selfservice_flows_login_lifespan,omitempty"`
 	// Configures the Ory Kratos Login UI URL  This governs the \"selfservice.flows.login.ui_url\" setting.
@@ -67,9 +85,12 @@ type ProjectRevision struct {
 	KratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_oidc_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_password_default_browser_return_url,omitempty"`
+	// Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
+	KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url,omitempty"`
+	KratosSelfserviceFlowsRegistrationEnabled NullableBool `json:"kratos_selfservice_flows_registration_enabled,omitempty"`
 	// Configures the Ory Kratos Registration Lifespan  This governs the \"selfservice.flows.registration.lifespan\" setting.
 	KratosSelfserviceFlowsRegistrationLifespan *string `json:"kratos_selfservice_flows_registration_lifespan,omitempty"`
-	// Configures the Ory Kratos Registration UI URL  This governs the \"selfservice.flows.registration.ui_url\" setting.0
+	// Configures the Ory Kratos Registration UI URL  This governs the \"selfservice.flows.registration.ui_url\" setting.
 	KratosSelfserviceFlowsRegistrationUiUrl *string `json:"kratos_selfservice_flows_registration_ui_url,omitempty"`
 	// Configures the Ory Kratos Settings Default Return URL  This governs the \"selfservice.flows.settings.after.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_settings_after_default_browser_return_url,omitempty"`
@@ -99,18 +120,25 @@ type ProjectRevision struct {
 	KratosSelfserviceMethodsLinkConfigLifespan *string `json:"kratos_selfservice_methods_link_config_lifespan,omitempty"`
 	KratosSelfserviceMethodsLinkEnabled NullableBool `json:"kratos_selfservice_methods_link_enabled,omitempty"`
 	KratosSelfserviceMethodsLookupSecretEnabled NullableBool `json:"kratos_selfservice_methods_lookup_secret_enabled,omitempty"`
-	KratosSelfserviceMethodsOidcConfigProviders []ProjectRevisionThirdPartyLoginProvider `json:"kratos_selfservice_methods_oidc_config_providers,omitempty"`
+	// Configures the Ory Kratos Third Party / OpenID Connect base redirect URI  This governs the \"selfservice.methods.oidc.config.base_redirect_uri\" setting.
+	KratosSelfserviceMethodsOidcConfigBaseRedirectUri *string `json:"kratos_selfservice_methods_oidc_config_base_redirect_uri,omitempty"`
+	KratosSelfserviceMethodsOidcConfigProviders *[]ProjectRevisionThirdPartyLoginProvider `json:"kratos_selfservice_methods_oidc_config_providers,omitempty"`
 	// Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \"selfservice.methods.oidc.enabled\" setting.
 	KratosSelfserviceMethodsOidcEnabled *bool `json:"kratos_selfservice_methods_oidc_enabled,omitempty"`
 	KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled NullableBool `json:"kratos_selfservice_methods_password_config_haveibeenpwned_enabled,omitempty"`
+	KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled NullableBool `json:"kratos_selfservice_methods_password_config_identifier_similarity_check_enabled,omitempty"`
 	KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors NullableBool `json:"kratos_selfservice_methods_password_config_ignore_network_errors,omitempty"`
-	// Configures Ory Kratos Password Max Breaches Detection  This governs the \"selfservice.methods.password.enabled\" setting.
+	// Configures Ory Kratos Password Max Breaches Detection  This governs the \"selfservice.methods.password.config.max_breaches\" setting.
 	KratosSelfserviceMethodsPasswordConfigMaxBreaches *int64 `json:"kratos_selfservice_methods_password_config_max_breaches,omitempty"`
+	// Configures the minimum length of passwords.  This governs the \"selfservice.methods.password.config.min_password_length\" setting.
+	KratosSelfserviceMethodsPasswordConfigMinPasswordLength *int64 `json:"kratos_selfservice_methods_password_config_min_password_length,omitempty"`
 	KratosSelfserviceMethodsPasswordEnabled NullableBool `json:"kratos_selfservice_methods_password_enabled,omitempty"`
 	KratosSelfserviceMethodsProfileEnabled NullableBool `json:"kratos_selfservice_methods_profile_enabled,omitempty"`
 	// Configures Ory Kratos TOTP Issuer  This governs the \"selfservice.methods.totp.config.issuer\" setting.
 	KratosSelfserviceMethodsTotpConfigIssuer *string `json:"kratos_selfservice_methods_totp_config_issuer,omitempty"`
 	KratosSelfserviceMethodsTotpEnabled NullableBool `json:"kratos_selfservice_methods_totp_enabled,omitempty"`
+	// Configures whether Ory Kratos Webauthn is used for passwordless flows  This governs the \"selfservice.methods.webauthn.config.passwordless\" setting.
+	KratosSelfserviceMethodsWebauthnConfigPasswordless *bool `json:"kratos_selfservice_methods_webauthn_config_passwordless,omitempty"`
 	// Configures the Ory Kratos Webauthn RP Display Name  This governs the \"selfservice.methods.webauthn.config.rp.display_name\" setting.
 	KratosSelfserviceMethodsWebauthnConfigRpDisplayName *string `json:"kratos_selfservice_methods_webauthn_config_rp_display_name,omitempty"`
 	// Configures the Ory Kratos Webauthn RP Icon  This governs the \"selfservice.methods.webauthn.config.rp.icon\" setting.
@@ -350,12 +378,12 @@ func (o *ProjectRevision) GetKratosCourierSmtpHeaders() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.KratosCourierSmtpHeaders
+	return *o.KratosCourierSmtpHeaders
 }
 
 // GetKratosCourierSmtpHeadersOk returns a tuple with the KratosCourierSmtpHeaders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosCourierSmtpHeadersOk() (map[string]interface{}, bool) {
+func (o *ProjectRevision) GetKratosCourierSmtpHeadersOk() (*map[string]interface{}, bool) {
 	if o == nil || o.KratosCourierSmtpHeaders == nil {
 		return nil, false
 	}
@@ -373,7 +401,263 @@ func (o *ProjectRevision) HasKratosCourierSmtpHeaders() bool {
 
 // SetKratosCourierSmtpHeaders gets a reference to the given map[string]interface{} and assigns it to the KratosCourierSmtpHeaders field.
 func (o *ProjectRevision) SetKratosCourierSmtpHeaders(v map[string]interface{}) {
-	o.KratosCourierSmtpHeaders = v
+	o.KratosCourierSmtpHeaders = &v
+}
+
+// GetKratosCourierTemplatesRecoveryInvalidEmailHtml returns the KratosCourierTemplatesRecoveryInvalidEmailHtml field value if set, zero value otherwise.
+func (o *ProjectRevision) GetKratosCourierTemplatesRecoveryInvalidEmailHtml() string {
+	if o == nil || o.KratosCourierTemplatesRecoveryInvalidEmailHtml == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesRecoveryInvalidEmailHtml
+}
+
+// GetKratosCourierTemplatesRecoveryInvalidEmailHtmlOk returns a tuple with the KratosCourierTemplatesRecoveryInvalidEmailHtml field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectRevision) GetKratosCourierTemplatesRecoveryInvalidEmailHtmlOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesRecoveryInvalidEmailHtml == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesRecoveryInvalidEmailHtml, true
+}
+
+// HasKratosCourierTemplatesRecoveryInvalidEmailHtml returns a boolean if a field has been set.
+func (o *ProjectRevision) HasKratosCourierTemplatesRecoveryInvalidEmailHtml() bool {
+	if o != nil && o.KratosCourierTemplatesRecoveryInvalidEmailHtml != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesRecoveryInvalidEmailHtml gets a reference to the given string and assigns it to the KratosCourierTemplatesRecoveryInvalidEmailHtml field.
+func (o *ProjectRevision) SetKratosCourierTemplatesRecoveryInvalidEmailHtml(v string) {
+	o.KratosCourierTemplatesRecoveryInvalidEmailHtml = &v
+}
+
+// GetKratosCourierTemplatesRecoveryInvalidEmailPlaintext returns the KratosCourierTemplatesRecoveryInvalidEmailPlaintext field value if set, zero value otherwise.
+func (o *ProjectRevision) GetKratosCourierTemplatesRecoveryInvalidEmailPlaintext() string {
+	if o == nil || o.KratosCourierTemplatesRecoveryInvalidEmailPlaintext == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesRecoveryInvalidEmailPlaintext
+}
+
+// GetKratosCourierTemplatesRecoveryInvalidEmailPlaintextOk returns a tuple with the KratosCourierTemplatesRecoveryInvalidEmailPlaintext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectRevision) GetKratosCourierTemplatesRecoveryInvalidEmailPlaintextOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesRecoveryInvalidEmailPlaintext == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesRecoveryInvalidEmailPlaintext, true
+}
+
+// HasKratosCourierTemplatesRecoveryInvalidEmailPlaintext returns a boolean if a field has been set.
+func (o *ProjectRevision) HasKratosCourierTemplatesRecoveryInvalidEmailPlaintext() bool {
+	if o != nil && o.KratosCourierTemplatesRecoveryInvalidEmailPlaintext != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesRecoveryInvalidEmailPlaintext gets a reference to the given string and assigns it to the KratosCourierTemplatesRecoveryInvalidEmailPlaintext field.
+func (o *ProjectRevision) SetKratosCourierTemplatesRecoveryInvalidEmailPlaintext(v string) {
+	o.KratosCourierTemplatesRecoveryInvalidEmailPlaintext = &v
+}
+
+// GetKratosCourierTemplatesRecoveryValidEmailHtml returns the KratosCourierTemplatesRecoveryValidEmailHtml field value if set, zero value otherwise.
+func (o *ProjectRevision) GetKratosCourierTemplatesRecoveryValidEmailHtml() string {
+	if o == nil || o.KratosCourierTemplatesRecoveryValidEmailHtml == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesRecoveryValidEmailHtml
+}
+
+// GetKratosCourierTemplatesRecoveryValidEmailHtmlOk returns a tuple with the KratosCourierTemplatesRecoveryValidEmailHtml field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectRevision) GetKratosCourierTemplatesRecoveryValidEmailHtmlOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesRecoveryValidEmailHtml == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesRecoveryValidEmailHtml, true
+}
+
+// HasKratosCourierTemplatesRecoveryValidEmailHtml returns a boolean if a field has been set.
+func (o *ProjectRevision) HasKratosCourierTemplatesRecoveryValidEmailHtml() bool {
+	if o != nil && o.KratosCourierTemplatesRecoveryValidEmailHtml != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesRecoveryValidEmailHtml gets a reference to the given string and assigns it to the KratosCourierTemplatesRecoveryValidEmailHtml field.
+func (o *ProjectRevision) SetKratosCourierTemplatesRecoveryValidEmailHtml(v string) {
+	o.KratosCourierTemplatesRecoveryValidEmailHtml = &v
+}
+
+// GetKratosCourierTemplatesRecoveryValidEmailPlaintext returns the KratosCourierTemplatesRecoveryValidEmailPlaintext field value if set, zero value otherwise.
+func (o *ProjectRevision) GetKratosCourierTemplatesRecoveryValidEmailPlaintext() string {
+	if o == nil || o.KratosCourierTemplatesRecoveryValidEmailPlaintext == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesRecoveryValidEmailPlaintext
+}
+
+// GetKratosCourierTemplatesRecoveryValidEmailPlaintextOk returns a tuple with the KratosCourierTemplatesRecoveryValidEmailPlaintext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectRevision) GetKratosCourierTemplatesRecoveryValidEmailPlaintextOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesRecoveryValidEmailPlaintext == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesRecoveryValidEmailPlaintext, true
+}
+
+// HasKratosCourierTemplatesRecoveryValidEmailPlaintext returns a boolean if a field has been set.
+func (o *ProjectRevision) HasKratosCourierTemplatesRecoveryValidEmailPlaintext() bool {
+	if o != nil && o.KratosCourierTemplatesRecoveryValidEmailPlaintext != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesRecoveryValidEmailPlaintext gets a reference to the given string and assigns it to the KratosCourierTemplatesRecoveryValidEmailPlaintext field.
+func (o *ProjectRevision) SetKratosCourierTemplatesRecoveryValidEmailPlaintext(v string) {
+	o.KratosCourierTemplatesRecoveryValidEmailPlaintext = &v
+}
+
+// GetKratosCourierTemplatesVerificationInvalidEmailHtml returns the KratosCourierTemplatesVerificationInvalidEmailHtml field value if set, zero value otherwise.
+func (o *ProjectRevision) GetKratosCourierTemplatesVerificationInvalidEmailHtml() string {
+	if o == nil || o.KratosCourierTemplatesVerificationInvalidEmailHtml == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerificationInvalidEmailHtml
+}
+
+// GetKratosCourierTemplatesVerificationInvalidEmailHtmlOk returns a tuple with the KratosCourierTemplatesVerificationInvalidEmailHtml field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectRevision) GetKratosCourierTemplatesVerificationInvalidEmailHtmlOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesVerificationInvalidEmailHtml == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerificationInvalidEmailHtml, true
+}
+
+// HasKratosCourierTemplatesVerificationInvalidEmailHtml returns a boolean if a field has been set.
+func (o *ProjectRevision) HasKratosCourierTemplatesVerificationInvalidEmailHtml() bool {
+	if o != nil && o.KratosCourierTemplatesVerificationInvalidEmailHtml != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerificationInvalidEmailHtml gets a reference to the given string and assigns it to the KratosCourierTemplatesVerificationInvalidEmailHtml field.
+func (o *ProjectRevision) SetKratosCourierTemplatesVerificationInvalidEmailHtml(v string) {
+	o.KratosCourierTemplatesVerificationInvalidEmailHtml = &v
+}
+
+// GetKratosCourierTemplatesVerificationInvalidEmailPlaintext returns the KratosCourierTemplatesVerificationInvalidEmailPlaintext field value if set, zero value otherwise.
+func (o *ProjectRevision) GetKratosCourierTemplatesVerificationInvalidEmailPlaintext() string {
+	if o == nil || o.KratosCourierTemplatesVerificationInvalidEmailPlaintext == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerificationInvalidEmailPlaintext
+}
+
+// GetKratosCourierTemplatesVerificationInvalidEmailPlaintextOk returns a tuple with the KratosCourierTemplatesVerificationInvalidEmailPlaintext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectRevision) GetKratosCourierTemplatesVerificationInvalidEmailPlaintextOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesVerificationInvalidEmailPlaintext == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerificationInvalidEmailPlaintext, true
+}
+
+// HasKratosCourierTemplatesVerificationInvalidEmailPlaintext returns a boolean if a field has been set.
+func (o *ProjectRevision) HasKratosCourierTemplatesVerificationInvalidEmailPlaintext() bool {
+	if o != nil && o.KratosCourierTemplatesVerificationInvalidEmailPlaintext != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerificationInvalidEmailPlaintext gets a reference to the given string and assigns it to the KratosCourierTemplatesVerificationInvalidEmailPlaintext field.
+func (o *ProjectRevision) SetKratosCourierTemplatesVerificationInvalidEmailPlaintext(v string) {
+	o.KratosCourierTemplatesVerificationInvalidEmailPlaintext = &v
+}
+
+// GetKratosCourierTemplatesVerificationValidEmailHtml returns the KratosCourierTemplatesVerificationValidEmailHtml field value if set, zero value otherwise.
+func (o *ProjectRevision) GetKratosCourierTemplatesVerificationValidEmailHtml() string {
+	if o == nil || o.KratosCourierTemplatesVerificationValidEmailHtml == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerificationValidEmailHtml
+}
+
+// GetKratosCourierTemplatesVerificationValidEmailHtmlOk returns a tuple with the KratosCourierTemplatesVerificationValidEmailHtml field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectRevision) GetKratosCourierTemplatesVerificationValidEmailHtmlOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesVerificationValidEmailHtml == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerificationValidEmailHtml, true
+}
+
+// HasKratosCourierTemplatesVerificationValidEmailHtml returns a boolean if a field has been set.
+func (o *ProjectRevision) HasKratosCourierTemplatesVerificationValidEmailHtml() bool {
+	if o != nil && o.KratosCourierTemplatesVerificationValidEmailHtml != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerificationValidEmailHtml gets a reference to the given string and assigns it to the KratosCourierTemplatesVerificationValidEmailHtml field.
+func (o *ProjectRevision) SetKratosCourierTemplatesVerificationValidEmailHtml(v string) {
+	o.KratosCourierTemplatesVerificationValidEmailHtml = &v
+}
+
+// GetKratosCourierTemplatesVerificationValidEmailPlaintext returns the KratosCourierTemplatesVerificationValidEmailPlaintext field value if set, zero value otherwise.
+func (o *ProjectRevision) GetKratosCourierTemplatesVerificationValidEmailPlaintext() string {
+	if o == nil || o.KratosCourierTemplatesVerificationValidEmailPlaintext == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerificationValidEmailPlaintext
+}
+
+// GetKratosCourierTemplatesVerificationValidEmailPlaintextOk returns a tuple with the KratosCourierTemplatesVerificationValidEmailPlaintext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectRevision) GetKratosCourierTemplatesVerificationValidEmailPlaintextOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesVerificationValidEmailPlaintext == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerificationValidEmailPlaintext, true
+}
+
+// HasKratosCourierTemplatesVerificationValidEmailPlaintext returns a boolean if a field has been set.
+func (o *ProjectRevision) HasKratosCourierTemplatesVerificationValidEmailPlaintext() bool {
+	if o != nil && o.KratosCourierTemplatesVerificationValidEmailPlaintext != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerificationValidEmailPlaintext gets a reference to the given string and assigns it to the KratosCourierTemplatesVerificationValidEmailPlaintext field.
+func (o *ProjectRevision) SetKratosCourierTemplatesVerificationValidEmailPlaintext(v string) {
+	o.KratosCourierTemplatesVerificationValidEmailPlaintext = &v
 }
 
 // GetKratosIdentitySchemas returns the KratosIdentitySchemas field value if set, zero value otherwise.
@@ -382,12 +666,12 @@ func (o *ProjectRevision) GetKratosIdentitySchemas() []ProjectRevisionIdentitySc
 		var ret []ProjectRevisionIdentitySchema
 		return ret
 	}
-	return o.KratosIdentitySchemas
+	return *o.KratosIdentitySchemas
 }
 
 // GetKratosIdentitySchemasOk returns a tuple with the KratosIdentitySchemas field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosIdentitySchemasOk() ([]ProjectRevisionIdentitySchema, bool) {
+func (o *ProjectRevision) GetKratosIdentitySchemasOk() (*[]ProjectRevisionIdentitySchema, bool) {
 	if o == nil || o.KratosIdentitySchemas == nil {
 		return nil, false
 	}
@@ -405,7 +689,7 @@ func (o *ProjectRevision) HasKratosIdentitySchemas() bool {
 
 // SetKratosIdentitySchemas gets a reference to the given []ProjectRevisionIdentitySchema and assigns it to the KratosIdentitySchemas field.
 func (o *ProjectRevision) SetKratosIdentitySchemas(v []ProjectRevisionIdentitySchema) {
-	o.KratosIdentitySchemas = v
+	o.KratosIdentitySchemas = &v
 }
 
 // GetKratosSecretsCipher returns the KratosSecretsCipher field value if set, zero value otherwise.
@@ -414,12 +698,12 @@ func (o *ProjectRevision) GetKratosSecretsCipher() []string {
 		var ret []string
 		return ret
 	}
-	return o.KratosSecretsCipher
+	return *o.KratosSecretsCipher
 }
 
 // GetKratosSecretsCipherOk returns a tuple with the KratosSecretsCipher field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSecretsCipherOk() ([]string, bool) {
+func (o *ProjectRevision) GetKratosSecretsCipherOk() (*[]string, bool) {
 	if o == nil || o.KratosSecretsCipher == nil {
 		return nil, false
 	}
@@ -437,7 +721,7 @@ func (o *ProjectRevision) HasKratosSecretsCipher() bool {
 
 // SetKratosSecretsCipher gets a reference to the given []string and assigns it to the KratosSecretsCipher field.
 func (o *ProjectRevision) SetKratosSecretsCipher(v []string) {
-	o.KratosSecretsCipher = v
+	o.KratosSecretsCipher = &v
 }
 
 // GetKratosSecretsCookie returns the KratosSecretsCookie field value if set, zero value otherwise.
@@ -446,12 +730,12 @@ func (o *ProjectRevision) GetKratosSecretsCookie() []string {
 		var ret []string
 		return ret
 	}
-	return o.KratosSecretsCookie
+	return *o.KratosSecretsCookie
 }
 
 // GetKratosSecretsCookieOk returns a tuple with the KratosSecretsCookie field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSecretsCookieOk() ([]string, bool) {
+func (o *ProjectRevision) GetKratosSecretsCookieOk() (*[]string, bool) {
 	if o == nil || o.KratosSecretsCookie == nil {
 		return nil, false
 	}
@@ -469,7 +753,7 @@ func (o *ProjectRevision) HasKratosSecretsCookie() bool {
 
 // SetKratosSecretsCookie gets a reference to the given []string and assigns it to the KratosSecretsCookie field.
 func (o *ProjectRevision) SetKratosSecretsCookie(v []string) {
-	o.KratosSecretsCookie = v
+	o.KratosSecretsCookie = &v
 }
 
 // GetKratosSecretsDefault returns the KratosSecretsDefault field value if set, zero value otherwise.
@@ -478,12 +762,12 @@ func (o *ProjectRevision) GetKratosSecretsDefault() []string {
 		var ret []string
 		return ret
 	}
-	return o.KratosSecretsDefault
+	return *o.KratosSecretsDefault
 }
 
 // GetKratosSecretsDefaultOk returns a tuple with the KratosSecretsDefault field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSecretsDefaultOk() ([]string, bool) {
+func (o *ProjectRevision) GetKratosSecretsDefaultOk() (*[]string, bool) {
 	if o == nil || o.KratosSecretsDefault == nil {
 		return nil, false
 	}
@@ -501,7 +785,7 @@ func (o *ProjectRevision) HasKratosSecretsDefault() bool {
 
 // SetKratosSecretsDefault gets a reference to the given []string and assigns it to the KratosSecretsDefault field.
 func (o *ProjectRevision) SetKratosSecretsDefault(v []string) {
-	o.KratosSecretsDefault = v
+	o.KratosSecretsDefault = &v
 }
 
 // GetKratosSelfserviceAllowedReturnUrls returns the KratosSelfserviceAllowedReturnUrls field value if set, zero value otherwise.
@@ -510,12 +794,12 @@ func (o *ProjectRevision) GetKratosSelfserviceAllowedReturnUrls() []string {
 		var ret []string
 		return ret
 	}
-	return o.KratosSelfserviceAllowedReturnUrls
+	return *o.KratosSelfserviceAllowedReturnUrls
 }
 
 // GetKratosSelfserviceAllowedReturnUrlsOk returns a tuple with the KratosSelfserviceAllowedReturnUrls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceAllowedReturnUrlsOk() ([]string, bool) {
+func (o *ProjectRevision) GetKratosSelfserviceAllowedReturnUrlsOk() (*[]string, bool) {
 	if o == nil || o.KratosSelfserviceAllowedReturnUrls == nil {
 		return nil, false
 	}
@@ -533,7 +817,7 @@ func (o *ProjectRevision) HasKratosSelfserviceAllowedReturnUrls() bool {
 
 // SetKratosSelfserviceAllowedReturnUrls gets a reference to the given []string and assigns it to the KratosSelfserviceAllowedReturnUrls field.
 func (o *ProjectRevision) SetKratosSelfserviceAllowedReturnUrls(v []string) {
-	o.KratosSelfserviceAllowedReturnUrls = v
+	o.KratosSelfserviceAllowedReturnUrls = &v
 }
 
 // GetKratosSelfserviceDefaultBrowserReturnUrl returns the KratosSelfserviceDefaultBrowserReturnUrl field value if set, zero value otherwise.
@@ -606,12 +890,12 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsHooks() []ProjectRevisionHook
 		var ret []ProjectRevisionHook
 		return ret
 	}
-	return o.KratosSelfserviceFlowsHooks
+	return *o.KratosSelfserviceFlowsHooks
 }
 
 // GetKratosSelfserviceFlowsHooksOk returns a tuple with the KratosSelfserviceFlowsHooks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsHooksOk() ([]ProjectRevisionHook, bool) {
+func (o *ProjectRevision) GetKratosSelfserviceFlowsHooksOk() (*[]ProjectRevisionHook, bool) {
 	if o == nil || o.KratosSelfserviceFlowsHooks == nil {
 		return nil, false
 	}
@@ -629,7 +913,7 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsHooks() bool {
 
 // SetKratosSelfserviceFlowsHooks gets a reference to the given []ProjectRevisionHook and assigns it to the KratosSelfserviceFlowsHooks field.
 func (o *ProjectRevision) SetKratosSelfserviceFlowsHooks(v []ProjectRevisionHook) {
-	o.KratosSelfserviceFlowsHooks = v
+	o.KratosSelfserviceFlowsHooks = &v
 }
 
 // GetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl field value if set, zero value otherwise.
@@ -726,6 +1010,38 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsLoginAfterPasswordDefaultBrow
 // SetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl field.
 func (o *ProjectRevision) SetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl = &v
+}
+
+// GetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl field value if set, zero value otherwise.
+func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl() string {
+	if o == nil || o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl
+}
+
+// GetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrlOk() (*string, bool) {
+	if o == nil || o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl, true
+}
+
+// HasKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl returns a boolean if a field has been set.
+func (o *ProjectRevision) HasKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl() bool {
+	if o != nil && o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl field.
+func (o *ProjectRevision) SetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl(v string) {
+	o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl = &v
 }
 
 // GetKratosSelfserviceFlowsLoginLifespan returns the KratosSelfserviceFlowsLoginLifespan field value if set, zero value otherwise.
@@ -1046,6 +1362,80 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsRegistrationAfterPasswordDefa
 // SetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl field.
 func (o *ProjectRevision) SetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl = &v
+}
+
+// GetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl field value if set, zero value otherwise.
+func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl() string {
+	if o == nil || o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl
+}
+
+// GetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrlOk() (*string, bool) {
+	if o == nil || o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl, true
+}
+
+// HasKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl returns a boolean if a field has been set.
+func (o *ProjectRevision) HasKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl() bool {
+	if o != nil && o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl field.
+func (o *ProjectRevision) SetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl(v string) {
+	o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl = &v
+}
+
+// GetKratosSelfserviceFlowsRegistrationEnabled returns the KratosSelfserviceFlowsRegistrationEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationEnabled() bool {
+	if o == nil || o.KratosSelfserviceFlowsRegistrationEnabled.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsRegistrationEnabled.Get()
+}
+
+// GetKratosSelfserviceFlowsRegistrationEnabledOk returns a tuple with the KratosSelfserviceFlowsRegistrationEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationEnabledOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsRegistrationEnabled.Get(), o.KratosSelfserviceFlowsRegistrationEnabled.IsSet()
+}
+
+// HasKratosSelfserviceFlowsRegistrationEnabled returns a boolean if a field has been set.
+func (o *ProjectRevision) HasKratosSelfserviceFlowsRegistrationEnabled() bool {
+	if o != nil && o.KratosSelfserviceFlowsRegistrationEnabled.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsRegistrationEnabled gets a reference to the given NullableBool and assigns it to the KratosSelfserviceFlowsRegistrationEnabled field.
+func (o *ProjectRevision) SetKratosSelfserviceFlowsRegistrationEnabled(v bool) {
+	o.KratosSelfserviceFlowsRegistrationEnabled.Set(&v)
+}
+// SetKratosSelfserviceFlowsRegistrationEnabledNil sets the value for KratosSelfserviceFlowsRegistrationEnabled to be an explicit nil
+func (o *ProjectRevision) SetKratosSelfserviceFlowsRegistrationEnabledNil() {
+	o.KratosSelfserviceFlowsRegistrationEnabled.Set(nil)
+}
+
+// UnsetKratosSelfserviceFlowsRegistrationEnabled ensures that no value is present for KratosSelfserviceFlowsRegistrationEnabled, not even an explicit nil
+func (o *ProjectRevision) UnsetKratosSelfserviceFlowsRegistrationEnabled() {
+	o.KratosSelfserviceFlowsRegistrationEnabled.Unset()
 }
 
 // GetKratosSelfserviceFlowsRegistrationLifespan returns the KratosSelfserviceFlowsRegistrationLifespan field value if set, zero value otherwise.
@@ -1612,18 +2002,50 @@ func (o *ProjectRevision) UnsetKratosSelfserviceMethodsLookupSecretEnabled() {
 	o.KratosSelfserviceMethodsLookupSecretEnabled.Unset()
 }
 
+// GetKratosSelfserviceMethodsOidcConfigBaseRedirectUri returns the KratosSelfserviceMethodsOidcConfigBaseRedirectUri field value if set, zero value otherwise.
+func (o *ProjectRevision) GetKratosSelfserviceMethodsOidcConfigBaseRedirectUri() string {
+	if o == nil || o.KratosSelfserviceMethodsOidcConfigBaseRedirectUri == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsOidcConfigBaseRedirectUri
+}
+
+// GetKratosSelfserviceMethodsOidcConfigBaseRedirectUriOk returns a tuple with the KratosSelfserviceMethodsOidcConfigBaseRedirectUri field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectRevision) GetKratosSelfserviceMethodsOidcConfigBaseRedirectUriOk() (*string, bool) {
+	if o == nil || o.KratosSelfserviceMethodsOidcConfigBaseRedirectUri == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsOidcConfigBaseRedirectUri, true
+}
+
+// HasKratosSelfserviceMethodsOidcConfigBaseRedirectUri returns a boolean if a field has been set.
+func (o *ProjectRevision) HasKratosSelfserviceMethodsOidcConfigBaseRedirectUri() bool {
+	if o != nil && o.KratosSelfserviceMethodsOidcConfigBaseRedirectUri != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsOidcConfigBaseRedirectUri gets a reference to the given string and assigns it to the KratosSelfserviceMethodsOidcConfigBaseRedirectUri field.
+func (o *ProjectRevision) SetKratosSelfserviceMethodsOidcConfigBaseRedirectUri(v string) {
+	o.KratosSelfserviceMethodsOidcConfigBaseRedirectUri = &v
+}
+
 // GetKratosSelfserviceMethodsOidcConfigProviders returns the KratosSelfserviceMethodsOidcConfigProviders field value if set, zero value otherwise.
 func (o *ProjectRevision) GetKratosSelfserviceMethodsOidcConfigProviders() []ProjectRevisionThirdPartyLoginProvider {
 	if o == nil || o.KratosSelfserviceMethodsOidcConfigProviders == nil {
 		var ret []ProjectRevisionThirdPartyLoginProvider
 		return ret
 	}
-	return o.KratosSelfserviceMethodsOidcConfigProviders
+	return *o.KratosSelfserviceMethodsOidcConfigProviders
 }
 
 // GetKratosSelfserviceMethodsOidcConfigProvidersOk returns a tuple with the KratosSelfserviceMethodsOidcConfigProviders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsOidcConfigProvidersOk() ([]ProjectRevisionThirdPartyLoginProvider, bool) {
+func (o *ProjectRevision) GetKratosSelfserviceMethodsOidcConfigProvidersOk() (*[]ProjectRevisionThirdPartyLoginProvider, bool) {
 	if o == nil || o.KratosSelfserviceMethodsOidcConfigProviders == nil {
 		return nil, false
 	}
@@ -1641,7 +2063,7 @@ func (o *ProjectRevision) HasKratosSelfserviceMethodsOidcConfigProviders() bool 
 
 // SetKratosSelfserviceMethodsOidcConfigProviders gets a reference to the given []ProjectRevisionThirdPartyLoginProvider and assigns it to the KratosSelfserviceMethodsOidcConfigProviders field.
 func (o *ProjectRevision) SetKratosSelfserviceMethodsOidcConfigProviders(v []ProjectRevisionThirdPartyLoginProvider) {
-	o.KratosSelfserviceMethodsOidcConfigProviders = v
+	o.KratosSelfserviceMethodsOidcConfigProviders = &v
 }
 
 // GetKratosSelfserviceMethodsOidcEnabled returns the KratosSelfserviceMethodsOidcEnabled field value if set, zero value otherwise.
@@ -1718,6 +2140,48 @@ func (o *ProjectRevision) UnsetKratosSelfserviceMethodsPasswordConfigHaveibeenpw
 	o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.Unset()
 }
 
+// GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled returns the KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled() bool {
+	if o == nil || o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Get()
+}
+
+// GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledOk returns a tuple with the KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Get(), o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.IsSet()
+}
+
+// HasKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled returns a boolean if a field has been set.
+func (o *ProjectRevision) HasKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled() bool {
+	if o != nil && o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled gets a reference to the given NullableBool and assigns it to the KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled field.
+func (o *ProjectRevision) SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled(v bool) {
+	o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Set(&v)
+}
+// SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledNil sets the value for KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled to be an explicit nil
+func (o *ProjectRevision) SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledNil() {
+	o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Set(nil)
+}
+
+// UnsetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled ensures that no value is present for KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled, not even an explicit nil
+func (o *ProjectRevision) UnsetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled() {
+	o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Unset()
+}
+
 // GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors returns the KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors() bool {
 	if o == nil || o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors.Get() == nil {
@@ -1790,6 +2254,38 @@ func (o *ProjectRevision) HasKratosSelfserviceMethodsPasswordConfigMaxBreaches()
 // SetKratosSelfserviceMethodsPasswordConfigMaxBreaches gets a reference to the given int64 and assigns it to the KratosSelfserviceMethodsPasswordConfigMaxBreaches field.
 func (o *ProjectRevision) SetKratosSelfserviceMethodsPasswordConfigMaxBreaches(v int64) {
 	o.KratosSelfserviceMethodsPasswordConfigMaxBreaches = &v
+}
+
+// GetKratosSelfserviceMethodsPasswordConfigMinPasswordLength returns the KratosSelfserviceMethodsPasswordConfigMinPasswordLength field value if set, zero value otherwise.
+func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigMinPasswordLength() int64 {
+	if o == nil || o.KratosSelfserviceMethodsPasswordConfigMinPasswordLength == nil {
+		var ret int64
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsPasswordConfigMinPasswordLength
+}
+
+// GetKratosSelfserviceMethodsPasswordConfigMinPasswordLengthOk returns a tuple with the KratosSelfserviceMethodsPasswordConfigMinPasswordLength field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigMinPasswordLengthOk() (*int64, bool) {
+	if o == nil || o.KratosSelfserviceMethodsPasswordConfigMinPasswordLength == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsPasswordConfigMinPasswordLength, true
+}
+
+// HasKratosSelfserviceMethodsPasswordConfigMinPasswordLength returns a boolean if a field has been set.
+func (o *ProjectRevision) HasKratosSelfserviceMethodsPasswordConfigMinPasswordLength() bool {
+	if o != nil && o.KratosSelfserviceMethodsPasswordConfigMinPasswordLength != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsPasswordConfigMinPasswordLength gets a reference to the given int64 and assigns it to the KratosSelfserviceMethodsPasswordConfigMinPasswordLength field.
+func (o *ProjectRevision) SetKratosSelfserviceMethodsPasswordConfigMinPasswordLength(v int64) {
+	o.KratosSelfserviceMethodsPasswordConfigMinPasswordLength = &v
 }
 
 // GetKratosSelfserviceMethodsPasswordEnabled returns the KratosSelfserviceMethodsPasswordEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1948,6 +2444,38 @@ func (o *ProjectRevision) SetKratosSelfserviceMethodsTotpEnabledNil() {
 // UnsetKratosSelfserviceMethodsTotpEnabled ensures that no value is present for KratosSelfserviceMethodsTotpEnabled, not even an explicit nil
 func (o *ProjectRevision) UnsetKratosSelfserviceMethodsTotpEnabled() {
 	o.KratosSelfserviceMethodsTotpEnabled.Unset()
+}
+
+// GetKratosSelfserviceMethodsWebauthnConfigPasswordless returns the KratosSelfserviceMethodsWebauthnConfigPasswordless field value if set, zero value otherwise.
+func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigPasswordless() bool {
+	if o == nil || o.KratosSelfserviceMethodsWebauthnConfigPasswordless == nil {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsWebauthnConfigPasswordless
+}
+
+// GetKratosSelfserviceMethodsWebauthnConfigPasswordlessOk returns a tuple with the KratosSelfserviceMethodsWebauthnConfigPasswordless field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigPasswordlessOk() (*bool, bool) {
+	if o == nil || o.KratosSelfserviceMethodsWebauthnConfigPasswordless == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsWebauthnConfigPasswordless, true
+}
+
+// HasKratosSelfserviceMethodsWebauthnConfigPasswordless returns a boolean if a field has been set.
+func (o *ProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigPasswordless() bool {
+	if o != nil && o.KratosSelfserviceMethodsWebauthnConfigPasswordless != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsWebauthnConfigPasswordless gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsWebauthnConfigPasswordless field.
+func (o *ProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigPasswordless(v bool) {
+	o.KratosSelfserviceMethodsWebauthnConfigPasswordless = &v
 }
 
 // GetKratosSelfserviceMethodsWebauthnConfigRpDisplayName returns the KratosSelfserviceMethodsWebauthnConfigRpDisplayName field value if set, zero value otherwise.
@@ -2369,6 +2897,30 @@ func (o ProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosCourierSmtpHeaders != nil {
 		toSerialize["kratos_courier_smtp_headers"] = o.KratosCourierSmtpHeaders
 	}
+	if o.KratosCourierTemplatesRecoveryInvalidEmailHtml != nil {
+		toSerialize["kratos_courier_templates_recovery_invalid_email_html"] = o.KratosCourierTemplatesRecoveryInvalidEmailHtml
+	}
+	if o.KratosCourierTemplatesRecoveryInvalidEmailPlaintext != nil {
+		toSerialize["kratos_courier_templates_recovery_invalid_email_plaintext"] = o.KratosCourierTemplatesRecoveryInvalidEmailPlaintext
+	}
+	if o.KratosCourierTemplatesRecoveryValidEmailHtml != nil {
+		toSerialize["kratos_courier_templates_recovery_valid_email_html"] = o.KratosCourierTemplatesRecoveryValidEmailHtml
+	}
+	if o.KratosCourierTemplatesRecoveryValidEmailPlaintext != nil {
+		toSerialize["kratos_courier_templates_recovery_valid_email_plaintext"] = o.KratosCourierTemplatesRecoveryValidEmailPlaintext
+	}
+	if o.KratosCourierTemplatesVerificationInvalidEmailHtml != nil {
+		toSerialize["kratos_courier_templates_verification_invalid_email_html"] = o.KratosCourierTemplatesVerificationInvalidEmailHtml
+	}
+	if o.KratosCourierTemplatesVerificationInvalidEmailPlaintext != nil {
+		toSerialize["kratos_courier_templates_verification_invalid_email_plaintext"] = o.KratosCourierTemplatesVerificationInvalidEmailPlaintext
+	}
+	if o.KratosCourierTemplatesVerificationValidEmailHtml != nil {
+		toSerialize["kratos_courier_templates_verification_valid_email_html"] = o.KratosCourierTemplatesVerificationValidEmailHtml
+	}
+	if o.KratosCourierTemplatesVerificationValidEmailPlaintext != nil {
+		toSerialize["kratos_courier_templates_verification_valid_email_plaintext"] = o.KratosCourierTemplatesVerificationValidEmailPlaintext
+	}
 	if o.KratosIdentitySchemas != nil {
 		toSerialize["kratos_identity_schemas"] = o.KratosIdentitySchemas
 	}
@@ -2402,6 +2954,9 @@ func (o ProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl != nil {
 		toSerialize["kratos_selfservice_flows_login_after_password_default_browser_return_url"] = o.KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl
 	}
+	if o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl != nil {
+		toSerialize["kratos_selfservice_flows_login_after_webauthn_default_browser_return_url"] = o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl
+	}
 	if o.KratosSelfserviceFlowsLoginLifespan != nil {
 		toSerialize["kratos_selfservice_flows_login_lifespan"] = o.KratosSelfserviceFlowsLoginLifespan
 	}
@@ -2431,6 +2986,12 @@ func (o ProjectRevision) MarshalJSON() ([]byte, error) {
 	}
 	if o.KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl != nil {
 		toSerialize["kratos_selfservice_flows_registration_after_password_default_browser_return_url"] = o.KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl
+	}
+	if o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl != nil {
+		toSerialize["kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url"] = o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl
+	}
+	if o.KratosSelfserviceFlowsRegistrationEnabled.IsSet() {
+		toSerialize["kratos_selfservice_flows_registration_enabled"] = o.KratosSelfserviceFlowsRegistrationEnabled.Get()
 	}
 	if o.KratosSelfserviceFlowsRegistrationLifespan != nil {
 		toSerialize["kratos_selfservice_flows_registration_lifespan"] = o.KratosSelfserviceFlowsRegistrationLifespan
@@ -2483,6 +3044,9 @@ func (o ProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosSelfserviceMethodsLookupSecretEnabled.IsSet() {
 		toSerialize["kratos_selfservice_methods_lookup_secret_enabled"] = o.KratosSelfserviceMethodsLookupSecretEnabled.Get()
 	}
+	if o.KratosSelfserviceMethodsOidcConfigBaseRedirectUri != nil {
+		toSerialize["kratos_selfservice_methods_oidc_config_base_redirect_uri"] = o.KratosSelfserviceMethodsOidcConfigBaseRedirectUri
+	}
 	if o.KratosSelfserviceMethodsOidcConfigProviders != nil {
 		toSerialize["kratos_selfservice_methods_oidc_config_providers"] = o.KratosSelfserviceMethodsOidcConfigProviders
 	}
@@ -2492,11 +3056,17 @@ func (o ProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.IsSet() {
 		toSerialize["kratos_selfservice_methods_password_config_haveibeenpwned_enabled"] = o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.Get()
 	}
+	if o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.IsSet() {
+		toSerialize["kratos_selfservice_methods_password_config_identifier_similarity_check_enabled"] = o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Get()
+	}
 	if o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors.IsSet() {
 		toSerialize["kratos_selfservice_methods_password_config_ignore_network_errors"] = o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors.Get()
 	}
 	if o.KratosSelfserviceMethodsPasswordConfigMaxBreaches != nil {
 		toSerialize["kratos_selfservice_methods_password_config_max_breaches"] = o.KratosSelfserviceMethodsPasswordConfigMaxBreaches
+	}
+	if o.KratosSelfserviceMethodsPasswordConfigMinPasswordLength != nil {
+		toSerialize["kratos_selfservice_methods_password_config_min_password_length"] = o.KratosSelfserviceMethodsPasswordConfigMinPasswordLength
 	}
 	if o.KratosSelfserviceMethodsPasswordEnabled.IsSet() {
 		toSerialize["kratos_selfservice_methods_password_enabled"] = o.KratosSelfserviceMethodsPasswordEnabled.Get()
@@ -2509,6 +3079,9 @@ func (o ProjectRevision) MarshalJSON() ([]byte, error) {
 	}
 	if o.KratosSelfserviceMethodsTotpEnabled.IsSet() {
 		toSerialize["kratos_selfservice_methods_totp_enabled"] = o.KratosSelfserviceMethodsTotpEnabled.Get()
+	}
+	if o.KratosSelfserviceMethodsWebauthnConfigPasswordless != nil {
+		toSerialize["kratos_selfservice_methods_webauthn_config_passwordless"] = o.KratosSelfserviceMethodsWebauthnConfigPasswordless
 	}
 	if o.KratosSelfserviceMethodsWebauthnConfigRpDisplayName != nil {
 		toSerialize["kratos_selfservice_methods_webauthn_config_rp_display_name"] = o.KratosSelfserviceMethodsWebauthnConfigRpDisplayName

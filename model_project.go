@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.124
+ * API version: latest
  * Contact: support@ory.sh
  */
 
@@ -118,11 +118,11 @@ func (o *Project) GetHosts() []string {
 
 // GetHostsOk returns a tuple with the Hosts field value
 // and a boolean to check if the value has been set.
-func (o *Project) GetHostsOk() ([]string, bool) {
+func (o *Project) GetHostsOk() (*[]string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Hosts, true
+	return &o.Hosts, true
 }
 
 // SetHosts sets field value
@@ -166,11 +166,11 @@ func (o *Project) GetRevisions() []ProjectRevision {
 
 // GetRevisionsOk returns a tuple with the Revisions field value
 // and a boolean to check if the value has been set.
-func (o *Project) GetRevisionsOk() ([]ProjectRevision, bool) {
+func (o *Project) GetRevisionsOk() (*[]ProjectRevision, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Revisions, true
+	return &o.Revisions, true
 }
 
 // SetRevisions sets field value

@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.124
+ * API version: latest
  * Contact: support@ory.sh
  */
 
@@ -17,7 +17,7 @@ import (
 
 // IdentityCredentialsOidc struct for IdentityCredentialsOidc
 type IdentityCredentialsOidc struct {
-	Providers []IdentityCredentialsOidcProvider `json:"providers,omitempty"`
+	Providers *[]IdentityCredentialsOidcProvider `json:"providers,omitempty"`
 }
 
 // NewIdentityCredentialsOidc instantiates a new IdentityCredentialsOidc object
@@ -43,12 +43,12 @@ func (o *IdentityCredentialsOidc) GetProviders() []IdentityCredentialsOidcProvid
 		var ret []IdentityCredentialsOidcProvider
 		return ret
 	}
-	return o.Providers
+	return *o.Providers
 }
 
 // GetProvidersOk returns a tuple with the Providers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdentityCredentialsOidc) GetProvidersOk() ([]IdentityCredentialsOidcProvider, bool) {
+func (o *IdentityCredentialsOidc) GetProvidersOk() (*[]IdentityCredentialsOidcProvider, bool) {
 	if o == nil || o.Providers == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *IdentityCredentialsOidc) HasProviders() bool {
 
 // SetProviders gets a reference to the given []IdentityCredentialsOidcProvider and assigns it to the Providers field.
 func (o *IdentityCredentialsOidc) SetProviders(v []IdentityCredentialsOidcProvider) {
-	o.Providers = v
+	o.Providers = &v
 }
 
 func (o IdentityCredentialsOidc) MarshalJSON() ([]byte, error) {

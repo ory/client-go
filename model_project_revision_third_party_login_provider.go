@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.124
+ * API version: latest
  * Contact: support@ory.sh
  */
 
@@ -44,8 +44,8 @@ type ProjectRevisionThirdPartyLoginProvider struct {
 	Provider *string `json:"provider,omitempty"`
 	// ID is the provider's ID
 	ProviderId *string `json:"provider_id,omitempty"`
-	RequestedClaims map[string]interface{} `json:"requested_claims,omitempty"`
-	Scope []string `json:"scope,omitempty"`
+	RequestedClaims *map[string]interface{} `json:"requested_claims,omitempty"`
+	Scope *[]string `json:"scope,omitempty"`
 	// TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`.
 	TokenUrl *string `json:"token_url,omitempty"`
 	// Last Time Project's Revision was Updated
@@ -555,12 +555,12 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetRequestedClaims() map[string
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.RequestedClaims
+	return *o.RequestedClaims
 }
 
 // GetRequestedClaimsOk returns a tuple with the RequestedClaims field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetRequestedClaimsOk() (map[string]interface{}, bool) {
+func (o *ProjectRevisionThirdPartyLoginProvider) GetRequestedClaimsOk() (*map[string]interface{}, bool) {
 	if o == nil || o.RequestedClaims == nil {
 		return nil, false
 	}
@@ -578,7 +578,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasRequestedClaims() bool {
 
 // SetRequestedClaims gets a reference to the given map[string]interface{} and assigns it to the RequestedClaims field.
 func (o *ProjectRevisionThirdPartyLoginProvider) SetRequestedClaims(v map[string]interface{}) {
-	o.RequestedClaims = v
+	o.RequestedClaims = &v
 }
 
 // GetScope returns the Scope field value if set, zero value otherwise.
@@ -587,12 +587,12 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetScope() []string {
 		var ret []string
 		return ret
 	}
-	return o.Scope
+	return *o.Scope
 }
 
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetScopeOk() ([]string, bool) {
+func (o *ProjectRevisionThirdPartyLoginProvider) GetScopeOk() (*[]string, bool) {
 	if o == nil || o.Scope == nil {
 		return nil, false
 	}
@@ -610,7 +610,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasScope() bool {
 
 // SetScope gets a reference to the given []string and assigns it to the Scope field.
 func (o *ProjectRevisionThirdPartyLoginProvider) SetScope(v []string) {
-	o.Scope = v
+	o.Scope = &v
 }
 
 // GetTokenUrl returns the TokenUrl field value if set, zero value otherwise.

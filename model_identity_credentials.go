@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.124
+ * API version: latest
  * Contact: support@ory.sh
  */
 
@@ -18,11 +18,11 @@ import (
 
 // IdentityCredentials Credentials represents a specific credential type
 type IdentityCredentials struct {
-	Config map[string]interface{} `json:"config,omitempty"`
+	Config *map[string]interface{} `json:"config,omitempty"`
 	// CreatedAt is a helper struct field for gobuffalo.pop.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Identifiers represents a list of unique identifiers this credential type matches.
-	Identifiers []string `json:"identifiers,omitempty"`
+	Identifiers *[]string `json:"identifiers,omitempty"`
 	Type *IdentityCredentialsType `json:"type,omitempty"`
 	// UpdatedAt is a helper struct field for gobuffalo.pop.
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
@@ -53,12 +53,12 @@ func (o *IdentityCredentials) GetConfig() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.Config
+	return *o.Config
 }
 
 // GetConfigOk returns a tuple with the Config field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdentityCredentials) GetConfigOk() (map[string]interface{}, bool) {
+func (o *IdentityCredentials) GetConfigOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Config == nil {
 		return nil, false
 	}
@@ -76,7 +76,7 @@ func (o *IdentityCredentials) HasConfig() bool {
 
 // SetConfig gets a reference to the given map[string]interface{} and assigns it to the Config field.
 func (o *IdentityCredentials) SetConfig(v map[string]interface{}) {
-	o.Config = v
+	o.Config = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -117,12 +117,12 @@ func (o *IdentityCredentials) GetIdentifiers() []string {
 		var ret []string
 		return ret
 	}
-	return o.Identifiers
+	return *o.Identifiers
 }
 
 // GetIdentifiersOk returns a tuple with the Identifiers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IdentityCredentials) GetIdentifiersOk() ([]string, bool) {
+func (o *IdentityCredentials) GetIdentifiersOk() (*[]string, bool) {
 	if o == nil || o.Identifiers == nil {
 		return nil, false
 	}
@@ -140,7 +140,7 @@ func (o *IdentityCredentials) HasIdentifiers() bool {
 
 // SetIdentifiers gets a reference to the given []string and assigns it to the Identifiers field.
 func (o *IdentityCredentials) SetIdentifiers(v []string) {
-	o.Identifiers = v
+	o.Identifiers = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.

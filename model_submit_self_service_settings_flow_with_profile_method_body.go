@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.124
+ * API version: latest
  * Contact: support@ory.sh
  */
 
@@ -112,11 +112,11 @@ func (o *SubmitSelfServiceSettingsFlowWithProfileMethodBody) GetTraits() map[str
 
 // GetTraitsOk returns a tuple with the Traits field value
 // and a boolean to check if the value has been set.
-func (o *SubmitSelfServiceSettingsFlowWithProfileMethodBody) GetTraitsOk() (map[string]interface{}, bool) {
+func (o *SubmitSelfServiceSettingsFlowWithProfileMethodBody) GetTraitsOk() (*map[string]interface{}, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Traits, true
+	return &o.Traits, true
 }
 
 // SetTraits sets field value

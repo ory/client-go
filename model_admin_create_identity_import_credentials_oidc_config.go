@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.124
+ * API version: latest
  * Contact: support@ory.sh
  */
 
@@ -19,7 +19,7 @@ import (
 type AdminCreateIdentityImportCredentialsOidcConfig struct {
 	Config *AdminCreateIdentityImportCredentialsPasswordConfig `json:"config,omitempty"`
 	// A list of OpenID Connect Providers
-	Providers []AdminCreateIdentityImportCredentialsOidcProvider `json:"providers,omitempty"`
+	Providers *[]AdminCreateIdentityImportCredentialsOidcProvider `json:"providers,omitempty"`
 }
 
 // NewAdminCreateIdentityImportCredentialsOidcConfig instantiates a new AdminCreateIdentityImportCredentialsOidcConfig object
@@ -77,12 +77,12 @@ func (o *AdminCreateIdentityImportCredentialsOidcConfig) GetProviders() []AdminC
 		var ret []AdminCreateIdentityImportCredentialsOidcProvider
 		return ret
 	}
-	return o.Providers
+	return *o.Providers
 }
 
 // GetProvidersOk returns a tuple with the Providers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminCreateIdentityImportCredentialsOidcConfig) GetProvidersOk() ([]AdminCreateIdentityImportCredentialsOidcProvider, bool) {
+func (o *AdminCreateIdentityImportCredentialsOidcConfig) GetProvidersOk() (*[]AdminCreateIdentityImportCredentialsOidcProvider, bool) {
 	if o == nil || o.Providers == nil {
 		return nil, false
 	}
@@ -100,7 +100,7 @@ func (o *AdminCreateIdentityImportCredentialsOidcConfig) HasProviders() bool {
 
 // SetProviders gets a reference to the given []AdminCreateIdentityImportCredentialsOidcProvider and assigns it to the Providers field.
 func (o *AdminCreateIdentityImportCredentialsOidcConfig) SetProviders(v []AdminCreateIdentityImportCredentialsOidcProvider) {
-	o.Providers = v
+	o.Providers = &v
 }
 
 func (o AdminCreateIdentityImportCredentialsOidcConfig) MarshalJSON() ([]byte, error) {

@@ -4,9 +4,9 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetVersion**](MetadataApi.md#GetVersion) | **Get** /api/kratos/public/version | Return Running Software Version.
-[**IsAlive**](MetadataApi.md#IsAlive) | **Get** /api/kratos/public/health/alive | Check HTTP Server Status
-[**IsReady**](MetadataApi.md#IsReady) | **Get** /api/kratos/public/health/ready | Check HTTP Server and Database Status
+[**GetVersion**](MetadataApi.md#GetVersion) | **Get** /version | Return Running Software Version.
+[**IsAlive**](MetadataApi.md#IsAlive) | **Get** /health/alive | Check HTTP Server Status
+[**IsReady**](MetadataApi.md#IsReady) | **Get** /health/ready | Check HTTP Server and Database Status
 
 
 
@@ -33,8 +33,8 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetadataApi.GetVersion(context.Background()).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.MetadataApi.GetVersion(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetadataApi.GetVersion``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -94,8 +94,8 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetadataApi.IsAlive(context.Background()).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.MetadataApi.IsAlive(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetadataApi.IsAlive``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -155,8 +155,8 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetadataApi.IsReady(context.Background()).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.MetadataApi.IsReady(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetadataApi.IsReady``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

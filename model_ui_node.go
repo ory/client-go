@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.124
+ * API version: latest
  * Contact: support@ory.sh
  */
 
@@ -106,11 +106,11 @@ func (o *UiNode) GetMessages() []UiText {
 
 // GetMessagesOk returns a tuple with the Messages field value
 // and a boolean to check if the value has been set.
-func (o *UiNode) GetMessagesOk() ([]UiText, bool) {
+func (o *UiNode) GetMessagesOk() (*[]UiText, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return o.Messages, true
+	return &o.Messages, true
 }
 
 // SetMessages sets field value

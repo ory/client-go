@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.124
+ * API version: latest
  * Contact: support@ory.sh
  */
 
@@ -24,7 +24,7 @@ type SubmitSelfServiceRegistrationFlowWithOidcMethodBody struct {
 	// The provider to register with
 	Provider string `json:"provider"`
 	// The identity traits
-	Traits map[string]interface{} `json:"traits,omitempty"`
+	Traits *map[string]interface{} `json:"traits,omitempty"`
 }
 
 // NewSubmitSelfServiceRegistrationFlowWithOidcMethodBody instantiates a new SubmitSelfServiceRegistrationFlowWithOidcMethodBody object
@@ -132,12 +132,12 @@ func (o *SubmitSelfServiceRegistrationFlowWithOidcMethodBody) GetTraits() map[st
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.Traits
+	return *o.Traits
 }
 
 // GetTraitsOk returns a tuple with the Traits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SubmitSelfServiceRegistrationFlowWithOidcMethodBody) GetTraitsOk() (map[string]interface{}, bool) {
+func (o *SubmitSelfServiceRegistrationFlowWithOidcMethodBody) GetTraitsOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Traits == nil {
 		return nil, false
 	}
@@ -155,7 +155,7 @@ func (o *SubmitSelfServiceRegistrationFlowWithOidcMethodBody) HasTraits() bool {
 
 // SetTraits gets a reference to the given map[string]interface{} and assigns it to the Traits field.
 func (o *SubmitSelfServiceRegistrationFlowWithOidcMethodBody) SetTraits(v map[string]interface{}) {
-	o.Traits = v
+	o.Traits = &v
 }
 
 func (o SubmitSelfServiceRegistrationFlowWithOidcMethodBody) MarshalJSON() ([]byte, error) {

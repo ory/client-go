@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.124
+ * API version: latest
  * Contact: support@ory.sh
  */
 
@@ -28,44 +28,32 @@ type SubmitSelfServiceSettingsFlowBody struct {
 
 // SubmitSelfServiceSettingsFlowWithLookupMethodBodyAsSubmitSelfServiceSettingsFlowBody is a convenience function that returns SubmitSelfServiceSettingsFlowWithLookupMethodBody wrapped in SubmitSelfServiceSettingsFlowBody
 func SubmitSelfServiceSettingsFlowWithLookupMethodBodyAsSubmitSelfServiceSettingsFlowBody(v *SubmitSelfServiceSettingsFlowWithLookupMethodBody) SubmitSelfServiceSettingsFlowBody {
-	return SubmitSelfServiceSettingsFlowBody{
-		SubmitSelfServiceSettingsFlowWithLookupMethodBody: v,
-	}
+	return SubmitSelfServiceSettingsFlowBody{ SubmitSelfServiceSettingsFlowWithLookupMethodBody: v}
 }
 
 // SubmitSelfServiceSettingsFlowWithOidcMethodBodyAsSubmitSelfServiceSettingsFlowBody is a convenience function that returns SubmitSelfServiceSettingsFlowWithOidcMethodBody wrapped in SubmitSelfServiceSettingsFlowBody
 func SubmitSelfServiceSettingsFlowWithOidcMethodBodyAsSubmitSelfServiceSettingsFlowBody(v *SubmitSelfServiceSettingsFlowWithOidcMethodBody) SubmitSelfServiceSettingsFlowBody {
-	return SubmitSelfServiceSettingsFlowBody{
-		SubmitSelfServiceSettingsFlowWithOidcMethodBody: v,
-	}
+	return SubmitSelfServiceSettingsFlowBody{ SubmitSelfServiceSettingsFlowWithOidcMethodBody: v}
 }
 
 // SubmitSelfServiceSettingsFlowWithPasswordMethodBodyAsSubmitSelfServiceSettingsFlowBody is a convenience function that returns SubmitSelfServiceSettingsFlowWithPasswordMethodBody wrapped in SubmitSelfServiceSettingsFlowBody
 func SubmitSelfServiceSettingsFlowWithPasswordMethodBodyAsSubmitSelfServiceSettingsFlowBody(v *SubmitSelfServiceSettingsFlowWithPasswordMethodBody) SubmitSelfServiceSettingsFlowBody {
-	return SubmitSelfServiceSettingsFlowBody{
-		SubmitSelfServiceSettingsFlowWithPasswordMethodBody: v,
-	}
+	return SubmitSelfServiceSettingsFlowBody{ SubmitSelfServiceSettingsFlowWithPasswordMethodBody: v}
 }
 
 // SubmitSelfServiceSettingsFlowWithProfileMethodBodyAsSubmitSelfServiceSettingsFlowBody is a convenience function that returns SubmitSelfServiceSettingsFlowWithProfileMethodBody wrapped in SubmitSelfServiceSettingsFlowBody
 func SubmitSelfServiceSettingsFlowWithProfileMethodBodyAsSubmitSelfServiceSettingsFlowBody(v *SubmitSelfServiceSettingsFlowWithProfileMethodBody) SubmitSelfServiceSettingsFlowBody {
-	return SubmitSelfServiceSettingsFlowBody{
-		SubmitSelfServiceSettingsFlowWithProfileMethodBody: v,
-	}
+	return SubmitSelfServiceSettingsFlowBody{ SubmitSelfServiceSettingsFlowWithProfileMethodBody: v}
 }
 
 // SubmitSelfServiceSettingsFlowWithTotpMethodBodyAsSubmitSelfServiceSettingsFlowBody is a convenience function that returns SubmitSelfServiceSettingsFlowWithTotpMethodBody wrapped in SubmitSelfServiceSettingsFlowBody
 func SubmitSelfServiceSettingsFlowWithTotpMethodBodyAsSubmitSelfServiceSettingsFlowBody(v *SubmitSelfServiceSettingsFlowWithTotpMethodBody) SubmitSelfServiceSettingsFlowBody {
-	return SubmitSelfServiceSettingsFlowBody{
-		SubmitSelfServiceSettingsFlowWithTotpMethodBody: v,
-	}
+	return SubmitSelfServiceSettingsFlowBody{ SubmitSelfServiceSettingsFlowWithTotpMethodBody: v}
 }
 
 // SubmitSelfServiceSettingsFlowWithWebAuthnMethodBodyAsSubmitSelfServiceSettingsFlowBody is a convenience function that returns SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody wrapped in SubmitSelfServiceSettingsFlowBody
 func SubmitSelfServiceSettingsFlowWithWebAuthnMethodBodyAsSubmitSelfServiceSettingsFlowBody(v *SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody) SubmitSelfServiceSettingsFlowBody {
-	return SubmitSelfServiceSettingsFlowBody{
-		SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody: v,
-	}
+	return SubmitSelfServiceSettingsFlowBody{ SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody: v}
 }
 
 
@@ -74,7 +62,7 @@ func (dst *SubmitSelfServiceSettingsFlowBody) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into SubmitSelfServiceSettingsFlowWithLookupMethodBody
-	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceSettingsFlowWithLookupMethodBody)
+	err = json.Unmarshal(data, &dst.SubmitSelfServiceSettingsFlowWithLookupMethodBody)
 	if err == nil {
 		jsonSubmitSelfServiceSettingsFlowWithLookupMethodBody, _ := json.Marshal(dst.SubmitSelfServiceSettingsFlowWithLookupMethodBody)
 		if string(jsonSubmitSelfServiceSettingsFlowWithLookupMethodBody) == "{}" { // empty struct
@@ -87,7 +75,7 @@ func (dst *SubmitSelfServiceSettingsFlowBody) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into SubmitSelfServiceSettingsFlowWithOidcMethodBody
-	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceSettingsFlowWithOidcMethodBody)
+	err = json.Unmarshal(data, &dst.SubmitSelfServiceSettingsFlowWithOidcMethodBody)
 	if err == nil {
 		jsonSubmitSelfServiceSettingsFlowWithOidcMethodBody, _ := json.Marshal(dst.SubmitSelfServiceSettingsFlowWithOidcMethodBody)
 		if string(jsonSubmitSelfServiceSettingsFlowWithOidcMethodBody) == "{}" { // empty struct
@@ -100,7 +88,7 @@ func (dst *SubmitSelfServiceSettingsFlowBody) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into SubmitSelfServiceSettingsFlowWithPasswordMethodBody
-	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceSettingsFlowWithPasswordMethodBody)
+	err = json.Unmarshal(data, &dst.SubmitSelfServiceSettingsFlowWithPasswordMethodBody)
 	if err == nil {
 		jsonSubmitSelfServiceSettingsFlowWithPasswordMethodBody, _ := json.Marshal(dst.SubmitSelfServiceSettingsFlowWithPasswordMethodBody)
 		if string(jsonSubmitSelfServiceSettingsFlowWithPasswordMethodBody) == "{}" { // empty struct
@@ -113,7 +101,7 @@ func (dst *SubmitSelfServiceSettingsFlowBody) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into SubmitSelfServiceSettingsFlowWithProfileMethodBody
-	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceSettingsFlowWithProfileMethodBody)
+	err = json.Unmarshal(data, &dst.SubmitSelfServiceSettingsFlowWithProfileMethodBody)
 	if err == nil {
 		jsonSubmitSelfServiceSettingsFlowWithProfileMethodBody, _ := json.Marshal(dst.SubmitSelfServiceSettingsFlowWithProfileMethodBody)
 		if string(jsonSubmitSelfServiceSettingsFlowWithProfileMethodBody) == "{}" { // empty struct
@@ -126,7 +114,7 @@ func (dst *SubmitSelfServiceSettingsFlowBody) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into SubmitSelfServiceSettingsFlowWithTotpMethodBody
-	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceSettingsFlowWithTotpMethodBody)
+	err = json.Unmarshal(data, &dst.SubmitSelfServiceSettingsFlowWithTotpMethodBody)
 	if err == nil {
 		jsonSubmitSelfServiceSettingsFlowWithTotpMethodBody, _ := json.Marshal(dst.SubmitSelfServiceSettingsFlowWithTotpMethodBody)
 		if string(jsonSubmitSelfServiceSettingsFlowWithTotpMethodBody) == "{}" { // empty struct
@@ -139,7 +127,7 @@ func (dst *SubmitSelfServiceSettingsFlowBody) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody
-	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody)
+	err = json.Unmarshal(data, &dst.SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody)
 	if err == nil {
 		jsonSubmitSelfServiceSettingsFlowWithWebAuthnMethodBody, _ := json.Marshal(dst.SubmitSelfServiceSettingsFlowWithWebAuthnMethodBody)
 		if string(jsonSubmitSelfServiceSettingsFlowWithWebAuthnMethodBody) == "{}" { // empty struct
@@ -199,9 +187,6 @@ func (src SubmitSelfServiceSettingsFlowBody) MarshalJSON() ([]byte, error) {
 
 // Get the actual instance
 func (obj *SubmitSelfServiceSettingsFlowBody) GetActualInstance() (interface{}) {
-	if obj == nil {
-		return nil
-	}
 	if obj.SubmitSelfServiceSettingsFlowWithLookupMethodBody != nil {
 		return obj.SubmitSelfServiceSettingsFlowWithLookupMethodBody
 	}

@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.124
+ * API version: latest
  * Contact: support@ory.sh
  */
 
@@ -18,7 +18,7 @@ import (
 // UiText struct for UiText
 type UiText struct {
 	// The message's context. Useful when customizing messages.
-	Context map[string]interface{} `json:"context,omitempty"`
+	Context *map[string]interface{} `json:"context,omitempty"`
 	Id int64 `json:"id"`
 	// The message text. Written in american english.
 	Text string `json:"text"`
@@ -51,12 +51,12 @@ func (o *UiText) GetContext() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.Context
+	return *o.Context
 }
 
 // GetContextOk returns a tuple with the Context field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UiText) GetContextOk() (map[string]interface{}, bool) {
+func (o *UiText) GetContextOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Context == nil {
 		return nil, false
 	}
@@ -74,7 +74,7 @@ func (o *UiText) HasContext() bool {
 
 // SetContext gets a reference to the given map[string]interface{} and assigns it to the Context field.
 func (o *UiText) SetContext(v map[string]interface{}) {
-	o.Context = v
+	o.Context = &v
 }
 
 // GetId returns the Id field value

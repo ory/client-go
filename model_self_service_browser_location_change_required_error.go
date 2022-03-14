@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.124
+ * API version: latest
  * Contact: support@ory.sh
  */
 
@@ -22,7 +22,7 @@ type SelfServiceBrowserLocationChangeRequiredError struct {
 	// Debug information  This field is often not exposed to protect against leaking sensitive information.
 	Debug *string `json:"debug,omitempty"`
 	// Further error details
-	Details map[string]map[string]interface{} `json:"details,omitempty"`
+	Details *map[string]map[string]interface{} `json:"details,omitempty"`
 	// The error ID  Useful when trying to identify various errors in application logic.
 	Id *string `json:"id,omitempty"`
 	// Error message  The error's message.
@@ -125,12 +125,12 @@ func (o *SelfServiceBrowserLocationChangeRequiredError) GetDetails() map[string]
 		var ret map[string]map[string]interface{}
 		return ret
 	}
-	return o.Details
+	return *o.Details
 }
 
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SelfServiceBrowserLocationChangeRequiredError) GetDetailsOk() (map[string]map[string]interface{}, bool) {
+func (o *SelfServiceBrowserLocationChangeRequiredError) GetDetailsOk() (*map[string]map[string]interface{}, bool) {
 	if o == nil || o.Details == nil {
 		return nil, false
 	}
@@ -148,7 +148,7 @@ func (o *SelfServiceBrowserLocationChangeRequiredError) HasDetails() bool {
 
 // SetDetails gets a reference to the given map[string]map[string]interface{} and assigns it to the Details field.
 func (o *SelfServiceBrowserLocationChangeRequiredError) SetDetails(v map[string]map[string]interface{}) {
-	o.Details = v
+	o.Details = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.

@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.124
+ * API version: latest
  * Contact: support@ory.sh
  */
 
@@ -44,6 +44,8 @@ type ProjectRevisionHook struct {
 	WebHookConfigBody *string `json:"web_hook_config_body,omitempty"`
 	// The HTTP method to use (GET, POST, etc) for the Web-Hook
 	WebHookConfigMethod *string `json:"web_hook_config_method,omitempty"`
+	// Whether to ignore the Web Hook response
+	WebHookConfigResponseIgnore *bool `json:"web_hook_config_response_ignore,omitempty"`
 	// The URL the Web-Hook should call
 	WebHookConfigUrl *string `json:"web_hook_config_url,omitempty"`
 }
@@ -499,6 +501,38 @@ func (o *ProjectRevisionHook) SetWebHookConfigMethod(v string) {
 	o.WebHookConfigMethod = &v
 }
 
+// GetWebHookConfigResponseIgnore returns the WebHookConfigResponseIgnore field value if set, zero value otherwise.
+func (o *ProjectRevisionHook) GetWebHookConfigResponseIgnore() bool {
+	if o == nil || o.WebHookConfigResponseIgnore == nil {
+		var ret bool
+		return ret
+	}
+	return *o.WebHookConfigResponseIgnore
+}
+
+// GetWebHookConfigResponseIgnoreOk returns a tuple with the WebHookConfigResponseIgnore field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectRevisionHook) GetWebHookConfigResponseIgnoreOk() (*bool, bool) {
+	if o == nil || o.WebHookConfigResponseIgnore == nil {
+		return nil, false
+	}
+	return o.WebHookConfigResponseIgnore, true
+}
+
+// HasWebHookConfigResponseIgnore returns a boolean if a field has been set.
+func (o *ProjectRevisionHook) HasWebHookConfigResponseIgnore() bool {
+	if o != nil && o.WebHookConfigResponseIgnore != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetWebHookConfigResponseIgnore gets a reference to the given bool and assigns it to the WebHookConfigResponseIgnore field.
+func (o *ProjectRevisionHook) SetWebHookConfigResponseIgnore(v bool) {
+	o.WebHookConfigResponseIgnore = &v
+}
+
 // GetWebHookConfigUrl returns the WebHookConfigUrl field value if set, zero value otherwise.
 func (o *ProjectRevisionHook) GetWebHookConfigUrl() string {
 	if o == nil || o.WebHookConfigUrl == nil {
@@ -574,6 +608,9 @@ func (o ProjectRevisionHook) MarshalJSON() ([]byte, error) {
 	}
 	if o.WebHookConfigMethod != nil {
 		toSerialize["web_hook_config_method"] = o.WebHookConfigMethod
+	}
+	if o.WebHookConfigResponseIgnore != nil {
+		toSerialize["web_hook_config_response_ignore"] = o.WebHookConfigResponseIgnore
 	}
 	if o.WebHookConfigUrl != nil {
 		toSerialize["web_hook_config_url"] = o.WebHookConfigUrl

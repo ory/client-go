@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.124
+ * API version: latest
  * Contact: support@ory.sh
  */
 
@@ -23,9 +23,7 @@ type SubmitSelfServiceRecoveryFlowBody struct {
 
 // SubmitSelfServiceRecoveryFlowWithLinkMethodBodyAsSubmitSelfServiceRecoveryFlowBody is a convenience function that returns SubmitSelfServiceRecoveryFlowWithLinkMethodBody wrapped in SubmitSelfServiceRecoveryFlowBody
 func SubmitSelfServiceRecoveryFlowWithLinkMethodBodyAsSubmitSelfServiceRecoveryFlowBody(v *SubmitSelfServiceRecoveryFlowWithLinkMethodBody) SubmitSelfServiceRecoveryFlowBody {
-	return SubmitSelfServiceRecoveryFlowBody{
-		SubmitSelfServiceRecoveryFlowWithLinkMethodBody: v,
-	}
+	return SubmitSelfServiceRecoveryFlowBody{ SubmitSelfServiceRecoveryFlowWithLinkMethodBody: v}
 }
 
 
@@ -34,7 +32,7 @@ func (dst *SubmitSelfServiceRecoveryFlowBody) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into SubmitSelfServiceRecoveryFlowWithLinkMethodBody
-	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceRecoveryFlowWithLinkMethodBody)
+	err = json.Unmarshal(data, &dst.SubmitSelfServiceRecoveryFlowWithLinkMethodBody)
 	if err == nil {
 		jsonSubmitSelfServiceRecoveryFlowWithLinkMethodBody, _ := json.Marshal(dst.SubmitSelfServiceRecoveryFlowWithLinkMethodBody)
 		if string(jsonSubmitSelfServiceRecoveryFlowWithLinkMethodBody) == "{}" { // empty struct
@@ -69,9 +67,6 @@ func (src SubmitSelfServiceRecoveryFlowBody) MarshalJSON() ([]byte, error) {
 
 // Get the actual instance
 func (obj *SubmitSelfServiceRecoveryFlowBody) GetActualInstance() (interface{}) {
-	if obj == nil {
-		return nil
-	}
 	if obj.SubmitSelfServiceRecoveryFlowWithLinkMethodBody != nil {
 		return obj.SubmitSelfServiceRecoveryFlowWithLinkMethodBody
 	}

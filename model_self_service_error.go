@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.124
+ * API version: latest
  * Contact: support@ory.sh
  */
 
@@ -20,7 +20,7 @@ import (
 type SelfServiceError struct {
 	// CreatedAt is a helper struct field for gobuffalo.pop.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	Error map[string]interface{} `json:"error,omitempty"`
+	Error *map[string]interface{} `json:"error,omitempty"`
 	Id string `json:"id"`
 	// UpdatedAt is a helper struct field for gobuffalo.pop.
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
@@ -82,12 +82,12 @@ func (o *SelfServiceError) GetError() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.Error
+	return *o.Error
 }
 
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SelfServiceError) GetErrorOk() (map[string]interface{}, bool) {
+func (o *SelfServiceError) GetErrorOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Error == nil {
 		return nil, false
 	}
@@ -105,7 +105,7 @@ func (o *SelfServiceError) HasError() bool {
 
 // SetError gets a reference to the given map[string]interface{} and assigns it to the Error field.
 func (o *SelfServiceError) SetError(v map[string]interface{}) {
-	o.Error = v
+	o.Error = &v
 }
 
 // GetId returns the Id field value

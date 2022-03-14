@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **WebHookConfigAuthType** | Pointer to **string** | HTTP Auth Method to use for the Web-Hook | [optional] 
 **WebHookConfigBody** | Pointer to **string** | URI pointing to the JsonNet template used for Web-Hook payload generation. Only used for those HTTP methods, which support HTTP body payloads. | [optional] 
 **WebHookConfigMethod** | Pointer to **string** | The HTTP method to use (GET, POST, etc) for the Web-Hook | [optional] 
+**WebHookConfigResponseIgnore** | Pointer to **bool** | Whether to ignore the Web Hook response | [optional] 
 **WebHookConfigUrl** | Pointer to **string** | The URL the Web-Hook should call | [optional] 
 
 ## Methods
@@ -378,6 +379,31 @@ SetWebHookConfigMethod sets WebHookConfigMethod field to given value.
 `func (o *ProjectRevisionHook) HasWebHookConfigMethod() bool`
 
 HasWebHookConfigMethod returns a boolean if a field has been set.
+
+### GetWebHookConfigResponseIgnore
+
+`func (o *ProjectRevisionHook) GetWebHookConfigResponseIgnore() bool`
+
+GetWebHookConfigResponseIgnore returns the WebHookConfigResponseIgnore field if non-nil, zero value otherwise.
+
+### GetWebHookConfigResponseIgnoreOk
+
+`func (o *ProjectRevisionHook) GetWebHookConfigResponseIgnoreOk() (*bool, bool)`
+
+GetWebHookConfigResponseIgnoreOk returns a tuple with the WebHookConfigResponseIgnore field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWebHookConfigResponseIgnore
+
+`func (o *ProjectRevisionHook) SetWebHookConfigResponseIgnore(v bool)`
+
+SetWebHookConfigResponseIgnore sets WebHookConfigResponseIgnore field to given value.
+
+### HasWebHookConfigResponseIgnore
+
+`func (o *ProjectRevisionHook) HasWebHookConfigResponseIgnore() bool`
+
+HasWebHookConfigResponseIgnore returns a boolean if a field has been set.
 
 ### GetWebHookConfigUrl
 

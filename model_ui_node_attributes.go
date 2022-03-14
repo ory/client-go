@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.124
+ * API version: latest
  * Contact: support@ory.sh
  */
 
@@ -27,37 +27,27 @@ type UiNodeAttributes struct {
 
 // UiNodeAnchorAttributesAsUiNodeAttributes is a convenience function that returns UiNodeAnchorAttributes wrapped in UiNodeAttributes
 func UiNodeAnchorAttributesAsUiNodeAttributes(v *UiNodeAnchorAttributes) UiNodeAttributes {
-	return UiNodeAttributes{
-		UiNodeAnchorAttributes: v,
-	}
+	return UiNodeAttributes{ UiNodeAnchorAttributes: v}
 }
 
 // UiNodeImageAttributesAsUiNodeAttributes is a convenience function that returns UiNodeImageAttributes wrapped in UiNodeAttributes
 func UiNodeImageAttributesAsUiNodeAttributes(v *UiNodeImageAttributes) UiNodeAttributes {
-	return UiNodeAttributes{
-		UiNodeImageAttributes: v,
-	}
+	return UiNodeAttributes{ UiNodeImageAttributes: v}
 }
 
 // UiNodeInputAttributesAsUiNodeAttributes is a convenience function that returns UiNodeInputAttributes wrapped in UiNodeAttributes
 func UiNodeInputAttributesAsUiNodeAttributes(v *UiNodeInputAttributes) UiNodeAttributes {
-	return UiNodeAttributes{
-		UiNodeInputAttributes: v,
-	}
+	return UiNodeAttributes{ UiNodeInputAttributes: v}
 }
 
 // UiNodeScriptAttributesAsUiNodeAttributes is a convenience function that returns UiNodeScriptAttributes wrapped in UiNodeAttributes
 func UiNodeScriptAttributesAsUiNodeAttributes(v *UiNodeScriptAttributes) UiNodeAttributes {
-	return UiNodeAttributes{
-		UiNodeScriptAttributes: v,
-	}
+	return UiNodeAttributes{ UiNodeScriptAttributes: v}
 }
 
 // UiNodeTextAttributesAsUiNodeAttributes is a convenience function that returns UiNodeTextAttributes wrapped in UiNodeAttributes
 func UiNodeTextAttributesAsUiNodeAttributes(v *UiNodeTextAttributes) UiNodeAttributes {
-	return UiNodeAttributes{
-		UiNodeTextAttributes: v,
-	}
+	return UiNodeAttributes{ UiNodeTextAttributes: v}
 }
 
 
@@ -66,7 +56,7 @@ func (dst *UiNodeAttributes) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into UiNodeAnchorAttributes
-	err = newStrictDecoder(data).Decode(&dst.UiNodeAnchorAttributes)
+	err = json.Unmarshal(data, &dst.UiNodeAnchorAttributes)
 	if err == nil {
 		jsonUiNodeAnchorAttributes, _ := json.Marshal(dst.UiNodeAnchorAttributes)
 		if string(jsonUiNodeAnchorAttributes) == "{}" { // empty struct
@@ -79,7 +69,7 @@ func (dst *UiNodeAttributes) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into UiNodeImageAttributes
-	err = newStrictDecoder(data).Decode(&dst.UiNodeImageAttributes)
+	err = json.Unmarshal(data, &dst.UiNodeImageAttributes)
 	if err == nil {
 		jsonUiNodeImageAttributes, _ := json.Marshal(dst.UiNodeImageAttributes)
 		if string(jsonUiNodeImageAttributes) == "{}" { // empty struct
@@ -92,7 +82,7 @@ func (dst *UiNodeAttributes) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into UiNodeInputAttributes
-	err = newStrictDecoder(data).Decode(&dst.UiNodeInputAttributes)
+	err = json.Unmarshal(data, &dst.UiNodeInputAttributes)
 	if err == nil {
 		jsonUiNodeInputAttributes, _ := json.Marshal(dst.UiNodeInputAttributes)
 		if string(jsonUiNodeInputAttributes) == "{}" { // empty struct
@@ -105,7 +95,7 @@ func (dst *UiNodeAttributes) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into UiNodeScriptAttributes
-	err = newStrictDecoder(data).Decode(&dst.UiNodeScriptAttributes)
+	err = json.Unmarshal(data, &dst.UiNodeScriptAttributes)
 	if err == nil {
 		jsonUiNodeScriptAttributes, _ := json.Marshal(dst.UiNodeScriptAttributes)
 		if string(jsonUiNodeScriptAttributes) == "{}" { // empty struct
@@ -118,7 +108,7 @@ func (dst *UiNodeAttributes) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into UiNodeTextAttributes
-	err = newStrictDecoder(data).Decode(&dst.UiNodeTextAttributes)
+	err = json.Unmarshal(data, &dst.UiNodeTextAttributes)
 	if err == nil {
 		jsonUiNodeTextAttributes, _ := json.Marshal(dst.UiNodeTextAttributes)
 		if string(jsonUiNodeTextAttributes) == "{}" { // empty struct
@@ -173,9 +163,6 @@ func (src UiNodeAttributes) MarshalJSON() ([]byte, error) {
 
 // Get the actual instance
 func (obj *UiNodeAttributes) GetActualInstance() (interface{}) {
-	if obj == nil {
-		return nil
-	}
 	if obj.UiNodeAnchorAttributes != nil {
 		return obj.UiNodeAnchorAttributes
 	}

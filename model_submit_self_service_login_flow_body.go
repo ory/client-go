@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.124
+ * API version: latest
  * Contact: support@ory.sh
  */
 
@@ -27,37 +27,27 @@ type SubmitSelfServiceLoginFlowBody struct {
 
 // SubmitSelfServiceLoginFlowWithLookupSecretMethodBodyAsSubmitSelfServiceLoginFlowBody is a convenience function that returns SubmitSelfServiceLoginFlowWithLookupSecretMethodBody wrapped in SubmitSelfServiceLoginFlowBody
 func SubmitSelfServiceLoginFlowWithLookupSecretMethodBodyAsSubmitSelfServiceLoginFlowBody(v *SubmitSelfServiceLoginFlowWithLookupSecretMethodBody) SubmitSelfServiceLoginFlowBody {
-	return SubmitSelfServiceLoginFlowBody{
-		SubmitSelfServiceLoginFlowWithLookupSecretMethodBody: v,
-	}
+	return SubmitSelfServiceLoginFlowBody{ SubmitSelfServiceLoginFlowWithLookupSecretMethodBody: v}
 }
 
 // SubmitSelfServiceLoginFlowWithOidcMethodBodyAsSubmitSelfServiceLoginFlowBody is a convenience function that returns SubmitSelfServiceLoginFlowWithOidcMethodBody wrapped in SubmitSelfServiceLoginFlowBody
 func SubmitSelfServiceLoginFlowWithOidcMethodBodyAsSubmitSelfServiceLoginFlowBody(v *SubmitSelfServiceLoginFlowWithOidcMethodBody) SubmitSelfServiceLoginFlowBody {
-	return SubmitSelfServiceLoginFlowBody{
-		SubmitSelfServiceLoginFlowWithOidcMethodBody: v,
-	}
+	return SubmitSelfServiceLoginFlowBody{ SubmitSelfServiceLoginFlowWithOidcMethodBody: v}
 }
 
 // SubmitSelfServiceLoginFlowWithPasswordMethodBodyAsSubmitSelfServiceLoginFlowBody is a convenience function that returns SubmitSelfServiceLoginFlowWithPasswordMethodBody wrapped in SubmitSelfServiceLoginFlowBody
 func SubmitSelfServiceLoginFlowWithPasswordMethodBodyAsSubmitSelfServiceLoginFlowBody(v *SubmitSelfServiceLoginFlowWithPasswordMethodBody) SubmitSelfServiceLoginFlowBody {
-	return SubmitSelfServiceLoginFlowBody{
-		SubmitSelfServiceLoginFlowWithPasswordMethodBody: v,
-	}
+	return SubmitSelfServiceLoginFlowBody{ SubmitSelfServiceLoginFlowWithPasswordMethodBody: v}
 }
 
 // SubmitSelfServiceLoginFlowWithTotpMethodBodyAsSubmitSelfServiceLoginFlowBody is a convenience function that returns SubmitSelfServiceLoginFlowWithTotpMethodBody wrapped in SubmitSelfServiceLoginFlowBody
 func SubmitSelfServiceLoginFlowWithTotpMethodBodyAsSubmitSelfServiceLoginFlowBody(v *SubmitSelfServiceLoginFlowWithTotpMethodBody) SubmitSelfServiceLoginFlowBody {
-	return SubmitSelfServiceLoginFlowBody{
-		SubmitSelfServiceLoginFlowWithTotpMethodBody: v,
-	}
+	return SubmitSelfServiceLoginFlowBody{ SubmitSelfServiceLoginFlowWithTotpMethodBody: v}
 }
 
 // SubmitSelfServiceLoginFlowWithWebAuthnMethodBodyAsSubmitSelfServiceLoginFlowBody is a convenience function that returns SubmitSelfServiceLoginFlowWithWebAuthnMethodBody wrapped in SubmitSelfServiceLoginFlowBody
 func SubmitSelfServiceLoginFlowWithWebAuthnMethodBodyAsSubmitSelfServiceLoginFlowBody(v *SubmitSelfServiceLoginFlowWithWebAuthnMethodBody) SubmitSelfServiceLoginFlowBody {
-	return SubmitSelfServiceLoginFlowBody{
-		SubmitSelfServiceLoginFlowWithWebAuthnMethodBody: v,
-	}
+	return SubmitSelfServiceLoginFlowBody{ SubmitSelfServiceLoginFlowWithWebAuthnMethodBody: v}
 }
 
 
@@ -66,7 +56,7 @@ func (dst *SubmitSelfServiceLoginFlowBody) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into SubmitSelfServiceLoginFlowWithLookupSecretMethodBody
-	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceLoginFlowWithLookupSecretMethodBody)
+	err = json.Unmarshal(data, &dst.SubmitSelfServiceLoginFlowWithLookupSecretMethodBody)
 	if err == nil {
 		jsonSubmitSelfServiceLoginFlowWithLookupSecretMethodBody, _ := json.Marshal(dst.SubmitSelfServiceLoginFlowWithLookupSecretMethodBody)
 		if string(jsonSubmitSelfServiceLoginFlowWithLookupSecretMethodBody) == "{}" { // empty struct
@@ -79,7 +69,7 @@ func (dst *SubmitSelfServiceLoginFlowBody) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into SubmitSelfServiceLoginFlowWithOidcMethodBody
-	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceLoginFlowWithOidcMethodBody)
+	err = json.Unmarshal(data, &dst.SubmitSelfServiceLoginFlowWithOidcMethodBody)
 	if err == nil {
 		jsonSubmitSelfServiceLoginFlowWithOidcMethodBody, _ := json.Marshal(dst.SubmitSelfServiceLoginFlowWithOidcMethodBody)
 		if string(jsonSubmitSelfServiceLoginFlowWithOidcMethodBody) == "{}" { // empty struct
@@ -92,7 +82,7 @@ func (dst *SubmitSelfServiceLoginFlowBody) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into SubmitSelfServiceLoginFlowWithPasswordMethodBody
-	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceLoginFlowWithPasswordMethodBody)
+	err = json.Unmarshal(data, &dst.SubmitSelfServiceLoginFlowWithPasswordMethodBody)
 	if err == nil {
 		jsonSubmitSelfServiceLoginFlowWithPasswordMethodBody, _ := json.Marshal(dst.SubmitSelfServiceLoginFlowWithPasswordMethodBody)
 		if string(jsonSubmitSelfServiceLoginFlowWithPasswordMethodBody) == "{}" { // empty struct
@@ -105,7 +95,7 @@ func (dst *SubmitSelfServiceLoginFlowBody) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into SubmitSelfServiceLoginFlowWithTotpMethodBody
-	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceLoginFlowWithTotpMethodBody)
+	err = json.Unmarshal(data, &dst.SubmitSelfServiceLoginFlowWithTotpMethodBody)
 	if err == nil {
 		jsonSubmitSelfServiceLoginFlowWithTotpMethodBody, _ := json.Marshal(dst.SubmitSelfServiceLoginFlowWithTotpMethodBody)
 		if string(jsonSubmitSelfServiceLoginFlowWithTotpMethodBody) == "{}" { // empty struct
@@ -118,7 +108,7 @@ func (dst *SubmitSelfServiceLoginFlowBody) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into SubmitSelfServiceLoginFlowWithWebAuthnMethodBody
-	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceLoginFlowWithWebAuthnMethodBody)
+	err = json.Unmarshal(data, &dst.SubmitSelfServiceLoginFlowWithWebAuthnMethodBody)
 	if err == nil {
 		jsonSubmitSelfServiceLoginFlowWithWebAuthnMethodBody, _ := json.Marshal(dst.SubmitSelfServiceLoginFlowWithWebAuthnMethodBody)
 		if string(jsonSubmitSelfServiceLoginFlowWithWebAuthnMethodBody) == "{}" { // empty struct
@@ -173,9 +163,6 @@ func (src SubmitSelfServiceLoginFlowBody) MarshalJSON() ([]byte, error) {
 
 // Get the actual instance
 func (obj *SubmitSelfServiceLoginFlowBody) GetActualInstance() (interface{}) {
-	if obj == nil {
-		return nil
-	}
 	if obj.SubmitSelfServiceLoginFlowWithLookupSecretMethodBody != nil {
 		return obj.SubmitSelfServiceLoginFlowWithLookupSecretMethodBody
 	}

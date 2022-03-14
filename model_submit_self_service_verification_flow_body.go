@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.124
+ * API version: latest
  * Contact: support@ory.sh
  */
 
@@ -23,9 +23,7 @@ type SubmitSelfServiceVerificationFlowBody struct {
 
 // SubmitSelfServiceVerificationFlowWithLinkMethodBodyAsSubmitSelfServiceVerificationFlowBody is a convenience function that returns SubmitSelfServiceVerificationFlowWithLinkMethodBody wrapped in SubmitSelfServiceVerificationFlowBody
 func SubmitSelfServiceVerificationFlowWithLinkMethodBodyAsSubmitSelfServiceVerificationFlowBody(v *SubmitSelfServiceVerificationFlowWithLinkMethodBody) SubmitSelfServiceVerificationFlowBody {
-	return SubmitSelfServiceVerificationFlowBody{
-		SubmitSelfServiceVerificationFlowWithLinkMethodBody: v,
-	}
+	return SubmitSelfServiceVerificationFlowBody{ SubmitSelfServiceVerificationFlowWithLinkMethodBody: v}
 }
 
 
@@ -34,7 +32,7 @@ func (dst *SubmitSelfServiceVerificationFlowBody) UnmarshalJSON(data []byte) err
 	var err error
 	match := 0
 	// try to unmarshal data into SubmitSelfServiceVerificationFlowWithLinkMethodBody
-	err = newStrictDecoder(data).Decode(&dst.SubmitSelfServiceVerificationFlowWithLinkMethodBody)
+	err = json.Unmarshal(data, &dst.SubmitSelfServiceVerificationFlowWithLinkMethodBody)
 	if err == nil {
 		jsonSubmitSelfServiceVerificationFlowWithLinkMethodBody, _ := json.Marshal(dst.SubmitSelfServiceVerificationFlowWithLinkMethodBody)
 		if string(jsonSubmitSelfServiceVerificationFlowWithLinkMethodBody) == "{}" { // empty struct
@@ -69,9 +67,6 @@ func (src SubmitSelfServiceVerificationFlowBody) MarshalJSON() ([]byte, error) {
 
 // Get the actual instance
 func (obj *SubmitSelfServiceVerificationFlowBody) GetActualInstance() (interface{}) {
-	if obj == nil {
-		return nil
-	}
 	if obj.SubmitSelfServiceVerificationFlowWithLinkMethodBody != nil {
 		return obj.SubmitSelfServiceVerificationFlowWithLinkMethodBody
 	}
