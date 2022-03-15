@@ -659,6 +659,86 @@ paths:
       summary: Get a Project
       tags:
       - v0alpha2
+    patch:
+      description: |-
+        This endpoints allows you to patch individual Ory Cloud Project configuration keys for
+        Ory's services (identity, permission, ...). The configuration format is fully compatible
+        with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).
+
+        This endpoint expects the `version` key to be set in the payload. If it is unset, it
+        will try to import the config as if it is from the most recent version.
+
+        If you have an older version of a configuration, you should set the version key in the payload!
+
+        While this endpoint is able to process all configuration items related to features (e.g. password reset),
+        it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the
+        open source.
+
+        For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings
+        to help you understand which parts of your config could not be processed.
+      operationId: patchProject
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/jsonPatch'
+              type: array
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successfulProjectUpdate'
+          description: successfulProjectUpdate
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericError'
+          description: genericError
+      security:
+      - oryAccessToken: []
+      summary: Patch an Ory Cloud Project Configuration
+      tags:
+      - v0alpha2
     put:
       description: |-
         This endpoints allows you to update the Ory Cloud Project configuration for
@@ -3858,6 +3938,34 @@ components:
       required:
       - error
       title: JSON API Error Response
+      type: object
+    jsonPatch:
+      description: |-
+        JSON Patch allows you to target individual keys in a JSON document for updates.
+
+        For more examples see: https://jsonpatch.com
+      properties:
+        op:
+          description: The JSON Patch operation
+          enum:
+          - add
+          - remove
+          - replace
+          - move
+          - copy
+          - test
+          type: string
+        path:
+          description: The JSON Pointer to the target key
+          example: /services/identity/config/smtp/from_name
+          type: string
+        value:
+          description: The value to be used. Only available for `add` and `replace`
+            operations.
+      required:
+      - op
+      - path
+      title: A JSON Patch
       type: object
     jsonSchema:
       description: Raw JSON Schema

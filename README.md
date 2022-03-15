@@ -116,6 +116,7 @@ Class | Method | HTTP request | Description
 *V0alpha2Api* | [**ListIdentitySchemas**](docs/V0alpha2Api.md#listidentityschemas) | **Get** /schemas | 
 *V0alpha2Api* | [**ListProjects**](docs/V0alpha2Api.md#listprojects) | **Get** /backoffice/public/projects | List All Projects
 *V0alpha2Api* | [**ListSessions**](docs/V0alpha2Api.md#listsessions) | **Get** /sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
+*V0alpha2Api* | [**PatchProject**](docs/V0alpha2Api.md#patchproject) | **Patch** /backoffice/public/projects/{project_id} | Patch an Ory Cloud Project Configuration
 *V0alpha2Api* | [**PurgeProject**](docs/V0alpha2Api.md#purgeproject) | **Delete** /backoffice/public/projects/{project_id} | Irrecoverably Purge a Project
 *V0alpha2Api* | [**RemoveProjectMember**](docs/V0alpha2Api.md#removeprojectmember) | **Delete** /backoffice/public/projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;.
 *V0alpha2Api* | [**RevokeSession**](docs/V0alpha2Api.md#revokesession) | **Delete** /sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
@@ -173,6 +174,7 @@ Class | Method | HTTP request | Description
  - [IsOwnerForProjectBySlug](docs/IsOwnerForProjectBySlug.md)
  - [IsOwnerForProjectBySlugPayload](docs/IsOwnerForProjectBySlugPayload.md)
  - [JsonError](docs/JsonError.md)
+ - [JsonPatch](docs/JsonPatch.md)
  - [NeedsPrivilegedSessionError](docs/NeedsPrivilegedSessionError.md)
  - [NormalizedProject](docs/NormalizedProject.md)
  - [NormalizedProjectRevision](docs/NormalizedProjectRevision.md)

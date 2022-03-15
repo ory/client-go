@@ -46,6 +46,7 @@ docs/InvitePayload.md
 docs/IsOwnerForProjectBySlug.md
 docs/IsOwnerForProjectBySlugPayload.md
 docs/JsonError.md
+docs/JsonPatch.md
 docs/MetadataApi.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
@@ -171,6 +172,7 @@ model_invite_payload.go
 model_is_owner_for_project_by_slug.go
 model_is_owner_for_project_by_slug_payload.go
 model_json_error.go
+model_json_patch.go
 model_needs_privileged_session_error.go
 model_normalized_project.go
 model_normalized_project_revision.go
