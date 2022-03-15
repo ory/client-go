@@ -506,7 +506,7 @@ paths:
       - oryAccessToken: []
       summary: List All Projects
       tags:
-      - v0alpha0
+      - v0alpha2
     post:
       description: Creates a new project.
       operationId: createProject
@@ -551,7 +551,7 @@ paths:
       - oryAccessToken: []
       summary: Create a Project
       tags:
-      - v0alpha0
+      - v0alpha2
   /backoffice/public/projects/{project_id}:
     delete:
       description: |-
@@ -607,7 +607,7 @@ paths:
       - oryAccessToken: []
       summary: Irrecoverably Purge a Project
       tags:
-      - v0alpha0
+      - v0alpha2
     get:
       description: Get a projects you have access to by its ID.
       operationId: getProject
@@ -658,7 +658,7 @@ paths:
       - oryAccessToken: []
       summary: Get a Project
       tags:
-      - v0alpha0
+      - v0alpha2
     put:
       description: |-
         This endpoints allows you to update the Ory Cloud Project configuration for
@@ -739,7 +739,7 @@ paths:
       - oryAccessToken: []
       summary: Update an Ory Cloud Project Configuration
       tags:
-      - v0alpha0
+      - v0alpha2
   /backoffice/public/projects/{project_id}/members:
     get:
       description: This endpoint requires the user to be a member of the project with
@@ -786,7 +786,7 @@ paths:
       - oryAccessToken: []
       summary: Get all members associated with this project.
       tags:
-      - v0alpha0
+      - v0alpha2
   /backoffice/public/projects/{project_id}/members/{member_id}:
     delete:
       description: This endpoint requires the user to be a member of the project with
@@ -846,7 +846,7 @@ paths:
       summary: Remove a member associated with this project. This also sets their
         invite status to `REMOVED`.
       tags:
-      - v0alpha0
+      - v0alpha2
   /health/alive:
     get:
       description: |-
@@ -3419,23 +3419,19 @@ components:
           format: int64
           type: integer
         debug:
-          description: Debug contains debug information. This is usually not available
-            and has to be enabled.
-          example: The database adapter was unable to find the element
+          description: |-
+            Debug information
+
+            This field is often not exposed to protect against leaking
+            sensitive information.
+          example: SQL field "foo" is not a bool.
           type: string
         details:
           additionalProperties: false
           description: Further error details
           type: object
         error:
-          description: Name is the error name.
-          example: The requested resource could not be found
-          type: string
-        error_description:
-          description: Description contains further information on the nature of the
-            error.
-          example: Object with ID 12345 does not exist
-          type: string
+          $ref: '#/components/schemas/genericErrorContent'
         id:
           description: |-
             The error ID
@@ -3443,7 +3439,10 @@ components:
             Useful when trying to identify various errors in application logic.
           type: string
         message:
-          description: Message contains the error message.
+          description: |-
+            Error message
+
+            The error's message.
           example: The resource could not be found
           type: string
         reason:
@@ -3462,14 +3461,35 @@ components:
           description: The status description
           example: Not Found
           type: string
+      required:
+      - message
+      title: Error response
+      type: object
+    genericErrorContent:
+      description: Error response
+      properties:
+        debug:
+          description: Debug contains debug information. This is usually not available
+            and has to be enabled.
+          example: The database adapter was unable to find the element
+          type: string
+        error:
+          description: Name is the error name.
+          example: The requested resource could not be found
+          type: string
+        error_description:
+          description: Description contains further information on the nature of the
+            error.
+          example: Object with ID 12345 does not exist
+          type: string
+        message:
+          description: Message contains the error message.
+          type: string
         status_code:
           description: Code represents the error status code (404, 403, 401, ...).
           example: 404
           format: int64
           type: integer
-      required:
-      - message
-      title: Error response
       type: object
     getProjectAccessResponse:
       additionalProperties:

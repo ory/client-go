@@ -83,13 +83,6 @@ Class | Method | HTTP request | Description
 *MetadataApi* | [**GetVersion**](docs/MetadataApi.md#getversion) | **Get** /version | Return Running Software Version.
 *MetadataApi* | [**IsAlive**](docs/MetadataApi.md#isalive) | **Get** /health/alive | Check HTTP Server Status
 *MetadataApi* | [**IsReady**](docs/MetadataApi.md#isready) | **Get** /health/ready | Check HTTP Server and Database Status
-*V0alpha0Api* | [**CreateProject**](docs/V0alpha0Api.md#createproject) | **Post** /backoffice/public/projects | Create a Project
-*V0alpha0Api* | [**GetProject**](docs/V0alpha0Api.md#getproject) | **Get** /backoffice/public/projects/{project_id} | Get a Project
-*V0alpha0Api* | [**GetProjectMembers**](docs/V0alpha0Api.md#getprojectmembers) | **Get** /backoffice/public/projects/{project_id}/members | Get all members associated with this project.
-*V0alpha0Api* | [**ListProjects**](docs/V0alpha0Api.md#listprojects) | **Get** /backoffice/public/projects | List All Projects
-*V0alpha0Api* | [**PurgeProject**](docs/V0alpha0Api.md#purgeproject) | **Delete** /backoffice/public/projects/{project_id} | Irrecoverably Purge a Project
-*V0alpha0Api* | [**RemoveProjectMember**](docs/V0alpha0Api.md#removeprojectmember) | **Delete** /backoffice/public/projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;.
-*V0alpha0Api* | [**UpdateProject**](docs/V0alpha0Api.md#updateproject) | **Put** /backoffice/public/projects/{project_id} | Update an Ory Cloud Project Configuration
 *V0alpha2Api* | [**AdminCreateIdentity**](docs/V0alpha2Api.md#admincreateidentity) | **Post** /admin/identities | Create an Identity
 *V0alpha2Api* | [**AdminCreateSelfServiceRecoveryLink**](docs/V0alpha2Api.md#admincreateselfservicerecoverylink) | **Post** /admin/recovery/link | Create a Recovery Link
 *V0alpha2Api* | [**AdminDeleteIdentity**](docs/V0alpha2Api.md#admindeleteidentity) | **Delete** /admin/identities/{id} | Delete an Identity
@@ -98,8 +91,11 @@ Class | Method | HTTP request | Description
 *V0alpha2Api* | [**AdminListIdentities**](docs/V0alpha2Api.md#adminlistidentities) | **Get** /admin/identities | List Identities
 *V0alpha2Api* | [**AdminListIdentitySessions**](docs/V0alpha2Api.md#adminlistidentitysessions) | **Get** /admin/identities/{id}/sessions | This endpoint returns all sessions that belong to the given Identity.
 *V0alpha2Api* | [**AdminUpdateIdentity**](docs/V0alpha2Api.md#adminupdateidentity) | **Put** /admin/identities/{id} | Update an Identity
+*V0alpha2Api* | [**CreateProject**](docs/V0alpha2Api.md#createproject) | **Post** /backoffice/public/projects | Create a Project
 *V0alpha2Api* | [**CreateSelfServiceLogoutFlowUrlForBrowsers**](docs/V0alpha2Api.md#createselfservicelogoutflowurlforbrowsers) | **Get** /self-service/logout/browser | Create a Logout URL for Browsers
 *V0alpha2Api* | [**GetJsonSchema**](docs/V0alpha2Api.md#getjsonschema) | **Get** /schemas/{id} | 
+*V0alpha2Api* | [**GetProject**](docs/V0alpha2Api.md#getproject) | **Get** /backoffice/public/projects/{project_id} | Get a Project
+*V0alpha2Api* | [**GetProjectMembers**](docs/V0alpha2Api.md#getprojectmembers) | **Get** /backoffice/public/projects/{project_id}/members | Get all members associated with this project.
 *V0alpha2Api* | [**GetSelfServiceError**](docs/V0alpha2Api.md#getselfserviceerror) | **Get** /self-service/errors | Get Self-Service Errors
 *V0alpha2Api* | [**GetSelfServiceLoginFlow**](docs/V0alpha2Api.md#getselfserviceloginflow) | **Get** /self-service/login/flows | Get Login Flow
 *V0alpha2Api* | [**GetSelfServiceRecoveryFlow**](docs/V0alpha2Api.md#getselfservicerecoveryflow) | **Get** /self-service/recovery/flows | Get Recovery Flow
@@ -118,7 +114,10 @@ Class | Method | HTTP request | Description
 *V0alpha2Api* | [**InitializeSelfServiceVerificationFlowForBrowsers**](docs/V0alpha2Api.md#initializeselfserviceverificationflowforbrowsers) | **Get** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
 *V0alpha2Api* | [**InitializeSelfServiceVerificationFlowWithoutBrowser**](docs/V0alpha2Api.md#initializeselfserviceverificationflowwithoutbrowser) | **Get** /self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
 *V0alpha2Api* | [**ListIdentitySchemas**](docs/V0alpha2Api.md#listidentityschemas) | **Get** /schemas | 
+*V0alpha2Api* | [**ListProjects**](docs/V0alpha2Api.md#listprojects) | **Get** /backoffice/public/projects | List All Projects
 *V0alpha2Api* | [**ListSessions**](docs/V0alpha2Api.md#listsessions) | **Get** /sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
+*V0alpha2Api* | [**PurgeProject**](docs/V0alpha2Api.md#purgeproject) | **Delete** /backoffice/public/projects/{project_id} | Irrecoverably Purge a Project
+*V0alpha2Api* | [**RemoveProjectMember**](docs/V0alpha2Api.md#removeprojectmember) | **Delete** /backoffice/public/projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;.
 *V0alpha2Api* | [**RevokeSession**](docs/V0alpha2Api.md#revokesession) | **Delete** /sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
 *V0alpha2Api* | [**RevokeSessions**](docs/V0alpha2Api.md#revokesessions) | **Delete** /sessions | Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
 *V0alpha2Api* | [**SubmitSelfServiceLoginFlow**](docs/V0alpha2Api.md#submitselfserviceloginflow) | **Post** /self-service/login | Submit a Login Flow
@@ -129,6 +128,7 @@ Class | Method | HTTP request | Description
 *V0alpha2Api* | [**SubmitSelfServiceSettingsFlow**](docs/V0alpha2Api.md#submitselfservicesettingsflow) | **Post** /self-service/settings | Complete Settings Flow
 *V0alpha2Api* | [**SubmitSelfServiceVerificationFlow**](docs/V0alpha2Api.md#submitselfserviceverificationflow) | **Post** /self-service/verification | Complete Verification Flow
 *V0alpha2Api* | [**ToSession**](docs/V0alpha2Api.md#tosession) | **Get** /sessions/whoami | Check Who the Current HTTP Session Belongs To
+*V0alpha2Api* | [**UpdateProject**](docs/V0alpha2Api.md#updateproject) | **Put** /backoffice/public/projects/{project_id} | Update an Ory Cloud Project Configuration
 
 
 ## Documentation For Models
@@ -152,6 +152,7 @@ Class | Method | HTTP request | Description
  - [CreateSubscriptionPayload](docs/CreateSubscriptionPayload.md)
  - [ErrorAuthenticatorAssuranceLevelNotSatisfied](docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md)
  - [GenericError](docs/GenericError.md)
+ - [GenericErrorContent](docs/GenericErrorContent.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
  - [HealthStatus](docs/HealthStatus.md)
  - [Identity](docs/Identity.md)

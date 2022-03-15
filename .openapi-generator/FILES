@@ -1,10 +1,8 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
 api_metadata.go
-api_v0alpha0.go
 api_v0alpha2.go
 client.go
 configuration.go
@@ -27,6 +25,7 @@ docs/CreateProjectBody.md
 docs/CreateSubscriptionPayload.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
 docs/GenericError.md
+docs/GenericErrorContent.md
 docs/HealthNotReadyStatus.md
 docs/HealthStatus.md
 docs/Identity.md
@@ -125,7 +124,6 @@ docs/UiText.md
 docs/UpdateCustomHostnameBody.md
 docs/UpdateProject.md
 docs/UpdateSubscriptionPayload.md
-docs/V0alpha0Api.md
 docs/V0alpha2Api.md
 docs/VerifiableIdentityAddress.md
 docs/Version.md
@@ -152,6 +150,7 @@ model_create_project_body.go
 model_create_subscription_payload.go
 model_error_authenticator_assurance_level_not_satisfied.go
 model_generic_error.go
+model_generic_error_content.go
 model_health_not_ready_status.go
 model_health_status.go
 model_identity.go
