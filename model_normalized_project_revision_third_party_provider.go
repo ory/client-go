@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.130
+ * API version: v0.0.1-alpha.132
  * Contact: support@ory.sh
  */
 
@@ -16,8 +16,8 @@ import (
 	"time"
 )
 
-// ProjectRevisionThirdPartyLoginProvider struct for ProjectRevisionThirdPartyLoginProvider
-type ProjectRevisionThirdPartyLoginProvider struct {
+// NormalizedProjectRevisionThirdPartyProvider struct for NormalizedProjectRevisionThirdPartyProvider
+type NormalizedProjectRevisionThirdPartyProvider struct {
 	ApplePrivateKey NullableString `json:"apple_private_key,omitempty"`
 	// Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret
 	ApplePrivateKeyId *string `json:"apple_private_key_id,omitempty"`
@@ -52,25 +52,25 @@ type ProjectRevisionThirdPartyLoginProvider struct {
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 }
 
-// NewProjectRevisionThirdPartyLoginProvider instantiates a new ProjectRevisionThirdPartyLoginProvider object
+// NewNormalizedProjectRevisionThirdPartyProvider instantiates a new NormalizedProjectRevisionThirdPartyProvider object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectRevisionThirdPartyLoginProvider() *ProjectRevisionThirdPartyLoginProvider {
-	this := ProjectRevisionThirdPartyLoginProvider{}
+func NewNormalizedProjectRevisionThirdPartyProvider() *NormalizedProjectRevisionThirdPartyProvider {
+	this := NormalizedProjectRevisionThirdPartyProvider{}
 	return &this
 }
 
-// NewProjectRevisionThirdPartyLoginProviderWithDefaults instantiates a new ProjectRevisionThirdPartyLoginProvider object
+// NewNormalizedProjectRevisionThirdPartyProviderWithDefaults instantiates a new NormalizedProjectRevisionThirdPartyProvider object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewProjectRevisionThirdPartyLoginProviderWithDefaults() *ProjectRevisionThirdPartyLoginProvider {
-	this := ProjectRevisionThirdPartyLoginProvider{}
+func NewNormalizedProjectRevisionThirdPartyProviderWithDefaults() *NormalizedProjectRevisionThirdPartyProvider {
+	this := NormalizedProjectRevisionThirdPartyProvider{}
 	return &this
 }
 
 // GetApplePrivateKey returns the ApplePrivateKey field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKey() string {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetApplePrivateKey() string {
 	if o == nil || o.ApplePrivateKey.Get() == nil {
 		var ret string
 		return ret
@@ -81,7 +81,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKey() string {
 // GetApplePrivateKeyOk returns a tuple with the ApplePrivateKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKeyOk() (*string, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetApplePrivateKeyOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -89,7 +89,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKeyOk() (*string
 }
 
 // HasApplePrivateKey returns a boolean if a field has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) HasApplePrivateKey() bool {
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasApplePrivateKey() bool {
 	if o != nil && o.ApplePrivateKey.IsSet() {
 		return true
 	}
@@ -98,21 +98,21 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasApplePrivateKey() bool {
 }
 
 // SetApplePrivateKey gets a reference to the given NullableString and assigns it to the ApplePrivateKey field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetApplePrivateKey(v string) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetApplePrivateKey(v string) {
 	o.ApplePrivateKey.Set(&v)
 }
 // SetApplePrivateKeyNil sets the value for ApplePrivateKey to be an explicit nil
-func (o *ProjectRevisionThirdPartyLoginProvider) SetApplePrivateKeyNil() {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetApplePrivateKeyNil() {
 	o.ApplePrivateKey.Set(nil)
 }
 
 // UnsetApplePrivateKey ensures that no value is present for ApplePrivateKey, not even an explicit nil
-func (o *ProjectRevisionThirdPartyLoginProvider) UnsetApplePrivateKey() {
+func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetApplePrivateKey() {
 	o.ApplePrivateKey.Unset()
 }
 
 // GetApplePrivateKeyId returns the ApplePrivateKeyId field value if set, zero value otherwise.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKeyId() string {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetApplePrivateKeyId() string {
 	if o == nil || o.ApplePrivateKeyId == nil {
 		var ret string
 		return ret
@@ -122,7 +122,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKeyId() string {
 
 // GetApplePrivateKeyIdOk returns a tuple with the ApplePrivateKeyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKeyIdOk() (*string, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetApplePrivateKeyIdOk() (*string, bool) {
 	if o == nil || o.ApplePrivateKeyId == nil {
 		return nil, false
 	}
@@ -130,7 +130,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKeyIdOk() (*stri
 }
 
 // HasApplePrivateKeyId returns a boolean if a field has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) HasApplePrivateKeyId() bool {
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasApplePrivateKeyId() bool {
 	if o != nil && o.ApplePrivateKeyId != nil {
 		return true
 	}
@@ -139,12 +139,12 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasApplePrivateKeyId() bool {
 }
 
 // SetApplePrivateKeyId gets a reference to the given string and assigns it to the ApplePrivateKeyId field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetApplePrivateKeyId(v string) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetApplePrivateKeyId(v string) {
 	o.ApplePrivateKeyId = &v
 }
 
 // GetAppleTeamId returns the AppleTeamId field value if set, zero value otherwise.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetAppleTeamId() string {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetAppleTeamId() string {
 	if o == nil || o.AppleTeamId == nil {
 		var ret string
 		return ret
@@ -154,7 +154,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetAppleTeamId() string {
 
 // GetAppleTeamIdOk returns a tuple with the AppleTeamId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetAppleTeamIdOk() (*string, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetAppleTeamIdOk() (*string, bool) {
 	if o == nil || o.AppleTeamId == nil {
 		return nil, false
 	}
@@ -162,7 +162,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetAppleTeamIdOk() (*string, bo
 }
 
 // HasAppleTeamId returns a boolean if a field has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) HasAppleTeamId() bool {
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasAppleTeamId() bool {
 	if o != nil && o.AppleTeamId != nil {
 		return true
 	}
@@ -171,12 +171,12 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasAppleTeamId() bool {
 }
 
 // SetAppleTeamId gets a reference to the given string and assigns it to the AppleTeamId field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetAppleTeamId(v string) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetAppleTeamId(v string) {
 	o.AppleTeamId = &v
 }
 
 // GetAuthUrl returns the AuthUrl field value if set, zero value otherwise.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetAuthUrl() string {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetAuthUrl() string {
 	if o == nil || o.AuthUrl == nil {
 		var ret string
 		return ret
@@ -186,7 +186,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetAuthUrl() string {
 
 // GetAuthUrlOk returns a tuple with the AuthUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetAuthUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetAuthUrlOk() (*string, bool) {
 	if o == nil || o.AuthUrl == nil {
 		return nil, false
 	}
@@ -194,7 +194,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetAuthUrlOk() (*string, bool) 
 }
 
 // HasAuthUrl returns a boolean if a field has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) HasAuthUrl() bool {
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasAuthUrl() bool {
 	if o != nil && o.AuthUrl != nil {
 		return true
 	}
@@ -203,12 +203,12 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasAuthUrl() bool {
 }
 
 // SetAuthUrl gets a reference to the given string and assigns it to the AuthUrl field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetAuthUrl(v string) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetAuthUrl(v string) {
 	o.AuthUrl = &v
 }
 
 // GetAzureTenant returns the AzureTenant field value if set, zero value otherwise.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetAzureTenant() string {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetAzureTenant() string {
 	if o == nil || o.AzureTenant == nil {
 		var ret string
 		return ret
@@ -218,7 +218,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetAzureTenant() string {
 
 // GetAzureTenantOk returns a tuple with the AzureTenant field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetAzureTenantOk() (*string, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetAzureTenantOk() (*string, bool) {
 	if o == nil || o.AzureTenant == nil {
 		return nil, false
 	}
@@ -226,7 +226,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetAzureTenantOk() (*string, bo
 }
 
 // HasAzureTenant returns a boolean if a field has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) HasAzureTenant() bool {
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasAzureTenant() bool {
 	if o != nil && o.AzureTenant != nil {
 		return true
 	}
@@ -235,12 +235,12 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasAzureTenant() bool {
 }
 
 // SetAzureTenant gets a reference to the given string and assigns it to the AzureTenant field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetAzureTenant(v string) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetAzureTenant(v string) {
 	o.AzureTenant = &v
 }
 
 // GetClientId returns the ClientId field value if set, zero value otherwise.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetClientId() string {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetClientId() string {
 	if o == nil || o.ClientId == nil {
 		var ret string
 		return ret
@@ -250,7 +250,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetClientId() string {
 
 // GetClientIdOk returns a tuple with the ClientId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetClientIdOk() (*string, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetClientIdOk() (*string, bool) {
 	if o == nil || o.ClientId == nil {
 		return nil, false
 	}
@@ -258,7 +258,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetClientIdOk() (*string, bool)
 }
 
 // HasClientId returns a boolean if a field has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) HasClientId() bool {
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasClientId() bool {
 	if o != nil && o.ClientId != nil {
 		return true
 	}
@@ -267,12 +267,12 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasClientId() bool {
 }
 
 // SetClientId gets a reference to the given string and assigns it to the ClientId field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetClientId(v string) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetClientId(v string) {
 	o.ClientId = &v
 }
 
 // GetClientSecret returns the ClientSecret field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProjectRevisionThirdPartyLoginProvider) GetClientSecret() string {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetClientSecret() string {
 	if o == nil || o.ClientSecret.Get() == nil {
 		var ret string
 		return ret
@@ -283,7 +283,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetClientSecret() string {
 // GetClientSecretOk returns a tuple with the ClientSecret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProjectRevisionThirdPartyLoginProvider) GetClientSecretOk() (*string, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetClientSecretOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -291,7 +291,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetClientSecretOk() (*string, b
 }
 
 // HasClientSecret returns a boolean if a field has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) HasClientSecret() bool {
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasClientSecret() bool {
 	if o != nil && o.ClientSecret.IsSet() {
 		return true
 	}
@@ -300,21 +300,21 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasClientSecret() bool {
 }
 
 // SetClientSecret gets a reference to the given NullableString and assigns it to the ClientSecret field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetClientSecret(v string) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetClientSecret(v string) {
 	o.ClientSecret.Set(&v)
 }
 // SetClientSecretNil sets the value for ClientSecret to be an explicit nil
-func (o *ProjectRevisionThirdPartyLoginProvider) SetClientSecretNil() {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetClientSecretNil() {
 	o.ClientSecret.Set(nil)
 }
 
 // UnsetClientSecret ensures that no value is present for ClientSecret, not even an explicit nil
-func (o *ProjectRevisionThirdPartyLoginProvider) UnsetClientSecret() {
+func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetClientSecret() {
 	o.ClientSecret.Unset()
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetCreatedAt() time.Time {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
 		var ret time.Time
 		return ret
@@ -324,7 +324,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetCreatedAtOk() (*time.Time, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil || o.CreatedAt == nil {
 		return nil, false
 	}
@@ -332,7 +332,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetCreatedAtOk() (*time.Time, b
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) HasCreatedAt() bool {
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasCreatedAt() bool {
 	if o != nil && o.CreatedAt != nil {
 		return true
 	}
@@ -341,12 +341,12 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasCreatedAt() bool {
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetCreatedAt(v time.Time) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetId() string {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetId() string {
 	if o == nil || o.Id == nil {
 		var ret string
 		return ret
@@ -356,7 +356,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetIdOk() (*string, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -364,7 +364,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) HasId() bool {
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasId() bool {
 	if o != nil && o.Id != nil {
 		return true
 	}
@@ -373,12 +373,12 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetId(v string) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetId(v string) {
 	o.Id = &v
 }
 
 // GetIssuerUrl returns the IssuerUrl field value if set, zero value otherwise.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetIssuerUrl() string {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetIssuerUrl() string {
 	if o == nil || o.IssuerUrl == nil {
 		var ret string
 		return ret
@@ -388,7 +388,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetIssuerUrl() string {
 
 // GetIssuerUrlOk returns a tuple with the IssuerUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetIssuerUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetIssuerUrlOk() (*string, bool) {
 	if o == nil || o.IssuerUrl == nil {
 		return nil, false
 	}
@@ -396,7 +396,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetIssuerUrlOk() (*string, bool
 }
 
 // HasIssuerUrl returns a boolean if a field has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) HasIssuerUrl() bool {
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasIssuerUrl() bool {
 	if o != nil && o.IssuerUrl != nil {
 		return true
 	}
@@ -405,12 +405,12 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasIssuerUrl() bool {
 }
 
 // SetIssuerUrl gets a reference to the given string and assigns it to the IssuerUrl field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetIssuerUrl(v string) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetIssuerUrl(v string) {
 	o.IssuerUrl = &v
 }
 
 // GetLabel returns the Label field value if set, zero value otherwise.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetLabel() string {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetLabel() string {
 	if o == nil || o.Label == nil {
 		var ret string
 		return ret
@@ -420,7 +420,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetLabel() string {
 
 // GetLabelOk returns a tuple with the Label field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetLabelOk() (*string, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetLabelOk() (*string, bool) {
 	if o == nil || o.Label == nil {
 		return nil, false
 	}
@@ -428,7 +428,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetLabelOk() (*string, bool) {
 }
 
 // HasLabel returns a boolean if a field has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) HasLabel() bool {
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasLabel() bool {
 	if o != nil && o.Label != nil {
 		return true
 	}
@@ -437,12 +437,12 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasLabel() bool {
 }
 
 // SetLabel gets a reference to the given string and assigns it to the Label field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetLabel(v string) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetLabel(v string) {
 	o.Label = &v
 }
 
 // GetMapperUrl returns the MapperUrl field value if set, zero value otherwise.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetMapperUrl() string {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetMapperUrl() string {
 	if o == nil || o.MapperUrl == nil {
 		var ret string
 		return ret
@@ -452,7 +452,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetMapperUrl() string {
 
 // GetMapperUrlOk returns a tuple with the MapperUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetMapperUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetMapperUrlOk() (*string, bool) {
 	if o == nil || o.MapperUrl == nil {
 		return nil, false
 	}
@@ -460,7 +460,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetMapperUrlOk() (*string, bool
 }
 
 // HasMapperUrl returns a boolean if a field has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) HasMapperUrl() bool {
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasMapperUrl() bool {
 	if o != nil && o.MapperUrl != nil {
 		return true
 	}
@@ -469,12 +469,12 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasMapperUrl() bool {
 }
 
 // SetMapperUrl gets a reference to the given string and assigns it to the MapperUrl field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetMapperUrl(v string) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetMapperUrl(v string) {
 	o.MapperUrl = &v
 }
 
 // GetProjectRevisionId returns the ProjectRevisionId field value if set, zero value otherwise.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetProjectRevisionId() string {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetProjectRevisionId() string {
 	if o == nil || o.ProjectRevisionId == nil {
 		var ret string
 		return ret
@@ -484,7 +484,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetProjectRevisionId() string {
 
 // GetProjectRevisionIdOk returns a tuple with the ProjectRevisionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetProjectRevisionIdOk() (*string, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetProjectRevisionIdOk() (*string, bool) {
 	if o == nil || o.ProjectRevisionId == nil {
 		return nil, false
 	}
@@ -492,7 +492,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetProjectRevisionIdOk() (*stri
 }
 
 // HasProjectRevisionId returns a boolean if a field has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) HasProjectRevisionId() bool {
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasProjectRevisionId() bool {
 	if o != nil && o.ProjectRevisionId != nil {
 		return true
 	}
@@ -501,12 +501,12 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasProjectRevisionId() bool {
 }
 
 // SetProjectRevisionId gets a reference to the given string and assigns it to the ProjectRevisionId field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetProjectRevisionId(v string) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetProjectRevisionId(v string) {
 	o.ProjectRevisionId = &v
 }
 
 // GetProvider returns the Provider field value if set, zero value otherwise.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetProvider() string {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetProvider() string {
 	if o == nil || o.Provider == nil {
 		var ret string
 		return ret
@@ -516,7 +516,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetProvider() string {
 
 // GetProviderOk returns a tuple with the Provider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetProviderOk() (*string, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetProviderOk() (*string, bool) {
 	if o == nil || o.Provider == nil {
 		return nil, false
 	}
@@ -524,7 +524,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetProviderOk() (*string, bool)
 }
 
 // HasProvider returns a boolean if a field has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) HasProvider() bool {
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasProvider() bool {
 	if o != nil && o.Provider != nil {
 		return true
 	}
@@ -533,12 +533,12 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasProvider() bool {
 }
 
 // SetProvider gets a reference to the given string and assigns it to the Provider field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetProvider(v string) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetProvider(v string) {
 	o.Provider = &v
 }
 
 // GetProviderId returns the ProviderId field value if set, zero value otherwise.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetProviderId() string {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetProviderId() string {
 	if o == nil || o.ProviderId == nil {
 		var ret string
 		return ret
@@ -548,7 +548,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetProviderId() string {
 
 // GetProviderIdOk returns a tuple with the ProviderId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetProviderIdOk() (*string, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetProviderIdOk() (*string, bool) {
 	if o == nil || o.ProviderId == nil {
 		return nil, false
 	}
@@ -556,7 +556,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetProviderIdOk() (*string, boo
 }
 
 // HasProviderId returns a boolean if a field has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) HasProviderId() bool {
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasProviderId() bool {
 	if o != nil && o.ProviderId != nil {
 		return true
 	}
@@ -565,12 +565,12 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasProviderId() bool {
 }
 
 // SetProviderId gets a reference to the given string and assigns it to the ProviderId field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetProviderId(v string) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetProviderId(v string) {
 	o.ProviderId = &v
 }
 
 // GetRequestedClaims returns the RequestedClaims field value if set, zero value otherwise.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetRequestedClaims() map[string]interface{} {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetRequestedClaims() map[string]interface{} {
 	if o == nil || o.RequestedClaims == nil {
 		var ret map[string]interface{}
 		return ret
@@ -580,7 +580,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetRequestedClaims() map[string
 
 // GetRequestedClaimsOk returns a tuple with the RequestedClaims field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetRequestedClaimsOk() (map[string]interface{}, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetRequestedClaimsOk() (map[string]interface{}, bool) {
 	if o == nil || o.RequestedClaims == nil {
 		return nil, false
 	}
@@ -588,7 +588,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetRequestedClaimsOk() (map[str
 }
 
 // HasRequestedClaims returns a boolean if a field has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) HasRequestedClaims() bool {
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasRequestedClaims() bool {
 	if o != nil && o.RequestedClaims != nil {
 		return true
 	}
@@ -597,12 +597,12 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasRequestedClaims() bool {
 }
 
 // SetRequestedClaims gets a reference to the given map[string]interface{} and assigns it to the RequestedClaims field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetRequestedClaims(v map[string]interface{}) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetRequestedClaims(v map[string]interface{}) {
 	o.RequestedClaims = v
 }
 
 // GetScope returns the Scope field value if set, zero value otherwise.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetScope() []string {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetScope() []string {
 	if o == nil || o.Scope == nil {
 		var ret []string
 		return ret
@@ -612,7 +612,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetScope() []string {
 
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetScopeOk() ([]string, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetScopeOk() ([]string, bool) {
 	if o == nil || o.Scope == nil {
 		return nil, false
 	}
@@ -620,7 +620,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetScopeOk() ([]string, bool) {
 }
 
 // HasScope returns a boolean if a field has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) HasScope() bool {
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasScope() bool {
 	if o != nil && o.Scope != nil {
 		return true
 	}
@@ -629,12 +629,12 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasScope() bool {
 }
 
 // SetScope gets a reference to the given []string and assigns it to the Scope field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetScope(v []string) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetScope(v []string) {
 	o.Scope = v
 }
 
 // GetTokenUrl returns the TokenUrl field value if set, zero value otherwise.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetTokenUrl() string {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetTokenUrl() string {
 	if o == nil || o.TokenUrl == nil {
 		var ret string
 		return ret
@@ -644,7 +644,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetTokenUrl() string {
 
 // GetTokenUrlOk returns a tuple with the TokenUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetTokenUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetTokenUrlOk() (*string, bool) {
 	if o == nil || o.TokenUrl == nil {
 		return nil, false
 	}
@@ -652,7 +652,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetTokenUrlOk() (*string, bool)
 }
 
 // HasTokenUrl returns a boolean if a field has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) HasTokenUrl() bool {
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasTokenUrl() bool {
 	if o != nil && o.TokenUrl != nil {
 		return true
 	}
@@ -661,12 +661,12 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasTokenUrl() bool {
 }
 
 // SetTokenUrl gets a reference to the given string and assigns it to the TokenUrl field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetTokenUrl(v string) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetTokenUrl(v string) {
 	o.TokenUrl = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetUpdatedAt() time.Time {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetUpdatedAt() time.Time {
 	if o == nil || o.UpdatedAt == nil {
 		var ret time.Time
 		return ret
@@ -676,7 +676,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetUpdatedAt() time.Time {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) GetUpdatedAtOk() (*time.Time, bool) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetUpdatedAtOk() (*time.Time, bool) {
 	if o == nil || o.UpdatedAt == nil {
 		return nil, false
 	}
@@ -684,7 +684,7 @@ func (o *ProjectRevisionThirdPartyLoginProvider) GetUpdatedAtOk() (*time.Time, b
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
-func (o *ProjectRevisionThirdPartyLoginProvider) HasUpdatedAt() bool {
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasUpdatedAt() bool {
 	if o != nil && o.UpdatedAt != nil {
 		return true
 	}
@@ -693,11 +693,11 @@ func (o *ProjectRevisionThirdPartyLoginProvider) HasUpdatedAt() bool {
 }
 
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *ProjectRevisionThirdPartyLoginProvider) SetUpdatedAt(v time.Time) {
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
-func (o ProjectRevisionThirdPartyLoginProvider) MarshalJSON() ([]byte, error) {
+func (o NormalizedProjectRevisionThirdPartyProvider) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.ApplePrivateKey.IsSet() {
 		toSerialize["apple_private_key"] = o.ApplePrivateKey.Get()
@@ -759,38 +759,38 @@ func (o ProjectRevisionThirdPartyLoginProvider) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableProjectRevisionThirdPartyLoginProvider struct {
-	value *ProjectRevisionThirdPartyLoginProvider
+type NullableNormalizedProjectRevisionThirdPartyProvider struct {
+	value *NormalizedProjectRevisionThirdPartyProvider
 	isSet bool
 }
 
-func (v NullableProjectRevisionThirdPartyLoginProvider) Get() *ProjectRevisionThirdPartyLoginProvider {
+func (v NullableNormalizedProjectRevisionThirdPartyProvider) Get() *NormalizedProjectRevisionThirdPartyProvider {
 	return v.value
 }
 
-func (v *NullableProjectRevisionThirdPartyLoginProvider) Set(val *ProjectRevisionThirdPartyLoginProvider) {
+func (v *NullableNormalizedProjectRevisionThirdPartyProvider) Set(val *NormalizedProjectRevisionThirdPartyProvider) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableProjectRevisionThirdPartyLoginProvider) IsSet() bool {
+func (v NullableNormalizedProjectRevisionThirdPartyProvider) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableProjectRevisionThirdPartyLoginProvider) Unset() {
+func (v *NullableNormalizedProjectRevisionThirdPartyProvider) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableProjectRevisionThirdPartyLoginProvider(val *ProjectRevisionThirdPartyLoginProvider) *NullableProjectRevisionThirdPartyLoginProvider {
-	return &NullableProjectRevisionThirdPartyLoginProvider{value: val, isSet: true}
+func NewNullableNormalizedProjectRevisionThirdPartyProvider(val *NormalizedProjectRevisionThirdPartyProvider) *NullableNormalizedProjectRevisionThirdPartyProvider {
+	return &NullableNormalizedProjectRevisionThirdPartyProvider{value: val, isSet: true}
 }
 
-func (v NullableProjectRevisionThirdPartyLoginProvider) MarshalJSON() ([]byte, error) {
+func (v NullableNormalizedProjectRevisionThirdPartyProvider) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableProjectRevisionThirdPartyLoginProvider) UnmarshalJSON(src []byte) error {
+func (v *NullableNormalizedProjectRevisionThirdPartyProvider) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -1,4 +1,4 @@
-# ProjectRevision
+# NormalizedProjectRevision
 
 ## Properties
 
@@ -11,17 +11,30 @@ Name | Type | Description | Notes
 **KratosCourierSmtpFromAddress** | Pointer to **string** | Configures the Ory Kratos SMTP From Address  This governs the \&quot;courier.smtp.from_address\&quot; setting. | [optional] 
 **KratosCourierSmtpFromName** | Pointer to **string** | Configures the Ory Kratos SMTP From Name  This governs the \&quot;courier.smtp.from_name\&quot; setting. | [optional] 
 **KratosCourierSmtpHeaders** | Pointer to **map[string]interface{}** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
-**KratosIdentitySchemas** | Pointer to [**[]ProjectRevisionIdentitySchema**](ProjectRevisionIdentitySchema.md) |  | [optional] 
+**KratosCourierTemplatesRecoveryInvalidEmailBodyHtml** | Pointer to **string** | Configures the Ory Kratos Invalid Recovery Email Body HTML Template  This governs the \&quot;courier.smtp.templates.recovery.invalid.email.body.html\&quot; setting. | [optional] 
+**KratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Invalid Recovery Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.recovery.invalid.email.body.plaintext\&quot; setting. | [optional] 
+**KratosCourierTemplatesRecoveryInvalidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Invalid Recovery Email Subject Template  This governs the \&quot;courier.smtp.templates.recovery.invalid.email.body.html\&quot; setting. | [optional] 
+**KratosCourierTemplatesRecoveryValidEmailBodyHtml** | Pointer to **string** | Configures the Ory Kratos Valid Recovery Email Body HTML Template  This governs the \&quot;courier.smtp.templates.recovery.valid.email.body.html\&quot; setting. | [optional] 
+**KratosCourierTemplatesRecoveryValidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Valid Recovery Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.recovery.valid.email.body.plaintext\&quot; setting. | [optional] 
+**KratosCourierTemplatesRecoveryValidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Valid Recovery Email Subject Template  This governs the \&quot;courier.smtp.templates.recovery.valid.email.subject\&quot; setting. | [optional] 
+**KratosCourierTemplatesVerificationInvalidEmailBodyHtml** | Pointer to **string** | Configures the Ory Kratos Invalid Verification Email Body HTML Template  This governs the \&quot;courier.smtp.templates.verification.invalid.email.body.html\&quot; setting. | [optional] 
+**KratosCourierTemplatesVerificationInvalidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Invalid Verification Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.recovery.invalid.email.body.plaintext\&quot; setting. | [optional] 
+**KratosCourierTemplatesVerificationInvalidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Invalid Verification Email Subject Template  This governs the \&quot;courier.smtp.templates.verification.invalid.email.subject\&quot; setting. | [optional] 
+**KratosCourierTemplatesVerificationValidEmailBodyHtml** | Pointer to **string** | Configures the Ory Kratos Valid Verification Email Body HTML Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.body.html\&quot; setting. | [optional] 
+**KratosCourierTemplatesVerificationValidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.recovery.valid.email.body.plaintext\&quot; setting. | [optional] 
+**KratosCourierTemplatesVerificationValidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.subject\&quot; setting. | [optional] 
+**KratosIdentitySchemas** | Pointer to [**[]NormalizedProjectRevisionIdentitySchema**](NormalizedProjectRevisionIdentitySchema.md) |  | [optional] 
 **KratosSecretsCipher** | Pointer to **[]string** |  | [optional] 
 **KratosSecretsCookie** | Pointer to **[]string** |  | [optional] 
 **KratosSecretsDefault** | Pointer to **[]string** |  | [optional] 
 **KratosSelfserviceAllowedReturnUrls** | Pointer to **[]string** |  | [optional] 
 **KratosSelfserviceDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Default Return URL  This governs the \&quot;selfservice.allowed_return_urls\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsErrorUiUrl** | Pointer to **string** | Configures the Ory Kratos Error UI URL  This governs the \&quot;selfservice.flows.error.ui_url\&quot; setting. | [optional] 
-**KratosSelfserviceFlowsHooks** | Pointer to [**[]ProjectRevisionHook**](ProjectRevisionHook.md) |  | [optional] 
+**KratosSelfserviceFlowsHooks** | Pointer to [**[]NormalizedProjectRevisionHook**](NormalizedProjectRevisionHook.md) |  | [optional] 
 **KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Login Default Return URL  This governs the \&quot;selfservice.flows.login.after.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Login After OIDC Default Return URL  This governs the \&quot;selfservice.flows.login.after.oidc.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \&quot;selfservice.flows.login.after.password.default_browser_return_url\&quot; setting. | [optional] 
+**KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Login After WebAuthn Default Return URL  This governs the \&quot;selfservice.flows.login.after.webauthn.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsLoginLifespan** | Pointer to **string** | Configures the Ory Kratos Login Lifespan  This governs the \&quot;selfservice.flows.login.lifespan\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsLoginUiUrl** | Pointer to **string** | Configures the Ory Kratos Login UI URL  This governs the \&quot;selfservice.flows.login.ui_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Logout Default Return URL  This governs the \&quot;selfservice.flows.logout.after.default_browser_return_url\&quot; setting. | [optional] 
@@ -32,8 +45,10 @@ Name | Type | Description | Notes
 **KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Registration Default Return URL  This governs the \&quot;selfservice.flows.registration.after.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Registration After OIDC Default Return URL  This governs the \&quot;selfservice.flows.registration.after.oidc.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Registration After Password Default Return URL  This governs the \&quot;selfservice.flows.registration.after.password.default_browser_return_url\&quot; setting. | [optional] 
+**KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Registration After Password Default Return URL  This governs the \&quot;selfservice.flows.registration.after.password.default_browser_return_url\&quot; setting. | [optional] 
+**KratosSelfserviceFlowsRegistrationEnabled** | Pointer to **NullableBool** |  | [optional] 
 **KratosSelfserviceFlowsRegistrationLifespan** | Pointer to **string** | Configures the Ory Kratos Registration Lifespan  This governs the \&quot;selfservice.flows.registration.lifespan\&quot; setting. | [optional] 
-**KratosSelfserviceFlowsRegistrationUiUrl** | Pointer to **string** | Configures the Ory Kratos Registration UI URL  This governs the \&quot;selfservice.flows.registration.ui_url\&quot; setting.0 | [optional] 
+**KratosSelfserviceFlowsRegistrationUiUrl** | Pointer to **string** | Configures the Ory Kratos Registration UI URL  This governs the \&quot;selfservice.flows.registration.ui_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Settings Default Return URL  This governs the \&quot;selfservice.flows.settings.after.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Settings Default Return URL After Updating Passwords  This governs the \&quot;selfservice.flows.settings.after.password.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Settings Default Return URL After Updating Profiles  This governs the \&quot;selfservice.flows.settings.after.profile.default_browser_return_url\&quot; setting. | [optional] 
@@ -49,15 +64,19 @@ Name | Type | Description | Notes
 **KratosSelfserviceMethodsLinkConfigLifespan** | Pointer to **string** | Configures whether Ory Kratos Link Method is enabled  This governs the \&quot;selfservice.methods.link.config.lifespan\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsLinkEnabled** | Pointer to **NullableBool** |  | [optional] 
 **KratosSelfserviceMethodsLookupSecretEnabled** | Pointer to **NullableBool** |  | [optional] 
-**KratosSelfserviceMethodsOidcConfigProviders** | Pointer to [**[]ProjectRevisionThirdPartyLoginProvider**](ProjectRevisionThirdPartyLoginProvider.md) |  | [optional] 
+**KratosSelfserviceMethodsOidcConfigBaseRedirectUri** | Pointer to **string** | Configures the Ory Kratos Third Party / OpenID Connect base redirect URI  This governs the \&quot;selfservice.methods.oidc.config.base_redirect_uri\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsOidcConfigProviders** | Pointer to [**[]NormalizedProjectRevisionThirdPartyProvider**](NormalizedProjectRevisionThirdPartyProvider.md) |  | [optional] 
 **KratosSelfserviceMethodsOidcEnabled** | Pointer to **bool** | Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \&quot;selfservice.methods.oidc.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled** | Pointer to **NullableBool** |  | [optional] 
+**KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled** | Pointer to **NullableBool** |  | [optional] 
 **KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors** | Pointer to **NullableBool** |  | [optional] 
-**KratosSelfserviceMethodsPasswordConfigMaxBreaches** | Pointer to **int64** | Configures Ory Kratos Password Max Breaches Detection  This governs the \&quot;selfservice.methods.password.enabled\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsPasswordConfigMaxBreaches** | Pointer to **int64** | Configures Ory Kratos Password Max Breaches Detection  This governs the \&quot;selfservice.methods.password.config.max_breaches\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsPasswordConfigMinPasswordLength** | Pointer to **int64** | Configures the minimum length of passwords.  This governs the \&quot;selfservice.methods.password.config.min_password_length\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsPasswordEnabled** | Pointer to **NullableBool** |  | [optional] 
 **KratosSelfserviceMethodsProfileEnabled** | Pointer to **NullableBool** |  | [optional] 
 **KratosSelfserviceMethodsTotpConfigIssuer** | Pointer to **string** | Configures Ory Kratos TOTP Issuer  This governs the \&quot;selfservice.methods.totp.config.issuer\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsTotpEnabled** | Pointer to **NullableBool** |  | [optional] 
+**KratosSelfserviceMethodsWebauthnConfigPasswordless** | Pointer to **bool** | Configures whether Ory Kratos Webauthn is used for passwordless flows  This governs the \&quot;selfservice.methods.webauthn.config.passwordless\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsWebauthnConfigRpDisplayName** | Pointer to **string** | Configures the Ory Kratos Webauthn RP Display Name  This governs the \&quot;selfservice.methods.webauthn.config.rp.display_name\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsWebauthnConfigRpIcon** | Pointer to **string** | Configures the Ory Kratos Webauthn RP Icon  This governs the \&quot;selfservice.methods.webauthn.config.rp.icon\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsWebauthnConfigRpId** | Pointer to **string** | Configures the Ory Kratos Webauthn RP ID  This governs the \&quot;selfservice.methods.webauthn.config.rp.id\&quot; setting. | [optional] 
@@ -73,1755 +92,2250 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewProjectRevision
+### NewNormalizedProjectRevision
 
-`func NewProjectRevision(name string, ) *ProjectRevision`
+`func NewNormalizedProjectRevision(name string, ) *NormalizedProjectRevision`
 
-NewProjectRevision instantiates a new ProjectRevision object
+NewNormalizedProjectRevision instantiates a new NormalizedProjectRevision object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewProjectRevisionWithDefaults
+### NewNormalizedProjectRevisionWithDefaults
 
-`func NewProjectRevisionWithDefaults() *ProjectRevision`
+`func NewNormalizedProjectRevisionWithDefaults() *NormalizedProjectRevision`
 
-NewProjectRevisionWithDefaults instantiates a new ProjectRevision object
+NewNormalizedProjectRevisionWithDefaults instantiates a new NormalizedProjectRevision object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetCreatedAt
 
-`func (o *ProjectRevision) GetCreatedAt() time.Time`
+`func (o *NormalizedProjectRevision) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *ProjectRevision) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *NormalizedProjectRevision) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *ProjectRevision) SetCreatedAt(v time.Time)`
+`func (o *NormalizedProjectRevision) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
 ### HasCreatedAt
 
-`func (o *ProjectRevision) HasCreatedAt() bool`
+`func (o *NormalizedProjectRevision) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *ProjectRevision) GetId() string`
+`func (o *NormalizedProjectRevision) GetId() string`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ProjectRevision) GetIdOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetIdOk() (*string, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ProjectRevision) SetId(v string)`
+`func (o *NormalizedProjectRevision) SetId(v string)`
 
 SetId sets Id field to given value.
 
 ### HasId
 
-`func (o *ProjectRevision) HasId() bool`
+`func (o *NormalizedProjectRevision) HasId() bool`
 
 HasId returns a boolean if a field has been set.
 
 ### GetKratosCookiesSameSite
 
-`func (o *ProjectRevision) GetKratosCookiesSameSite() string`
+`func (o *NormalizedProjectRevision) GetKratosCookiesSameSite() string`
 
 GetKratosCookiesSameSite returns the KratosCookiesSameSite field if non-nil, zero value otherwise.
 
 ### GetKratosCookiesSameSiteOk
 
-`func (o *ProjectRevision) GetKratosCookiesSameSiteOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosCookiesSameSiteOk() (*string, bool)`
 
 GetKratosCookiesSameSiteOk returns a tuple with the KratosCookiesSameSite field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosCookiesSameSite
 
-`func (o *ProjectRevision) SetKratosCookiesSameSite(v string)`
+`func (o *NormalizedProjectRevision) SetKratosCookiesSameSite(v string)`
 
 SetKratosCookiesSameSite sets KratosCookiesSameSite field to given value.
 
 ### HasKratosCookiesSameSite
 
-`func (o *ProjectRevision) HasKratosCookiesSameSite() bool`
+`func (o *NormalizedProjectRevision) HasKratosCookiesSameSite() bool`
 
 HasKratosCookiesSameSite returns a boolean if a field has been set.
 
 ### GetKratosCourierSmtpConnectionUri
 
-`func (o *ProjectRevision) GetKratosCourierSmtpConnectionUri() string`
+`func (o *NormalizedProjectRevision) GetKratosCourierSmtpConnectionUri() string`
 
 GetKratosCourierSmtpConnectionUri returns the KratosCourierSmtpConnectionUri field if non-nil, zero value otherwise.
 
 ### GetKratosCourierSmtpConnectionUriOk
 
-`func (o *ProjectRevision) GetKratosCourierSmtpConnectionUriOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosCourierSmtpConnectionUriOk() (*string, bool)`
 
 GetKratosCourierSmtpConnectionUriOk returns a tuple with the KratosCourierSmtpConnectionUri field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosCourierSmtpConnectionUri
 
-`func (o *ProjectRevision) SetKratosCourierSmtpConnectionUri(v string)`
+`func (o *NormalizedProjectRevision) SetKratosCourierSmtpConnectionUri(v string)`
 
 SetKratosCourierSmtpConnectionUri sets KratosCourierSmtpConnectionUri field to given value.
 
 ### HasKratosCourierSmtpConnectionUri
 
-`func (o *ProjectRevision) HasKratosCourierSmtpConnectionUri() bool`
+`func (o *NormalizedProjectRevision) HasKratosCourierSmtpConnectionUri() bool`
 
 HasKratosCourierSmtpConnectionUri returns a boolean if a field has been set.
 
 ### GetKratosCourierSmtpFromAddress
 
-`func (o *ProjectRevision) GetKratosCourierSmtpFromAddress() string`
+`func (o *NormalizedProjectRevision) GetKratosCourierSmtpFromAddress() string`
 
 GetKratosCourierSmtpFromAddress returns the KratosCourierSmtpFromAddress field if non-nil, zero value otherwise.
 
 ### GetKratosCourierSmtpFromAddressOk
 
-`func (o *ProjectRevision) GetKratosCourierSmtpFromAddressOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosCourierSmtpFromAddressOk() (*string, bool)`
 
 GetKratosCourierSmtpFromAddressOk returns a tuple with the KratosCourierSmtpFromAddress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosCourierSmtpFromAddress
 
-`func (o *ProjectRevision) SetKratosCourierSmtpFromAddress(v string)`
+`func (o *NormalizedProjectRevision) SetKratosCourierSmtpFromAddress(v string)`
 
 SetKratosCourierSmtpFromAddress sets KratosCourierSmtpFromAddress field to given value.
 
 ### HasKratosCourierSmtpFromAddress
 
-`func (o *ProjectRevision) HasKratosCourierSmtpFromAddress() bool`
+`func (o *NormalizedProjectRevision) HasKratosCourierSmtpFromAddress() bool`
 
 HasKratosCourierSmtpFromAddress returns a boolean if a field has been set.
 
 ### GetKratosCourierSmtpFromName
 
-`func (o *ProjectRevision) GetKratosCourierSmtpFromName() string`
+`func (o *NormalizedProjectRevision) GetKratosCourierSmtpFromName() string`
 
 GetKratosCourierSmtpFromName returns the KratosCourierSmtpFromName field if non-nil, zero value otherwise.
 
 ### GetKratosCourierSmtpFromNameOk
 
-`func (o *ProjectRevision) GetKratosCourierSmtpFromNameOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosCourierSmtpFromNameOk() (*string, bool)`
 
 GetKratosCourierSmtpFromNameOk returns a tuple with the KratosCourierSmtpFromName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosCourierSmtpFromName
 
-`func (o *ProjectRevision) SetKratosCourierSmtpFromName(v string)`
+`func (o *NormalizedProjectRevision) SetKratosCourierSmtpFromName(v string)`
 
 SetKratosCourierSmtpFromName sets KratosCourierSmtpFromName field to given value.
 
 ### HasKratosCourierSmtpFromName
 
-`func (o *ProjectRevision) HasKratosCourierSmtpFromName() bool`
+`func (o *NormalizedProjectRevision) HasKratosCourierSmtpFromName() bool`
 
 HasKratosCourierSmtpFromName returns a boolean if a field has been set.
 
 ### GetKratosCourierSmtpHeaders
 
-`func (o *ProjectRevision) GetKratosCourierSmtpHeaders() map[string]interface{}`
+`func (o *NormalizedProjectRevision) GetKratosCourierSmtpHeaders() map[string]interface{}`
 
 GetKratosCourierSmtpHeaders returns the KratosCourierSmtpHeaders field if non-nil, zero value otherwise.
 
 ### GetKratosCourierSmtpHeadersOk
 
-`func (o *ProjectRevision) GetKratosCourierSmtpHeadersOk() (*map[string]interface{}, bool)`
+`func (o *NormalizedProjectRevision) GetKratosCourierSmtpHeadersOk() (*map[string]interface{}, bool)`
 
 GetKratosCourierSmtpHeadersOk returns a tuple with the KratosCourierSmtpHeaders field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosCourierSmtpHeaders
 
-`func (o *ProjectRevision) SetKratosCourierSmtpHeaders(v map[string]interface{})`
+`func (o *NormalizedProjectRevision) SetKratosCourierSmtpHeaders(v map[string]interface{})`
 
 SetKratosCourierSmtpHeaders sets KratosCourierSmtpHeaders field to given value.
 
 ### HasKratosCourierSmtpHeaders
 
-`func (o *ProjectRevision) HasKratosCourierSmtpHeaders() bool`
+`func (o *NormalizedProjectRevision) HasKratosCourierSmtpHeaders() bool`
 
 HasKratosCourierSmtpHeaders returns a boolean if a field has been set.
 
+### GetKratosCourierTemplatesRecoveryInvalidEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryInvalidEmailBodyHtml() string`
+
+GetKratosCourierTemplatesRecoveryInvalidEmailBodyHtml returns the KratosCourierTemplatesRecoveryInvalidEmailBodyHtml field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesRecoveryInvalidEmailBodyHtmlOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryInvalidEmailBodyHtmlOk() (*string, bool)`
+
+GetKratosCourierTemplatesRecoveryInvalidEmailBodyHtmlOk returns a tuple with the KratosCourierTemplatesRecoveryInvalidEmailBodyHtml field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesRecoveryInvalidEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRecoveryInvalidEmailBodyHtml(v string)`
+
+SetKratosCourierTemplatesRecoveryInvalidEmailBodyHtml sets KratosCourierTemplatesRecoveryInvalidEmailBodyHtml field to given value.
+
+### HasKratosCourierTemplatesRecoveryInvalidEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRecoveryInvalidEmailBodyHtml() bool`
+
+HasKratosCourierTemplatesRecoveryInvalidEmailBodyHtml returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext() string`
+
+GetKratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext returns the KratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesRecoveryInvalidEmailBodyPlaintextOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryInvalidEmailBodyPlaintextOk() (*string, bool)`
+
+GetKratosCourierTemplatesRecoveryInvalidEmailBodyPlaintextOk returns a tuple with the KratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext(v string)`
+
+SetKratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext sets KratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext field to given value.
+
+### HasKratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext() bool`
+
+HasKratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesRecoveryInvalidEmailSubject
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryInvalidEmailSubject() string`
+
+GetKratosCourierTemplatesRecoveryInvalidEmailSubject returns the KratosCourierTemplatesRecoveryInvalidEmailSubject field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesRecoveryInvalidEmailSubjectOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryInvalidEmailSubjectOk() (*string, bool)`
+
+GetKratosCourierTemplatesRecoveryInvalidEmailSubjectOk returns a tuple with the KratosCourierTemplatesRecoveryInvalidEmailSubject field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesRecoveryInvalidEmailSubject
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRecoveryInvalidEmailSubject(v string)`
+
+SetKratosCourierTemplatesRecoveryInvalidEmailSubject sets KratosCourierTemplatesRecoveryInvalidEmailSubject field to given value.
+
+### HasKratosCourierTemplatesRecoveryInvalidEmailSubject
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRecoveryInvalidEmailSubject() bool`
+
+HasKratosCourierTemplatesRecoveryInvalidEmailSubject returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesRecoveryValidEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryValidEmailBodyHtml() string`
+
+GetKratosCourierTemplatesRecoveryValidEmailBodyHtml returns the KratosCourierTemplatesRecoveryValidEmailBodyHtml field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesRecoveryValidEmailBodyHtmlOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryValidEmailBodyHtmlOk() (*string, bool)`
+
+GetKratosCourierTemplatesRecoveryValidEmailBodyHtmlOk returns a tuple with the KratosCourierTemplatesRecoveryValidEmailBodyHtml field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesRecoveryValidEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRecoveryValidEmailBodyHtml(v string)`
+
+SetKratosCourierTemplatesRecoveryValidEmailBodyHtml sets KratosCourierTemplatesRecoveryValidEmailBodyHtml field to given value.
+
+### HasKratosCourierTemplatesRecoveryValidEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRecoveryValidEmailBodyHtml() bool`
+
+HasKratosCourierTemplatesRecoveryValidEmailBodyHtml returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesRecoveryValidEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryValidEmailBodyPlaintext() string`
+
+GetKratosCourierTemplatesRecoveryValidEmailBodyPlaintext returns the KratosCourierTemplatesRecoveryValidEmailBodyPlaintext field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesRecoveryValidEmailBodyPlaintextOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryValidEmailBodyPlaintextOk() (*string, bool)`
+
+GetKratosCourierTemplatesRecoveryValidEmailBodyPlaintextOk returns a tuple with the KratosCourierTemplatesRecoveryValidEmailBodyPlaintext field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesRecoveryValidEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRecoveryValidEmailBodyPlaintext(v string)`
+
+SetKratosCourierTemplatesRecoveryValidEmailBodyPlaintext sets KratosCourierTemplatesRecoveryValidEmailBodyPlaintext field to given value.
+
+### HasKratosCourierTemplatesRecoveryValidEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRecoveryValidEmailBodyPlaintext() bool`
+
+HasKratosCourierTemplatesRecoveryValidEmailBodyPlaintext returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesRecoveryValidEmailSubject
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryValidEmailSubject() string`
+
+GetKratosCourierTemplatesRecoveryValidEmailSubject returns the KratosCourierTemplatesRecoveryValidEmailSubject field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesRecoveryValidEmailSubjectOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryValidEmailSubjectOk() (*string, bool)`
+
+GetKratosCourierTemplatesRecoveryValidEmailSubjectOk returns a tuple with the KratosCourierTemplatesRecoveryValidEmailSubject field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesRecoveryValidEmailSubject
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRecoveryValidEmailSubject(v string)`
+
+SetKratosCourierTemplatesRecoveryValidEmailSubject sets KratosCourierTemplatesRecoveryValidEmailSubject field to given value.
+
+### HasKratosCourierTemplatesRecoveryValidEmailSubject
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRecoveryValidEmailSubject() bool`
+
+HasKratosCourierTemplatesRecoveryValidEmailSubject returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesVerificationInvalidEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationInvalidEmailBodyHtml() string`
+
+GetKratosCourierTemplatesVerificationInvalidEmailBodyHtml returns the KratosCourierTemplatesVerificationInvalidEmailBodyHtml field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesVerificationInvalidEmailBodyHtmlOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationInvalidEmailBodyHtmlOk() (*string, bool)`
+
+GetKratosCourierTemplatesVerificationInvalidEmailBodyHtmlOk returns a tuple with the KratosCourierTemplatesVerificationInvalidEmailBodyHtml field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesVerificationInvalidEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerificationInvalidEmailBodyHtml(v string)`
+
+SetKratosCourierTemplatesVerificationInvalidEmailBodyHtml sets KratosCourierTemplatesVerificationInvalidEmailBodyHtml field to given value.
+
+### HasKratosCourierTemplatesVerificationInvalidEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerificationInvalidEmailBodyHtml() bool`
+
+HasKratosCourierTemplatesVerificationInvalidEmailBodyHtml returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesVerificationInvalidEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationInvalidEmailBodyPlaintext() string`
+
+GetKratosCourierTemplatesVerificationInvalidEmailBodyPlaintext returns the KratosCourierTemplatesVerificationInvalidEmailBodyPlaintext field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesVerificationInvalidEmailBodyPlaintextOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationInvalidEmailBodyPlaintextOk() (*string, bool)`
+
+GetKratosCourierTemplatesVerificationInvalidEmailBodyPlaintextOk returns a tuple with the KratosCourierTemplatesVerificationInvalidEmailBodyPlaintext field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesVerificationInvalidEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerificationInvalidEmailBodyPlaintext(v string)`
+
+SetKratosCourierTemplatesVerificationInvalidEmailBodyPlaintext sets KratosCourierTemplatesVerificationInvalidEmailBodyPlaintext field to given value.
+
+### HasKratosCourierTemplatesVerificationInvalidEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerificationInvalidEmailBodyPlaintext() bool`
+
+HasKratosCourierTemplatesVerificationInvalidEmailBodyPlaintext returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesVerificationInvalidEmailSubject
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationInvalidEmailSubject() string`
+
+GetKratosCourierTemplatesVerificationInvalidEmailSubject returns the KratosCourierTemplatesVerificationInvalidEmailSubject field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesVerificationInvalidEmailSubjectOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationInvalidEmailSubjectOk() (*string, bool)`
+
+GetKratosCourierTemplatesVerificationInvalidEmailSubjectOk returns a tuple with the KratosCourierTemplatesVerificationInvalidEmailSubject field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesVerificationInvalidEmailSubject
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerificationInvalidEmailSubject(v string)`
+
+SetKratosCourierTemplatesVerificationInvalidEmailSubject sets KratosCourierTemplatesVerificationInvalidEmailSubject field to given value.
+
+### HasKratosCourierTemplatesVerificationInvalidEmailSubject
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerificationInvalidEmailSubject() bool`
+
+HasKratosCourierTemplatesVerificationInvalidEmailSubject returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesVerificationValidEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationValidEmailBodyHtml() string`
+
+GetKratosCourierTemplatesVerificationValidEmailBodyHtml returns the KratosCourierTemplatesVerificationValidEmailBodyHtml field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesVerificationValidEmailBodyHtmlOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationValidEmailBodyHtmlOk() (*string, bool)`
+
+GetKratosCourierTemplatesVerificationValidEmailBodyHtmlOk returns a tuple with the KratosCourierTemplatesVerificationValidEmailBodyHtml field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesVerificationValidEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerificationValidEmailBodyHtml(v string)`
+
+SetKratosCourierTemplatesVerificationValidEmailBodyHtml sets KratosCourierTemplatesVerificationValidEmailBodyHtml field to given value.
+
+### HasKratosCourierTemplatesVerificationValidEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerificationValidEmailBodyHtml() bool`
+
+HasKratosCourierTemplatesVerificationValidEmailBodyHtml returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesVerificationValidEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationValidEmailBodyPlaintext() string`
+
+GetKratosCourierTemplatesVerificationValidEmailBodyPlaintext returns the KratosCourierTemplatesVerificationValidEmailBodyPlaintext field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesVerificationValidEmailBodyPlaintextOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationValidEmailBodyPlaintextOk() (*string, bool)`
+
+GetKratosCourierTemplatesVerificationValidEmailBodyPlaintextOk returns a tuple with the KratosCourierTemplatesVerificationValidEmailBodyPlaintext field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesVerificationValidEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerificationValidEmailBodyPlaintext(v string)`
+
+SetKratosCourierTemplatesVerificationValidEmailBodyPlaintext sets KratosCourierTemplatesVerificationValidEmailBodyPlaintext field to given value.
+
+### HasKratosCourierTemplatesVerificationValidEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerificationValidEmailBodyPlaintext() bool`
+
+HasKratosCourierTemplatesVerificationValidEmailBodyPlaintext returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesVerificationValidEmailSubject
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationValidEmailSubject() string`
+
+GetKratosCourierTemplatesVerificationValidEmailSubject returns the KratosCourierTemplatesVerificationValidEmailSubject field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesVerificationValidEmailSubjectOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationValidEmailSubjectOk() (*string, bool)`
+
+GetKratosCourierTemplatesVerificationValidEmailSubjectOk returns a tuple with the KratosCourierTemplatesVerificationValidEmailSubject field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesVerificationValidEmailSubject
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerificationValidEmailSubject(v string)`
+
+SetKratosCourierTemplatesVerificationValidEmailSubject sets KratosCourierTemplatesVerificationValidEmailSubject field to given value.
+
+### HasKratosCourierTemplatesVerificationValidEmailSubject
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerificationValidEmailSubject() bool`
+
+HasKratosCourierTemplatesVerificationValidEmailSubject returns a boolean if a field has been set.
+
 ### GetKratosIdentitySchemas
 
-`func (o *ProjectRevision) GetKratosIdentitySchemas() []ProjectRevisionIdentitySchema`
+`func (o *NormalizedProjectRevision) GetKratosIdentitySchemas() []NormalizedProjectRevisionIdentitySchema`
 
 GetKratosIdentitySchemas returns the KratosIdentitySchemas field if non-nil, zero value otherwise.
 
 ### GetKratosIdentitySchemasOk
 
-`func (o *ProjectRevision) GetKratosIdentitySchemasOk() (*[]ProjectRevisionIdentitySchema, bool)`
+`func (o *NormalizedProjectRevision) GetKratosIdentitySchemasOk() (*[]NormalizedProjectRevisionIdentitySchema, bool)`
 
 GetKratosIdentitySchemasOk returns a tuple with the KratosIdentitySchemas field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosIdentitySchemas
 
-`func (o *ProjectRevision) SetKratosIdentitySchemas(v []ProjectRevisionIdentitySchema)`
+`func (o *NormalizedProjectRevision) SetKratosIdentitySchemas(v []NormalizedProjectRevisionIdentitySchema)`
 
 SetKratosIdentitySchemas sets KratosIdentitySchemas field to given value.
 
 ### HasKratosIdentitySchemas
 
-`func (o *ProjectRevision) HasKratosIdentitySchemas() bool`
+`func (o *NormalizedProjectRevision) HasKratosIdentitySchemas() bool`
 
 HasKratosIdentitySchemas returns a boolean if a field has been set.
 
 ### GetKratosSecretsCipher
 
-`func (o *ProjectRevision) GetKratosSecretsCipher() []string`
+`func (o *NormalizedProjectRevision) GetKratosSecretsCipher() []string`
 
 GetKratosSecretsCipher returns the KratosSecretsCipher field if non-nil, zero value otherwise.
 
 ### GetKratosSecretsCipherOk
 
-`func (o *ProjectRevision) GetKratosSecretsCipherOk() (*[]string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSecretsCipherOk() (*[]string, bool)`
 
 GetKratosSecretsCipherOk returns a tuple with the KratosSecretsCipher field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSecretsCipher
 
-`func (o *ProjectRevision) SetKratosSecretsCipher(v []string)`
+`func (o *NormalizedProjectRevision) SetKratosSecretsCipher(v []string)`
 
 SetKratosSecretsCipher sets KratosSecretsCipher field to given value.
 
 ### HasKratosSecretsCipher
 
-`func (o *ProjectRevision) HasKratosSecretsCipher() bool`
+`func (o *NormalizedProjectRevision) HasKratosSecretsCipher() bool`
 
 HasKratosSecretsCipher returns a boolean if a field has been set.
 
 ### GetKratosSecretsCookie
 
-`func (o *ProjectRevision) GetKratosSecretsCookie() []string`
+`func (o *NormalizedProjectRevision) GetKratosSecretsCookie() []string`
 
 GetKratosSecretsCookie returns the KratosSecretsCookie field if non-nil, zero value otherwise.
 
 ### GetKratosSecretsCookieOk
 
-`func (o *ProjectRevision) GetKratosSecretsCookieOk() (*[]string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSecretsCookieOk() (*[]string, bool)`
 
 GetKratosSecretsCookieOk returns a tuple with the KratosSecretsCookie field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSecretsCookie
 
-`func (o *ProjectRevision) SetKratosSecretsCookie(v []string)`
+`func (o *NormalizedProjectRevision) SetKratosSecretsCookie(v []string)`
 
 SetKratosSecretsCookie sets KratosSecretsCookie field to given value.
 
 ### HasKratosSecretsCookie
 
-`func (o *ProjectRevision) HasKratosSecretsCookie() bool`
+`func (o *NormalizedProjectRevision) HasKratosSecretsCookie() bool`
 
 HasKratosSecretsCookie returns a boolean if a field has been set.
 
 ### GetKratosSecretsDefault
 
-`func (o *ProjectRevision) GetKratosSecretsDefault() []string`
+`func (o *NormalizedProjectRevision) GetKratosSecretsDefault() []string`
 
 GetKratosSecretsDefault returns the KratosSecretsDefault field if non-nil, zero value otherwise.
 
 ### GetKratosSecretsDefaultOk
 
-`func (o *ProjectRevision) GetKratosSecretsDefaultOk() (*[]string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSecretsDefaultOk() (*[]string, bool)`
 
 GetKratosSecretsDefaultOk returns a tuple with the KratosSecretsDefault field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSecretsDefault
 
-`func (o *ProjectRevision) SetKratosSecretsDefault(v []string)`
+`func (o *NormalizedProjectRevision) SetKratosSecretsDefault(v []string)`
 
 SetKratosSecretsDefault sets KratosSecretsDefault field to given value.
 
 ### HasKratosSecretsDefault
 
-`func (o *ProjectRevision) HasKratosSecretsDefault() bool`
+`func (o *NormalizedProjectRevision) HasKratosSecretsDefault() bool`
 
 HasKratosSecretsDefault returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceAllowedReturnUrls
 
-`func (o *ProjectRevision) GetKratosSelfserviceAllowedReturnUrls() []string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceAllowedReturnUrls() []string`
 
 GetKratosSelfserviceAllowedReturnUrls returns the KratosSelfserviceAllowedReturnUrls field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceAllowedReturnUrlsOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceAllowedReturnUrlsOk() (*[]string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceAllowedReturnUrlsOk() (*[]string, bool)`
 
 GetKratosSelfserviceAllowedReturnUrlsOk returns a tuple with the KratosSelfserviceAllowedReturnUrls field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceAllowedReturnUrls
 
-`func (o *ProjectRevision) SetKratosSelfserviceAllowedReturnUrls(v []string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceAllowedReturnUrls(v []string)`
 
 SetKratosSelfserviceAllowedReturnUrls sets KratosSelfserviceAllowedReturnUrls field to given value.
 
 ### HasKratosSelfserviceAllowedReturnUrls
 
-`func (o *ProjectRevision) HasKratosSelfserviceAllowedReturnUrls() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceAllowedReturnUrls() bool`
 
 HasKratosSelfserviceAllowedReturnUrls returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) GetKratosSelfserviceDefaultBrowserReturnUrl() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceDefaultBrowserReturnUrl() string`
 
 GetKratosSelfserviceDefaultBrowserReturnUrl returns the KratosSelfserviceDefaultBrowserReturnUrl field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceDefaultBrowserReturnUrlOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceDefaultBrowserReturnUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceDefaultBrowserReturnUrlOk() (*string, bool)`
 
 GetKratosSelfserviceDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceDefaultBrowserReturnUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) SetKratosSelfserviceDefaultBrowserReturnUrl(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceDefaultBrowserReturnUrl(v string)`
 
 SetKratosSelfserviceDefaultBrowserReturnUrl sets KratosSelfserviceDefaultBrowserReturnUrl field to given value.
 
 ### HasKratosSelfserviceDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) HasKratosSelfserviceDefaultBrowserReturnUrl() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceDefaultBrowserReturnUrl() bool`
 
 HasKratosSelfserviceDefaultBrowserReturnUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsErrorUiUrl
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsErrorUiUrl() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsErrorUiUrl() string`
 
 GetKratosSelfserviceFlowsErrorUiUrl returns the KratosSelfserviceFlowsErrorUiUrl field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsErrorUiUrlOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsErrorUiUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsErrorUiUrlOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsErrorUiUrlOk returns a tuple with the KratosSelfserviceFlowsErrorUiUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsErrorUiUrl
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsErrorUiUrl(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsErrorUiUrl(v string)`
 
 SetKratosSelfserviceFlowsErrorUiUrl sets KratosSelfserviceFlowsErrorUiUrl field to given value.
 
 ### HasKratosSelfserviceFlowsErrorUiUrl
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsErrorUiUrl() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsErrorUiUrl() bool`
 
 HasKratosSelfserviceFlowsErrorUiUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsHooks
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsHooks() []ProjectRevisionHook`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsHooks() []NormalizedProjectRevisionHook`
 
 GetKratosSelfserviceFlowsHooks returns the KratosSelfserviceFlowsHooks field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsHooksOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsHooksOk() (*[]ProjectRevisionHook, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsHooksOk() (*[]NormalizedProjectRevisionHook, bool)`
 
 GetKratosSelfserviceFlowsHooksOk returns a tuple with the KratosSelfserviceFlowsHooks field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsHooks
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsHooks(v []ProjectRevisionHook)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsHooks(v []NormalizedProjectRevisionHook)`
 
 SetKratosSelfserviceFlowsHooks sets KratosSelfserviceFlowsHooks field to given value.
 
 ### HasKratosSelfserviceFlowsHooks
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsHooks() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsHooks() bool`
 
 HasKratosSelfserviceFlowsHooks returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl() string`
 
 GetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrlOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrlOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl(v string)`
 
 SetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl sets KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl field to given value.
 
 ### HasKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl() bool`
 
 HasKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl() string`
 
 GetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrlOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrlOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl(v string)`
 
 SetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl sets KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl field to given value.
 
 ### HasKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl() bool`
 
 HasKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl() string`
 
 GetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrlOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrlOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl(v string)`
 
 SetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl sets KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl field to given value.
 
 ### HasKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl() bool`
 
 HasKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl returns a boolean if a field has been set.
 
+### GetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl() string`
+
+GetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrlOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrlOk() (*string, bool)`
+
+GetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl(v string)`
+
+SetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl sets KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl field to given value.
+
+### HasKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl() bool`
+
+HasKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl returns a boolean if a field has been set.
+
 ### GetKratosSelfserviceFlowsLoginLifespan
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginLifespan() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginLifespan() string`
 
 GetKratosSelfserviceFlowsLoginLifespan returns the KratosSelfserviceFlowsLoginLifespan field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsLoginLifespanOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginLifespanOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginLifespanOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsLoginLifespanOk returns a tuple with the KratosSelfserviceFlowsLoginLifespan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsLoginLifespan
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsLoginLifespan(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginLifespan(v string)`
 
 SetKratosSelfserviceFlowsLoginLifespan sets KratosSelfserviceFlowsLoginLifespan field to given value.
 
 ### HasKratosSelfserviceFlowsLoginLifespan
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsLoginLifespan() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginLifespan() bool`
 
 HasKratosSelfserviceFlowsLoginLifespan returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsLoginUiUrl
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginUiUrl() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginUiUrl() string`
 
 GetKratosSelfserviceFlowsLoginUiUrl returns the KratosSelfserviceFlowsLoginUiUrl field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsLoginUiUrlOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginUiUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginUiUrlOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsLoginUiUrlOk returns a tuple with the KratosSelfserviceFlowsLoginUiUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsLoginUiUrl
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsLoginUiUrl(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginUiUrl(v string)`
 
 SetKratosSelfserviceFlowsLoginUiUrl sets KratosSelfserviceFlowsLoginUiUrl field to given value.
 
 ### HasKratosSelfserviceFlowsLoginUiUrl
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsLoginUiUrl() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginUiUrl() bool`
 
 HasKratosSelfserviceFlowsLoginUiUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl() string`
 
 GetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrlOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrlOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl(v string)`
 
 SetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl sets KratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl field to given value.
 
 ### HasKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl() bool`
 
 HasKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl() string`
 
 GetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrlOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrlOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl(v string)`
 
 SetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl sets KratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl field to given value.
 
 ### HasKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl() bool`
 
 HasKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsRecoveryEnabled
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryEnabled() bool`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryEnabled() bool`
 
 GetKratosSelfserviceFlowsRecoveryEnabled returns the KratosSelfserviceFlowsRecoveryEnabled field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsRecoveryEnabledOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryEnabledOk() (*bool, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryEnabledOk() (*bool, bool)`
 
 GetKratosSelfserviceFlowsRecoveryEnabledOk returns a tuple with the KratosSelfserviceFlowsRecoveryEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsRecoveryEnabled
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsRecoveryEnabled(v bool)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRecoveryEnabled(v bool)`
 
 SetKratosSelfserviceFlowsRecoveryEnabled sets KratosSelfserviceFlowsRecoveryEnabled field to given value.
 
 ### HasKratosSelfserviceFlowsRecoveryEnabled
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsRecoveryEnabled() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRecoveryEnabled() bool`
 
 HasKratosSelfserviceFlowsRecoveryEnabled returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsRecoveryLifespan
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryLifespan() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryLifespan() string`
 
 GetKratosSelfserviceFlowsRecoveryLifespan returns the KratosSelfserviceFlowsRecoveryLifespan field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsRecoveryLifespanOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryLifespanOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryLifespanOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsRecoveryLifespanOk returns a tuple with the KratosSelfserviceFlowsRecoveryLifespan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsRecoveryLifespan
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsRecoveryLifespan(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRecoveryLifespan(v string)`
 
 SetKratosSelfserviceFlowsRecoveryLifespan sets KratosSelfserviceFlowsRecoveryLifespan field to given value.
 
 ### HasKratosSelfserviceFlowsRecoveryLifespan
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsRecoveryLifespan() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRecoveryLifespan() bool`
 
 HasKratosSelfserviceFlowsRecoveryLifespan returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsRecoveryUiUrl
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryUiUrl() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryUiUrl() string`
 
 GetKratosSelfserviceFlowsRecoveryUiUrl returns the KratosSelfserviceFlowsRecoveryUiUrl field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsRecoveryUiUrlOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryUiUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryUiUrlOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsRecoveryUiUrlOk returns a tuple with the KratosSelfserviceFlowsRecoveryUiUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsRecoveryUiUrl
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsRecoveryUiUrl(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRecoveryUiUrl(v string)`
 
 SetKratosSelfserviceFlowsRecoveryUiUrl sets KratosSelfserviceFlowsRecoveryUiUrl field to given value.
 
 ### HasKratosSelfserviceFlowsRecoveryUiUrl
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsRecoveryUiUrl() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRecoveryUiUrl() bool`
 
 HasKratosSelfserviceFlowsRecoveryUiUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl() string`
 
 GetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrlOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrlOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl(v string)`
 
 SetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl sets KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl field to given value.
 
 ### HasKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl() bool`
 
 HasKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl() string`
 
 GetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrlOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrlOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl(v string)`
 
 SetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl sets KratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl field to given value.
 
 ### HasKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl() bool`
 
 HasKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl() string`
 
 GetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrlOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrlOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl(v string)`
 
 SetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl sets KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl field to given value.
 
 ### HasKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl() bool`
 
 HasKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl returns a boolean if a field has been set.
 
+### GetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl() string`
+
+GetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrlOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrlOk() (*string, bool)`
+
+GetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl(v string)`
+
+SetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl sets KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl field to given value.
+
+### HasKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl() bool`
+
+HasKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl returns a boolean if a field has been set.
+
+### GetKratosSelfserviceFlowsRegistrationEnabled
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationEnabled() bool`
+
+GetKratosSelfserviceFlowsRegistrationEnabled returns the KratosSelfserviceFlowsRegistrationEnabled field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceFlowsRegistrationEnabledOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationEnabledOk() (*bool, bool)`
+
+GetKratosSelfserviceFlowsRegistrationEnabledOk returns a tuple with the KratosSelfserviceFlowsRegistrationEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceFlowsRegistrationEnabled
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationEnabled(v bool)`
+
+SetKratosSelfserviceFlowsRegistrationEnabled sets KratosSelfserviceFlowsRegistrationEnabled field to given value.
+
+### HasKratosSelfserviceFlowsRegistrationEnabled
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRegistrationEnabled() bool`
+
+HasKratosSelfserviceFlowsRegistrationEnabled returns a boolean if a field has been set.
+
+### SetKratosSelfserviceFlowsRegistrationEnabledNil
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationEnabledNil(b bool)`
+
+ SetKratosSelfserviceFlowsRegistrationEnabledNil sets the value for KratosSelfserviceFlowsRegistrationEnabled to be an explicit nil
+
+### UnsetKratosSelfserviceFlowsRegistrationEnabled
+`func (o *NormalizedProjectRevision) UnsetKratosSelfserviceFlowsRegistrationEnabled()`
+
+UnsetKratosSelfserviceFlowsRegistrationEnabled ensures that no value is present for KratosSelfserviceFlowsRegistrationEnabled, not even an explicit nil
 ### GetKratosSelfserviceFlowsRegistrationLifespan
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationLifespan() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationLifespan() string`
 
 GetKratosSelfserviceFlowsRegistrationLifespan returns the KratosSelfserviceFlowsRegistrationLifespan field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsRegistrationLifespanOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationLifespanOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationLifespanOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsRegistrationLifespanOk returns a tuple with the KratosSelfserviceFlowsRegistrationLifespan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsRegistrationLifespan
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsRegistrationLifespan(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationLifespan(v string)`
 
 SetKratosSelfserviceFlowsRegistrationLifespan sets KratosSelfserviceFlowsRegistrationLifespan field to given value.
 
 ### HasKratosSelfserviceFlowsRegistrationLifespan
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsRegistrationLifespan() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRegistrationLifespan() bool`
 
 HasKratosSelfserviceFlowsRegistrationLifespan returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsRegistrationUiUrl
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationUiUrl() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationUiUrl() string`
 
 GetKratosSelfserviceFlowsRegistrationUiUrl returns the KratosSelfserviceFlowsRegistrationUiUrl field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsRegistrationUiUrlOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationUiUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationUiUrlOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsRegistrationUiUrlOk returns a tuple with the KratosSelfserviceFlowsRegistrationUiUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsRegistrationUiUrl
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsRegistrationUiUrl(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationUiUrl(v string)`
 
 SetKratosSelfserviceFlowsRegistrationUiUrl sets KratosSelfserviceFlowsRegistrationUiUrl field to given value.
 
 ### HasKratosSelfserviceFlowsRegistrationUiUrl
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsRegistrationUiUrl() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRegistrationUiUrl() bool`
 
 HasKratosSelfserviceFlowsRegistrationUiUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl() string`
 
 GetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrlOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrlOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl(v string)`
 
 SetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl sets KratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl field to given value.
 
 ### HasKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl() bool`
 
 HasKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl() string`
 
 GetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrlOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrlOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl(v string)`
 
 SetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl sets KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl field to given value.
 
 ### HasKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl() bool`
 
 HasKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl() string`
 
 GetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrlOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrlOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl(v string)`
 
 SetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl sets KratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl field to given value.
 
 ### HasKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl() bool`
 
 HasKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsSettingsLifespan
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsLifespan() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsLifespan() string`
 
 GetKratosSelfserviceFlowsSettingsLifespan returns the KratosSelfserviceFlowsSettingsLifespan field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsSettingsLifespanOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsLifespanOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsLifespanOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsSettingsLifespanOk returns a tuple with the KratosSelfserviceFlowsSettingsLifespan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsSettingsLifespan
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsSettingsLifespan(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsSettingsLifespan(v string)`
 
 SetKratosSelfserviceFlowsSettingsLifespan sets KratosSelfserviceFlowsSettingsLifespan field to given value.
 
 ### HasKratosSelfserviceFlowsSettingsLifespan
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsLifespan() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsSettingsLifespan() bool`
 
 HasKratosSelfserviceFlowsSettingsLifespan returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge() string`
 
 GetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge returns the KratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAgeOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAgeOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAgeOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAgeOk returns a tuple with the KratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge(v string)`
 
 SetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge sets KratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge field to given value.
 
 ### HasKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge() bool`
 
 HasKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsSettingsRequiredAal
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsRequiredAal() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsRequiredAal() string`
 
 GetKratosSelfserviceFlowsSettingsRequiredAal returns the KratosSelfserviceFlowsSettingsRequiredAal field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsSettingsRequiredAalOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsRequiredAalOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsRequiredAalOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsSettingsRequiredAalOk returns a tuple with the KratosSelfserviceFlowsSettingsRequiredAal field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsSettingsRequiredAal
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsSettingsRequiredAal(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsSettingsRequiredAal(v string)`
 
 SetKratosSelfserviceFlowsSettingsRequiredAal sets KratosSelfserviceFlowsSettingsRequiredAal field to given value.
 
 ### HasKratosSelfserviceFlowsSettingsRequiredAal
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsRequiredAal() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsSettingsRequiredAal() bool`
 
 HasKratosSelfserviceFlowsSettingsRequiredAal returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsSettingsUiUrl
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsUiUrl() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsUiUrl() string`
 
 GetKratosSelfserviceFlowsSettingsUiUrl returns the KratosSelfserviceFlowsSettingsUiUrl field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsSettingsUiUrlOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsUiUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsUiUrlOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsSettingsUiUrlOk returns a tuple with the KratosSelfserviceFlowsSettingsUiUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsSettingsUiUrl
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsSettingsUiUrl(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsSettingsUiUrl(v string)`
 
 SetKratosSelfserviceFlowsSettingsUiUrl sets KratosSelfserviceFlowsSettingsUiUrl field to given value.
 
 ### HasKratosSelfserviceFlowsSettingsUiUrl
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsUiUrl() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsSettingsUiUrl() bool`
 
 HasKratosSelfserviceFlowsSettingsUiUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl() string`
 
 GetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrlOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrlOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl(v string)`
 
 SetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl sets KratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl field to given value.
 
 ### HasKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl() bool`
 
 HasKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsVerificationEnabled
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationEnabled() bool`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationEnabled() bool`
 
 GetKratosSelfserviceFlowsVerificationEnabled returns the KratosSelfserviceFlowsVerificationEnabled field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsVerificationEnabledOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationEnabledOk() (*bool, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationEnabledOk() (*bool, bool)`
 
 GetKratosSelfserviceFlowsVerificationEnabledOk returns a tuple with the KratosSelfserviceFlowsVerificationEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsVerificationEnabled
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsVerificationEnabled(v bool)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsVerificationEnabled(v bool)`
 
 SetKratosSelfserviceFlowsVerificationEnabled sets KratosSelfserviceFlowsVerificationEnabled field to given value.
 
 ### HasKratosSelfserviceFlowsVerificationEnabled
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsVerificationEnabled() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsVerificationEnabled() bool`
 
 HasKratosSelfserviceFlowsVerificationEnabled returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsVerificationLifespan
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationLifespan() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationLifespan() string`
 
 GetKratosSelfserviceFlowsVerificationLifespan returns the KratosSelfserviceFlowsVerificationLifespan field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsVerificationLifespanOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationLifespanOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationLifespanOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsVerificationLifespanOk returns a tuple with the KratosSelfserviceFlowsVerificationLifespan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsVerificationLifespan
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsVerificationLifespan(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsVerificationLifespan(v string)`
 
 SetKratosSelfserviceFlowsVerificationLifespan sets KratosSelfserviceFlowsVerificationLifespan field to given value.
 
 ### HasKratosSelfserviceFlowsVerificationLifespan
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsVerificationLifespan() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsVerificationLifespan() bool`
 
 HasKratosSelfserviceFlowsVerificationLifespan returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsVerificationUiUrl
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationUiUrl() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationUiUrl() string`
 
 GetKratosSelfserviceFlowsVerificationUiUrl returns the KratosSelfserviceFlowsVerificationUiUrl field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceFlowsVerificationUiUrlOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationUiUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationUiUrlOk() (*string, bool)`
 
 GetKratosSelfserviceFlowsVerificationUiUrlOk returns a tuple with the KratosSelfserviceFlowsVerificationUiUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceFlowsVerificationUiUrl
 
-`func (o *ProjectRevision) SetKratosSelfserviceFlowsVerificationUiUrl(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsVerificationUiUrl(v string)`
 
 SetKratosSelfserviceFlowsVerificationUiUrl sets KratosSelfserviceFlowsVerificationUiUrl field to given value.
 
 ### HasKratosSelfserviceFlowsVerificationUiUrl
 
-`func (o *ProjectRevision) HasKratosSelfserviceFlowsVerificationUiUrl() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsVerificationUiUrl() bool`
 
 HasKratosSelfserviceFlowsVerificationUiUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsLinkConfigBaseUrl
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsLinkConfigBaseUrl() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLinkConfigBaseUrl() string`
 
 GetKratosSelfserviceMethodsLinkConfigBaseUrl returns the KratosSelfserviceMethodsLinkConfigBaseUrl field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceMethodsLinkConfigBaseUrlOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsLinkConfigBaseUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLinkConfigBaseUrlOk() (*string, bool)`
 
 GetKratosSelfserviceMethodsLinkConfigBaseUrlOk returns a tuple with the KratosSelfserviceMethodsLinkConfigBaseUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceMethodsLinkConfigBaseUrl
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsLinkConfigBaseUrl(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsLinkConfigBaseUrl(v string)`
 
 SetKratosSelfserviceMethodsLinkConfigBaseUrl sets KratosSelfserviceMethodsLinkConfigBaseUrl field to given value.
 
 ### HasKratosSelfserviceMethodsLinkConfigBaseUrl
 
-`func (o *ProjectRevision) HasKratosSelfserviceMethodsLinkConfigBaseUrl() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsLinkConfigBaseUrl() bool`
 
 HasKratosSelfserviceMethodsLinkConfigBaseUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsLinkConfigLifespan
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsLinkConfigLifespan() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLinkConfigLifespan() string`
 
 GetKratosSelfserviceMethodsLinkConfigLifespan returns the KratosSelfserviceMethodsLinkConfigLifespan field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceMethodsLinkConfigLifespanOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsLinkConfigLifespanOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLinkConfigLifespanOk() (*string, bool)`
 
 GetKratosSelfserviceMethodsLinkConfigLifespanOk returns a tuple with the KratosSelfserviceMethodsLinkConfigLifespan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceMethodsLinkConfigLifespan
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsLinkConfigLifespan(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsLinkConfigLifespan(v string)`
 
 SetKratosSelfserviceMethodsLinkConfigLifespan sets KratosSelfserviceMethodsLinkConfigLifespan field to given value.
 
 ### HasKratosSelfserviceMethodsLinkConfigLifespan
 
-`func (o *ProjectRevision) HasKratosSelfserviceMethodsLinkConfigLifespan() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsLinkConfigLifespan() bool`
 
 HasKratosSelfserviceMethodsLinkConfigLifespan returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsLinkEnabled
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsLinkEnabled() bool`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLinkEnabled() bool`
 
 GetKratosSelfserviceMethodsLinkEnabled returns the KratosSelfserviceMethodsLinkEnabled field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceMethodsLinkEnabledOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsLinkEnabledOk() (*bool, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLinkEnabledOk() (*bool, bool)`
 
 GetKratosSelfserviceMethodsLinkEnabledOk returns a tuple with the KratosSelfserviceMethodsLinkEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceMethodsLinkEnabled
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsLinkEnabled(v bool)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsLinkEnabled(v bool)`
 
 SetKratosSelfserviceMethodsLinkEnabled sets KratosSelfserviceMethodsLinkEnabled field to given value.
 
 ### HasKratosSelfserviceMethodsLinkEnabled
 
-`func (o *ProjectRevision) HasKratosSelfserviceMethodsLinkEnabled() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsLinkEnabled() bool`
 
 HasKratosSelfserviceMethodsLinkEnabled returns a boolean if a field has been set.
 
 ### SetKratosSelfserviceMethodsLinkEnabledNil
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsLinkEnabledNil(b bool)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsLinkEnabledNil(b bool)`
 
  SetKratosSelfserviceMethodsLinkEnabledNil sets the value for KratosSelfserviceMethodsLinkEnabled to be an explicit nil
 
 ### UnsetKratosSelfserviceMethodsLinkEnabled
-`func (o *ProjectRevision) UnsetKratosSelfserviceMethodsLinkEnabled()`
+`func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsLinkEnabled()`
 
 UnsetKratosSelfserviceMethodsLinkEnabled ensures that no value is present for KratosSelfserviceMethodsLinkEnabled, not even an explicit nil
 ### GetKratosSelfserviceMethodsLookupSecretEnabled
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsLookupSecretEnabled() bool`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLookupSecretEnabled() bool`
 
 GetKratosSelfserviceMethodsLookupSecretEnabled returns the KratosSelfserviceMethodsLookupSecretEnabled field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceMethodsLookupSecretEnabledOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsLookupSecretEnabledOk() (*bool, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLookupSecretEnabledOk() (*bool, bool)`
 
 GetKratosSelfserviceMethodsLookupSecretEnabledOk returns a tuple with the KratosSelfserviceMethodsLookupSecretEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceMethodsLookupSecretEnabled
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsLookupSecretEnabled(v bool)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsLookupSecretEnabled(v bool)`
 
 SetKratosSelfserviceMethodsLookupSecretEnabled sets KratosSelfserviceMethodsLookupSecretEnabled field to given value.
 
 ### HasKratosSelfserviceMethodsLookupSecretEnabled
 
-`func (o *ProjectRevision) HasKratosSelfserviceMethodsLookupSecretEnabled() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsLookupSecretEnabled() bool`
 
 HasKratosSelfserviceMethodsLookupSecretEnabled returns a boolean if a field has been set.
 
 ### SetKratosSelfserviceMethodsLookupSecretEnabledNil
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsLookupSecretEnabledNil(b bool)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsLookupSecretEnabledNil(b bool)`
 
  SetKratosSelfserviceMethodsLookupSecretEnabledNil sets the value for KratosSelfserviceMethodsLookupSecretEnabled to be an explicit nil
 
 ### UnsetKratosSelfserviceMethodsLookupSecretEnabled
-`func (o *ProjectRevision) UnsetKratosSelfserviceMethodsLookupSecretEnabled()`
+`func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsLookupSecretEnabled()`
 
 UnsetKratosSelfserviceMethodsLookupSecretEnabled ensures that no value is present for KratosSelfserviceMethodsLookupSecretEnabled, not even an explicit nil
+### GetKratosSelfserviceMethodsOidcConfigBaseRedirectUri
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsOidcConfigBaseRedirectUri() string`
+
+GetKratosSelfserviceMethodsOidcConfigBaseRedirectUri returns the KratosSelfserviceMethodsOidcConfigBaseRedirectUri field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsOidcConfigBaseRedirectUriOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsOidcConfigBaseRedirectUriOk() (*string, bool)`
+
+GetKratosSelfserviceMethodsOidcConfigBaseRedirectUriOk returns a tuple with the KratosSelfserviceMethodsOidcConfigBaseRedirectUri field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsOidcConfigBaseRedirectUri
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsOidcConfigBaseRedirectUri(v string)`
+
+SetKratosSelfserviceMethodsOidcConfigBaseRedirectUri sets KratosSelfserviceMethodsOidcConfigBaseRedirectUri field to given value.
+
+### HasKratosSelfserviceMethodsOidcConfigBaseRedirectUri
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsOidcConfigBaseRedirectUri() bool`
+
+HasKratosSelfserviceMethodsOidcConfigBaseRedirectUri returns a boolean if a field has been set.
+
 ### GetKratosSelfserviceMethodsOidcConfigProviders
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsOidcConfigProviders() []ProjectRevisionThirdPartyLoginProvider`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsOidcConfigProviders() []NormalizedProjectRevisionThirdPartyProvider`
 
 GetKratosSelfserviceMethodsOidcConfigProviders returns the KratosSelfserviceMethodsOidcConfigProviders field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceMethodsOidcConfigProvidersOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsOidcConfigProvidersOk() (*[]ProjectRevisionThirdPartyLoginProvider, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsOidcConfigProvidersOk() (*[]NormalizedProjectRevisionThirdPartyProvider, bool)`
 
 GetKratosSelfserviceMethodsOidcConfigProvidersOk returns a tuple with the KratosSelfserviceMethodsOidcConfigProviders field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceMethodsOidcConfigProviders
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsOidcConfigProviders(v []ProjectRevisionThirdPartyLoginProvider)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsOidcConfigProviders(v []NormalizedProjectRevisionThirdPartyProvider)`
 
 SetKratosSelfserviceMethodsOidcConfigProviders sets KratosSelfserviceMethodsOidcConfigProviders field to given value.
 
 ### HasKratosSelfserviceMethodsOidcConfigProviders
 
-`func (o *ProjectRevision) HasKratosSelfserviceMethodsOidcConfigProviders() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsOidcConfigProviders() bool`
 
 HasKratosSelfserviceMethodsOidcConfigProviders returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsOidcEnabled
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsOidcEnabled() bool`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsOidcEnabled() bool`
 
 GetKratosSelfserviceMethodsOidcEnabled returns the KratosSelfserviceMethodsOidcEnabled field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceMethodsOidcEnabledOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsOidcEnabledOk() (*bool, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsOidcEnabledOk() (*bool, bool)`
 
 GetKratosSelfserviceMethodsOidcEnabledOk returns a tuple with the KratosSelfserviceMethodsOidcEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceMethodsOidcEnabled
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsOidcEnabled(v bool)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsOidcEnabled(v bool)`
 
 SetKratosSelfserviceMethodsOidcEnabled sets KratosSelfserviceMethodsOidcEnabled field to given value.
 
 ### HasKratosSelfserviceMethodsOidcEnabled
 
-`func (o *ProjectRevision) HasKratosSelfserviceMethodsOidcEnabled() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsOidcEnabled() bool`
 
 HasKratosSelfserviceMethodsOidcEnabled returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled() bool`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled() bool`
 
 GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled returns the KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledOk() (*bool, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledOk() (*bool, bool)`
 
 GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledOk returns a tuple with the KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled(v bool)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled(v bool)`
 
 SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled sets KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled field to given value.
 
 ### HasKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled
 
-`func (o *ProjectRevision) HasKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled() bool`
 
 HasKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled returns a boolean if a field has been set.
 
 ### SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledNil
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledNil(b bool)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledNil(b bool)`
 
  SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledNil sets the value for KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled to be an explicit nil
 
 ### UnsetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled
-`func (o *ProjectRevision) UnsetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled()`
+`func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled()`
 
 UnsetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled ensures that no value is present for KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled, not even an explicit nil
+### GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled() bool`
+
+GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled returns the KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledOk() (*bool, bool)`
+
+GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledOk returns a tuple with the KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled(v bool)`
+
+SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled sets KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled field to given value.
+
+### HasKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled() bool`
+
+HasKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled returns a boolean if a field has been set.
+
+### SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledNil
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledNil(b bool)`
+
+ SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledNil sets the value for KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled to be an explicit nil
+
+### UnsetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled
+`func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled()`
+
+UnsetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled ensures that no value is present for KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled, not even an explicit nil
 ### GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors() bool`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors() bool`
 
 GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors returns the KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsOk() (*bool, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsOk() (*bool, bool)`
 
 GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsOk returns a tuple with the KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors(v bool)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors(v bool)`
 
 SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors sets KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors field to given value.
 
 ### HasKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors
 
-`func (o *ProjectRevision) HasKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors() bool`
 
 HasKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors returns a boolean if a field has been set.
 
 ### SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsNil
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsNil(b bool)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsNil(b bool)`
 
  SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsNil sets the value for KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors to be an explicit nil
 
 ### UnsetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors
-`func (o *ProjectRevision) UnsetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors()`
+`func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors()`
 
 UnsetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors ensures that no value is present for KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors, not even an explicit nil
 ### GetKratosSelfserviceMethodsPasswordConfigMaxBreaches
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigMaxBreaches() int64`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigMaxBreaches() int64`
 
 GetKratosSelfserviceMethodsPasswordConfigMaxBreaches returns the KratosSelfserviceMethodsPasswordConfigMaxBreaches field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceMethodsPasswordConfigMaxBreachesOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigMaxBreachesOk() (*int64, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigMaxBreachesOk() (*int64, bool)`
 
 GetKratosSelfserviceMethodsPasswordConfigMaxBreachesOk returns a tuple with the KratosSelfserviceMethodsPasswordConfigMaxBreaches field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceMethodsPasswordConfigMaxBreaches
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsPasswordConfigMaxBreaches(v int64)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigMaxBreaches(v int64)`
 
 SetKratosSelfserviceMethodsPasswordConfigMaxBreaches sets KratosSelfserviceMethodsPasswordConfigMaxBreaches field to given value.
 
 ### HasKratosSelfserviceMethodsPasswordConfigMaxBreaches
 
-`func (o *ProjectRevision) HasKratosSelfserviceMethodsPasswordConfigMaxBreaches() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsPasswordConfigMaxBreaches() bool`
 
 HasKratosSelfserviceMethodsPasswordConfigMaxBreaches returns a boolean if a field has been set.
 
+### GetKratosSelfserviceMethodsPasswordConfigMinPasswordLength
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigMinPasswordLength() int64`
+
+GetKratosSelfserviceMethodsPasswordConfigMinPasswordLength returns the KratosSelfserviceMethodsPasswordConfigMinPasswordLength field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsPasswordConfigMinPasswordLengthOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigMinPasswordLengthOk() (*int64, bool)`
+
+GetKratosSelfserviceMethodsPasswordConfigMinPasswordLengthOk returns a tuple with the KratosSelfserviceMethodsPasswordConfigMinPasswordLength field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsPasswordConfigMinPasswordLength
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigMinPasswordLength(v int64)`
+
+SetKratosSelfserviceMethodsPasswordConfigMinPasswordLength sets KratosSelfserviceMethodsPasswordConfigMinPasswordLength field to given value.
+
+### HasKratosSelfserviceMethodsPasswordConfigMinPasswordLength
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsPasswordConfigMinPasswordLength() bool`
+
+HasKratosSelfserviceMethodsPasswordConfigMinPasswordLength returns a boolean if a field has been set.
+
 ### GetKratosSelfserviceMethodsPasswordEnabled
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordEnabled() bool`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordEnabled() bool`
 
 GetKratosSelfserviceMethodsPasswordEnabled returns the KratosSelfserviceMethodsPasswordEnabled field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceMethodsPasswordEnabledOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordEnabledOk() (*bool, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordEnabledOk() (*bool, bool)`
 
 GetKratosSelfserviceMethodsPasswordEnabledOk returns a tuple with the KratosSelfserviceMethodsPasswordEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceMethodsPasswordEnabled
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsPasswordEnabled(v bool)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordEnabled(v bool)`
 
 SetKratosSelfserviceMethodsPasswordEnabled sets KratosSelfserviceMethodsPasswordEnabled field to given value.
 
 ### HasKratosSelfserviceMethodsPasswordEnabled
 
-`func (o *ProjectRevision) HasKratosSelfserviceMethodsPasswordEnabled() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsPasswordEnabled() bool`
 
 HasKratosSelfserviceMethodsPasswordEnabled returns a boolean if a field has been set.
 
 ### SetKratosSelfserviceMethodsPasswordEnabledNil
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsPasswordEnabledNil(b bool)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordEnabledNil(b bool)`
 
  SetKratosSelfserviceMethodsPasswordEnabledNil sets the value for KratosSelfserviceMethodsPasswordEnabled to be an explicit nil
 
 ### UnsetKratosSelfserviceMethodsPasswordEnabled
-`func (o *ProjectRevision) UnsetKratosSelfserviceMethodsPasswordEnabled()`
+`func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsPasswordEnabled()`
 
 UnsetKratosSelfserviceMethodsPasswordEnabled ensures that no value is present for KratosSelfserviceMethodsPasswordEnabled, not even an explicit nil
 ### GetKratosSelfserviceMethodsProfileEnabled
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsProfileEnabled() bool`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsProfileEnabled() bool`
 
 GetKratosSelfserviceMethodsProfileEnabled returns the KratosSelfserviceMethodsProfileEnabled field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceMethodsProfileEnabledOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsProfileEnabledOk() (*bool, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsProfileEnabledOk() (*bool, bool)`
 
 GetKratosSelfserviceMethodsProfileEnabledOk returns a tuple with the KratosSelfserviceMethodsProfileEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceMethodsProfileEnabled
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsProfileEnabled(v bool)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsProfileEnabled(v bool)`
 
 SetKratosSelfserviceMethodsProfileEnabled sets KratosSelfserviceMethodsProfileEnabled field to given value.
 
 ### HasKratosSelfserviceMethodsProfileEnabled
 
-`func (o *ProjectRevision) HasKratosSelfserviceMethodsProfileEnabled() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsProfileEnabled() bool`
 
 HasKratosSelfserviceMethodsProfileEnabled returns a boolean if a field has been set.
 
 ### SetKratosSelfserviceMethodsProfileEnabledNil
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsProfileEnabledNil(b bool)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsProfileEnabledNil(b bool)`
 
  SetKratosSelfserviceMethodsProfileEnabledNil sets the value for KratosSelfserviceMethodsProfileEnabled to be an explicit nil
 
 ### UnsetKratosSelfserviceMethodsProfileEnabled
-`func (o *ProjectRevision) UnsetKratosSelfserviceMethodsProfileEnabled()`
+`func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsProfileEnabled()`
 
 UnsetKratosSelfserviceMethodsProfileEnabled ensures that no value is present for KratosSelfserviceMethodsProfileEnabled, not even an explicit nil
 ### GetKratosSelfserviceMethodsTotpConfigIssuer
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsTotpConfigIssuer() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsTotpConfigIssuer() string`
 
 GetKratosSelfserviceMethodsTotpConfigIssuer returns the KratosSelfserviceMethodsTotpConfigIssuer field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceMethodsTotpConfigIssuerOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsTotpConfigIssuerOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsTotpConfigIssuerOk() (*string, bool)`
 
 GetKratosSelfserviceMethodsTotpConfigIssuerOk returns a tuple with the KratosSelfserviceMethodsTotpConfigIssuer field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceMethodsTotpConfigIssuer
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsTotpConfigIssuer(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsTotpConfigIssuer(v string)`
 
 SetKratosSelfserviceMethodsTotpConfigIssuer sets KratosSelfserviceMethodsTotpConfigIssuer field to given value.
 
 ### HasKratosSelfserviceMethodsTotpConfigIssuer
 
-`func (o *ProjectRevision) HasKratosSelfserviceMethodsTotpConfigIssuer() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsTotpConfigIssuer() bool`
 
 HasKratosSelfserviceMethodsTotpConfigIssuer returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsTotpEnabled
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsTotpEnabled() bool`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsTotpEnabled() bool`
 
 GetKratosSelfserviceMethodsTotpEnabled returns the KratosSelfserviceMethodsTotpEnabled field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceMethodsTotpEnabledOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsTotpEnabledOk() (*bool, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsTotpEnabledOk() (*bool, bool)`
 
 GetKratosSelfserviceMethodsTotpEnabledOk returns a tuple with the KratosSelfserviceMethodsTotpEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceMethodsTotpEnabled
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsTotpEnabled(v bool)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsTotpEnabled(v bool)`
 
 SetKratosSelfserviceMethodsTotpEnabled sets KratosSelfserviceMethodsTotpEnabled field to given value.
 
 ### HasKratosSelfserviceMethodsTotpEnabled
 
-`func (o *ProjectRevision) HasKratosSelfserviceMethodsTotpEnabled() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsTotpEnabled() bool`
 
 HasKratosSelfserviceMethodsTotpEnabled returns a boolean if a field has been set.
 
 ### SetKratosSelfserviceMethodsTotpEnabledNil
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsTotpEnabledNil(b bool)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsTotpEnabledNil(b bool)`
 
  SetKratosSelfserviceMethodsTotpEnabledNil sets the value for KratosSelfserviceMethodsTotpEnabled to be an explicit nil
 
 ### UnsetKratosSelfserviceMethodsTotpEnabled
-`func (o *ProjectRevision) UnsetKratosSelfserviceMethodsTotpEnabled()`
+`func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsTotpEnabled()`
 
 UnsetKratosSelfserviceMethodsTotpEnabled ensures that no value is present for KratosSelfserviceMethodsTotpEnabled, not even an explicit nil
+### GetKratosSelfserviceMethodsWebauthnConfigPasswordless
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigPasswordless() bool`
+
+GetKratosSelfserviceMethodsWebauthnConfigPasswordless returns the KratosSelfserviceMethodsWebauthnConfigPasswordless field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsWebauthnConfigPasswordlessOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigPasswordlessOk() (*bool, bool)`
+
+GetKratosSelfserviceMethodsWebauthnConfigPasswordlessOk returns a tuple with the KratosSelfserviceMethodsWebauthnConfigPasswordless field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsWebauthnConfigPasswordless
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigPasswordless(v bool)`
+
+SetKratosSelfserviceMethodsWebauthnConfigPasswordless sets KratosSelfserviceMethodsWebauthnConfigPasswordless field to given value.
+
+### HasKratosSelfserviceMethodsWebauthnConfigPasswordless
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigPasswordless() bool`
+
+HasKratosSelfserviceMethodsWebauthnConfigPasswordless returns a boolean if a field has been set.
+
 ### GetKratosSelfserviceMethodsWebauthnConfigRpDisplayName
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpDisplayName() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpDisplayName() string`
 
 GetKratosSelfserviceMethodsWebauthnConfigRpDisplayName returns the KratosSelfserviceMethodsWebauthnConfigRpDisplayName field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceMethodsWebauthnConfigRpDisplayNameOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpDisplayNameOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpDisplayNameOk() (*string, bool)`
 
 GetKratosSelfserviceMethodsWebauthnConfigRpDisplayNameOk returns a tuple with the KratosSelfserviceMethodsWebauthnConfigRpDisplayName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceMethodsWebauthnConfigRpDisplayName
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpDisplayName(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpDisplayName(v string)`
 
 SetKratosSelfserviceMethodsWebauthnConfigRpDisplayName sets KratosSelfserviceMethodsWebauthnConfigRpDisplayName field to given value.
 
 ### HasKratosSelfserviceMethodsWebauthnConfigRpDisplayName
 
-`func (o *ProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpDisplayName() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpDisplayName() bool`
 
 HasKratosSelfserviceMethodsWebauthnConfigRpDisplayName returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsWebauthnConfigRpIcon
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpIcon() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpIcon() string`
 
 GetKratosSelfserviceMethodsWebauthnConfigRpIcon returns the KratosSelfserviceMethodsWebauthnConfigRpIcon field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceMethodsWebauthnConfigRpIconOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpIconOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpIconOk() (*string, bool)`
 
 GetKratosSelfserviceMethodsWebauthnConfigRpIconOk returns a tuple with the KratosSelfserviceMethodsWebauthnConfigRpIcon field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceMethodsWebauthnConfigRpIcon
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpIcon(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpIcon(v string)`
 
 SetKratosSelfserviceMethodsWebauthnConfigRpIcon sets KratosSelfserviceMethodsWebauthnConfigRpIcon field to given value.
 
 ### HasKratosSelfserviceMethodsWebauthnConfigRpIcon
 
-`func (o *ProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpIcon() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpIcon() bool`
 
 HasKratosSelfserviceMethodsWebauthnConfigRpIcon returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsWebauthnConfigRpId
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpId() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpId() string`
 
 GetKratosSelfserviceMethodsWebauthnConfigRpId returns the KratosSelfserviceMethodsWebauthnConfigRpId field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceMethodsWebauthnConfigRpIdOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpIdOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpIdOk() (*string, bool)`
 
 GetKratosSelfserviceMethodsWebauthnConfigRpIdOk returns a tuple with the KratosSelfserviceMethodsWebauthnConfigRpId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceMethodsWebauthnConfigRpId
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpId(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpId(v string)`
 
 SetKratosSelfserviceMethodsWebauthnConfigRpId sets KratosSelfserviceMethodsWebauthnConfigRpId field to given value.
 
 ### HasKratosSelfserviceMethodsWebauthnConfigRpId
 
-`func (o *ProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpId() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpId() bool`
 
 HasKratosSelfserviceMethodsWebauthnConfigRpId returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsWebauthnConfigRpOrigin
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpOrigin() string`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpOrigin() string`
 
 GetKratosSelfserviceMethodsWebauthnConfigRpOrigin returns the KratosSelfserviceMethodsWebauthnConfigRpOrigin field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceMethodsWebauthnConfigRpOriginOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpOriginOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpOriginOk() (*string, bool)`
 
 GetKratosSelfserviceMethodsWebauthnConfigRpOriginOk returns a tuple with the KratosSelfserviceMethodsWebauthnConfigRpOrigin field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceMethodsWebauthnConfigRpOrigin
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpOrigin(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpOrigin(v string)`
 
 SetKratosSelfserviceMethodsWebauthnConfigRpOrigin sets KratosSelfserviceMethodsWebauthnConfigRpOrigin field to given value.
 
 ### HasKratosSelfserviceMethodsWebauthnConfigRpOrigin
 
-`func (o *ProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpOrigin() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpOrigin() bool`
 
 HasKratosSelfserviceMethodsWebauthnConfigRpOrigin returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsWebauthnEnabled
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnEnabled() bool`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnEnabled() bool`
 
 GetKratosSelfserviceMethodsWebauthnEnabled returns the KratosSelfserviceMethodsWebauthnEnabled field if non-nil, zero value otherwise.
 
 ### GetKratosSelfserviceMethodsWebauthnEnabledOk
 
-`func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnEnabledOk() (*bool, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnEnabledOk() (*bool, bool)`
 
 GetKratosSelfserviceMethodsWebauthnEnabledOk returns a tuple with the KratosSelfserviceMethodsWebauthnEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSelfserviceMethodsWebauthnEnabled
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsWebauthnEnabled(v bool)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnEnabled(v bool)`
 
 SetKratosSelfserviceMethodsWebauthnEnabled sets KratosSelfserviceMethodsWebauthnEnabled field to given value.
 
 ### HasKratosSelfserviceMethodsWebauthnEnabled
 
-`func (o *ProjectRevision) HasKratosSelfserviceMethodsWebauthnEnabled() bool`
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsWebauthnEnabled() bool`
 
 HasKratosSelfserviceMethodsWebauthnEnabled returns a boolean if a field has been set.
 
 ### SetKratosSelfserviceMethodsWebauthnEnabledNil
 
-`func (o *ProjectRevision) SetKratosSelfserviceMethodsWebauthnEnabledNil(b bool)`
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnEnabledNil(b bool)`
 
  SetKratosSelfserviceMethodsWebauthnEnabledNil sets the value for KratosSelfserviceMethodsWebauthnEnabled to be an explicit nil
 
 ### UnsetKratosSelfserviceMethodsWebauthnEnabled
-`func (o *ProjectRevision) UnsetKratosSelfserviceMethodsWebauthnEnabled()`
+`func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsWebauthnEnabled()`
 
 UnsetKratosSelfserviceMethodsWebauthnEnabled ensures that no value is present for KratosSelfserviceMethodsWebauthnEnabled, not even an explicit nil
 ### GetKratosSessionCookiePersistent
 
-`func (o *ProjectRevision) GetKratosSessionCookiePersistent() bool`
+`func (o *NormalizedProjectRevision) GetKratosSessionCookiePersistent() bool`
 
 GetKratosSessionCookiePersistent returns the KratosSessionCookiePersistent field if non-nil, zero value otherwise.
 
 ### GetKratosSessionCookiePersistentOk
 
-`func (o *ProjectRevision) GetKratosSessionCookiePersistentOk() (*bool, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSessionCookiePersistentOk() (*bool, bool)`
 
 GetKratosSessionCookiePersistentOk returns a tuple with the KratosSessionCookiePersistent field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSessionCookiePersistent
 
-`func (o *ProjectRevision) SetKratosSessionCookiePersistent(v bool)`
+`func (o *NormalizedProjectRevision) SetKratosSessionCookiePersistent(v bool)`
 
 SetKratosSessionCookiePersistent sets KratosSessionCookiePersistent field to given value.
 
 ### HasKratosSessionCookiePersistent
 
-`func (o *ProjectRevision) HasKratosSessionCookiePersistent() bool`
+`func (o *NormalizedProjectRevision) HasKratosSessionCookiePersistent() bool`
 
 HasKratosSessionCookiePersistent returns a boolean if a field has been set.
 
 ### SetKratosSessionCookiePersistentNil
 
-`func (o *ProjectRevision) SetKratosSessionCookiePersistentNil(b bool)`
+`func (o *NormalizedProjectRevision) SetKratosSessionCookiePersistentNil(b bool)`
 
  SetKratosSessionCookiePersistentNil sets the value for KratosSessionCookiePersistent to be an explicit nil
 
 ### UnsetKratosSessionCookiePersistent
-`func (o *ProjectRevision) UnsetKratosSessionCookiePersistent()`
+`func (o *NormalizedProjectRevision) UnsetKratosSessionCookiePersistent()`
 
 UnsetKratosSessionCookiePersistent ensures that no value is present for KratosSessionCookiePersistent, not even an explicit nil
 ### GetKratosSessionCookieSameSite
 
-`func (o *ProjectRevision) GetKratosSessionCookieSameSite() string`
+`func (o *NormalizedProjectRevision) GetKratosSessionCookieSameSite() string`
 
 GetKratosSessionCookieSameSite returns the KratosSessionCookieSameSite field if non-nil, zero value otherwise.
 
 ### GetKratosSessionCookieSameSiteOk
 
-`func (o *ProjectRevision) GetKratosSessionCookieSameSiteOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSessionCookieSameSiteOk() (*string, bool)`
 
 GetKratosSessionCookieSameSiteOk returns a tuple with the KratosSessionCookieSameSite field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSessionCookieSameSite
 
-`func (o *ProjectRevision) SetKratosSessionCookieSameSite(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSessionCookieSameSite(v string)`
 
 SetKratosSessionCookieSameSite sets KratosSessionCookieSameSite field to given value.
 
 ### HasKratosSessionCookieSameSite
 
-`func (o *ProjectRevision) HasKratosSessionCookieSameSite() bool`
+`func (o *NormalizedProjectRevision) HasKratosSessionCookieSameSite() bool`
 
 HasKratosSessionCookieSameSite returns a boolean if a field has been set.
 
 ### GetKratosSessionLifespan
 
-`func (o *ProjectRevision) GetKratosSessionLifespan() string`
+`func (o *NormalizedProjectRevision) GetKratosSessionLifespan() string`
 
 GetKratosSessionLifespan returns the KratosSessionLifespan field if non-nil, zero value otherwise.
 
 ### GetKratosSessionLifespanOk
 
-`func (o *ProjectRevision) GetKratosSessionLifespanOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSessionLifespanOk() (*string, bool)`
 
 GetKratosSessionLifespanOk returns a tuple with the KratosSessionLifespan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSessionLifespan
 
-`func (o *ProjectRevision) SetKratosSessionLifespan(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSessionLifespan(v string)`
 
 SetKratosSessionLifespan sets KratosSessionLifespan field to given value.
 
 ### HasKratosSessionLifespan
 
-`func (o *ProjectRevision) HasKratosSessionLifespan() bool`
+`func (o *NormalizedProjectRevision) HasKratosSessionLifespan() bool`
 
 HasKratosSessionLifespan returns a boolean if a field has been set.
 
 ### GetKratosSessionWhoamiRequiredAal
 
-`func (o *ProjectRevision) GetKratosSessionWhoamiRequiredAal() string`
+`func (o *NormalizedProjectRevision) GetKratosSessionWhoamiRequiredAal() string`
 
 GetKratosSessionWhoamiRequiredAal returns the KratosSessionWhoamiRequiredAal field if non-nil, zero value otherwise.
 
 ### GetKratosSessionWhoamiRequiredAalOk
 
-`func (o *ProjectRevision) GetKratosSessionWhoamiRequiredAalOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetKratosSessionWhoamiRequiredAalOk() (*string, bool)`
 
 GetKratosSessionWhoamiRequiredAalOk returns a tuple with the KratosSessionWhoamiRequiredAal field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKratosSessionWhoamiRequiredAal
 
-`func (o *ProjectRevision) SetKratosSessionWhoamiRequiredAal(v string)`
+`func (o *NormalizedProjectRevision) SetKratosSessionWhoamiRequiredAal(v string)`
 
 SetKratosSessionWhoamiRequiredAal sets KratosSessionWhoamiRequiredAal field to given value.
 
 ### HasKratosSessionWhoamiRequiredAal
 
-`func (o *ProjectRevision) HasKratosSessionWhoamiRequiredAal() bool`
+`func (o *NormalizedProjectRevision) HasKratosSessionWhoamiRequiredAal() bool`
 
 HasKratosSessionWhoamiRequiredAal returns a boolean if a field has been set.
 
 ### GetName
 
-`func (o *ProjectRevision) GetName() string`
+`func (o *NormalizedProjectRevision) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *ProjectRevision) GetNameOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *ProjectRevision) SetName(v string)`
+`func (o *NormalizedProjectRevision) SetName(v string)`
 
 SetName sets Name field to given value.
 
 
 ### GetProjectId
 
-`func (o *ProjectRevision) GetProjectId() string`
+`func (o *NormalizedProjectRevision) GetProjectId() string`
 
 GetProjectId returns the ProjectId field if non-nil, zero value otherwise.
 
 ### GetProjectIdOk
 
-`func (o *ProjectRevision) GetProjectIdOk() (*string, bool)`
+`func (o *NormalizedProjectRevision) GetProjectIdOk() (*string, bool)`
 
 GetProjectIdOk returns a tuple with the ProjectId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProjectId
 
-`func (o *ProjectRevision) SetProjectId(v string)`
+`func (o *NormalizedProjectRevision) SetProjectId(v string)`
 
 SetProjectId sets ProjectId field to given value.
 
 ### HasProjectId
 
-`func (o *ProjectRevision) HasProjectId() bool`
+`func (o *NormalizedProjectRevision) HasProjectId() bool`
 
 HasProjectId returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 
-`func (o *ProjectRevision) GetUpdatedAt() time.Time`
+`func (o *NormalizedProjectRevision) GetUpdatedAt() time.Time`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *ProjectRevision) GetUpdatedAtOk() (*time.Time, bool)`
+`func (o *NormalizedProjectRevision) GetUpdatedAtOk() (*time.Time, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *ProjectRevision) SetUpdatedAt(v time.Time)`
+`func (o *NormalizedProjectRevision) SetUpdatedAt(v time.Time)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
 
 ### HasUpdatedAt
 
-`func (o *ProjectRevision) HasUpdatedAt() bool`
+`func (o *NormalizedProjectRevision) HasUpdatedAt() bool`
 
 HasUpdatedAt returns a boolean if a field has been set.
 

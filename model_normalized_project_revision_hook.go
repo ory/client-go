@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.130
+ * API version: v0.0.1-alpha.132
  * Contact: support@ory.sh
  */
 
@@ -16,8 +16,8 @@ import (
 	"time"
 )
 
-// ProjectRevisionHook struct for ProjectRevisionHook
-type ProjectRevisionHook struct {
+// NormalizedProjectRevisionHook struct for NormalizedProjectRevisionHook
+type NormalizedProjectRevisionHook struct {
 	// The Hooks Config Key
 	ConfigKey string `json:"config_key"`
 	// The Project's Revision Creation Date
@@ -44,31 +44,33 @@ type ProjectRevisionHook struct {
 	WebHookConfigBody *string `json:"web_hook_config_body,omitempty"`
 	// The HTTP method to use (GET, POST, etc) for the Web-Hook
 	WebHookConfigMethod *string `json:"web_hook_config_method,omitempty"`
+	// Whether to ignore the Web Hook response
+	WebHookConfigResponseIgnore *bool `json:"web_hook_config_response_ignore,omitempty"`
 	// The URL the Web-Hook should call
 	WebHookConfigUrl *string `json:"web_hook_config_url,omitempty"`
 }
 
-// NewProjectRevisionHook instantiates a new ProjectRevisionHook object
+// NewNormalizedProjectRevisionHook instantiates a new NormalizedProjectRevisionHook object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectRevisionHook(configKey string, hook string) *ProjectRevisionHook {
-	this := ProjectRevisionHook{}
+func NewNormalizedProjectRevisionHook(configKey string, hook string) *NormalizedProjectRevisionHook {
+	this := NormalizedProjectRevisionHook{}
 	this.ConfigKey = configKey
 	this.Hook = hook
 	return &this
 }
 
-// NewProjectRevisionHookWithDefaults instantiates a new ProjectRevisionHook object
+// NewNormalizedProjectRevisionHookWithDefaults instantiates a new NormalizedProjectRevisionHook object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewProjectRevisionHookWithDefaults() *ProjectRevisionHook {
-	this := ProjectRevisionHook{}
+func NewNormalizedProjectRevisionHookWithDefaults() *NormalizedProjectRevisionHook {
+	this := NormalizedProjectRevisionHook{}
 	return &this
 }
 
 // GetConfigKey returns the ConfigKey field value
-func (o *ProjectRevisionHook) GetConfigKey() string {
+func (o *NormalizedProjectRevisionHook) GetConfigKey() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -79,7 +81,7 @@ func (o *ProjectRevisionHook) GetConfigKey() string {
 
 // GetConfigKeyOk returns a tuple with the ConfigKey field value
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionHook) GetConfigKeyOk() (*string, bool) {
+func (o *NormalizedProjectRevisionHook) GetConfigKeyOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -87,12 +89,12 @@ func (o *ProjectRevisionHook) GetConfigKeyOk() (*string, bool) {
 }
 
 // SetConfigKey sets field value
-func (o *ProjectRevisionHook) SetConfigKey(v string) {
+func (o *NormalizedProjectRevisionHook) SetConfigKey(v string) {
 	o.ConfigKey = v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *ProjectRevisionHook) GetCreatedAt() time.Time {
+func (o *NormalizedProjectRevisionHook) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
 		var ret time.Time
 		return ret
@@ -102,7 +104,7 @@ func (o *ProjectRevisionHook) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionHook) GetCreatedAtOk() (*time.Time, bool) {
+func (o *NormalizedProjectRevisionHook) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil || o.CreatedAt == nil {
 		return nil, false
 	}
@@ -110,7 +112,7 @@ func (o *ProjectRevisionHook) GetCreatedAtOk() (*time.Time, bool) {
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
-func (o *ProjectRevisionHook) HasCreatedAt() bool {
+func (o *NormalizedProjectRevisionHook) HasCreatedAt() bool {
 	if o != nil && o.CreatedAt != nil {
 		return true
 	}
@@ -119,12 +121,12 @@ func (o *ProjectRevisionHook) HasCreatedAt() bool {
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *ProjectRevisionHook) SetCreatedAt(v time.Time) {
+func (o *NormalizedProjectRevisionHook) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
 // GetHook returns the Hook field value
-func (o *ProjectRevisionHook) GetHook() string {
+func (o *NormalizedProjectRevisionHook) GetHook() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -135,7 +137,7 @@ func (o *ProjectRevisionHook) GetHook() string {
 
 // GetHookOk returns a tuple with the Hook field value
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionHook) GetHookOk() (*string, bool) {
+func (o *NormalizedProjectRevisionHook) GetHookOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -143,12 +145,12 @@ func (o *ProjectRevisionHook) GetHookOk() (*string, bool) {
 }
 
 // SetHook sets field value
-func (o *ProjectRevisionHook) SetHook(v string) {
+func (o *NormalizedProjectRevisionHook) SetHook(v string) {
 	o.Hook = v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *ProjectRevisionHook) GetId() string {
+func (o *NormalizedProjectRevisionHook) GetId() string {
 	if o == nil || o.Id == nil {
 		var ret string
 		return ret
@@ -158,7 +160,7 @@ func (o *ProjectRevisionHook) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionHook) GetIdOk() (*string, bool) {
+func (o *NormalizedProjectRevisionHook) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -166,7 +168,7 @@ func (o *ProjectRevisionHook) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *ProjectRevisionHook) HasId() bool {
+func (o *NormalizedProjectRevisionHook) HasId() bool {
 	if o != nil && o.Id != nil {
 		return true
 	}
@@ -175,12 +177,12 @@ func (o *ProjectRevisionHook) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *ProjectRevisionHook) SetId(v string) {
+func (o *NormalizedProjectRevisionHook) SetId(v string) {
 	o.Id = &v
 }
 
 // GetProjectRevisionId returns the ProjectRevisionId field value if set, zero value otherwise.
-func (o *ProjectRevisionHook) GetProjectRevisionId() string {
+func (o *NormalizedProjectRevisionHook) GetProjectRevisionId() string {
 	if o == nil || o.ProjectRevisionId == nil {
 		var ret string
 		return ret
@@ -190,7 +192,7 @@ func (o *ProjectRevisionHook) GetProjectRevisionId() string {
 
 // GetProjectRevisionIdOk returns a tuple with the ProjectRevisionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionHook) GetProjectRevisionIdOk() (*string, bool) {
+func (o *NormalizedProjectRevisionHook) GetProjectRevisionIdOk() (*string, bool) {
 	if o == nil || o.ProjectRevisionId == nil {
 		return nil, false
 	}
@@ -198,7 +200,7 @@ func (o *ProjectRevisionHook) GetProjectRevisionIdOk() (*string, bool) {
 }
 
 // HasProjectRevisionId returns a boolean if a field has been set.
-func (o *ProjectRevisionHook) HasProjectRevisionId() bool {
+func (o *NormalizedProjectRevisionHook) HasProjectRevisionId() bool {
 	if o != nil && o.ProjectRevisionId != nil {
 		return true
 	}
@@ -207,12 +209,12 @@ func (o *ProjectRevisionHook) HasProjectRevisionId() bool {
 }
 
 // SetProjectRevisionId gets a reference to the given string and assigns it to the ProjectRevisionId field.
-func (o *ProjectRevisionHook) SetProjectRevisionId(v string) {
+func (o *NormalizedProjectRevisionHook) SetProjectRevisionId(v string) {
 	o.ProjectRevisionId = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *ProjectRevisionHook) GetUpdatedAt() time.Time {
+func (o *NormalizedProjectRevisionHook) GetUpdatedAt() time.Time {
 	if o == nil || o.UpdatedAt == nil {
 		var ret time.Time
 		return ret
@@ -222,7 +224,7 @@ func (o *ProjectRevisionHook) GetUpdatedAt() time.Time {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionHook) GetUpdatedAtOk() (*time.Time, bool) {
+func (o *NormalizedProjectRevisionHook) GetUpdatedAtOk() (*time.Time, bool) {
 	if o == nil || o.UpdatedAt == nil {
 		return nil, false
 	}
@@ -230,7 +232,7 @@ func (o *ProjectRevisionHook) GetUpdatedAtOk() (*time.Time, bool) {
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
-func (o *ProjectRevisionHook) HasUpdatedAt() bool {
+func (o *NormalizedProjectRevisionHook) HasUpdatedAt() bool {
 	if o != nil && o.UpdatedAt != nil {
 		return true
 	}
@@ -239,12 +241,12 @@ func (o *ProjectRevisionHook) HasUpdatedAt() bool {
 }
 
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *ProjectRevisionHook) SetUpdatedAt(v time.Time) {
+func (o *NormalizedProjectRevisionHook) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
 // GetWebHookConfigAuthApiKeyIn returns the WebHookConfigAuthApiKeyIn field value if set, zero value otherwise.
-func (o *ProjectRevisionHook) GetWebHookConfigAuthApiKeyIn() string {
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigAuthApiKeyIn() string {
 	if o == nil || o.WebHookConfigAuthApiKeyIn == nil {
 		var ret string
 		return ret
@@ -254,7 +256,7 @@ func (o *ProjectRevisionHook) GetWebHookConfigAuthApiKeyIn() string {
 
 // GetWebHookConfigAuthApiKeyInOk returns a tuple with the WebHookConfigAuthApiKeyIn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionHook) GetWebHookConfigAuthApiKeyInOk() (*string, bool) {
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigAuthApiKeyInOk() (*string, bool) {
 	if o == nil || o.WebHookConfigAuthApiKeyIn == nil {
 		return nil, false
 	}
@@ -262,7 +264,7 @@ func (o *ProjectRevisionHook) GetWebHookConfigAuthApiKeyInOk() (*string, bool) {
 }
 
 // HasWebHookConfigAuthApiKeyIn returns a boolean if a field has been set.
-func (o *ProjectRevisionHook) HasWebHookConfigAuthApiKeyIn() bool {
+func (o *NormalizedProjectRevisionHook) HasWebHookConfigAuthApiKeyIn() bool {
 	if o != nil && o.WebHookConfigAuthApiKeyIn != nil {
 		return true
 	}
@@ -271,12 +273,12 @@ func (o *ProjectRevisionHook) HasWebHookConfigAuthApiKeyIn() bool {
 }
 
 // SetWebHookConfigAuthApiKeyIn gets a reference to the given string and assigns it to the WebHookConfigAuthApiKeyIn field.
-func (o *ProjectRevisionHook) SetWebHookConfigAuthApiKeyIn(v string) {
+func (o *NormalizedProjectRevisionHook) SetWebHookConfigAuthApiKeyIn(v string) {
 	o.WebHookConfigAuthApiKeyIn = &v
 }
 
 // GetWebHookConfigAuthApiKeyName returns the WebHookConfigAuthApiKeyName field value if set, zero value otherwise.
-func (o *ProjectRevisionHook) GetWebHookConfigAuthApiKeyName() string {
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigAuthApiKeyName() string {
 	if o == nil || o.WebHookConfigAuthApiKeyName == nil {
 		var ret string
 		return ret
@@ -286,7 +288,7 @@ func (o *ProjectRevisionHook) GetWebHookConfigAuthApiKeyName() string {
 
 // GetWebHookConfigAuthApiKeyNameOk returns a tuple with the WebHookConfigAuthApiKeyName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionHook) GetWebHookConfigAuthApiKeyNameOk() (*string, bool) {
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigAuthApiKeyNameOk() (*string, bool) {
 	if o == nil || o.WebHookConfigAuthApiKeyName == nil {
 		return nil, false
 	}
@@ -294,7 +296,7 @@ func (o *ProjectRevisionHook) GetWebHookConfigAuthApiKeyNameOk() (*string, bool)
 }
 
 // HasWebHookConfigAuthApiKeyName returns a boolean if a field has been set.
-func (o *ProjectRevisionHook) HasWebHookConfigAuthApiKeyName() bool {
+func (o *NormalizedProjectRevisionHook) HasWebHookConfigAuthApiKeyName() bool {
 	if o != nil && o.WebHookConfigAuthApiKeyName != nil {
 		return true
 	}
@@ -303,12 +305,12 @@ func (o *ProjectRevisionHook) HasWebHookConfigAuthApiKeyName() bool {
 }
 
 // SetWebHookConfigAuthApiKeyName gets a reference to the given string and assigns it to the WebHookConfigAuthApiKeyName field.
-func (o *ProjectRevisionHook) SetWebHookConfigAuthApiKeyName(v string) {
+func (o *NormalizedProjectRevisionHook) SetWebHookConfigAuthApiKeyName(v string) {
 	o.WebHookConfigAuthApiKeyName = &v
 }
 
 // GetWebHookConfigAuthApiKeyValue returns the WebHookConfigAuthApiKeyValue field value if set, zero value otherwise.
-func (o *ProjectRevisionHook) GetWebHookConfigAuthApiKeyValue() string {
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigAuthApiKeyValue() string {
 	if o == nil || o.WebHookConfigAuthApiKeyValue == nil {
 		var ret string
 		return ret
@@ -318,7 +320,7 @@ func (o *ProjectRevisionHook) GetWebHookConfigAuthApiKeyValue() string {
 
 // GetWebHookConfigAuthApiKeyValueOk returns a tuple with the WebHookConfigAuthApiKeyValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionHook) GetWebHookConfigAuthApiKeyValueOk() (*string, bool) {
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigAuthApiKeyValueOk() (*string, bool) {
 	if o == nil || o.WebHookConfigAuthApiKeyValue == nil {
 		return nil, false
 	}
@@ -326,7 +328,7 @@ func (o *ProjectRevisionHook) GetWebHookConfigAuthApiKeyValueOk() (*string, bool
 }
 
 // HasWebHookConfigAuthApiKeyValue returns a boolean if a field has been set.
-func (o *ProjectRevisionHook) HasWebHookConfigAuthApiKeyValue() bool {
+func (o *NormalizedProjectRevisionHook) HasWebHookConfigAuthApiKeyValue() bool {
 	if o != nil && o.WebHookConfigAuthApiKeyValue != nil {
 		return true
 	}
@@ -335,12 +337,12 @@ func (o *ProjectRevisionHook) HasWebHookConfigAuthApiKeyValue() bool {
 }
 
 // SetWebHookConfigAuthApiKeyValue gets a reference to the given string and assigns it to the WebHookConfigAuthApiKeyValue field.
-func (o *ProjectRevisionHook) SetWebHookConfigAuthApiKeyValue(v string) {
+func (o *NormalizedProjectRevisionHook) SetWebHookConfigAuthApiKeyValue(v string) {
 	o.WebHookConfigAuthApiKeyValue = &v
 }
 
 // GetWebHookConfigAuthBasicAuthPassword returns the WebHookConfigAuthBasicAuthPassword field value if set, zero value otherwise.
-func (o *ProjectRevisionHook) GetWebHookConfigAuthBasicAuthPassword() string {
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigAuthBasicAuthPassword() string {
 	if o == nil || o.WebHookConfigAuthBasicAuthPassword == nil {
 		var ret string
 		return ret
@@ -350,7 +352,7 @@ func (o *ProjectRevisionHook) GetWebHookConfigAuthBasicAuthPassword() string {
 
 // GetWebHookConfigAuthBasicAuthPasswordOk returns a tuple with the WebHookConfigAuthBasicAuthPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionHook) GetWebHookConfigAuthBasicAuthPasswordOk() (*string, bool) {
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigAuthBasicAuthPasswordOk() (*string, bool) {
 	if o == nil || o.WebHookConfigAuthBasicAuthPassword == nil {
 		return nil, false
 	}
@@ -358,7 +360,7 @@ func (o *ProjectRevisionHook) GetWebHookConfigAuthBasicAuthPasswordOk() (*string
 }
 
 // HasWebHookConfigAuthBasicAuthPassword returns a boolean if a field has been set.
-func (o *ProjectRevisionHook) HasWebHookConfigAuthBasicAuthPassword() bool {
+func (o *NormalizedProjectRevisionHook) HasWebHookConfigAuthBasicAuthPassword() bool {
 	if o != nil && o.WebHookConfigAuthBasicAuthPassword != nil {
 		return true
 	}
@@ -367,12 +369,12 @@ func (o *ProjectRevisionHook) HasWebHookConfigAuthBasicAuthPassword() bool {
 }
 
 // SetWebHookConfigAuthBasicAuthPassword gets a reference to the given string and assigns it to the WebHookConfigAuthBasicAuthPassword field.
-func (o *ProjectRevisionHook) SetWebHookConfigAuthBasicAuthPassword(v string) {
+func (o *NormalizedProjectRevisionHook) SetWebHookConfigAuthBasicAuthPassword(v string) {
 	o.WebHookConfigAuthBasicAuthPassword = &v
 }
 
 // GetWebHookConfigAuthBasicAuthUser returns the WebHookConfigAuthBasicAuthUser field value if set, zero value otherwise.
-func (o *ProjectRevisionHook) GetWebHookConfigAuthBasicAuthUser() string {
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigAuthBasicAuthUser() string {
 	if o == nil || o.WebHookConfigAuthBasicAuthUser == nil {
 		var ret string
 		return ret
@@ -382,7 +384,7 @@ func (o *ProjectRevisionHook) GetWebHookConfigAuthBasicAuthUser() string {
 
 // GetWebHookConfigAuthBasicAuthUserOk returns a tuple with the WebHookConfigAuthBasicAuthUser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionHook) GetWebHookConfigAuthBasicAuthUserOk() (*string, bool) {
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigAuthBasicAuthUserOk() (*string, bool) {
 	if o == nil || o.WebHookConfigAuthBasicAuthUser == nil {
 		return nil, false
 	}
@@ -390,7 +392,7 @@ func (o *ProjectRevisionHook) GetWebHookConfigAuthBasicAuthUserOk() (*string, bo
 }
 
 // HasWebHookConfigAuthBasicAuthUser returns a boolean if a field has been set.
-func (o *ProjectRevisionHook) HasWebHookConfigAuthBasicAuthUser() bool {
+func (o *NormalizedProjectRevisionHook) HasWebHookConfigAuthBasicAuthUser() bool {
 	if o != nil && o.WebHookConfigAuthBasicAuthUser != nil {
 		return true
 	}
@@ -399,12 +401,12 @@ func (o *ProjectRevisionHook) HasWebHookConfigAuthBasicAuthUser() bool {
 }
 
 // SetWebHookConfigAuthBasicAuthUser gets a reference to the given string and assigns it to the WebHookConfigAuthBasicAuthUser field.
-func (o *ProjectRevisionHook) SetWebHookConfigAuthBasicAuthUser(v string) {
+func (o *NormalizedProjectRevisionHook) SetWebHookConfigAuthBasicAuthUser(v string) {
 	o.WebHookConfigAuthBasicAuthUser = &v
 }
 
 // GetWebHookConfigAuthType returns the WebHookConfigAuthType field value if set, zero value otherwise.
-func (o *ProjectRevisionHook) GetWebHookConfigAuthType() string {
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigAuthType() string {
 	if o == nil || o.WebHookConfigAuthType == nil {
 		var ret string
 		return ret
@@ -414,7 +416,7 @@ func (o *ProjectRevisionHook) GetWebHookConfigAuthType() string {
 
 // GetWebHookConfigAuthTypeOk returns a tuple with the WebHookConfigAuthType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionHook) GetWebHookConfigAuthTypeOk() (*string, bool) {
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigAuthTypeOk() (*string, bool) {
 	if o == nil || o.WebHookConfigAuthType == nil {
 		return nil, false
 	}
@@ -422,7 +424,7 @@ func (o *ProjectRevisionHook) GetWebHookConfigAuthTypeOk() (*string, bool) {
 }
 
 // HasWebHookConfigAuthType returns a boolean if a field has been set.
-func (o *ProjectRevisionHook) HasWebHookConfigAuthType() bool {
+func (o *NormalizedProjectRevisionHook) HasWebHookConfigAuthType() bool {
 	if o != nil && o.WebHookConfigAuthType != nil {
 		return true
 	}
@@ -431,12 +433,12 @@ func (o *ProjectRevisionHook) HasWebHookConfigAuthType() bool {
 }
 
 // SetWebHookConfigAuthType gets a reference to the given string and assigns it to the WebHookConfigAuthType field.
-func (o *ProjectRevisionHook) SetWebHookConfigAuthType(v string) {
+func (o *NormalizedProjectRevisionHook) SetWebHookConfigAuthType(v string) {
 	o.WebHookConfigAuthType = &v
 }
 
 // GetWebHookConfigBody returns the WebHookConfigBody field value if set, zero value otherwise.
-func (o *ProjectRevisionHook) GetWebHookConfigBody() string {
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigBody() string {
 	if o == nil || o.WebHookConfigBody == nil {
 		var ret string
 		return ret
@@ -446,7 +448,7 @@ func (o *ProjectRevisionHook) GetWebHookConfigBody() string {
 
 // GetWebHookConfigBodyOk returns a tuple with the WebHookConfigBody field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionHook) GetWebHookConfigBodyOk() (*string, bool) {
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigBodyOk() (*string, bool) {
 	if o == nil || o.WebHookConfigBody == nil {
 		return nil, false
 	}
@@ -454,7 +456,7 @@ func (o *ProjectRevisionHook) GetWebHookConfigBodyOk() (*string, bool) {
 }
 
 // HasWebHookConfigBody returns a boolean if a field has been set.
-func (o *ProjectRevisionHook) HasWebHookConfigBody() bool {
+func (o *NormalizedProjectRevisionHook) HasWebHookConfigBody() bool {
 	if o != nil && o.WebHookConfigBody != nil {
 		return true
 	}
@@ -463,12 +465,12 @@ func (o *ProjectRevisionHook) HasWebHookConfigBody() bool {
 }
 
 // SetWebHookConfigBody gets a reference to the given string and assigns it to the WebHookConfigBody field.
-func (o *ProjectRevisionHook) SetWebHookConfigBody(v string) {
+func (o *NormalizedProjectRevisionHook) SetWebHookConfigBody(v string) {
 	o.WebHookConfigBody = &v
 }
 
 // GetWebHookConfigMethod returns the WebHookConfigMethod field value if set, zero value otherwise.
-func (o *ProjectRevisionHook) GetWebHookConfigMethod() string {
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigMethod() string {
 	if o == nil || o.WebHookConfigMethod == nil {
 		var ret string
 		return ret
@@ -478,7 +480,7 @@ func (o *ProjectRevisionHook) GetWebHookConfigMethod() string {
 
 // GetWebHookConfigMethodOk returns a tuple with the WebHookConfigMethod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionHook) GetWebHookConfigMethodOk() (*string, bool) {
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigMethodOk() (*string, bool) {
 	if o == nil || o.WebHookConfigMethod == nil {
 		return nil, false
 	}
@@ -486,7 +488,7 @@ func (o *ProjectRevisionHook) GetWebHookConfigMethodOk() (*string, bool) {
 }
 
 // HasWebHookConfigMethod returns a boolean if a field has been set.
-func (o *ProjectRevisionHook) HasWebHookConfigMethod() bool {
+func (o *NormalizedProjectRevisionHook) HasWebHookConfigMethod() bool {
 	if o != nil && o.WebHookConfigMethod != nil {
 		return true
 	}
@@ -495,12 +497,44 @@ func (o *ProjectRevisionHook) HasWebHookConfigMethod() bool {
 }
 
 // SetWebHookConfigMethod gets a reference to the given string and assigns it to the WebHookConfigMethod field.
-func (o *ProjectRevisionHook) SetWebHookConfigMethod(v string) {
+func (o *NormalizedProjectRevisionHook) SetWebHookConfigMethod(v string) {
 	o.WebHookConfigMethod = &v
 }
 
+// GetWebHookConfigResponseIgnore returns the WebHookConfigResponseIgnore field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigResponseIgnore() bool {
+	if o == nil || o.WebHookConfigResponseIgnore == nil {
+		var ret bool
+		return ret
+	}
+	return *o.WebHookConfigResponseIgnore
+}
+
+// GetWebHookConfigResponseIgnoreOk returns a tuple with the WebHookConfigResponseIgnore field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigResponseIgnoreOk() (*bool, bool) {
+	if o == nil || o.WebHookConfigResponseIgnore == nil {
+		return nil, false
+	}
+	return o.WebHookConfigResponseIgnore, true
+}
+
+// HasWebHookConfigResponseIgnore returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionHook) HasWebHookConfigResponseIgnore() bool {
+	if o != nil && o.WebHookConfigResponseIgnore != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetWebHookConfigResponseIgnore gets a reference to the given bool and assigns it to the WebHookConfigResponseIgnore field.
+func (o *NormalizedProjectRevisionHook) SetWebHookConfigResponseIgnore(v bool) {
+	o.WebHookConfigResponseIgnore = &v
+}
+
 // GetWebHookConfigUrl returns the WebHookConfigUrl field value if set, zero value otherwise.
-func (o *ProjectRevisionHook) GetWebHookConfigUrl() string {
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigUrl() string {
 	if o == nil || o.WebHookConfigUrl == nil {
 		var ret string
 		return ret
@@ -510,7 +544,7 @@ func (o *ProjectRevisionHook) GetWebHookConfigUrl() string {
 
 // GetWebHookConfigUrlOk returns a tuple with the WebHookConfigUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevisionHook) GetWebHookConfigUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevisionHook) GetWebHookConfigUrlOk() (*string, bool) {
 	if o == nil || o.WebHookConfigUrl == nil {
 		return nil, false
 	}
@@ -518,7 +552,7 @@ func (o *ProjectRevisionHook) GetWebHookConfigUrlOk() (*string, bool) {
 }
 
 // HasWebHookConfigUrl returns a boolean if a field has been set.
-func (o *ProjectRevisionHook) HasWebHookConfigUrl() bool {
+func (o *NormalizedProjectRevisionHook) HasWebHookConfigUrl() bool {
 	if o != nil && o.WebHookConfigUrl != nil {
 		return true
 	}
@@ -527,11 +561,11 @@ func (o *ProjectRevisionHook) HasWebHookConfigUrl() bool {
 }
 
 // SetWebHookConfigUrl gets a reference to the given string and assigns it to the WebHookConfigUrl field.
-func (o *ProjectRevisionHook) SetWebHookConfigUrl(v string) {
+func (o *NormalizedProjectRevisionHook) SetWebHookConfigUrl(v string) {
 	o.WebHookConfigUrl = &v
 }
 
-func (o ProjectRevisionHook) MarshalJSON() ([]byte, error) {
+func (o NormalizedProjectRevisionHook) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["config_key"] = o.ConfigKey
@@ -575,44 +609,47 @@ func (o ProjectRevisionHook) MarshalJSON() ([]byte, error) {
 	if o.WebHookConfigMethod != nil {
 		toSerialize["web_hook_config_method"] = o.WebHookConfigMethod
 	}
+	if o.WebHookConfigResponseIgnore != nil {
+		toSerialize["web_hook_config_response_ignore"] = o.WebHookConfigResponseIgnore
+	}
 	if o.WebHookConfigUrl != nil {
 		toSerialize["web_hook_config_url"] = o.WebHookConfigUrl
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableProjectRevisionHook struct {
-	value *ProjectRevisionHook
+type NullableNormalizedProjectRevisionHook struct {
+	value *NormalizedProjectRevisionHook
 	isSet bool
 }
 
-func (v NullableProjectRevisionHook) Get() *ProjectRevisionHook {
+func (v NullableNormalizedProjectRevisionHook) Get() *NormalizedProjectRevisionHook {
 	return v.value
 }
 
-func (v *NullableProjectRevisionHook) Set(val *ProjectRevisionHook) {
+func (v *NullableNormalizedProjectRevisionHook) Set(val *NormalizedProjectRevisionHook) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableProjectRevisionHook) IsSet() bool {
+func (v NullableNormalizedProjectRevisionHook) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableProjectRevisionHook) Unset() {
+func (v *NullableNormalizedProjectRevisionHook) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableProjectRevisionHook(val *ProjectRevisionHook) *NullableProjectRevisionHook {
-	return &NullableProjectRevisionHook{value: val, isSet: true}
+func NewNullableNormalizedProjectRevisionHook(val *NormalizedProjectRevisionHook) *NullableNormalizedProjectRevisionHook {
+	return &NullableNormalizedProjectRevisionHook{value: val, isSet: true}
 }
 
-func (v NullableProjectRevisionHook) MarshalJSON() ([]byte, error) {
+func (v NullableNormalizedProjectRevisionHook) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableProjectRevisionHook) UnmarshalJSON(src []byte) error {
+func (v *NullableNormalizedProjectRevisionHook) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

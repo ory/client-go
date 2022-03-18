@@ -3,7 +3,7 @@
  *
  * Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
  *
- * API version: v0.0.1-alpha.130
+ * API version: v0.0.1-alpha.132
  * Contact: support@ory.sh
  */
 
@@ -16,8 +16,8 @@ import (
 	"time"
 )
 
-// ProjectRevision struct for ProjectRevision
-type ProjectRevision struct {
+// NormalizedProjectRevision struct for NormalizedProjectRevision
+type NormalizedProjectRevision struct {
 	// The Project's Revision Creation Date
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Id *string `json:"id,omitempty"`
@@ -31,7 +31,31 @@ type ProjectRevision struct {
 	KratosCourierSmtpFromName *string `json:"kratos_courier_smtp_from_name,omitempty"`
 	// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
 	KratosCourierSmtpHeaders map[string]interface{} `json:"kratos_courier_smtp_headers,omitempty"`
-	KratosIdentitySchemas []ProjectRevisionIdentitySchema `json:"kratos_identity_schemas,omitempty"`
+	// Configures the Ory Kratos Invalid Recovery Email Body HTML Template  This governs the \"courier.smtp.templates.recovery.invalid.email.body.html\" setting.
+	KratosCourierTemplatesRecoveryInvalidEmailBodyHtml *string `json:"kratos_courier_templates_recovery_invalid_email_body_html,omitempty"`
+	// Configures the Ory Kratos Invalid Recovery Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery.invalid.email.body.plaintext\" setting.
+	KratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext *string `json:"kratos_courier_templates_recovery_invalid_email_body_plaintext,omitempty"`
+	// Configures the Ory Kratos Invalid Recovery Email Subject Template  This governs the \"courier.smtp.templates.recovery.invalid.email.body.html\" setting.
+	KratosCourierTemplatesRecoveryInvalidEmailSubject *string `json:"kratos_courier_templates_recovery_invalid_email_subject,omitempty"`
+	// Configures the Ory Kratos Valid Recovery Email Body HTML Template  This governs the \"courier.smtp.templates.recovery.valid.email.body.html\" setting.
+	KratosCourierTemplatesRecoveryValidEmailBodyHtml *string `json:"kratos_courier_templates_recovery_valid_email_body_html,omitempty"`
+	// Configures the Ory Kratos Valid Recovery Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery.valid.email.body.plaintext\" setting.
+	KratosCourierTemplatesRecoveryValidEmailBodyPlaintext *string `json:"kratos_courier_templates_recovery_valid_email_body_plaintext,omitempty"`
+	// Configures the Ory Kratos Valid Recovery Email Subject Template  This governs the \"courier.smtp.templates.recovery.valid.email.subject\" setting.
+	KratosCourierTemplatesRecoveryValidEmailSubject *string `json:"kratos_courier_templates_recovery_valid_email_subject,omitempty"`
+	// Configures the Ory Kratos Invalid Verification Email Body HTML Template  This governs the \"courier.smtp.templates.verification.invalid.email.body.html\" setting.
+	KratosCourierTemplatesVerificationInvalidEmailBodyHtml *string `json:"kratos_courier_templates_verification_invalid_email_body_html,omitempty"`
+	// Configures the Ory Kratos Invalid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery.invalid.email.body.plaintext\" setting.
+	KratosCourierTemplatesVerificationInvalidEmailBodyPlaintext *string `json:"kratos_courier_templates_verification_invalid_email_body_plaintext,omitempty"`
+	// Configures the Ory Kratos Invalid Verification Email Subject Template  This governs the \"courier.smtp.templates.verification.invalid.email.subject\" setting.
+	KratosCourierTemplatesVerificationInvalidEmailSubject *string `json:"kratos_courier_templates_verification_invalid_email_subject,omitempty"`
+	// Configures the Ory Kratos Valid Verification Email Body HTML Template  This governs the \"courier.smtp.templates.verification.valid.email.body.html\" setting.
+	KratosCourierTemplatesVerificationValidEmailBodyHtml *string `json:"kratos_courier_templates_verification_valid_email_body_html,omitempty"`
+	// Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery.valid.email.body.plaintext\" setting.
+	KratosCourierTemplatesVerificationValidEmailBodyPlaintext *string `json:"kratos_courier_templates_verification_valid_email_body_plaintext,omitempty"`
+	// Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \"courier.smtp.templates.verification.valid.email.subject\" setting.
+	KratosCourierTemplatesVerificationValidEmailSubject *string `json:"kratos_courier_templates_verification_valid_email_subject,omitempty"`
+	KratosIdentitySchemas []NormalizedProjectRevisionIdentitySchema `json:"kratos_identity_schemas,omitempty"`
 	KratosSecretsCipher []string `json:"kratos_secrets_cipher,omitempty"`
 	KratosSecretsCookie []string `json:"kratos_secrets_cookie,omitempty"`
 	KratosSecretsDefault []string `json:"kratos_secrets_default,omitempty"`
@@ -40,13 +64,15 @@ type ProjectRevision struct {
 	KratosSelfserviceDefaultBrowserReturnUrl *string `json:"kratos_selfservice_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Error UI URL  This governs the \"selfservice.flows.error.ui_url\" setting.
 	KratosSelfserviceFlowsErrorUiUrl *string `json:"kratos_selfservice_flows_error_ui_url,omitempty"`
-	KratosSelfserviceFlowsHooks []ProjectRevisionHook `json:"kratos_selfservice_flows_hooks,omitempty"`
+	KratosSelfserviceFlowsHooks []NormalizedProjectRevisionHook `json:"kratos_selfservice_flows_hooks,omitempty"`
 	// Configures the Ory Kratos Login Default Return URL  This governs the \"selfservice.flows.login.after.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login After OIDC Default Return URL  This governs the \"selfservice.flows.login.after.oidc.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_oidc_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.login.after.password.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_password_default_browser_return_url,omitempty"`
+	// Configures the Ory Kratos Login After WebAuthn Default Return URL  This governs the \"selfservice.flows.login.after.webauthn.default_browser_return_url\" setting.
+	KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_webauthn_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login Lifespan  This governs the \"selfservice.flows.login.lifespan\" setting.
 	KratosSelfserviceFlowsLoginLifespan *string `json:"kratos_selfservice_flows_login_lifespan,omitempty"`
 	// Configures the Ory Kratos Login UI URL  This governs the \"selfservice.flows.login.ui_url\" setting.
@@ -67,9 +93,12 @@ type ProjectRevision struct {
 	KratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_oidc_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_password_default_browser_return_url,omitempty"`
+	// Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
+	KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url,omitempty"`
+	KratosSelfserviceFlowsRegistrationEnabled NullableBool `json:"kratos_selfservice_flows_registration_enabled,omitempty"`
 	// Configures the Ory Kratos Registration Lifespan  This governs the \"selfservice.flows.registration.lifespan\" setting.
 	KratosSelfserviceFlowsRegistrationLifespan *string `json:"kratos_selfservice_flows_registration_lifespan,omitempty"`
-	// Configures the Ory Kratos Registration UI URL  This governs the \"selfservice.flows.registration.ui_url\" setting.0
+	// Configures the Ory Kratos Registration UI URL  This governs the \"selfservice.flows.registration.ui_url\" setting.
 	KratosSelfserviceFlowsRegistrationUiUrl *string `json:"kratos_selfservice_flows_registration_ui_url,omitempty"`
 	// Configures the Ory Kratos Settings Default Return URL  This governs the \"selfservice.flows.settings.after.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_settings_after_default_browser_return_url,omitempty"`
@@ -99,18 +128,25 @@ type ProjectRevision struct {
 	KratosSelfserviceMethodsLinkConfigLifespan *string `json:"kratos_selfservice_methods_link_config_lifespan,omitempty"`
 	KratosSelfserviceMethodsLinkEnabled NullableBool `json:"kratos_selfservice_methods_link_enabled,omitempty"`
 	KratosSelfserviceMethodsLookupSecretEnabled NullableBool `json:"kratos_selfservice_methods_lookup_secret_enabled,omitempty"`
-	KratosSelfserviceMethodsOidcConfigProviders []ProjectRevisionThirdPartyLoginProvider `json:"kratos_selfservice_methods_oidc_config_providers,omitempty"`
+	// Configures the Ory Kratos Third Party / OpenID Connect base redirect URI  This governs the \"selfservice.methods.oidc.config.base_redirect_uri\" setting.
+	KratosSelfserviceMethodsOidcConfigBaseRedirectUri *string `json:"kratos_selfservice_methods_oidc_config_base_redirect_uri,omitempty"`
+	KratosSelfserviceMethodsOidcConfigProviders []NormalizedProjectRevisionThirdPartyProvider `json:"kratos_selfservice_methods_oidc_config_providers,omitempty"`
 	// Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \"selfservice.methods.oidc.enabled\" setting.
 	KratosSelfserviceMethodsOidcEnabled *bool `json:"kratos_selfservice_methods_oidc_enabled,omitempty"`
 	KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled NullableBool `json:"kratos_selfservice_methods_password_config_haveibeenpwned_enabled,omitempty"`
+	KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled NullableBool `json:"kratos_selfservice_methods_password_config_identifier_similarity_check_enabled,omitempty"`
 	KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors NullableBool `json:"kratos_selfservice_methods_password_config_ignore_network_errors,omitempty"`
-	// Configures Ory Kratos Password Max Breaches Detection  This governs the \"selfservice.methods.password.enabled\" setting.
+	// Configures Ory Kratos Password Max Breaches Detection  This governs the \"selfservice.methods.password.config.max_breaches\" setting.
 	KratosSelfserviceMethodsPasswordConfigMaxBreaches *int64 `json:"kratos_selfservice_methods_password_config_max_breaches,omitempty"`
+	// Configures the minimum length of passwords.  This governs the \"selfservice.methods.password.config.min_password_length\" setting.
+	KratosSelfserviceMethodsPasswordConfigMinPasswordLength *int64 `json:"kratos_selfservice_methods_password_config_min_password_length,omitempty"`
 	KratosSelfserviceMethodsPasswordEnabled NullableBool `json:"kratos_selfservice_methods_password_enabled,omitempty"`
 	KratosSelfserviceMethodsProfileEnabled NullableBool `json:"kratos_selfservice_methods_profile_enabled,omitempty"`
 	// Configures Ory Kratos TOTP Issuer  This governs the \"selfservice.methods.totp.config.issuer\" setting.
 	KratosSelfserviceMethodsTotpConfigIssuer *string `json:"kratos_selfservice_methods_totp_config_issuer,omitempty"`
 	KratosSelfserviceMethodsTotpEnabled NullableBool `json:"kratos_selfservice_methods_totp_enabled,omitempty"`
+	// Configures whether Ory Kratos Webauthn is used for passwordless flows  This governs the \"selfservice.methods.webauthn.config.passwordless\" setting.
+	KratosSelfserviceMethodsWebauthnConfigPasswordless *bool `json:"kratos_selfservice_methods_webauthn_config_passwordless,omitempty"`
 	// Configures the Ory Kratos Webauthn RP Display Name  This governs the \"selfservice.methods.webauthn.config.rp.display_name\" setting.
 	KratosSelfserviceMethodsWebauthnConfigRpDisplayName *string `json:"kratos_selfservice_methods_webauthn_config_rp_display_name,omitempty"`
 	// Configures the Ory Kratos Webauthn RP Icon  This governs the \"selfservice.methods.webauthn.config.rp.icon\" setting.
@@ -134,26 +170,26 @@ type ProjectRevision struct {
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 }
 
-// NewProjectRevision instantiates a new ProjectRevision object
+// NewNormalizedProjectRevision instantiates a new NormalizedProjectRevision object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectRevision(name string) *ProjectRevision {
-	this := ProjectRevision{}
+func NewNormalizedProjectRevision(name string) *NormalizedProjectRevision {
+	this := NormalizedProjectRevision{}
 	this.Name = name
 	return &this
 }
 
-// NewProjectRevisionWithDefaults instantiates a new ProjectRevision object
+// NewNormalizedProjectRevisionWithDefaults instantiates a new NormalizedProjectRevision object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewProjectRevisionWithDefaults() *ProjectRevision {
-	this := ProjectRevision{}
+func NewNormalizedProjectRevisionWithDefaults() *NormalizedProjectRevision {
+	this := NormalizedProjectRevision{}
 	return &this
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *ProjectRevision) GetCreatedAt() time.Time {
+func (o *NormalizedProjectRevision) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
 		var ret time.Time
 		return ret
@@ -163,7 +199,7 @@ func (o *ProjectRevision) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetCreatedAtOk() (*time.Time, bool) {
+func (o *NormalizedProjectRevision) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil || o.CreatedAt == nil {
 		return nil, false
 	}
@@ -171,7 +207,7 @@ func (o *ProjectRevision) GetCreatedAtOk() (*time.Time, bool) {
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
-func (o *ProjectRevision) HasCreatedAt() bool {
+func (o *NormalizedProjectRevision) HasCreatedAt() bool {
 	if o != nil && o.CreatedAt != nil {
 		return true
 	}
@@ -180,12 +216,12 @@ func (o *ProjectRevision) HasCreatedAt() bool {
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *ProjectRevision) SetCreatedAt(v time.Time) {
+func (o *NormalizedProjectRevision) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *ProjectRevision) GetId() string {
+func (o *NormalizedProjectRevision) GetId() string {
 	if o == nil || o.Id == nil {
 		var ret string
 		return ret
@@ -195,7 +231,7 @@ func (o *ProjectRevision) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetIdOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -203,7 +239,7 @@ func (o *ProjectRevision) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *ProjectRevision) HasId() bool {
+func (o *NormalizedProjectRevision) HasId() bool {
 	if o != nil && o.Id != nil {
 		return true
 	}
@@ -212,12 +248,12 @@ func (o *ProjectRevision) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *ProjectRevision) SetId(v string) {
+func (o *NormalizedProjectRevision) SetId(v string) {
 	o.Id = &v
 }
 
 // GetKratosCookiesSameSite returns the KratosCookiesSameSite field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosCookiesSameSite() string {
+func (o *NormalizedProjectRevision) GetKratosCookiesSameSite() string {
 	if o == nil || o.KratosCookiesSameSite == nil {
 		var ret string
 		return ret
@@ -227,7 +263,7 @@ func (o *ProjectRevision) GetKratosCookiesSameSite() string {
 
 // GetKratosCookiesSameSiteOk returns a tuple with the KratosCookiesSameSite field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosCookiesSameSiteOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosCookiesSameSiteOk() (*string, bool) {
 	if o == nil || o.KratosCookiesSameSite == nil {
 		return nil, false
 	}
@@ -235,7 +271,7 @@ func (o *ProjectRevision) GetKratosCookiesSameSiteOk() (*string, bool) {
 }
 
 // HasKratosCookiesSameSite returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosCookiesSameSite() bool {
+func (o *NormalizedProjectRevision) HasKratosCookiesSameSite() bool {
 	if o != nil && o.KratosCookiesSameSite != nil {
 		return true
 	}
@@ -244,12 +280,12 @@ func (o *ProjectRevision) HasKratosCookiesSameSite() bool {
 }
 
 // SetKratosCookiesSameSite gets a reference to the given string and assigns it to the KratosCookiesSameSite field.
-func (o *ProjectRevision) SetKratosCookiesSameSite(v string) {
+func (o *NormalizedProjectRevision) SetKratosCookiesSameSite(v string) {
 	o.KratosCookiesSameSite = &v
 }
 
 // GetKratosCourierSmtpConnectionUri returns the KratosCourierSmtpConnectionUri field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosCourierSmtpConnectionUri() string {
+func (o *NormalizedProjectRevision) GetKratosCourierSmtpConnectionUri() string {
 	if o == nil || o.KratosCourierSmtpConnectionUri == nil {
 		var ret string
 		return ret
@@ -259,7 +295,7 @@ func (o *ProjectRevision) GetKratosCourierSmtpConnectionUri() string {
 
 // GetKratosCourierSmtpConnectionUriOk returns a tuple with the KratosCourierSmtpConnectionUri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosCourierSmtpConnectionUriOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosCourierSmtpConnectionUriOk() (*string, bool) {
 	if o == nil || o.KratosCourierSmtpConnectionUri == nil {
 		return nil, false
 	}
@@ -267,7 +303,7 @@ func (o *ProjectRevision) GetKratosCourierSmtpConnectionUriOk() (*string, bool) 
 }
 
 // HasKratosCourierSmtpConnectionUri returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosCourierSmtpConnectionUri() bool {
+func (o *NormalizedProjectRevision) HasKratosCourierSmtpConnectionUri() bool {
 	if o != nil && o.KratosCourierSmtpConnectionUri != nil {
 		return true
 	}
@@ -276,12 +312,12 @@ func (o *ProjectRevision) HasKratosCourierSmtpConnectionUri() bool {
 }
 
 // SetKratosCourierSmtpConnectionUri gets a reference to the given string and assigns it to the KratosCourierSmtpConnectionUri field.
-func (o *ProjectRevision) SetKratosCourierSmtpConnectionUri(v string) {
+func (o *NormalizedProjectRevision) SetKratosCourierSmtpConnectionUri(v string) {
 	o.KratosCourierSmtpConnectionUri = &v
 }
 
 // GetKratosCourierSmtpFromAddress returns the KratosCourierSmtpFromAddress field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosCourierSmtpFromAddress() string {
+func (o *NormalizedProjectRevision) GetKratosCourierSmtpFromAddress() string {
 	if o == nil || o.KratosCourierSmtpFromAddress == nil {
 		var ret string
 		return ret
@@ -291,7 +327,7 @@ func (o *ProjectRevision) GetKratosCourierSmtpFromAddress() string {
 
 // GetKratosCourierSmtpFromAddressOk returns a tuple with the KratosCourierSmtpFromAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosCourierSmtpFromAddressOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosCourierSmtpFromAddressOk() (*string, bool) {
 	if o == nil || o.KratosCourierSmtpFromAddress == nil {
 		return nil, false
 	}
@@ -299,7 +335,7 @@ func (o *ProjectRevision) GetKratosCourierSmtpFromAddressOk() (*string, bool) {
 }
 
 // HasKratosCourierSmtpFromAddress returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosCourierSmtpFromAddress() bool {
+func (o *NormalizedProjectRevision) HasKratosCourierSmtpFromAddress() bool {
 	if o != nil && o.KratosCourierSmtpFromAddress != nil {
 		return true
 	}
@@ -308,12 +344,12 @@ func (o *ProjectRevision) HasKratosCourierSmtpFromAddress() bool {
 }
 
 // SetKratosCourierSmtpFromAddress gets a reference to the given string and assigns it to the KratosCourierSmtpFromAddress field.
-func (o *ProjectRevision) SetKratosCourierSmtpFromAddress(v string) {
+func (o *NormalizedProjectRevision) SetKratosCourierSmtpFromAddress(v string) {
 	o.KratosCourierSmtpFromAddress = &v
 }
 
 // GetKratosCourierSmtpFromName returns the KratosCourierSmtpFromName field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosCourierSmtpFromName() string {
+func (o *NormalizedProjectRevision) GetKratosCourierSmtpFromName() string {
 	if o == nil || o.KratosCourierSmtpFromName == nil {
 		var ret string
 		return ret
@@ -323,7 +359,7 @@ func (o *ProjectRevision) GetKratosCourierSmtpFromName() string {
 
 // GetKratosCourierSmtpFromNameOk returns a tuple with the KratosCourierSmtpFromName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosCourierSmtpFromNameOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosCourierSmtpFromNameOk() (*string, bool) {
 	if o == nil || o.KratosCourierSmtpFromName == nil {
 		return nil, false
 	}
@@ -331,7 +367,7 @@ func (o *ProjectRevision) GetKratosCourierSmtpFromNameOk() (*string, bool) {
 }
 
 // HasKratosCourierSmtpFromName returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosCourierSmtpFromName() bool {
+func (o *NormalizedProjectRevision) HasKratosCourierSmtpFromName() bool {
 	if o != nil && o.KratosCourierSmtpFromName != nil {
 		return true
 	}
@@ -340,12 +376,12 @@ func (o *ProjectRevision) HasKratosCourierSmtpFromName() bool {
 }
 
 // SetKratosCourierSmtpFromName gets a reference to the given string and assigns it to the KratosCourierSmtpFromName field.
-func (o *ProjectRevision) SetKratosCourierSmtpFromName(v string) {
+func (o *NormalizedProjectRevision) SetKratosCourierSmtpFromName(v string) {
 	o.KratosCourierSmtpFromName = &v
 }
 
 // GetKratosCourierSmtpHeaders returns the KratosCourierSmtpHeaders field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosCourierSmtpHeaders() map[string]interface{} {
+func (o *NormalizedProjectRevision) GetKratosCourierSmtpHeaders() map[string]interface{} {
 	if o == nil || o.KratosCourierSmtpHeaders == nil {
 		var ret map[string]interface{}
 		return ret
@@ -355,7 +391,7 @@ func (o *ProjectRevision) GetKratosCourierSmtpHeaders() map[string]interface{} {
 
 // GetKratosCourierSmtpHeadersOk returns a tuple with the KratosCourierSmtpHeaders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosCourierSmtpHeadersOk() (map[string]interface{}, bool) {
+func (o *NormalizedProjectRevision) GetKratosCourierSmtpHeadersOk() (map[string]interface{}, bool) {
 	if o == nil || o.KratosCourierSmtpHeaders == nil {
 		return nil, false
 	}
@@ -363,7 +399,7 @@ func (o *ProjectRevision) GetKratosCourierSmtpHeadersOk() (map[string]interface{
 }
 
 // HasKratosCourierSmtpHeaders returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosCourierSmtpHeaders() bool {
+func (o *NormalizedProjectRevision) HasKratosCourierSmtpHeaders() bool {
 	if o != nil && o.KratosCourierSmtpHeaders != nil {
 		return true
 	}
@@ -372,14 +408,398 @@ func (o *ProjectRevision) HasKratosCourierSmtpHeaders() bool {
 }
 
 // SetKratosCourierSmtpHeaders gets a reference to the given map[string]interface{} and assigns it to the KratosCourierSmtpHeaders field.
-func (o *ProjectRevision) SetKratosCourierSmtpHeaders(v map[string]interface{}) {
+func (o *NormalizedProjectRevision) SetKratosCourierSmtpHeaders(v map[string]interface{}) {
 	o.KratosCourierSmtpHeaders = v
 }
 
+// GetKratosCourierTemplatesRecoveryInvalidEmailBodyHtml returns the KratosCourierTemplatesRecoveryInvalidEmailBodyHtml field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryInvalidEmailBodyHtml() string {
+	if o == nil || o.KratosCourierTemplatesRecoveryInvalidEmailBodyHtml == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesRecoveryInvalidEmailBodyHtml
+}
+
+// GetKratosCourierTemplatesRecoveryInvalidEmailBodyHtmlOk returns a tuple with the KratosCourierTemplatesRecoveryInvalidEmailBodyHtml field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryInvalidEmailBodyHtmlOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesRecoveryInvalidEmailBodyHtml == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesRecoveryInvalidEmailBodyHtml, true
+}
+
+// HasKratosCourierTemplatesRecoveryInvalidEmailBodyHtml returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRecoveryInvalidEmailBodyHtml() bool {
+	if o != nil && o.KratosCourierTemplatesRecoveryInvalidEmailBodyHtml != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesRecoveryInvalidEmailBodyHtml gets a reference to the given string and assigns it to the KratosCourierTemplatesRecoveryInvalidEmailBodyHtml field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRecoveryInvalidEmailBodyHtml(v string) {
+	o.KratosCourierTemplatesRecoveryInvalidEmailBodyHtml = &v
+}
+
+// GetKratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext returns the KratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext() string {
+	if o == nil || o.KratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext
+}
+
+// GetKratosCourierTemplatesRecoveryInvalidEmailBodyPlaintextOk returns a tuple with the KratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryInvalidEmailBodyPlaintextOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext, true
+}
+
+// HasKratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext() bool {
+	if o != nil && o.KratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext gets a reference to the given string and assigns it to the KratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext(v string) {
+	o.KratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext = &v
+}
+
+// GetKratosCourierTemplatesRecoveryInvalidEmailSubject returns the KratosCourierTemplatesRecoveryInvalidEmailSubject field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryInvalidEmailSubject() string {
+	if o == nil || o.KratosCourierTemplatesRecoveryInvalidEmailSubject == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesRecoveryInvalidEmailSubject
+}
+
+// GetKratosCourierTemplatesRecoveryInvalidEmailSubjectOk returns a tuple with the KratosCourierTemplatesRecoveryInvalidEmailSubject field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryInvalidEmailSubjectOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesRecoveryInvalidEmailSubject == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesRecoveryInvalidEmailSubject, true
+}
+
+// HasKratosCourierTemplatesRecoveryInvalidEmailSubject returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRecoveryInvalidEmailSubject() bool {
+	if o != nil && o.KratosCourierTemplatesRecoveryInvalidEmailSubject != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesRecoveryInvalidEmailSubject gets a reference to the given string and assigns it to the KratosCourierTemplatesRecoveryInvalidEmailSubject field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRecoveryInvalidEmailSubject(v string) {
+	o.KratosCourierTemplatesRecoveryInvalidEmailSubject = &v
+}
+
+// GetKratosCourierTemplatesRecoveryValidEmailBodyHtml returns the KratosCourierTemplatesRecoveryValidEmailBodyHtml field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryValidEmailBodyHtml() string {
+	if o == nil || o.KratosCourierTemplatesRecoveryValidEmailBodyHtml == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesRecoveryValidEmailBodyHtml
+}
+
+// GetKratosCourierTemplatesRecoveryValidEmailBodyHtmlOk returns a tuple with the KratosCourierTemplatesRecoveryValidEmailBodyHtml field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryValidEmailBodyHtmlOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesRecoveryValidEmailBodyHtml == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesRecoveryValidEmailBodyHtml, true
+}
+
+// HasKratosCourierTemplatesRecoveryValidEmailBodyHtml returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRecoveryValidEmailBodyHtml() bool {
+	if o != nil && o.KratosCourierTemplatesRecoveryValidEmailBodyHtml != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesRecoveryValidEmailBodyHtml gets a reference to the given string and assigns it to the KratosCourierTemplatesRecoveryValidEmailBodyHtml field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRecoveryValidEmailBodyHtml(v string) {
+	o.KratosCourierTemplatesRecoveryValidEmailBodyHtml = &v
+}
+
+// GetKratosCourierTemplatesRecoveryValidEmailBodyPlaintext returns the KratosCourierTemplatesRecoveryValidEmailBodyPlaintext field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryValidEmailBodyPlaintext() string {
+	if o == nil || o.KratosCourierTemplatesRecoveryValidEmailBodyPlaintext == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesRecoveryValidEmailBodyPlaintext
+}
+
+// GetKratosCourierTemplatesRecoveryValidEmailBodyPlaintextOk returns a tuple with the KratosCourierTemplatesRecoveryValidEmailBodyPlaintext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryValidEmailBodyPlaintextOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesRecoveryValidEmailBodyPlaintext == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesRecoveryValidEmailBodyPlaintext, true
+}
+
+// HasKratosCourierTemplatesRecoveryValidEmailBodyPlaintext returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRecoveryValidEmailBodyPlaintext() bool {
+	if o != nil && o.KratosCourierTemplatesRecoveryValidEmailBodyPlaintext != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesRecoveryValidEmailBodyPlaintext gets a reference to the given string and assigns it to the KratosCourierTemplatesRecoveryValidEmailBodyPlaintext field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRecoveryValidEmailBodyPlaintext(v string) {
+	o.KratosCourierTemplatesRecoveryValidEmailBodyPlaintext = &v
+}
+
+// GetKratosCourierTemplatesRecoveryValidEmailSubject returns the KratosCourierTemplatesRecoveryValidEmailSubject field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryValidEmailSubject() string {
+	if o == nil || o.KratosCourierTemplatesRecoveryValidEmailSubject == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesRecoveryValidEmailSubject
+}
+
+// GetKratosCourierTemplatesRecoveryValidEmailSubjectOk returns a tuple with the KratosCourierTemplatesRecoveryValidEmailSubject field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRecoveryValidEmailSubjectOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesRecoveryValidEmailSubject == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesRecoveryValidEmailSubject, true
+}
+
+// HasKratosCourierTemplatesRecoveryValidEmailSubject returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRecoveryValidEmailSubject() bool {
+	if o != nil && o.KratosCourierTemplatesRecoveryValidEmailSubject != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesRecoveryValidEmailSubject gets a reference to the given string and assigns it to the KratosCourierTemplatesRecoveryValidEmailSubject field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRecoveryValidEmailSubject(v string) {
+	o.KratosCourierTemplatesRecoveryValidEmailSubject = &v
+}
+
+// GetKratosCourierTemplatesVerificationInvalidEmailBodyHtml returns the KratosCourierTemplatesVerificationInvalidEmailBodyHtml field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationInvalidEmailBodyHtml() string {
+	if o == nil || o.KratosCourierTemplatesVerificationInvalidEmailBodyHtml == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerificationInvalidEmailBodyHtml
+}
+
+// GetKratosCourierTemplatesVerificationInvalidEmailBodyHtmlOk returns a tuple with the KratosCourierTemplatesVerificationInvalidEmailBodyHtml field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationInvalidEmailBodyHtmlOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesVerificationInvalidEmailBodyHtml == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerificationInvalidEmailBodyHtml, true
+}
+
+// HasKratosCourierTemplatesVerificationInvalidEmailBodyHtml returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerificationInvalidEmailBodyHtml() bool {
+	if o != nil && o.KratosCourierTemplatesVerificationInvalidEmailBodyHtml != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerificationInvalidEmailBodyHtml gets a reference to the given string and assigns it to the KratosCourierTemplatesVerificationInvalidEmailBodyHtml field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerificationInvalidEmailBodyHtml(v string) {
+	o.KratosCourierTemplatesVerificationInvalidEmailBodyHtml = &v
+}
+
+// GetKratosCourierTemplatesVerificationInvalidEmailBodyPlaintext returns the KratosCourierTemplatesVerificationInvalidEmailBodyPlaintext field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationInvalidEmailBodyPlaintext() string {
+	if o == nil || o.KratosCourierTemplatesVerificationInvalidEmailBodyPlaintext == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerificationInvalidEmailBodyPlaintext
+}
+
+// GetKratosCourierTemplatesVerificationInvalidEmailBodyPlaintextOk returns a tuple with the KratosCourierTemplatesVerificationInvalidEmailBodyPlaintext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationInvalidEmailBodyPlaintextOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesVerificationInvalidEmailBodyPlaintext == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerificationInvalidEmailBodyPlaintext, true
+}
+
+// HasKratosCourierTemplatesVerificationInvalidEmailBodyPlaintext returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerificationInvalidEmailBodyPlaintext() bool {
+	if o != nil && o.KratosCourierTemplatesVerificationInvalidEmailBodyPlaintext != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerificationInvalidEmailBodyPlaintext gets a reference to the given string and assigns it to the KratosCourierTemplatesVerificationInvalidEmailBodyPlaintext field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerificationInvalidEmailBodyPlaintext(v string) {
+	o.KratosCourierTemplatesVerificationInvalidEmailBodyPlaintext = &v
+}
+
+// GetKratosCourierTemplatesVerificationInvalidEmailSubject returns the KratosCourierTemplatesVerificationInvalidEmailSubject field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationInvalidEmailSubject() string {
+	if o == nil || o.KratosCourierTemplatesVerificationInvalidEmailSubject == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerificationInvalidEmailSubject
+}
+
+// GetKratosCourierTemplatesVerificationInvalidEmailSubjectOk returns a tuple with the KratosCourierTemplatesVerificationInvalidEmailSubject field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationInvalidEmailSubjectOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesVerificationInvalidEmailSubject == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerificationInvalidEmailSubject, true
+}
+
+// HasKratosCourierTemplatesVerificationInvalidEmailSubject returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerificationInvalidEmailSubject() bool {
+	if o != nil && o.KratosCourierTemplatesVerificationInvalidEmailSubject != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerificationInvalidEmailSubject gets a reference to the given string and assigns it to the KratosCourierTemplatesVerificationInvalidEmailSubject field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerificationInvalidEmailSubject(v string) {
+	o.KratosCourierTemplatesVerificationInvalidEmailSubject = &v
+}
+
+// GetKratosCourierTemplatesVerificationValidEmailBodyHtml returns the KratosCourierTemplatesVerificationValidEmailBodyHtml field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationValidEmailBodyHtml() string {
+	if o == nil || o.KratosCourierTemplatesVerificationValidEmailBodyHtml == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerificationValidEmailBodyHtml
+}
+
+// GetKratosCourierTemplatesVerificationValidEmailBodyHtmlOk returns a tuple with the KratosCourierTemplatesVerificationValidEmailBodyHtml field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationValidEmailBodyHtmlOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesVerificationValidEmailBodyHtml == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerificationValidEmailBodyHtml, true
+}
+
+// HasKratosCourierTemplatesVerificationValidEmailBodyHtml returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerificationValidEmailBodyHtml() bool {
+	if o != nil && o.KratosCourierTemplatesVerificationValidEmailBodyHtml != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerificationValidEmailBodyHtml gets a reference to the given string and assigns it to the KratosCourierTemplatesVerificationValidEmailBodyHtml field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerificationValidEmailBodyHtml(v string) {
+	o.KratosCourierTemplatesVerificationValidEmailBodyHtml = &v
+}
+
+// GetKratosCourierTemplatesVerificationValidEmailBodyPlaintext returns the KratosCourierTemplatesVerificationValidEmailBodyPlaintext field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationValidEmailBodyPlaintext() string {
+	if o == nil || o.KratosCourierTemplatesVerificationValidEmailBodyPlaintext == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerificationValidEmailBodyPlaintext
+}
+
+// GetKratosCourierTemplatesVerificationValidEmailBodyPlaintextOk returns a tuple with the KratosCourierTemplatesVerificationValidEmailBodyPlaintext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationValidEmailBodyPlaintextOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesVerificationValidEmailBodyPlaintext == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerificationValidEmailBodyPlaintext, true
+}
+
+// HasKratosCourierTemplatesVerificationValidEmailBodyPlaintext returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerificationValidEmailBodyPlaintext() bool {
+	if o != nil && o.KratosCourierTemplatesVerificationValidEmailBodyPlaintext != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerificationValidEmailBodyPlaintext gets a reference to the given string and assigns it to the KratosCourierTemplatesVerificationValidEmailBodyPlaintext field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerificationValidEmailBodyPlaintext(v string) {
+	o.KratosCourierTemplatesVerificationValidEmailBodyPlaintext = &v
+}
+
+// GetKratosCourierTemplatesVerificationValidEmailSubject returns the KratosCourierTemplatesVerificationValidEmailSubject field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationValidEmailSubject() string {
+	if o == nil || o.KratosCourierTemplatesVerificationValidEmailSubject == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerificationValidEmailSubject
+}
+
+// GetKratosCourierTemplatesVerificationValidEmailSubjectOk returns a tuple with the KratosCourierTemplatesVerificationValidEmailSubject field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationValidEmailSubjectOk() (*string, bool) {
+	if o == nil || o.KratosCourierTemplatesVerificationValidEmailSubject == nil {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerificationValidEmailSubject, true
+}
+
+// HasKratosCourierTemplatesVerificationValidEmailSubject returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerificationValidEmailSubject() bool {
+	if o != nil && o.KratosCourierTemplatesVerificationValidEmailSubject != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerificationValidEmailSubject gets a reference to the given string and assigns it to the KratosCourierTemplatesVerificationValidEmailSubject field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerificationValidEmailSubject(v string) {
+	o.KratosCourierTemplatesVerificationValidEmailSubject = &v
+}
+
 // GetKratosIdentitySchemas returns the KratosIdentitySchemas field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosIdentitySchemas() []ProjectRevisionIdentitySchema {
+func (o *NormalizedProjectRevision) GetKratosIdentitySchemas() []NormalizedProjectRevisionIdentitySchema {
 	if o == nil || o.KratosIdentitySchemas == nil {
-		var ret []ProjectRevisionIdentitySchema
+		var ret []NormalizedProjectRevisionIdentitySchema
 		return ret
 	}
 	return o.KratosIdentitySchemas
@@ -387,7 +807,7 @@ func (o *ProjectRevision) GetKratosIdentitySchemas() []ProjectRevisionIdentitySc
 
 // GetKratosIdentitySchemasOk returns a tuple with the KratosIdentitySchemas field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosIdentitySchemasOk() ([]ProjectRevisionIdentitySchema, bool) {
+func (o *NormalizedProjectRevision) GetKratosIdentitySchemasOk() ([]NormalizedProjectRevisionIdentitySchema, bool) {
 	if o == nil || o.KratosIdentitySchemas == nil {
 		return nil, false
 	}
@@ -395,7 +815,7 @@ func (o *ProjectRevision) GetKratosIdentitySchemasOk() ([]ProjectRevisionIdentit
 }
 
 // HasKratosIdentitySchemas returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosIdentitySchemas() bool {
+func (o *NormalizedProjectRevision) HasKratosIdentitySchemas() bool {
 	if o != nil && o.KratosIdentitySchemas != nil {
 		return true
 	}
@@ -403,13 +823,13 @@ func (o *ProjectRevision) HasKratosIdentitySchemas() bool {
 	return false
 }
 
-// SetKratosIdentitySchemas gets a reference to the given []ProjectRevisionIdentitySchema and assigns it to the KratosIdentitySchemas field.
-func (o *ProjectRevision) SetKratosIdentitySchemas(v []ProjectRevisionIdentitySchema) {
+// SetKratosIdentitySchemas gets a reference to the given []NormalizedProjectRevisionIdentitySchema and assigns it to the KratosIdentitySchemas field.
+func (o *NormalizedProjectRevision) SetKratosIdentitySchemas(v []NormalizedProjectRevisionIdentitySchema) {
 	o.KratosIdentitySchemas = v
 }
 
 // GetKratosSecretsCipher returns the KratosSecretsCipher field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSecretsCipher() []string {
+func (o *NormalizedProjectRevision) GetKratosSecretsCipher() []string {
 	if o == nil || o.KratosSecretsCipher == nil {
 		var ret []string
 		return ret
@@ -419,7 +839,7 @@ func (o *ProjectRevision) GetKratosSecretsCipher() []string {
 
 // GetKratosSecretsCipherOk returns a tuple with the KratosSecretsCipher field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSecretsCipherOk() ([]string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSecretsCipherOk() ([]string, bool) {
 	if o == nil || o.KratosSecretsCipher == nil {
 		return nil, false
 	}
@@ -427,7 +847,7 @@ func (o *ProjectRevision) GetKratosSecretsCipherOk() ([]string, bool) {
 }
 
 // HasKratosSecretsCipher returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSecretsCipher() bool {
+func (o *NormalizedProjectRevision) HasKratosSecretsCipher() bool {
 	if o != nil && o.KratosSecretsCipher != nil {
 		return true
 	}
@@ -436,12 +856,12 @@ func (o *ProjectRevision) HasKratosSecretsCipher() bool {
 }
 
 // SetKratosSecretsCipher gets a reference to the given []string and assigns it to the KratosSecretsCipher field.
-func (o *ProjectRevision) SetKratosSecretsCipher(v []string) {
+func (o *NormalizedProjectRevision) SetKratosSecretsCipher(v []string) {
 	o.KratosSecretsCipher = v
 }
 
 // GetKratosSecretsCookie returns the KratosSecretsCookie field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSecretsCookie() []string {
+func (o *NormalizedProjectRevision) GetKratosSecretsCookie() []string {
 	if o == nil || o.KratosSecretsCookie == nil {
 		var ret []string
 		return ret
@@ -451,7 +871,7 @@ func (o *ProjectRevision) GetKratosSecretsCookie() []string {
 
 // GetKratosSecretsCookieOk returns a tuple with the KratosSecretsCookie field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSecretsCookieOk() ([]string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSecretsCookieOk() ([]string, bool) {
 	if o == nil || o.KratosSecretsCookie == nil {
 		return nil, false
 	}
@@ -459,7 +879,7 @@ func (o *ProjectRevision) GetKratosSecretsCookieOk() ([]string, bool) {
 }
 
 // HasKratosSecretsCookie returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSecretsCookie() bool {
+func (o *NormalizedProjectRevision) HasKratosSecretsCookie() bool {
 	if o != nil && o.KratosSecretsCookie != nil {
 		return true
 	}
@@ -468,12 +888,12 @@ func (o *ProjectRevision) HasKratosSecretsCookie() bool {
 }
 
 // SetKratosSecretsCookie gets a reference to the given []string and assigns it to the KratosSecretsCookie field.
-func (o *ProjectRevision) SetKratosSecretsCookie(v []string) {
+func (o *NormalizedProjectRevision) SetKratosSecretsCookie(v []string) {
 	o.KratosSecretsCookie = v
 }
 
 // GetKratosSecretsDefault returns the KratosSecretsDefault field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSecretsDefault() []string {
+func (o *NormalizedProjectRevision) GetKratosSecretsDefault() []string {
 	if o == nil || o.KratosSecretsDefault == nil {
 		var ret []string
 		return ret
@@ -483,7 +903,7 @@ func (o *ProjectRevision) GetKratosSecretsDefault() []string {
 
 // GetKratosSecretsDefaultOk returns a tuple with the KratosSecretsDefault field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSecretsDefaultOk() ([]string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSecretsDefaultOk() ([]string, bool) {
 	if o == nil || o.KratosSecretsDefault == nil {
 		return nil, false
 	}
@@ -491,7 +911,7 @@ func (o *ProjectRevision) GetKratosSecretsDefaultOk() ([]string, bool) {
 }
 
 // HasKratosSecretsDefault returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSecretsDefault() bool {
+func (o *NormalizedProjectRevision) HasKratosSecretsDefault() bool {
 	if o != nil && o.KratosSecretsDefault != nil {
 		return true
 	}
@@ -500,12 +920,12 @@ func (o *ProjectRevision) HasKratosSecretsDefault() bool {
 }
 
 // SetKratosSecretsDefault gets a reference to the given []string and assigns it to the KratosSecretsDefault field.
-func (o *ProjectRevision) SetKratosSecretsDefault(v []string) {
+func (o *NormalizedProjectRevision) SetKratosSecretsDefault(v []string) {
 	o.KratosSecretsDefault = v
 }
 
 // GetKratosSelfserviceAllowedReturnUrls returns the KratosSelfserviceAllowedReturnUrls field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceAllowedReturnUrls() []string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceAllowedReturnUrls() []string {
 	if o == nil || o.KratosSelfserviceAllowedReturnUrls == nil {
 		var ret []string
 		return ret
@@ -515,7 +935,7 @@ func (o *ProjectRevision) GetKratosSelfserviceAllowedReturnUrls() []string {
 
 // GetKratosSelfserviceAllowedReturnUrlsOk returns a tuple with the KratosSelfserviceAllowedReturnUrls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceAllowedReturnUrlsOk() ([]string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceAllowedReturnUrlsOk() ([]string, bool) {
 	if o == nil || o.KratosSelfserviceAllowedReturnUrls == nil {
 		return nil, false
 	}
@@ -523,7 +943,7 @@ func (o *ProjectRevision) GetKratosSelfserviceAllowedReturnUrlsOk() ([]string, b
 }
 
 // HasKratosSelfserviceAllowedReturnUrls returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceAllowedReturnUrls() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceAllowedReturnUrls() bool {
 	if o != nil && o.KratosSelfserviceAllowedReturnUrls != nil {
 		return true
 	}
@@ -532,12 +952,12 @@ func (o *ProjectRevision) HasKratosSelfserviceAllowedReturnUrls() bool {
 }
 
 // SetKratosSelfserviceAllowedReturnUrls gets a reference to the given []string and assigns it to the KratosSelfserviceAllowedReturnUrls field.
-func (o *ProjectRevision) SetKratosSelfserviceAllowedReturnUrls(v []string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceAllowedReturnUrls(v []string) {
 	o.KratosSelfserviceAllowedReturnUrls = v
 }
 
 // GetKratosSelfserviceDefaultBrowserReturnUrl returns the KratosSelfserviceDefaultBrowserReturnUrl field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceDefaultBrowserReturnUrl() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceDefaultBrowserReturnUrl() string {
 	if o == nil || o.KratosSelfserviceDefaultBrowserReturnUrl == nil {
 		var ret string
 		return ret
@@ -547,7 +967,7 @@ func (o *ProjectRevision) GetKratosSelfserviceDefaultBrowserReturnUrl() string {
 
 // GetKratosSelfserviceDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceDefaultBrowserReturnUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceDefaultBrowserReturnUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceDefaultBrowserReturnUrlOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceDefaultBrowserReturnUrl == nil {
 		return nil, false
 	}
@@ -555,7 +975,7 @@ func (o *ProjectRevision) GetKratosSelfserviceDefaultBrowserReturnUrlOk() (*stri
 }
 
 // HasKratosSelfserviceDefaultBrowserReturnUrl returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceDefaultBrowserReturnUrl() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceDefaultBrowserReturnUrl() bool {
 	if o != nil && o.KratosSelfserviceDefaultBrowserReturnUrl != nil {
 		return true
 	}
@@ -564,12 +984,12 @@ func (o *ProjectRevision) HasKratosSelfserviceDefaultBrowserReturnUrl() bool {
 }
 
 // SetKratosSelfserviceDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceDefaultBrowserReturnUrl field.
-func (o *ProjectRevision) SetKratosSelfserviceDefaultBrowserReturnUrl(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceDefaultBrowserReturnUrl = &v
 }
 
 // GetKratosSelfserviceFlowsErrorUiUrl returns the KratosSelfserviceFlowsErrorUiUrl field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsErrorUiUrl() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsErrorUiUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsErrorUiUrl == nil {
 		var ret string
 		return ret
@@ -579,7 +999,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsErrorUiUrl() string {
 
 // GetKratosSelfserviceFlowsErrorUiUrlOk returns a tuple with the KratosSelfserviceFlowsErrorUiUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsErrorUiUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsErrorUiUrlOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsErrorUiUrl == nil {
 		return nil, false
 	}
@@ -587,7 +1007,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsErrorUiUrlOk() (*string, bool
 }
 
 // HasKratosSelfserviceFlowsErrorUiUrl returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsErrorUiUrl() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsErrorUiUrl() bool {
 	if o != nil && o.KratosSelfserviceFlowsErrorUiUrl != nil {
 		return true
 	}
@@ -596,14 +1016,14 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsErrorUiUrl() bool {
 }
 
 // SetKratosSelfserviceFlowsErrorUiUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsErrorUiUrl field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsErrorUiUrl(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsErrorUiUrl(v string) {
 	o.KratosSelfserviceFlowsErrorUiUrl = &v
 }
 
 // GetKratosSelfserviceFlowsHooks returns the KratosSelfserviceFlowsHooks field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsHooks() []ProjectRevisionHook {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsHooks() []NormalizedProjectRevisionHook {
 	if o == nil || o.KratosSelfserviceFlowsHooks == nil {
-		var ret []ProjectRevisionHook
+		var ret []NormalizedProjectRevisionHook
 		return ret
 	}
 	return o.KratosSelfserviceFlowsHooks
@@ -611,7 +1031,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsHooks() []ProjectRevisionHook
 
 // GetKratosSelfserviceFlowsHooksOk returns a tuple with the KratosSelfserviceFlowsHooks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsHooksOk() ([]ProjectRevisionHook, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsHooksOk() ([]NormalizedProjectRevisionHook, bool) {
 	if o == nil || o.KratosSelfserviceFlowsHooks == nil {
 		return nil, false
 	}
@@ -619,7 +1039,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsHooksOk() ([]ProjectRevisionH
 }
 
 // HasKratosSelfserviceFlowsHooks returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsHooks() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsHooks() bool {
 	if o != nil && o.KratosSelfserviceFlowsHooks != nil {
 		return true
 	}
@@ -627,13 +1047,13 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsHooks() bool {
 	return false
 }
 
-// SetKratosSelfserviceFlowsHooks gets a reference to the given []ProjectRevisionHook and assigns it to the KratosSelfserviceFlowsHooks field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsHooks(v []ProjectRevisionHook) {
+// SetKratosSelfserviceFlowsHooks gets a reference to the given []NormalizedProjectRevisionHook and assigns it to the KratosSelfserviceFlowsHooks field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsHooks(v []NormalizedProjectRevisionHook) {
 	o.KratosSelfserviceFlowsHooks = v
 }
 
 // GetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl == nil {
 		var ret string
 		return ret
@@ -643,7 +1063,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginAfterDefaultBrowserRetur
 
 // GetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrlOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl == nil {
 		return nil, false
 	}
@@ -651,7 +1071,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginAfterDefaultBrowserRetur
 }
 
 // HasKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl() bool {
 	if o != nil && o.KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl != nil {
 		return true
 	}
@@ -660,12 +1080,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsLoginAfterDefaultBrowserRetur
 }
 
 // SetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl = &v
 }
 
 // GetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl == nil {
 		var ret string
 		return ret
@@ -675,7 +1095,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserR
 
 // GetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrlOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl == nil {
 		return nil, false
 	}
@@ -683,7 +1103,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserR
 }
 
 // HasKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl() bool {
 	if o != nil && o.KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl != nil {
 		return true
 	}
@@ -692,12 +1112,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserR
 }
 
 // SetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl = &v
 }
 
 // GetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl == nil {
 		var ret string
 		return ret
@@ -707,7 +1127,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrow
 
 // GetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrlOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl == nil {
 		return nil, false
 	}
@@ -715,7 +1135,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrow
 }
 
 // HasKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl() bool {
 	if o != nil && o.KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl != nil {
 		return true
 	}
@@ -724,12 +1144,44 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsLoginAfterPasswordDefaultBrow
 }
 
 // SetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl = &v
 }
 
+// GetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl() string {
+	if o == nil || o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl
+}
+
+// GetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrlOk() (*string, bool) {
+	if o == nil || o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl, true
+}
+
+// HasKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl() bool {
+	if o != nil && o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl(v string) {
+	o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl = &v
+}
+
 // GetKratosSelfserviceFlowsLoginLifespan returns the KratosSelfserviceFlowsLoginLifespan field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginLifespan() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginLifespan() string {
 	if o == nil || o.KratosSelfserviceFlowsLoginLifespan == nil {
 		var ret string
 		return ret
@@ -739,7 +1191,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginLifespan() string {
 
 // GetKratosSelfserviceFlowsLoginLifespanOk returns a tuple with the KratosSelfserviceFlowsLoginLifespan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginLifespanOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginLifespanOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsLoginLifespan == nil {
 		return nil, false
 	}
@@ -747,7 +1199,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginLifespanOk() (*string, b
 }
 
 // HasKratosSelfserviceFlowsLoginLifespan returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsLoginLifespan() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginLifespan() bool {
 	if o != nil && o.KratosSelfserviceFlowsLoginLifespan != nil {
 		return true
 	}
@@ -756,12 +1208,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsLoginLifespan() bool {
 }
 
 // SetKratosSelfserviceFlowsLoginLifespan gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginLifespan field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsLoginLifespan(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginLifespan(v string) {
 	o.KratosSelfserviceFlowsLoginLifespan = &v
 }
 
 // GetKratosSelfserviceFlowsLoginUiUrl returns the KratosSelfserviceFlowsLoginUiUrl field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginUiUrl() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginUiUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsLoginUiUrl == nil {
 		var ret string
 		return ret
@@ -771,7 +1223,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginUiUrl() string {
 
 // GetKratosSelfserviceFlowsLoginUiUrlOk returns a tuple with the KratosSelfserviceFlowsLoginUiUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginUiUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginUiUrlOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsLoginUiUrl == nil {
 		return nil, false
 	}
@@ -779,7 +1231,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsLoginUiUrlOk() (*string, bool
 }
 
 // HasKratosSelfserviceFlowsLoginUiUrl returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsLoginUiUrl() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginUiUrl() bool {
 	if o != nil && o.KratosSelfserviceFlowsLoginUiUrl != nil {
 		return true
 	}
@@ -788,12 +1240,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsLoginUiUrl() bool {
 }
 
 // SetKratosSelfserviceFlowsLoginUiUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginUiUrl field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsLoginUiUrl(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginUiUrl(v string) {
 	o.KratosSelfserviceFlowsLoginUiUrl = &v
 }
 
 // GetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl == nil {
 		var ret string
 		return ret
@@ -803,7 +1255,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsLogoutAfterDefaultBrowserRetu
 
 // GetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrlOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl == nil {
 		return nil, false
 	}
@@ -811,7 +1263,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsLogoutAfterDefaultBrowserRetu
 }
 
 // HasKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl() bool {
 	if o != nil && o.KratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl != nil {
 		return true
 	}
@@ -820,12 +1272,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsLogoutAfterDefaultBrowserRetu
 }
 
 // SetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl = &v
 }
 
 // GetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl == nil {
 		var ret string
 		return ret
@@ -835,7 +1287,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserRe
 
 // GetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrlOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl == nil {
 		return nil, false
 	}
@@ -843,7 +1295,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserRe
 }
 
 // HasKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl() bool {
 	if o != nil && o.KratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl != nil {
 		return true
 	}
@@ -852,12 +1304,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsRecoveryAfterDefaultBrowserRe
 }
 
 // SetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl = &v
 }
 
 // GetKratosSelfserviceFlowsRecoveryEnabled returns the KratosSelfserviceFlowsRecoveryEnabled field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryEnabled() bool {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryEnabled() bool {
 	if o == nil || o.KratosSelfserviceFlowsRecoveryEnabled == nil {
 		var ret bool
 		return ret
@@ -867,7 +1319,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryEnabled() bool {
 
 // GetKratosSelfserviceFlowsRecoveryEnabledOk returns a tuple with the KratosSelfserviceFlowsRecoveryEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryEnabledOk() (*bool, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryEnabledOk() (*bool, bool) {
 	if o == nil || o.KratosSelfserviceFlowsRecoveryEnabled == nil {
 		return nil, false
 	}
@@ -875,7 +1327,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryEnabledOk() (*bool, b
 }
 
 // HasKratosSelfserviceFlowsRecoveryEnabled returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsRecoveryEnabled() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRecoveryEnabled() bool {
 	if o != nil && o.KratosSelfserviceFlowsRecoveryEnabled != nil {
 		return true
 	}
@@ -884,12 +1336,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsRecoveryEnabled() bool {
 }
 
 // SetKratosSelfserviceFlowsRecoveryEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceFlowsRecoveryEnabled field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsRecoveryEnabled(v bool) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRecoveryEnabled(v bool) {
 	o.KratosSelfserviceFlowsRecoveryEnabled = &v
 }
 
 // GetKratosSelfserviceFlowsRecoveryLifespan returns the KratosSelfserviceFlowsRecoveryLifespan field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryLifespan() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryLifespan() string {
 	if o == nil || o.KratosSelfserviceFlowsRecoveryLifespan == nil {
 		var ret string
 		return ret
@@ -899,7 +1351,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryLifespan() string {
 
 // GetKratosSelfserviceFlowsRecoveryLifespanOk returns a tuple with the KratosSelfserviceFlowsRecoveryLifespan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryLifespanOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryLifespanOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsRecoveryLifespan == nil {
 		return nil, false
 	}
@@ -907,7 +1359,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryLifespanOk() (*string
 }
 
 // HasKratosSelfserviceFlowsRecoveryLifespan returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsRecoveryLifespan() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRecoveryLifespan() bool {
 	if o != nil && o.KratosSelfserviceFlowsRecoveryLifespan != nil {
 		return true
 	}
@@ -916,12 +1368,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsRecoveryLifespan() bool {
 }
 
 // SetKratosSelfserviceFlowsRecoveryLifespan gets a reference to the given string and assigns it to the KratosSelfserviceFlowsRecoveryLifespan field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsRecoveryLifespan(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRecoveryLifespan(v string) {
 	o.KratosSelfserviceFlowsRecoveryLifespan = &v
 }
 
 // GetKratosSelfserviceFlowsRecoveryUiUrl returns the KratosSelfserviceFlowsRecoveryUiUrl field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryUiUrl() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryUiUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsRecoveryUiUrl == nil {
 		var ret string
 		return ret
@@ -931,7 +1383,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryUiUrl() string {
 
 // GetKratosSelfserviceFlowsRecoveryUiUrlOk returns a tuple with the KratosSelfserviceFlowsRecoveryUiUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryUiUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRecoveryUiUrlOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsRecoveryUiUrl == nil {
 		return nil, false
 	}
@@ -939,7 +1391,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsRecoveryUiUrlOk() (*string, b
 }
 
 // HasKratosSelfserviceFlowsRecoveryUiUrl returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsRecoveryUiUrl() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRecoveryUiUrl() bool {
 	if o != nil && o.KratosSelfserviceFlowsRecoveryUiUrl != nil {
 		return true
 	}
@@ -948,12 +1400,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsRecoveryUiUrl() bool {
 }
 
 // SetKratosSelfserviceFlowsRecoveryUiUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsRecoveryUiUrl field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsRecoveryUiUrl(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRecoveryUiUrl(v string) {
 	o.KratosSelfserviceFlowsRecoveryUiUrl = &v
 }
 
 // GetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl == nil {
 		var ret string
 		return ret
@@ -963,7 +1415,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterDefaultBrows
 
 // GetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrlOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl == nil {
 		return nil, false
 	}
@@ -971,7 +1423,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterDefaultBrows
 }
 
 // HasKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl() bool {
 	if o != nil && o.KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl != nil {
 		return true
 	}
@@ -980,12 +1432,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsRegistrationAfterDefaultBrows
 }
 
 // SetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl = &v
 }
 
 // GetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl == nil {
 		var ret string
 		return ret
@@ -995,7 +1447,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterOidcDefaultB
 
 // GetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrlOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl == nil {
 		return nil, false
 	}
@@ -1003,7 +1455,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterOidcDefaultB
 }
 
 // HasKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl() bool {
 	if o != nil && o.KratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl != nil {
 		return true
 	}
@@ -1012,12 +1464,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsRegistrationAfterOidcDefaultB
 }
 
 // SetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl = &v
 }
 
 // GetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl == nil {
 		var ret string
 		return ret
@@ -1027,7 +1479,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterPasswordDefa
 
 // GetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrlOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl == nil {
 		return nil, false
 	}
@@ -1035,7 +1487,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterPasswordDefa
 }
 
 // HasKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl() bool {
 	if o != nil && o.KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl != nil {
 		return true
 	}
@@ -1044,12 +1496,86 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsRegistrationAfterPasswordDefa
 }
 
 // SetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl = &v
 }
 
+// GetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl() string {
+	if o == nil || o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl
+}
+
+// GetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrlOk() (*string, bool) {
+	if o == nil || o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl, true
+}
+
+// HasKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl() bool {
+	if o != nil && o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl(v string) {
+	o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl = &v
+}
+
+// GetKratosSelfserviceFlowsRegistrationEnabled returns the KratosSelfserviceFlowsRegistrationEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationEnabled() bool {
+	if o == nil || o.KratosSelfserviceFlowsRegistrationEnabled.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsRegistrationEnabled.Get()
+}
+
+// GetKratosSelfserviceFlowsRegistrationEnabledOk returns a tuple with the KratosSelfserviceFlowsRegistrationEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationEnabledOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsRegistrationEnabled.Get(), o.KratosSelfserviceFlowsRegistrationEnabled.IsSet()
+}
+
+// HasKratosSelfserviceFlowsRegistrationEnabled returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRegistrationEnabled() bool {
+	if o != nil && o.KratosSelfserviceFlowsRegistrationEnabled.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsRegistrationEnabled gets a reference to the given NullableBool and assigns it to the KratosSelfserviceFlowsRegistrationEnabled field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationEnabled(v bool) {
+	o.KratosSelfserviceFlowsRegistrationEnabled.Set(&v)
+}
+// SetKratosSelfserviceFlowsRegistrationEnabledNil sets the value for KratosSelfserviceFlowsRegistrationEnabled to be an explicit nil
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationEnabledNil() {
+	o.KratosSelfserviceFlowsRegistrationEnabled.Set(nil)
+}
+
+// UnsetKratosSelfserviceFlowsRegistrationEnabled ensures that no value is present for KratosSelfserviceFlowsRegistrationEnabled, not even an explicit nil
+func (o *NormalizedProjectRevision) UnsetKratosSelfserviceFlowsRegistrationEnabled() {
+	o.KratosSelfserviceFlowsRegistrationEnabled.Unset()
+}
+
 // GetKratosSelfserviceFlowsRegistrationLifespan returns the KratosSelfserviceFlowsRegistrationLifespan field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationLifespan() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationLifespan() string {
 	if o == nil || o.KratosSelfserviceFlowsRegistrationLifespan == nil {
 		var ret string
 		return ret
@@ -1059,7 +1585,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationLifespan() string
 
 // GetKratosSelfserviceFlowsRegistrationLifespanOk returns a tuple with the KratosSelfserviceFlowsRegistrationLifespan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationLifespanOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationLifespanOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsRegistrationLifespan == nil {
 		return nil, false
 	}
@@ -1067,7 +1593,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationLifespanOk() (*st
 }
 
 // HasKratosSelfserviceFlowsRegistrationLifespan returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsRegistrationLifespan() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRegistrationLifespan() bool {
 	if o != nil && o.KratosSelfserviceFlowsRegistrationLifespan != nil {
 		return true
 	}
@@ -1076,12 +1602,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsRegistrationLifespan() bool {
 }
 
 // SetKratosSelfserviceFlowsRegistrationLifespan gets a reference to the given string and assigns it to the KratosSelfserviceFlowsRegistrationLifespan field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsRegistrationLifespan(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationLifespan(v string) {
 	o.KratosSelfserviceFlowsRegistrationLifespan = &v
 }
 
 // GetKratosSelfserviceFlowsRegistrationUiUrl returns the KratosSelfserviceFlowsRegistrationUiUrl field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationUiUrl() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationUiUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsRegistrationUiUrl == nil {
 		var ret string
 		return ret
@@ -1091,7 +1617,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationUiUrl() string {
 
 // GetKratosSelfserviceFlowsRegistrationUiUrlOk returns a tuple with the KratosSelfserviceFlowsRegistrationUiUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationUiUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsRegistrationUiUrlOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsRegistrationUiUrl == nil {
 		return nil, false
 	}
@@ -1099,7 +1625,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsRegistrationUiUrlOk() (*strin
 }
 
 // HasKratosSelfserviceFlowsRegistrationUiUrl returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsRegistrationUiUrl() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsRegistrationUiUrl() bool {
 	if o != nil && o.KratosSelfserviceFlowsRegistrationUiUrl != nil {
 		return true
 	}
@@ -1108,12 +1634,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsRegistrationUiUrl() bool {
 }
 
 // SetKratosSelfserviceFlowsRegistrationUiUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsRegistrationUiUrl field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsRegistrationUiUrl(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsRegistrationUiUrl(v string) {
 	o.KratosSelfserviceFlowsRegistrationUiUrl = &v
 }
 
 // GetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl == nil {
 		var ret string
 		return ret
@@ -1123,7 +1649,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsAfterDefaultBrowserRe
 
 // GetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrlOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl == nil {
 		return nil, false
 	}
@@ -1131,7 +1657,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsAfterDefaultBrowserRe
 }
 
 // HasKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl() bool {
 	if o != nil && o.KratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl != nil {
 		return true
 	}
@@ -1140,12 +1666,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsAfterDefaultBrowserRe
 }
 
 // SetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceFlowsSettingsAfterDefaultBrowserReturnUrl = &v
 }
 
 // GetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl == nil {
 		var ret string
 		return ret
@@ -1155,7 +1681,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsAfterPasswordDefaultB
 
 // GetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrlOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl == nil {
 		return nil, false
 	}
@@ -1163,7 +1689,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsAfterPasswordDefaultB
 }
 
 // HasKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl() bool {
 	if o != nil && o.KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl != nil {
 		return true
 	}
@@ -1172,12 +1698,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsAfterPasswordDefaultB
 }
 
 // SetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceFlowsSettingsAfterPasswordDefaultBrowserReturnUrl = &v
 }
 
 // GetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl == nil {
 		var ret string
 		return ret
@@ -1187,7 +1713,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsAfterProfileDefaultBr
 
 // GetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrlOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl == nil {
 		return nil, false
 	}
@@ -1195,7 +1721,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsAfterProfileDefaultBr
 }
 
 // HasKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl() bool {
 	if o != nil && o.KratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl != nil {
 		return true
 	}
@@ -1204,12 +1730,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsAfterProfileDefaultBr
 }
 
 // SetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceFlowsSettingsAfterProfileDefaultBrowserReturnUrl = &v
 }
 
 // GetKratosSelfserviceFlowsSettingsLifespan returns the KratosSelfserviceFlowsSettingsLifespan field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsLifespan() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsLifespan() string {
 	if o == nil || o.KratosSelfserviceFlowsSettingsLifespan == nil {
 		var ret string
 		return ret
@@ -1219,7 +1745,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsLifespan() string {
 
 // GetKratosSelfserviceFlowsSettingsLifespanOk returns a tuple with the KratosSelfserviceFlowsSettingsLifespan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsLifespanOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsLifespanOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsSettingsLifespan == nil {
 		return nil, false
 	}
@@ -1227,7 +1753,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsLifespanOk() (*string
 }
 
 // HasKratosSelfserviceFlowsSettingsLifespan returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsLifespan() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsSettingsLifespan() bool {
 	if o != nil && o.KratosSelfserviceFlowsSettingsLifespan != nil {
 		return true
 	}
@@ -1236,12 +1762,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsLifespan() bool {
 }
 
 // SetKratosSelfserviceFlowsSettingsLifespan gets a reference to the given string and assigns it to the KratosSelfserviceFlowsSettingsLifespan field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsSettingsLifespan(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsSettingsLifespan(v string) {
 	o.KratosSelfserviceFlowsSettingsLifespan = &v
 }
 
 // GetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge returns the KratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge() string {
 	if o == nil || o.KratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge == nil {
 		var ret string
 		return ret
@@ -1251,7 +1777,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxA
 
 // GetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAgeOk returns a tuple with the KratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAgeOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAgeOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge == nil {
 		return nil, false
 	}
@@ -1259,7 +1785,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxA
 }
 
 // HasKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge() bool {
 	if o != nil && o.KratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge != nil {
 		return true
 	}
@@ -1268,12 +1794,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsPrivilegedSessionMaxA
 }
 
 // SetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge gets a reference to the given string and assigns it to the KratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge(v string) {
 	o.KratosSelfserviceFlowsSettingsPrivilegedSessionMaxAge = &v
 }
 
 // GetKratosSelfserviceFlowsSettingsRequiredAal returns the KratosSelfserviceFlowsSettingsRequiredAal field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsRequiredAal() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsRequiredAal() string {
 	if o == nil || o.KratosSelfserviceFlowsSettingsRequiredAal == nil {
 		var ret string
 		return ret
@@ -1283,7 +1809,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsRequiredAal() string 
 
 // GetKratosSelfserviceFlowsSettingsRequiredAalOk returns a tuple with the KratosSelfserviceFlowsSettingsRequiredAal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsRequiredAalOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsRequiredAalOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsSettingsRequiredAal == nil {
 		return nil, false
 	}
@@ -1291,7 +1817,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsRequiredAalOk() (*str
 }
 
 // HasKratosSelfserviceFlowsSettingsRequiredAal returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsRequiredAal() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsSettingsRequiredAal() bool {
 	if o != nil && o.KratosSelfserviceFlowsSettingsRequiredAal != nil {
 		return true
 	}
@@ -1300,12 +1826,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsRequiredAal() bool {
 }
 
 // SetKratosSelfserviceFlowsSettingsRequiredAal gets a reference to the given string and assigns it to the KratosSelfserviceFlowsSettingsRequiredAal field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsSettingsRequiredAal(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsSettingsRequiredAal(v string) {
 	o.KratosSelfserviceFlowsSettingsRequiredAal = &v
 }
 
 // GetKratosSelfserviceFlowsSettingsUiUrl returns the KratosSelfserviceFlowsSettingsUiUrl field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsUiUrl() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsUiUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsSettingsUiUrl == nil {
 		var ret string
 		return ret
@@ -1315,7 +1841,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsUiUrl() string {
 
 // GetKratosSelfserviceFlowsSettingsUiUrlOk returns a tuple with the KratosSelfserviceFlowsSettingsUiUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsUiUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsSettingsUiUrlOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsSettingsUiUrl == nil {
 		return nil, false
 	}
@@ -1323,7 +1849,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsSettingsUiUrlOk() (*string, b
 }
 
 // HasKratosSelfserviceFlowsSettingsUiUrl returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsUiUrl() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsSettingsUiUrl() bool {
 	if o != nil && o.KratosSelfserviceFlowsSettingsUiUrl != nil {
 		return true
 	}
@@ -1332,12 +1858,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsSettingsUiUrl() bool {
 }
 
 // SetKratosSelfserviceFlowsSettingsUiUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsSettingsUiUrl field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsSettingsUiUrl(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsSettingsUiUrl(v string) {
 	o.KratosSelfserviceFlowsSettingsUiUrl = &v
 }
 
 // GetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl returns the KratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl == nil {
 		var ret string
 		return ret
@@ -1347,7 +1873,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationAfterDefaultBrows
 
 // GetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrlOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl == nil {
 		return nil, false
 	}
@@ -1355,7 +1881,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationAfterDefaultBrows
 }
 
 // HasKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl() bool {
 	if o != nil && o.KratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl != nil {
 		return true
 	}
@@ -1364,12 +1890,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsVerificationAfterDefaultBrows
 }
 
 // SetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl(v string) {
 	o.KratosSelfserviceFlowsVerificationAfterDefaultBrowserReturnUrl = &v
 }
 
 // GetKratosSelfserviceFlowsVerificationEnabled returns the KratosSelfserviceFlowsVerificationEnabled field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationEnabled() bool {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationEnabled() bool {
 	if o == nil || o.KratosSelfserviceFlowsVerificationEnabled == nil {
 		var ret bool
 		return ret
@@ -1379,7 +1905,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationEnabled() bool {
 
 // GetKratosSelfserviceFlowsVerificationEnabledOk returns a tuple with the KratosSelfserviceFlowsVerificationEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationEnabledOk() (*bool, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationEnabledOk() (*bool, bool) {
 	if o == nil || o.KratosSelfserviceFlowsVerificationEnabled == nil {
 		return nil, false
 	}
@@ -1387,7 +1913,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationEnabledOk() (*boo
 }
 
 // HasKratosSelfserviceFlowsVerificationEnabled returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsVerificationEnabled() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsVerificationEnabled() bool {
 	if o != nil && o.KratosSelfserviceFlowsVerificationEnabled != nil {
 		return true
 	}
@@ -1396,12 +1922,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsVerificationEnabled() bool {
 }
 
 // SetKratosSelfserviceFlowsVerificationEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceFlowsVerificationEnabled field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsVerificationEnabled(v bool) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsVerificationEnabled(v bool) {
 	o.KratosSelfserviceFlowsVerificationEnabled = &v
 }
 
 // GetKratosSelfserviceFlowsVerificationLifespan returns the KratosSelfserviceFlowsVerificationLifespan field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationLifespan() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationLifespan() string {
 	if o == nil || o.KratosSelfserviceFlowsVerificationLifespan == nil {
 		var ret string
 		return ret
@@ -1411,7 +1937,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationLifespan() string
 
 // GetKratosSelfserviceFlowsVerificationLifespanOk returns a tuple with the KratosSelfserviceFlowsVerificationLifespan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationLifespanOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationLifespanOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsVerificationLifespan == nil {
 		return nil, false
 	}
@@ -1419,7 +1945,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationLifespanOk() (*st
 }
 
 // HasKratosSelfserviceFlowsVerificationLifespan returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsVerificationLifespan() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsVerificationLifespan() bool {
 	if o != nil && o.KratosSelfserviceFlowsVerificationLifespan != nil {
 		return true
 	}
@@ -1428,12 +1954,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsVerificationLifespan() bool {
 }
 
 // SetKratosSelfserviceFlowsVerificationLifespan gets a reference to the given string and assigns it to the KratosSelfserviceFlowsVerificationLifespan field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsVerificationLifespan(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsVerificationLifespan(v string) {
 	o.KratosSelfserviceFlowsVerificationLifespan = &v
 }
 
 // GetKratosSelfserviceFlowsVerificationUiUrl returns the KratosSelfserviceFlowsVerificationUiUrl field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationUiUrl() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationUiUrl() string {
 	if o == nil || o.KratosSelfserviceFlowsVerificationUiUrl == nil {
 		var ret string
 		return ret
@@ -1443,7 +1969,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationUiUrl() string {
 
 // GetKratosSelfserviceFlowsVerificationUiUrlOk returns a tuple with the KratosSelfserviceFlowsVerificationUiUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationUiUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsVerificationUiUrlOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceFlowsVerificationUiUrl == nil {
 		return nil, false
 	}
@@ -1451,7 +1977,7 @@ func (o *ProjectRevision) GetKratosSelfserviceFlowsVerificationUiUrlOk() (*strin
 }
 
 // HasKratosSelfserviceFlowsVerificationUiUrl returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceFlowsVerificationUiUrl() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsVerificationUiUrl() bool {
 	if o != nil && o.KratosSelfserviceFlowsVerificationUiUrl != nil {
 		return true
 	}
@@ -1460,12 +1986,12 @@ func (o *ProjectRevision) HasKratosSelfserviceFlowsVerificationUiUrl() bool {
 }
 
 // SetKratosSelfserviceFlowsVerificationUiUrl gets a reference to the given string and assigns it to the KratosSelfserviceFlowsVerificationUiUrl field.
-func (o *ProjectRevision) SetKratosSelfserviceFlowsVerificationUiUrl(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsVerificationUiUrl(v string) {
 	o.KratosSelfserviceFlowsVerificationUiUrl = &v
 }
 
 // GetKratosSelfserviceMethodsLinkConfigBaseUrl returns the KratosSelfserviceMethodsLinkConfigBaseUrl field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsLinkConfigBaseUrl() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLinkConfigBaseUrl() string {
 	if o == nil || o.KratosSelfserviceMethodsLinkConfigBaseUrl == nil {
 		var ret string
 		return ret
@@ -1475,7 +2001,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsLinkConfigBaseUrl() string 
 
 // GetKratosSelfserviceMethodsLinkConfigBaseUrlOk returns a tuple with the KratosSelfserviceMethodsLinkConfigBaseUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsLinkConfigBaseUrlOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLinkConfigBaseUrlOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceMethodsLinkConfigBaseUrl == nil {
 		return nil, false
 	}
@@ -1483,7 +2009,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsLinkConfigBaseUrlOk() (*str
 }
 
 // HasKratosSelfserviceMethodsLinkConfigBaseUrl returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceMethodsLinkConfigBaseUrl() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsLinkConfigBaseUrl() bool {
 	if o != nil && o.KratosSelfserviceMethodsLinkConfigBaseUrl != nil {
 		return true
 	}
@@ -1492,12 +2018,12 @@ func (o *ProjectRevision) HasKratosSelfserviceMethodsLinkConfigBaseUrl() bool {
 }
 
 // SetKratosSelfserviceMethodsLinkConfigBaseUrl gets a reference to the given string and assigns it to the KratosSelfserviceMethodsLinkConfigBaseUrl field.
-func (o *ProjectRevision) SetKratosSelfserviceMethodsLinkConfigBaseUrl(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsLinkConfigBaseUrl(v string) {
 	o.KratosSelfserviceMethodsLinkConfigBaseUrl = &v
 }
 
 // GetKratosSelfserviceMethodsLinkConfigLifespan returns the KratosSelfserviceMethodsLinkConfigLifespan field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsLinkConfigLifespan() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLinkConfigLifespan() string {
 	if o == nil || o.KratosSelfserviceMethodsLinkConfigLifespan == nil {
 		var ret string
 		return ret
@@ -1507,7 +2033,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsLinkConfigLifespan() string
 
 // GetKratosSelfserviceMethodsLinkConfigLifespanOk returns a tuple with the KratosSelfserviceMethodsLinkConfigLifespan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsLinkConfigLifespanOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLinkConfigLifespanOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceMethodsLinkConfigLifespan == nil {
 		return nil, false
 	}
@@ -1515,7 +2041,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsLinkConfigLifespanOk() (*st
 }
 
 // HasKratosSelfserviceMethodsLinkConfigLifespan returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceMethodsLinkConfigLifespan() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsLinkConfigLifespan() bool {
 	if o != nil && o.KratosSelfserviceMethodsLinkConfigLifespan != nil {
 		return true
 	}
@@ -1524,12 +2050,12 @@ func (o *ProjectRevision) HasKratosSelfserviceMethodsLinkConfigLifespan() bool {
 }
 
 // SetKratosSelfserviceMethodsLinkConfigLifespan gets a reference to the given string and assigns it to the KratosSelfserviceMethodsLinkConfigLifespan field.
-func (o *ProjectRevision) SetKratosSelfserviceMethodsLinkConfigLifespan(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsLinkConfigLifespan(v string) {
 	o.KratosSelfserviceMethodsLinkConfigLifespan = &v
 }
 
 // GetKratosSelfserviceMethodsLinkEnabled returns the KratosSelfserviceMethodsLinkEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProjectRevision) GetKratosSelfserviceMethodsLinkEnabled() bool {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLinkEnabled() bool {
 	if o == nil || o.KratosSelfserviceMethodsLinkEnabled.Get() == nil {
 		var ret bool
 		return ret
@@ -1540,7 +2066,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsLinkEnabled() bool {
 // GetKratosSelfserviceMethodsLinkEnabledOk returns a tuple with the KratosSelfserviceMethodsLinkEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProjectRevision) GetKratosSelfserviceMethodsLinkEnabledOk() (*bool, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLinkEnabledOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1548,7 +2074,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsLinkEnabledOk() (*bool, boo
 }
 
 // HasKratosSelfserviceMethodsLinkEnabled returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceMethodsLinkEnabled() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsLinkEnabled() bool {
 	if o != nil && o.KratosSelfserviceMethodsLinkEnabled.IsSet() {
 		return true
 	}
@@ -1557,21 +2083,21 @@ func (o *ProjectRevision) HasKratosSelfserviceMethodsLinkEnabled() bool {
 }
 
 // SetKratosSelfserviceMethodsLinkEnabled gets a reference to the given NullableBool and assigns it to the KratosSelfserviceMethodsLinkEnabled field.
-func (o *ProjectRevision) SetKratosSelfserviceMethodsLinkEnabled(v bool) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsLinkEnabled(v bool) {
 	o.KratosSelfserviceMethodsLinkEnabled.Set(&v)
 }
 // SetKratosSelfserviceMethodsLinkEnabledNil sets the value for KratosSelfserviceMethodsLinkEnabled to be an explicit nil
-func (o *ProjectRevision) SetKratosSelfserviceMethodsLinkEnabledNil() {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsLinkEnabledNil() {
 	o.KratosSelfserviceMethodsLinkEnabled.Set(nil)
 }
 
 // UnsetKratosSelfserviceMethodsLinkEnabled ensures that no value is present for KratosSelfserviceMethodsLinkEnabled, not even an explicit nil
-func (o *ProjectRevision) UnsetKratosSelfserviceMethodsLinkEnabled() {
+func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsLinkEnabled() {
 	o.KratosSelfserviceMethodsLinkEnabled.Unset()
 }
 
 // GetKratosSelfserviceMethodsLookupSecretEnabled returns the KratosSelfserviceMethodsLookupSecretEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProjectRevision) GetKratosSelfserviceMethodsLookupSecretEnabled() bool {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLookupSecretEnabled() bool {
 	if o == nil || o.KratosSelfserviceMethodsLookupSecretEnabled.Get() == nil {
 		var ret bool
 		return ret
@@ -1582,7 +2108,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsLookupSecretEnabled() bool 
 // GetKratosSelfserviceMethodsLookupSecretEnabledOk returns a tuple with the KratosSelfserviceMethodsLookupSecretEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProjectRevision) GetKratosSelfserviceMethodsLookupSecretEnabledOk() (*bool, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsLookupSecretEnabledOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1590,7 +2116,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsLookupSecretEnabledOk() (*b
 }
 
 // HasKratosSelfserviceMethodsLookupSecretEnabled returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceMethodsLookupSecretEnabled() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsLookupSecretEnabled() bool {
 	if o != nil && o.KratosSelfserviceMethodsLookupSecretEnabled.IsSet() {
 		return true
 	}
@@ -1599,23 +2125,55 @@ func (o *ProjectRevision) HasKratosSelfserviceMethodsLookupSecretEnabled() bool 
 }
 
 // SetKratosSelfserviceMethodsLookupSecretEnabled gets a reference to the given NullableBool and assigns it to the KratosSelfserviceMethodsLookupSecretEnabled field.
-func (o *ProjectRevision) SetKratosSelfserviceMethodsLookupSecretEnabled(v bool) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsLookupSecretEnabled(v bool) {
 	o.KratosSelfserviceMethodsLookupSecretEnabled.Set(&v)
 }
 // SetKratosSelfserviceMethodsLookupSecretEnabledNil sets the value for KratosSelfserviceMethodsLookupSecretEnabled to be an explicit nil
-func (o *ProjectRevision) SetKratosSelfserviceMethodsLookupSecretEnabledNil() {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsLookupSecretEnabledNil() {
 	o.KratosSelfserviceMethodsLookupSecretEnabled.Set(nil)
 }
 
 // UnsetKratosSelfserviceMethodsLookupSecretEnabled ensures that no value is present for KratosSelfserviceMethodsLookupSecretEnabled, not even an explicit nil
-func (o *ProjectRevision) UnsetKratosSelfserviceMethodsLookupSecretEnabled() {
+func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsLookupSecretEnabled() {
 	o.KratosSelfserviceMethodsLookupSecretEnabled.Unset()
 }
 
+// GetKratosSelfserviceMethodsOidcConfigBaseRedirectUri returns the KratosSelfserviceMethodsOidcConfigBaseRedirectUri field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsOidcConfigBaseRedirectUri() string {
+	if o == nil || o.KratosSelfserviceMethodsOidcConfigBaseRedirectUri == nil {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsOidcConfigBaseRedirectUri
+}
+
+// GetKratosSelfserviceMethodsOidcConfigBaseRedirectUriOk returns a tuple with the KratosSelfserviceMethodsOidcConfigBaseRedirectUri field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsOidcConfigBaseRedirectUriOk() (*string, bool) {
+	if o == nil || o.KratosSelfserviceMethodsOidcConfigBaseRedirectUri == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsOidcConfigBaseRedirectUri, true
+}
+
+// HasKratosSelfserviceMethodsOidcConfigBaseRedirectUri returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsOidcConfigBaseRedirectUri() bool {
+	if o != nil && o.KratosSelfserviceMethodsOidcConfigBaseRedirectUri != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsOidcConfigBaseRedirectUri gets a reference to the given string and assigns it to the KratosSelfserviceMethodsOidcConfigBaseRedirectUri field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsOidcConfigBaseRedirectUri(v string) {
+	o.KratosSelfserviceMethodsOidcConfigBaseRedirectUri = &v
+}
+
 // GetKratosSelfserviceMethodsOidcConfigProviders returns the KratosSelfserviceMethodsOidcConfigProviders field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsOidcConfigProviders() []ProjectRevisionThirdPartyLoginProvider {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsOidcConfigProviders() []NormalizedProjectRevisionThirdPartyProvider {
 	if o == nil || o.KratosSelfserviceMethodsOidcConfigProviders == nil {
-		var ret []ProjectRevisionThirdPartyLoginProvider
+		var ret []NormalizedProjectRevisionThirdPartyProvider
 		return ret
 	}
 	return o.KratosSelfserviceMethodsOidcConfigProviders
@@ -1623,7 +2181,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsOidcConfigProviders() []Pro
 
 // GetKratosSelfserviceMethodsOidcConfigProvidersOk returns a tuple with the KratosSelfserviceMethodsOidcConfigProviders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsOidcConfigProvidersOk() ([]ProjectRevisionThirdPartyLoginProvider, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsOidcConfigProvidersOk() ([]NormalizedProjectRevisionThirdPartyProvider, bool) {
 	if o == nil || o.KratosSelfserviceMethodsOidcConfigProviders == nil {
 		return nil, false
 	}
@@ -1631,7 +2189,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsOidcConfigProvidersOk() ([]
 }
 
 // HasKratosSelfserviceMethodsOidcConfigProviders returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceMethodsOidcConfigProviders() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsOidcConfigProviders() bool {
 	if o != nil && o.KratosSelfserviceMethodsOidcConfigProviders != nil {
 		return true
 	}
@@ -1639,13 +2197,13 @@ func (o *ProjectRevision) HasKratosSelfserviceMethodsOidcConfigProviders() bool 
 	return false
 }
 
-// SetKratosSelfserviceMethodsOidcConfigProviders gets a reference to the given []ProjectRevisionThirdPartyLoginProvider and assigns it to the KratosSelfserviceMethodsOidcConfigProviders field.
-func (o *ProjectRevision) SetKratosSelfserviceMethodsOidcConfigProviders(v []ProjectRevisionThirdPartyLoginProvider) {
+// SetKratosSelfserviceMethodsOidcConfigProviders gets a reference to the given []NormalizedProjectRevisionThirdPartyProvider and assigns it to the KratosSelfserviceMethodsOidcConfigProviders field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsOidcConfigProviders(v []NormalizedProjectRevisionThirdPartyProvider) {
 	o.KratosSelfserviceMethodsOidcConfigProviders = v
 }
 
 // GetKratosSelfserviceMethodsOidcEnabled returns the KratosSelfserviceMethodsOidcEnabled field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsOidcEnabled() bool {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsOidcEnabled() bool {
 	if o == nil || o.KratosSelfserviceMethodsOidcEnabled == nil {
 		var ret bool
 		return ret
@@ -1655,7 +2213,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsOidcEnabled() bool {
 
 // GetKratosSelfserviceMethodsOidcEnabledOk returns a tuple with the KratosSelfserviceMethodsOidcEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsOidcEnabledOk() (*bool, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsOidcEnabledOk() (*bool, bool) {
 	if o == nil || o.KratosSelfserviceMethodsOidcEnabled == nil {
 		return nil, false
 	}
@@ -1663,7 +2221,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsOidcEnabledOk() (*bool, boo
 }
 
 // HasKratosSelfserviceMethodsOidcEnabled returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceMethodsOidcEnabled() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsOidcEnabled() bool {
 	if o != nil && o.KratosSelfserviceMethodsOidcEnabled != nil {
 		return true
 	}
@@ -1672,12 +2230,12 @@ func (o *ProjectRevision) HasKratosSelfserviceMethodsOidcEnabled() bool {
 }
 
 // SetKratosSelfserviceMethodsOidcEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsOidcEnabled field.
-func (o *ProjectRevision) SetKratosSelfserviceMethodsOidcEnabled(v bool) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsOidcEnabled(v bool) {
 	o.KratosSelfserviceMethodsOidcEnabled = &v
 }
 
 // GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled returns the KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled() bool {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled() bool {
 	if o == nil || o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.Get() == nil {
 		var ret bool
 		return ret
@@ -1688,7 +2246,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwne
 // GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledOk returns a tuple with the KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledOk() (*bool, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1696,7 +2254,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwne
 }
 
 // HasKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled() bool {
 	if o != nil && o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.IsSet() {
 		return true
 	}
@@ -1705,21 +2263,63 @@ func (o *ProjectRevision) HasKratosSelfserviceMethodsPasswordConfigHaveibeenpwne
 }
 
 // SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled gets a reference to the given NullableBool and assigns it to the KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled field.
-func (o *ProjectRevision) SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled(v bool) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled(v bool) {
 	o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.Set(&v)
 }
 // SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledNil sets the value for KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled to be an explicit nil
-func (o *ProjectRevision) SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledNil() {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabledNil() {
 	o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.Set(nil)
 }
 
 // UnsetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled ensures that no value is present for KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled, not even an explicit nil
-func (o *ProjectRevision) UnsetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled() {
+func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled() {
 	o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.Unset()
 }
 
+// GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled returns the KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled() bool {
+	if o == nil || o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Get()
+}
+
+// GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledOk returns a tuple with the KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Get(), o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.IsSet()
+}
+
+// HasKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled() bool {
+	if o != nil && o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled gets a reference to the given NullableBool and assigns it to the KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled(v bool) {
+	o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Set(&v)
+}
+// SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledNil sets the value for KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled to be an explicit nil
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabledNil() {
+	o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Set(nil)
+}
+
+// UnsetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled ensures that no value is present for KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled, not even an explicit nil
+func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled() {
+	o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Unset()
+}
+
 // GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors returns the KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors() bool {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors() bool {
 	if o == nil || o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors.Get() == nil {
 		var ret bool
 		return ret
@@ -1730,7 +2330,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIgnoreNetwork
 // GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsOk returns a tuple with the KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsOk() (*bool, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1738,7 +2338,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigIgnoreNetwork
 }
 
 // HasKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors() bool {
 	if o != nil && o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors.IsSet() {
 		return true
 	}
@@ -1747,21 +2347,21 @@ func (o *ProjectRevision) HasKratosSelfserviceMethodsPasswordConfigIgnoreNetwork
 }
 
 // SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors gets a reference to the given NullableBool and assigns it to the KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors field.
-func (o *ProjectRevision) SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors(v bool) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors(v bool) {
 	o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors.Set(&v)
 }
 // SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsNil sets the value for KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors to be an explicit nil
-func (o *ProjectRevision) SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsNil() {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrorsNil() {
 	o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors.Set(nil)
 }
 
 // UnsetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors ensures that no value is present for KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors, not even an explicit nil
-func (o *ProjectRevision) UnsetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors() {
+func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors() {
 	o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors.Unset()
 }
 
 // GetKratosSelfserviceMethodsPasswordConfigMaxBreaches returns the KratosSelfserviceMethodsPasswordConfigMaxBreaches field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigMaxBreaches() int64 {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigMaxBreaches() int64 {
 	if o == nil || o.KratosSelfserviceMethodsPasswordConfigMaxBreaches == nil {
 		var ret int64
 		return ret
@@ -1771,7 +2371,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigMaxBreaches()
 
 // GetKratosSelfserviceMethodsPasswordConfigMaxBreachesOk returns a tuple with the KratosSelfserviceMethodsPasswordConfigMaxBreaches field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigMaxBreachesOk() (*int64, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigMaxBreachesOk() (*int64, bool) {
 	if o == nil || o.KratosSelfserviceMethodsPasswordConfigMaxBreaches == nil {
 		return nil, false
 	}
@@ -1779,7 +2379,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordConfigMaxBreachesOk
 }
 
 // HasKratosSelfserviceMethodsPasswordConfigMaxBreaches returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceMethodsPasswordConfigMaxBreaches() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsPasswordConfigMaxBreaches() bool {
 	if o != nil && o.KratosSelfserviceMethodsPasswordConfigMaxBreaches != nil {
 		return true
 	}
@@ -1788,12 +2388,44 @@ func (o *ProjectRevision) HasKratosSelfserviceMethodsPasswordConfigMaxBreaches()
 }
 
 // SetKratosSelfserviceMethodsPasswordConfigMaxBreaches gets a reference to the given int64 and assigns it to the KratosSelfserviceMethodsPasswordConfigMaxBreaches field.
-func (o *ProjectRevision) SetKratosSelfserviceMethodsPasswordConfigMaxBreaches(v int64) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigMaxBreaches(v int64) {
 	o.KratosSelfserviceMethodsPasswordConfigMaxBreaches = &v
 }
 
+// GetKratosSelfserviceMethodsPasswordConfigMinPasswordLength returns the KratosSelfserviceMethodsPasswordConfigMinPasswordLength field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigMinPasswordLength() int64 {
+	if o == nil || o.KratosSelfserviceMethodsPasswordConfigMinPasswordLength == nil {
+		var ret int64
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsPasswordConfigMinPasswordLength
+}
+
+// GetKratosSelfserviceMethodsPasswordConfigMinPasswordLengthOk returns a tuple with the KratosSelfserviceMethodsPasswordConfigMinPasswordLength field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordConfigMinPasswordLengthOk() (*int64, bool) {
+	if o == nil || o.KratosSelfserviceMethodsPasswordConfigMinPasswordLength == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsPasswordConfigMinPasswordLength, true
+}
+
+// HasKratosSelfserviceMethodsPasswordConfigMinPasswordLength returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsPasswordConfigMinPasswordLength() bool {
+	if o != nil && o.KratosSelfserviceMethodsPasswordConfigMinPasswordLength != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsPasswordConfigMinPasswordLength gets a reference to the given int64 and assigns it to the KratosSelfserviceMethodsPasswordConfigMinPasswordLength field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordConfigMinPasswordLength(v int64) {
+	o.KratosSelfserviceMethodsPasswordConfigMinPasswordLength = &v
+}
+
 // GetKratosSelfserviceMethodsPasswordEnabled returns the KratosSelfserviceMethodsPasswordEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordEnabled() bool {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordEnabled() bool {
 	if o == nil || o.KratosSelfserviceMethodsPasswordEnabled.Get() == nil {
 		var ret bool
 		return ret
@@ -1804,7 +2436,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordEnabled() bool {
 // GetKratosSelfserviceMethodsPasswordEnabledOk returns a tuple with the KratosSelfserviceMethodsPasswordEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordEnabledOk() (*bool, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsPasswordEnabledOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1812,7 +2444,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsPasswordEnabledOk() (*bool,
 }
 
 // HasKratosSelfserviceMethodsPasswordEnabled returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceMethodsPasswordEnabled() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsPasswordEnabled() bool {
 	if o != nil && o.KratosSelfserviceMethodsPasswordEnabled.IsSet() {
 		return true
 	}
@@ -1821,21 +2453,21 @@ func (o *ProjectRevision) HasKratosSelfserviceMethodsPasswordEnabled() bool {
 }
 
 // SetKratosSelfserviceMethodsPasswordEnabled gets a reference to the given NullableBool and assigns it to the KratosSelfserviceMethodsPasswordEnabled field.
-func (o *ProjectRevision) SetKratosSelfserviceMethodsPasswordEnabled(v bool) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordEnabled(v bool) {
 	o.KratosSelfserviceMethodsPasswordEnabled.Set(&v)
 }
 // SetKratosSelfserviceMethodsPasswordEnabledNil sets the value for KratosSelfserviceMethodsPasswordEnabled to be an explicit nil
-func (o *ProjectRevision) SetKratosSelfserviceMethodsPasswordEnabledNil() {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsPasswordEnabledNil() {
 	o.KratosSelfserviceMethodsPasswordEnabled.Set(nil)
 }
 
 // UnsetKratosSelfserviceMethodsPasswordEnabled ensures that no value is present for KratosSelfserviceMethodsPasswordEnabled, not even an explicit nil
-func (o *ProjectRevision) UnsetKratosSelfserviceMethodsPasswordEnabled() {
+func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsPasswordEnabled() {
 	o.KratosSelfserviceMethodsPasswordEnabled.Unset()
 }
 
 // GetKratosSelfserviceMethodsProfileEnabled returns the KratosSelfserviceMethodsProfileEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProjectRevision) GetKratosSelfserviceMethodsProfileEnabled() bool {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsProfileEnabled() bool {
 	if o == nil || o.KratosSelfserviceMethodsProfileEnabled.Get() == nil {
 		var ret bool
 		return ret
@@ -1846,7 +2478,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsProfileEnabled() bool {
 // GetKratosSelfserviceMethodsProfileEnabledOk returns a tuple with the KratosSelfserviceMethodsProfileEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProjectRevision) GetKratosSelfserviceMethodsProfileEnabledOk() (*bool, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsProfileEnabledOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1854,7 +2486,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsProfileEnabledOk() (*bool, 
 }
 
 // HasKratosSelfserviceMethodsProfileEnabled returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceMethodsProfileEnabled() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsProfileEnabled() bool {
 	if o != nil && o.KratosSelfserviceMethodsProfileEnabled.IsSet() {
 		return true
 	}
@@ -1863,21 +2495,21 @@ func (o *ProjectRevision) HasKratosSelfserviceMethodsProfileEnabled() bool {
 }
 
 // SetKratosSelfserviceMethodsProfileEnabled gets a reference to the given NullableBool and assigns it to the KratosSelfserviceMethodsProfileEnabled field.
-func (o *ProjectRevision) SetKratosSelfserviceMethodsProfileEnabled(v bool) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsProfileEnabled(v bool) {
 	o.KratosSelfserviceMethodsProfileEnabled.Set(&v)
 }
 // SetKratosSelfserviceMethodsProfileEnabledNil sets the value for KratosSelfserviceMethodsProfileEnabled to be an explicit nil
-func (o *ProjectRevision) SetKratosSelfserviceMethodsProfileEnabledNil() {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsProfileEnabledNil() {
 	o.KratosSelfserviceMethodsProfileEnabled.Set(nil)
 }
 
 // UnsetKratosSelfserviceMethodsProfileEnabled ensures that no value is present for KratosSelfserviceMethodsProfileEnabled, not even an explicit nil
-func (o *ProjectRevision) UnsetKratosSelfserviceMethodsProfileEnabled() {
+func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsProfileEnabled() {
 	o.KratosSelfserviceMethodsProfileEnabled.Unset()
 }
 
 // GetKratosSelfserviceMethodsTotpConfigIssuer returns the KratosSelfserviceMethodsTotpConfigIssuer field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsTotpConfigIssuer() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsTotpConfigIssuer() string {
 	if o == nil || o.KratosSelfserviceMethodsTotpConfigIssuer == nil {
 		var ret string
 		return ret
@@ -1887,7 +2519,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsTotpConfigIssuer() string {
 
 // GetKratosSelfserviceMethodsTotpConfigIssuerOk returns a tuple with the KratosSelfserviceMethodsTotpConfigIssuer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsTotpConfigIssuerOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsTotpConfigIssuerOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceMethodsTotpConfigIssuer == nil {
 		return nil, false
 	}
@@ -1895,7 +2527,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsTotpConfigIssuerOk() (*stri
 }
 
 // HasKratosSelfserviceMethodsTotpConfigIssuer returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceMethodsTotpConfigIssuer() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsTotpConfigIssuer() bool {
 	if o != nil && o.KratosSelfserviceMethodsTotpConfigIssuer != nil {
 		return true
 	}
@@ -1904,12 +2536,12 @@ func (o *ProjectRevision) HasKratosSelfserviceMethodsTotpConfigIssuer() bool {
 }
 
 // SetKratosSelfserviceMethodsTotpConfigIssuer gets a reference to the given string and assigns it to the KratosSelfserviceMethodsTotpConfigIssuer field.
-func (o *ProjectRevision) SetKratosSelfserviceMethodsTotpConfigIssuer(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsTotpConfigIssuer(v string) {
 	o.KratosSelfserviceMethodsTotpConfigIssuer = &v
 }
 
 // GetKratosSelfserviceMethodsTotpEnabled returns the KratosSelfserviceMethodsTotpEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProjectRevision) GetKratosSelfserviceMethodsTotpEnabled() bool {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsTotpEnabled() bool {
 	if o == nil || o.KratosSelfserviceMethodsTotpEnabled.Get() == nil {
 		var ret bool
 		return ret
@@ -1920,7 +2552,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsTotpEnabled() bool {
 // GetKratosSelfserviceMethodsTotpEnabledOk returns a tuple with the KratosSelfserviceMethodsTotpEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProjectRevision) GetKratosSelfserviceMethodsTotpEnabledOk() (*bool, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsTotpEnabledOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -1928,7 +2560,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsTotpEnabledOk() (*bool, boo
 }
 
 // HasKratosSelfserviceMethodsTotpEnabled returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceMethodsTotpEnabled() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsTotpEnabled() bool {
 	if o != nil && o.KratosSelfserviceMethodsTotpEnabled.IsSet() {
 		return true
 	}
@@ -1937,21 +2569,53 @@ func (o *ProjectRevision) HasKratosSelfserviceMethodsTotpEnabled() bool {
 }
 
 // SetKratosSelfserviceMethodsTotpEnabled gets a reference to the given NullableBool and assigns it to the KratosSelfserviceMethodsTotpEnabled field.
-func (o *ProjectRevision) SetKratosSelfserviceMethodsTotpEnabled(v bool) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsTotpEnabled(v bool) {
 	o.KratosSelfserviceMethodsTotpEnabled.Set(&v)
 }
 // SetKratosSelfserviceMethodsTotpEnabledNil sets the value for KratosSelfserviceMethodsTotpEnabled to be an explicit nil
-func (o *ProjectRevision) SetKratosSelfserviceMethodsTotpEnabledNil() {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsTotpEnabledNil() {
 	o.KratosSelfserviceMethodsTotpEnabled.Set(nil)
 }
 
 // UnsetKratosSelfserviceMethodsTotpEnabled ensures that no value is present for KratosSelfserviceMethodsTotpEnabled, not even an explicit nil
-func (o *ProjectRevision) UnsetKratosSelfserviceMethodsTotpEnabled() {
+func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsTotpEnabled() {
 	o.KratosSelfserviceMethodsTotpEnabled.Unset()
 }
 
+// GetKratosSelfserviceMethodsWebauthnConfigPasswordless returns the KratosSelfserviceMethodsWebauthnConfigPasswordless field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigPasswordless() bool {
+	if o == nil || o.KratosSelfserviceMethodsWebauthnConfigPasswordless == nil {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsWebauthnConfigPasswordless
+}
+
+// GetKratosSelfserviceMethodsWebauthnConfigPasswordlessOk returns a tuple with the KratosSelfserviceMethodsWebauthnConfigPasswordless field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigPasswordlessOk() (*bool, bool) {
+	if o == nil || o.KratosSelfserviceMethodsWebauthnConfigPasswordless == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsWebauthnConfigPasswordless, true
+}
+
+// HasKratosSelfserviceMethodsWebauthnConfigPasswordless returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigPasswordless() bool {
+	if o != nil && o.KratosSelfserviceMethodsWebauthnConfigPasswordless != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsWebauthnConfigPasswordless gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsWebauthnConfigPasswordless field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigPasswordless(v bool) {
+	o.KratosSelfserviceMethodsWebauthnConfigPasswordless = &v
+}
+
 // GetKratosSelfserviceMethodsWebauthnConfigRpDisplayName returns the KratosSelfserviceMethodsWebauthnConfigRpDisplayName field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpDisplayName() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpDisplayName() string {
 	if o == nil || o.KratosSelfserviceMethodsWebauthnConfigRpDisplayName == nil {
 		var ret string
 		return ret
@@ -1961,7 +2625,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpDisplayName
 
 // GetKratosSelfserviceMethodsWebauthnConfigRpDisplayNameOk returns a tuple with the KratosSelfserviceMethodsWebauthnConfigRpDisplayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpDisplayNameOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpDisplayNameOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceMethodsWebauthnConfigRpDisplayName == nil {
 		return nil, false
 	}
@@ -1969,7 +2633,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpDisplayName
 }
 
 // HasKratosSelfserviceMethodsWebauthnConfigRpDisplayName returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpDisplayName() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpDisplayName() bool {
 	if o != nil && o.KratosSelfserviceMethodsWebauthnConfigRpDisplayName != nil {
 		return true
 	}
@@ -1978,12 +2642,12 @@ func (o *ProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpDisplayName
 }
 
 // SetKratosSelfserviceMethodsWebauthnConfigRpDisplayName gets a reference to the given string and assigns it to the KratosSelfserviceMethodsWebauthnConfigRpDisplayName field.
-func (o *ProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpDisplayName(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpDisplayName(v string) {
 	o.KratosSelfserviceMethodsWebauthnConfigRpDisplayName = &v
 }
 
 // GetKratosSelfserviceMethodsWebauthnConfigRpIcon returns the KratosSelfserviceMethodsWebauthnConfigRpIcon field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpIcon() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpIcon() string {
 	if o == nil || o.KratosSelfserviceMethodsWebauthnConfigRpIcon == nil {
 		var ret string
 		return ret
@@ -1993,7 +2657,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpIcon() stri
 
 // GetKratosSelfserviceMethodsWebauthnConfigRpIconOk returns a tuple with the KratosSelfserviceMethodsWebauthnConfigRpIcon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpIconOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpIconOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceMethodsWebauthnConfigRpIcon == nil {
 		return nil, false
 	}
@@ -2001,7 +2665,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpIconOk() (*
 }
 
 // HasKratosSelfserviceMethodsWebauthnConfigRpIcon returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpIcon() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpIcon() bool {
 	if o != nil && o.KratosSelfserviceMethodsWebauthnConfigRpIcon != nil {
 		return true
 	}
@@ -2010,12 +2674,12 @@ func (o *ProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpIcon() bool
 }
 
 // SetKratosSelfserviceMethodsWebauthnConfigRpIcon gets a reference to the given string and assigns it to the KratosSelfserviceMethodsWebauthnConfigRpIcon field.
-func (o *ProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpIcon(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpIcon(v string) {
 	o.KratosSelfserviceMethodsWebauthnConfigRpIcon = &v
 }
 
 // GetKratosSelfserviceMethodsWebauthnConfigRpId returns the KratosSelfserviceMethodsWebauthnConfigRpId field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpId() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpId() string {
 	if o == nil || o.KratosSelfserviceMethodsWebauthnConfigRpId == nil {
 		var ret string
 		return ret
@@ -2025,7 +2689,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpId() string
 
 // GetKratosSelfserviceMethodsWebauthnConfigRpIdOk returns a tuple with the KratosSelfserviceMethodsWebauthnConfigRpId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpIdOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpIdOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceMethodsWebauthnConfigRpId == nil {
 		return nil, false
 	}
@@ -2033,7 +2697,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpIdOk() (*st
 }
 
 // HasKratosSelfserviceMethodsWebauthnConfigRpId returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpId() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpId() bool {
 	if o != nil && o.KratosSelfserviceMethodsWebauthnConfigRpId != nil {
 		return true
 	}
@@ -2042,12 +2706,12 @@ func (o *ProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpId() bool {
 }
 
 // SetKratosSelfserviceMethodsWebauthnConfigRpId gets a reference to the given string and assigns it to the KratosSelfserviceMethodsWebauthnConfigRpId field.
-func (o *ProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpId(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpId(v string) {
 	o.KratosSelfserviceMethodsWebauthnConfigRpId = &v
 }
 
 // GetKratosSelfserviceMethodsWebauthnConfigRpOrigin returns the KratosSelfserviceMethodsWebauthnConfigRpOrigin field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpOrigin() string {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpOrigin() string {
 	if o == nil || o.KratosSelfserviceMethodsWebauthnConfigRpOrigin == nil {
 		var ret string
 		return ret
@@ -2057,7 +2721,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpOrigin() st
 
 // GetKratosSelfserviceMethodsWebauthnConfigRpOriginOk returns a tuple with the KratosSelfserviceMethodsWebauthnConfigRpOrigin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpOriginOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpOriginOk() (*string, bool) {
 	if o == nil || o.KratosSelfserviceMethodsWebauthnConfigRpOrigin == nil {
 		return nil, false
 	}
@@ -2065,7 +2729,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnConfigRpOriginOk() 
 }
 
 // HasKratosSelfserviceMethodsWebauthnConfigRpOrigin returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpOrigin() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpOrigin() bool {
 	if o != nil && o.KratosSelfserviceMethodsWebauthnConfigRpOrigin != nil {
 		return true
 	}
@@ -2074,12 +2738,12 @@ func (o *ProjectRevision) HasKratosSelfserviceMethodsWebauthnConfigRpOrigin() bo
 }
 
 // SetKratosSelfserviceMethodsWebauthnConfigRpOrigin gets a reference to the given string and assigns it to the KratosSelfserviceMethodsWebauthnConfigRpOrigin field.
-func (o *ProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpOrigin(v string) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnConfigRpOrigin(v string) {
 	o.KratosSelfserviceMethodsWebauthnConfigRpOrigin = &v
 }
 
 // GetKratosSelfserviceMethodsWebauthnEnabled returns the KratosSelfserviceMethodsWebauthnEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnEnabled() bool {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnEnabled() bool {
 	if o == nil || o.KratosSelfserviceMethodsWebauthnEnabled.Get() == nil {
 		var ret bool
 		return ret
@@ -2090,7 +2754,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnEnabled() bool {
 // GetKratosSelfserviceMethodsWebauthnEnabledOk returns a tuple with the KratosSelfserviceMethodsWebauthnEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnEnabledOk() (*bool, bool) {
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsWebauthnEnabledOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2098,7 +2762,7 @@ func (o *ProjectRevision) GetKratosSelfserviceMethodsWebauthnEnabledOk() (*bool,
 }
 
 // HasKratosSelfserviceMethodsWebauthnEnabled returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSelfserviceMethodsWebauthnEnabled() bool {
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsWebauthnEnabled() bool {
 	if o != nil && o.KratosSelfserviceMethodsWebauthnEnabled.IsSet() {
 		return true
 	}
@@ -2107,21 +2771,21 @@ func (o *ProjectRevision) HasKratosSelfserviceMethodsWebauthnEnabled() bool {
 }
 
 // SetKratosSelfserviceMethodsWebauthnEnabled gets a reference to the given NullableBool and assigns it to the KratosSelfserviceMethodsWebauthnEnabled field.
-func (o *ProjectRevision) SetKratosSelfserviceMethodsWebauthnEnabled(v bool) {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnEnabled(v bool) {
 	o.KratosSelfserviceMethodsWebauthnEnabled.Set(&v)
 }
 // SetKratosSelfserviceMethodsWebauthnEnabledNil sets the value for KratosSelfserviceMethodsWebauthnEnabled to be an explicit nil
-func (o *ProjectRevision) SetKratosSelfserviceMethodsWebauthnEnabledNil() {
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsWebauthnEnabledNil() {
 	o.KratosSelfserviceMethodsWebauthnEnabled.Set(nil)
 }
 
 // UnsetKratosSelfserviceMethodsWebauthnEnabled ensures that no value is present for KratosSelfserviceMethodsWebauthnEnabled, not even an explicit nil
-func (o *ProjectRevision) UnsetKratosSelfserviceMethodsWebauthnEnabled() {
+func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsWebauthnEnabled() {
 	o.KratosSelfserviceMethodsWebauthnEnabled.Unset()
 }
 
 // GetKratosSessionCookiePersistent returns the KratosSessionCookiePersistent field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProjectRevision) GetKratosSessionCookiePersistent() bool {
+func (o *NormalizedProjectRevision) GetKratosSessionCookiePersistent() bool {
 	if o == nil || o.KratosSessionCookiePersistent.Get() == nil {
 		var ret bool
 		return ret
@@ -2132,7 +2796,7 @@ func (o *ProjectRevision) GetKratosSessionCookiePersistent() bool {
 // GetKratosSessionCookiePersistentOk returns a tuple with the KratosSessionCookiePersistent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProjectRevision) GetKratosSessionCookiePersistentOk() (*bool, bool) {
+func (o *NormalizedProjectRevision) GetKratosSessionCookiePersistentOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2140,7 +2804,7 @@ func (o *ProjectRevision) GetKratosSessionCookiePersistentOk() (*bool, bool) {
 }
 
 // HasKratosSessionCookiePersistent returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSessionCookiePersistent() bool {
+func (o *NormalizedProjectRevision) HasKratosSessionCookiePersistent() bool {
 	if o != nil && o.KratosSessionCookiePersistent.IsSet() {
 		return true
 	}
@@ -2149,21 +2813,21 @@ func (o *ProjectRevision) HasKratosSessionCookiePersistent() bool {
 }
 
 // SetKratosSessionCookiePersistent gets a reference to the given NullableBool and assigns it to the KratosSessionCookiePersistent field.
-func (o *ProjectRevision) SetKratosSessionCookiePersistent(v bool) {
+func (o *NormalizedProjectRevision) SetKratosSessionCookiePersistent(v bool) {
 	o.KratosSessionCookiePersistent.Set(&v)
 }
 // SetKratosSessionCookiePersistentNil sets the value for KratosSessionCookiePersistent to be an explicit nil
-func (o *ProjectRevision) SetKratosSessionCookiePersistentNil() {
+func (o *NormalizedProjectRevision) SetKratosSessionCookiePersistentNil() {
 	o.KratosSessionCookiePersistent.Set(nil)
 }
 
 // UnsetKratosSessionCookiePersistent ensures that no value is present for KratosSessionCookiePersistent, not even an explicit nil
-func (o *ProjectRevision) UnsetKratosSessionCookiePersistent() {
+func (o *NormalizedProjectRevision) UnsetKratosSessionCookiePersistent() {
 	o.KratosSessionCookiePersistent.Unset()
 }
 
 // GetKratosSessionCookieSameSite returns the KratosSessionCookieSameSite field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSessionCookieSameSite() string {
+func (o *NormalizedProjectRevision) GetKratosSessionCookieSameSite() string {
 	if o == nil || o.KratosSessionCookieSameSite == nil {
 		var ret string
 		return ret
@@ -2173,7 +2837,7 @@ func (o *ProjectRevision) GetKratosSessionCookieSameSite() string {
 
 // GetKratosSessionCookieSameSiteOk returns a tuple with the KratosSessionCookieSameSite field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSessionCookieSameSiteOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSessionCookieSameSiteOk() (*string, bool) {
 	if o == nil || o.KratosSessionCookieSameSite == nil {
 		return nil, false
 	}
@@ -2181,7 +2845,7 @@ func (o *ProjectRevision) GetKratosSessionCookieSameSiteOk() (*string, bool) {
 }
 
 // HasKratosSessionCookieSameSite returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSessionCookieSameSite() bool {
+func (o *NormalizedProjectRevision) HasKratosSessionCookieSameSite() bool {
 	if o != nil && o.KratosSessionCookieSameSite != nil {
 		return true
 	}
@@ -2190,12 +2854,12 @@ func (o *ProjectRevision) HasKratosSessionCookieSameSite() bool {
 }
 
 // SetKratosSessionCookieSameSite gets a reference to the given string and assigns it to the KratosSessionCookieSameSite field.
-func (o *ProjectRevision) SetKratosSessionCookieSameSite(v string) {
+func (o *NormalizedProjectRevision) SetKratosSessionCookieSameSite(v string) {
 	o.KratosSessionCookieSameSite = &v
 }
 
 // GetKratosSessionLifespan returns the KratosSessionLifespan field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSessionLifespan() string {
+func (o *NormalizedProjectRevision) GetKratosSessionLifespan() string {
 	if o == nil || o.KratosSessionLifespan == nil {
 		var ret string
 		return ret
@@ -2205,7 +2869,7 @@ func (o *ProjectRevision) GetKratosSessionLifespan() string {
 
 // GetKratosSessionLifespanOk returns a tuple with the KratosSessionLifespan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSessionLifespanOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSessionLifespanOk() (*string, bool) {
 	if o == nil || o.KratosSessionLifespan == nil {
 		return nil, false
 	}
@@ -2213,7 +2877,7 @@ func (o *ProjectRevision) GetKratosSessionLifespanOk() (*string, bool) {
 }
 
 // HasKratosSessionLifespan returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSessionLifespan() bool {
+func (o *NormalizedProjectRevision) HasKratosSessionLifespan() bool {
 	if o != nil && o.KratosSessionLifespan != nil {
 		return true
 	}
@@ -2222,12 +2886,12 @@ func (o *ProjectRevision) HasKratosSessionLifespan() bool {
 }
 
 // SetKratosSessionLifespan gets a reference to the given string and assigns it to the KratosSessionLifespan field.
-func (o *ProjectRevision) SetKratosSessionLifespan(v string) {
+func (o *NormalizedProjectRevision) SetKratosSessionLifespan(v string) {
 	o.KratosSessionLifespan = &v
 }
 
 // GetKratosSessionWhoamiRequiredAal returns the KratosSessionWhoamiRequiredAal field value if set, zero value otherwise.
-func (o *ProjectRevision) GetKratosSessionWhoamiRequiredAal() string {
+func (o *NormalizedProjectRevision) GetKratosSessionWhoamiRequiredAal() string {
 	if o == nil || o.KratosSessionWhoamiRequiredAal == nil {
 		var ret string
 		return ret
@@ -2237,7 +2901,7 @@ func (o *ProjectRevision) GetKratosSessionWhoamiRequiredAal() string {
 
 // GetKratosSessionWhoamiRequiredAalOk returns a tuple with the KratosSessionWhoamiRequiredAal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetKratosSessionWhoamiRequiredAalOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetKratosSessionWhoamiRequiredAalOk() (*string, bool) {
 	if o == nil || o.KratosSessionWhoamiRequiredAal == nil {
 		return nil, false
 	}
@@ -2245,7 +2909,7 @@ func (o *ProjectRevision) GetKratosSessionWhoamiRequiredAalOk() (*string, bool) 
 }
 
 // HasKratosSessionWhoamiRequiredAal returns a boolean if a field has been set.
-func (o *ProjectRevision) HasKratosSessionWhoamiRequiredAal() bool {
+func (o *NormalizedProjectRevision) HasKratosSessionWhoamiRequiredAal() bool {
 	if o != nil && o.KratosSessionWhoamiRequiredAal != nil {
 		return true
 	}
@@ -2254,12 +2918,12 @@ func (o *ProjectRevision) HasKratosSessionWhoamiRequiredAal() bool {
 }
 
 // SetKratosSessionWhoamiRequiredAal gets a reference to the given string and assigns it to the KratosSessionWhoamiRequiredAal field.
-func (o *ProjectRevision) SetKratosSessionWhoamiRequiredAal(v string) {
+func (o *NormalizedProjectRevision) SetKratosSessionWhoamiRequiredAal(v string) {
 	o.KratosSessionWhoamiRequiredAal = &v
 }
 
 // GetName returns the Name field value
-func (o *ProjectRevision) GetName() string {
+func (o *NormalizedProjectRevision) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -2270,7 +2934,7 @@ func (o *ProjectRevision) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetNameOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetNameOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -2278,12 +2942,12 @@ func (o *ProjectRevision) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *ProjectRevision) SetName(v string) {
+func (o *NormalizedProjectRevision) SetName(v string) {
 	o.Name = v
 }
 
 // GetProjectId returns the ProjectId field value if set, zero value otherwise.
-func (o *ProjectRevision) GetProjectId() string {
+func (o *NormalizedProjectRevision) GetProjectId() string {
 	if o == nil || o.ProjectId == nil {
 		var ret string
 		return ret
@@ -2293,7 +2957,7 @@ func (o *ProjectRevision) GetProjectId() string {
 
 // GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetProjectIdOk() (*string, bool) {
+func (o *NormalizedProjectRevision) GetProjectIdOk() (*string, bool) {
 	if o == nil || o.ProjectId == nil {
 		return nil, false
 	}
@@ -2301,7 +2965,7 @@ func (o *ProjectRevision) GetProjectIdOk() (*string, bool) {
 }
 
 // HasProjectId returns a boolean if a field has been set.
-func (o *ProjectRevision) HasProjectId() bool {
+func (o *NormalizedProjectRevision) HasProjectId() bool {
 	if o != nil && o.ProjectId != nil {
 		return true
 	}
@@ -2310,12 +2974,12 @@ func (o *ProjectRevision) HasProjectId() bool {
 }
 
 // SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
-func (o *ProjectRevision) SetProjectId(v string) {
+func (o *NormalizedProjectRevision) SetProjectId(v string) {
 	o.ProjectId = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *ProjectRevision) GetUpdatedAt() time.Time {
+func (o *NormalizedProjectRevision) GetUpdatedAt() time.Time {
 	if o == nil || o.UpdatedAt == nil {
 		var ret time.Time
 		return ret
@@ -2325,7 +2989,7 @@ func (o *ProjectRevision) GetUpdatedAt() time.Time {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectRevision) GetUpdatedAtOk() (*time.Time, bool) {
+func (o *NormalizedProjectRevision) GetUpdatedAtOk() (*time.Time, bool) {
 	if o == nil || o.UpdatedAt == nil {
 		return nil, false
 	}
@@ -2333,7 +2997,7 @@ func (o *ProjectRevision) GetUpdatedAtOk() (*time.Time, bool) {
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
-func (o *ProjectRevision) HasUpdatedAt() bool {
+func (o *NormalizedProjectRevision) HasUpdatedAt() bool {
 	if o != nil && o.UpdatedAt != nil {
 		return true
 	}
@@ -2342,11 +3006,11 @@ func (o *ProjectRevision) HasUpdatedAt() bool {
 }
 
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *ProjectRevision) SetUpdatedAt(v time.Time) {
+func (o *NormalizedProjectRevision) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
-func (o ProjectRevision) MarshalJSON() ([]byte, error) {
+func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
@@ -2368,6 +3032,42 @@ func (o ProjectRevision) MarshalJSON() ([]byte, error) {
 	}
 	if o.KratosCourierSmtpHeaders != nil {
 		toSerialize["kratos_courier_smtp_headers"] = o.KratosCourierSmtpHeaders
+	}
+	if o.KratosCourierTemplatesRecoveryInvalidEmailBodyHtml != nil {
+		toSerialize["kratos_courier_templates_recovery_invalid_email_body_html"] = o.KratosCourierTemplatesRecoveryInvalidEmailBodyHtml
+	}
+	if o.KratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext != nil {
+		toSerialize["kratos_courier_templates_recovery_invalid_email_body_plaintext"] = o.KratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext
+	}
+	if o.KratosCourierTemplatesRecoveryInvalidEmailSubject != nil {
+		toSerialize["kratos_courier_templates_recovery_invalid_email_subject"] = o.KratosCourierTemplatesRecoveryInvalidEmailSubject
+	}
+	if o.KratosCourierTemplatesRecoveryValidEmailBodyHtml != nil {
+		toSerialize["kratos_courier_templates_recovery_valid_email_body_html"] = o.KratosCourierTemplatesRecoveryValidEmailBodyHtml
+	}
+	if o.KratosCourierTemplatesRecoveryValidEmailBodyPlaintext != nil {
+		toSerialize["kratos_courier_templates_recovery_valid_email_body_plaintext"] = o.KratosCourierTemplatesRecoveryValidEmailBodyPlaintext
+	}
+	if o.KratosCourierTemplatesRecoveryValidEmailSubject != nil {
+		toSerialize["kratos_courier_templates_recovery_valid_email_subject"] = o.KratosCourierTemplatesRecoveryValidEmailSubject
+	}
+	if o.KratosCourierTemplatesVerificationInvalidEmailBodyHtml != nil {
+		toSerialize["kratos_courier_templates_verification_invalid_email_body_html"] = o.KratosCourierTemplatesVerificationInvalidEmailBodyHtml
+	}
+	if o.KratosCourierTemplatesVerificationInvalidEmailBodyPlaintext != nil {
+		toSerialize["kratos_courier_templates_verification_invalid_email_body_plaintext"] = o.KratosCourierTemplatesVerificationInvalidEmailBodyPlaintext
+	}
+	if o.KratosCourierTemplatesVerificationInvalidEmailSubject != nil {
+		toSerialize["kratos_courier_templates_verification_invalid_email_subject"] = o.KratosCourierTemplatesVerificationInvalidEmailSubject
+	}
+	if o.KratosCourierTemplatesVerificationValidEmailBodyHtml != nil {
+		toSerialize["kratos_courier_templates_verification_valid_email_body_html"] = o.KratosCourierTemplatesVerificationValidEmailBodyHtml
+	}
+	if o.KratosCourierTemplatesVerificationValidEmailBodyPlaintext != nil {
+		toSerialize["kratos_courier_templates_verification_valid_email_body_plaintext"] = o.KratosCourierTemplatesVerificationValidEmailBodyPlaintext
+	}
+	if o.KratosCourierTemplatesVerificationValidEmailSubject != nil {
+		toSerialize["kratos_courier_templates_verification_valid_email_subject"] = o.KratosCourierTemplatesVerificationValidEmailSubject
 	}
 	if o.KratosIdentitySchemas != nil {
 		toSerialize["kratos_identity_schemas"] = o.KratosIdentitySchemas
@@ -2402,6 +3102,9 @@ func (o ProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl != nil {
 		toSerialize["kratos_selfservice_flows_login_after_password_default_browser_return_url"] = o.KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl
 	}
+	if o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl != nil {
+		toSerialize["kratos_selfservice_flows_login_after_webauthn_default_browser_return_url"] = o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl
+	}
 	if o.KratosSelfserviceFlowsLoginLifespan != nil {
 		toSerialize["kratos_selfservice_flows_login_lifespan"] = o.KratosSelfserviceFlowsLoginLifespan
 	}
@@ -2431,6 +3134,12 @@ func (o ProjectRevision) MarshalJSON() ([]byte, error) {
 	}
 	if o.KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl != nil {
 		toSerialize["kratos_selfservice_flows_registration_after_password_default_browser_return_url"] = o.KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl
+	}
+	if o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl != nil {
+		toSerialize["kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url"] = o.KratosSelfserviceFlowsRegistrationAfterWebauthnDefaultBrowserReturnUrl
+	}
+	if o.KratosSelfserviceFlowsRegistrationEnabled.IsSet() {
+		toSerialize["kratos_selfservice_flows_registration_enabled"] = o.KratosSelfserviceFlowsRegistrationEnabled.Get()
 	}
 	if o.KratosSelfserviceFlowsRegistrationLifespan != nil {
 		toSerialize["kratos_selfservice_flows_registration_lifespan"] = o.KratosSelfserviceFlowsRegistrationLifespan
@@ -2483,6 +3192,9 @@ func (o ProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosSelfserviceMethodsLookupSecretEnabled.IsSet() {
 		toSerialize["kratos_selfservice_methods_lookup_secret_enabled"] = o.KratosSelfserviceMethodsLookupSecretEnabled.Get()
 	}
+	if o.KratosSelfserviceMethodsOidcConfigBaseRedirectUri != nil {
+		toSerialize["kratos_selfservice_methods_oidc_config_base_redirect_uri"] = o.KratosSelfserviceMethodsOidcConfigBaseRedirectUri
+	}
 	if o.KratosSelfserviceMethodsOidcConfigProviders != nil {
 		toSerialize["kratos_selfservice_methods_oidc_config_providers"] = o.KratosSelfserviceMethodsOidcConfigProviders
 	}
@@ -2492,11 +3204,17 @@ func (o ProjectRevision) MarshalJSON() ([]byte, error) {
 	if o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.IsSet() {
 		toSerialize["kratos_selfservice_methods_password_config_haveibeenpwned_enabled"] = o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled.Get()
 	}
+	if o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.IsSet() {
+		toSerialize["kratos_selfservice_methods_password_config_identifier_similarity_check_enabled"] = o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled.Get()
+	}
 	if o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors.IsSet() {
 		toSerialize["kratos_selfservice_methods_password_config_ignore_network_errors"] = o.KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors.Get()
 	}
 	if o.KratosSelfserviceMethodsPasswordConfigMaxBreaches != nil {
 		toSerialize["kratos_selfservice_methods_password_config_max_breaches"] = o.KratosSelfserviceMethodsPasswordConfigMaxBreaches
+	}
+	if o.KratosSelfserviceMethodsPasswordConfigMinPasswordLength != nil {
+		toSerialize["kratos_selfservice_methods_password_config_min_password_length"] = o.KratosSelfserviceMethodsPasswordConfigMinPasswordLength
 	}
 	if o.KratosSelfserviceMethodsPasswordEnabled.IsSet() {
 		toSerialize["kratos_selfservice_methods_password_enabled"] = o.KratosSelfserviceMethodsPasswordEnabled.Get()
@@ -2509,6 +3227,9 @@ func (o ProjectRevision) MarshalJSON() ([]byte, error) {
 	}
 	if o.KratosSelfserviceMethodsTotpEnabled.IsSet() {
 		toSerialize["kratos_selfservice_methods_totp_enabled"] = o.KratosSelfserviceMethodsTotpEnabled.Get()
+	}
+	if o.KratosSelfserviceMethodsWebauthnConfigPasswordless != nil {
+		toSerialize["kratos_selfservice_methods_webauthn_config_passwordless"] = o.KratosSelfserviceMethodsWebauthnConfigPasswordless
 	}
 	if o.KratosSelfserviceMethodsWebauthnConfigRpDisplayName != nil {
 		toSerialize["kratos_selfservice_methods_webauthn_config_rp_display_name"] = o.KratosSelfserviceMethodsWebauthnConfigRpDisplayName
@@ -2549,38 +3270,38 @@ func (o ProjectRevision) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableProjectRevision struct {
-	value *ProjectRevision
+type NullableNormalizedProjectRevision struct {
+	value *NormalizedProjectRevision
 	isSet bool
 }
 
-func (v NullableProjectRevision) Get() *ProjectRevision {
+func (v NullableNormalizedProjectRevision) Get() *NormalizedProjectRevision {
 	return v.value
 }
 
-func (v *NullableProjectRevision) Set(val *ProjectRevision) {
+func (v *NullableNormalizedProjectRevision) Set(val *NormalizedProjectRevision) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableProjectRevision) IsSet() bool {
+func (v NullableNormalizedProjectRevision) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableProjectRevision) Unset() {
+func (v *NullableNormalizedProjectRevision) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableProjectRevision(val *ProjectRevision) *NullableProjectRevision {
-	return &NullableProjectRevision{value: val, isSet: true}
+func NewNullableNormalizedProjectRevision(val *NormalizedProjectRevision) *NullableNormalizedProjectRevision {
+	return &NullableNormalizedProjectRevision{value: val, isSet: true}
 }
 
-func (v NullableProjectRevision) MarshalJSON() ([]byte, error) {
+func (v NullableNormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableProjectRevision) UnmarshalJSON(src []byte) error {
+func (v *NullableNormalizedProjectRevision) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -1,4 +1,4 @@
-# ProjectRevisionThirdPartyLoginProvider
+# NormalizedProjectRevisionThirdPartyProvider
 
 ## Properties
 
@@ -26,515 +26,515 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewProjectRevisionThirdPartyLoginProvider
+### NewNormalizedProjectRevisionThirdPartyProvider
 
-`func NewProjectRevisionThirdPartyLoginProvider() *ProjectRevisionThirdPartyLoginProvider`
+`func NewNormalizedProjectRevisionThirdPartyProvider() *NormalizedProjectRevisionThirdPartyProvider`
 
-NewProjectRevisionThirdPartyLoginProvider instantiates a new ProjectRevisionThirdPartyLoginProvider object
+NewNormalizedProjectRevisionThirdPartyProvider instantiates a new NormalizedProjectRevisionThirdPartyProvider object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewProjectRevisionThirdPartyLoginProviderWithDefaults
+### NewNormalizedProjectRevisionThirdPartyProviderWithDefaults
 
-`func NewProjectRevisionThirdPartyLoginProviderWithDefaults() *ProjectRevisionThirdPartyLoginProvider`
+`func NewNormalizedProjectRevisionThirdPartyProviderWithDefaults() *NormalizedProjectRevisionThirdPartyProvider`
 
-NewProjectRevisionThirdPartyLoginProviderWithDefaults instantiates a new ProjectRevisionThirdPartyLoginProvider object
+NewNormalizedProjectRevisionThirdPartyProviderWithDefaults instantiates a new NormalizedProjectRevisionThirdPartyProvider object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetApplePrivateKey
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKey() string`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetApplePrivateKey() string`
 
 GetApplePrivateKey returns the ApplePrivateKey field if non-nil, zero value otherwise.
 
 ### GetApplePrivateKeyOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKeyOk() (*string, bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetApplePrivateKeyOk() (*string, bool)`
 
 GetApplePrivateKeyOk returns a tuple with the ApplePrivateKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApplePrivateKey
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetApplePrivateKey(v string)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetApplePrivateKey(v string)`
 
 SetApplePrivateKey sets ApplePrivateKey field to given value.
 
 ### HasApplePrivateKey
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) HasApplePrivateKey() bool`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasApplePrivateKey() bool`
 
 HasApplePrivateKey returns a boolean if a field has been set.
 
 ### SetApplePrivateKeyNil
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetApplePrivateKeyNil(b bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetApplePrivateKeyNil(b bool)`
 
  SetApplePrivateKeyNil sets the value for ApplePrivateKey to be an explicit nil
 
 ### UnsetApplePrivateKey
-`func (o *ProjectRevisionThirdPartyLoginProvider) UnsetApplePrivateKey()`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetApplePrivateKey()`
 
 UnsetApplePrivateKey ensures that no value is present for ApplePrivateKey, not even an explicit nil
 ### GetApplePrivateKeyId
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKeyId() string`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetApplePrivateKeyId() string`
 
 GetApplePrivateKeyId returns the ApplePrivateKeyId field if non-nil, zero value otherwise.
 
 ### GetApplePrivateKeyIdOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetApplePrivateKeyIdOk() (*string, bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetApplePrivateKeyIdOk() (*string, bool)`
 
 GetApplePrivateKeyIdOk returns a tuple with the ApplePrivateKeyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApplePrivateKeyId
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetApplePrivateKeyId(v string)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetApplePrivateKeyId(v string)`
 
 SetApplePrivateKeyId sets ApplePrivateKeyId field to given value.
 
 ### HasApplePrivateKeyId
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) HasApplePrivateKeyId() bool`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasApplePrivateKeyId() bool`
 
 HasApplePrivateKeyId returns a boolean if a field has been set.
 
 ### GetAppleTeamId
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetAppleTeamId() string`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAppleTeamId() string`
 
 GetAppleTeamId returns the AppleTeamId field if non-nil, zero value otherwise.
 
 ### GetAppleTeamIdOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetAppleTeamIdOk() (*string, bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAppleTeamIdOk() (*string, bool)`
 
 GetAppleTeamIdOk returns a tuple with the AppleTeamId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAppleTeamId
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetAppleTeamId(v string)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetAppleTeamId(v string)`
 
 SetAppleTeamId sets AppleTeamId field to given value.
 
 ### HasAppleTeamId
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) HasAppleTeamId() bool`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasAppleTeamId() bool`
 
 HasAppleTeamId returns a boolean if a field has been set.
 
 ### GetAuthUrl
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetAuthUrl() string`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAuthUrl() string`
 
 GetAuthUrl returns the AuthUrl field if non-nil, zero value otherwise.
 
 ### GetAuthUrlOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetAuthUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAuthUrlOk() (*string, bool)`
 
 GetAuthUrlOk returns a tuple with the AuthUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAuthUrl
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetAuthUrl(v string)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetAuthUrl(v string)`
 
 SetAuthUrl sets AuthUrl field to given value.
 
 ### HasAuthUrl
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) HasAuthUrl() bool`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasAuthUrl() bool`
 
 HasAuthUrl returns a boolean if a field has been set.
 
 ### GetAzureTenant
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetAzureTenant() string`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAzureTenant() string`
 
 GetAzureTenant returns the AzureTenant field if non-nil, zero value otherwise.
 
 ### GetAzureTenantOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetAzureTenantOk() (*string, bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAzureTenantOk() (*string, bool)`
 
 GetAzureTenantOk returns a tuple with the AzureTenant field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAzureTenant
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetAzureTenant(v string)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetAzureTenant(v string)`
 
 SetAzureTenant sets AzureTenant field to given value.
 
 ### HasAzureTenant
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) HasAzureTenant() bool`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasAzureTenant() bool`
 
 HasAzureTenant returns a boolean if a field has been set.
 
 ### GetClientId
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetClientId() string`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetClientId() string`
 
 GetClientId returns the ClientId field if non-nil, zero value otherwise.
 
 ### GetClientIdOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetClientIdOk() (*string, bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetClientIdOk() (*string, bool)`
 
 GetClientIdOk returns a tuple with the ClientId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClientId
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetClientId(v string)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetClientId(v string)`
 
 SetClientId sets ClientId field to given value.
 
 ### HasClientId
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) HasClientId() bool`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasClientId() bool`
 
 HasClientId returns a boolean if a field has been set.
 
 ### GetClientSecret
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetClientSecret() string`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetClientSecret() string`
 
 GetClientSecret returns the ClientSecret field if non-nil, zero value otherwise.
 
 ### GetClientSecretOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetClientSecretOk() (*string, bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetClientSecretOk() (*string, bool)`
 
 GetClientSecretOk returns a tuple with the ClientSecret field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClientSecret
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetClientSecret(v string)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetClientSecret(v string)`
 
 SetClientSecret sets ClientSecret field to given value.
 
 ### HasClientSecret
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) HasClientSecret() bool`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasClientSecret() bool`
 
 HasClientSecret returns a boolean if a field has been set.
 
 ### SetClientSecretNil
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetClientSecretNil(b bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetClientSecretNil(b bool)`
 
  SetClientSecretNil sets the value for ClientSecret to be an explicit nil
 
 ### UnsetClientSecret
-`func (o *ProjectRevisionThirdPartyLoginProvider) UnsetClientSecret()`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetClientSecret()`
 
 UnsetClientSecret ensures that no value is present for ClientSecret, not even an explicit nil
 ### GetCreatedAt
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetCreatedAt() time.Time`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetCreatedAt(v time.Time)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
 ### HasCreatedAt
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) HasCreatedAt() bool`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetId() string`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetId() string`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetIdOk() (*string, bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetIdOk() (*string, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetId(v string)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetId(v string)`
 
 SetId sets Id field to given value.
 
 ### HasId
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) HasId() bool`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasId() bool`
 
 HasId returns a boolean if a field has been set.
 
 ### GetIssuerUrl
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetIssuerUrl() string`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetIssuerUrl() string`
 
 GetIssuerUrl returns the IssuerUrl field if non-nil, zero value otherwise.
 
 ### GetIssuerUrlOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetIssuerUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetIssuerUrlOk() (*string, bool)`
 
 GetIssuerUrlOk returns a tuple with the IssuerUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIssuerUrl
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetIssuerUrl(v string)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetIssuerUrl(v string)`
 
 SetIssuerUrl sets IssuerUrl field to given value.
 
 ### HasIssuerUrl
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) HasIssuerUrl() bool`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasIssuerUrl() bool`
 
 HasIssuerUrl returns a boolean if a field has been set.
 
 ### GetLabel
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetLabel() string`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetLabel() string`
 
 GetLabel returns the Label field if non-nil, zero value otherwise.
 
 ### GetLabelOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetLabelOk() (*string, bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetLabelOk() (*string, bool)`
 
 GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLabel
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetLabel(v string)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetLabel(v string)`
 
 SetLabel sets Label field to given value.
 
 ### HasLabel
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) HasLabel() bool`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasLabel() bool`
 
 HasLabel returns a boolean if a field has been set.
 
 ### GetMapperUrl
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetMapperUrl() string`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetMapperUrl() string`
 
 GetMapperUrl returns the MapperUrl field if non-nil, zero value otherwise.
 
 ### GetMapperUrlOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetMapperUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetMapperUrlOk() (*string, bool)`
 
 GetMapperUrlOk returns a tuple with the MapperUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMapperUrl
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetMapperUrl(v string)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetMapperUrl(v string)`
 
 SetMapperUrl sets MapperUrl field to given value.
 
 ### HasMapperUrl
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) HasMapperUrl() bool`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasMapperUrl() bool`
 
 HasMapperUrl returns a boolean if a field has been set.
 
 ### GetProjectRevisionId
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetProjectRevisionId() string`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetProjectRevisionId() string`
 
 GetProjectRevisionId returns the ProjectRevisionId field if non-nil, zero value otherwise.
 
 ### GetProjectRevisionIdOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetProjectRevisionIdOk() (*string, bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetProjectRevisionIdOk() (*string, bool)`
 
 GetProjectRevisionIdOk returns a tuple with the ProjectRevisionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProjectRevisionId
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetProjectRevisionId(v string)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetProjectRevisionId(v string)`
 
 SetProjectRevisionId sets ProjectRevisionId field to given value.
 
 ### HasProjectRevisionId
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) HasProjectRevisionId() bool`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasProjectRevisionId() bool`
 
 HasProjectRevisionId returns a boolean if a field has been set.
 
 ### GetProvider
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetProvider() string`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetProvider() string`
 
 GetProvider returns the Provider field if non-nil, zero value otherwise.
 
 ### GetProviderOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetProviderOk() (*string, bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetProviderOk() (*string, bool)`
 
 GetProviderOk returns a tuple with the Provider field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProvider
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetProvider(v string)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetProvider(v string)`
 
 SetProvider sets Provider field to given value.
 
 ### HasProvider
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) HasProvider() bool`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasProvider() bool`
 
 HasProvider returns a boolean if a field has been set.
 
 ### GetProviderId
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetProviderId() string`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetProviderId() string`
 
 GetProviderId returns the ProviderId field if non-nil, zero value otherwise.
 
 ### GetProviderIdOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetProviderIdOk() (*string, bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetProviderIdOk() (*string, bool)`
 
 GetProviderIdOk returns a tuple with the ProviderId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProviderId
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetProviderId(v string)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetProviderId(v string)`
 
 SetProviderId sets ProviderId field to given value.
 
 ### HasProviderId
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) HasProviderId() bool`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasProviderId() bool`
 
 HasProviderId returns a boolean if a field has been set.
 
 ### GetRequestedClaims
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetRequestedClaims() map[string]interface{}`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetRequestedClaims() map[string]interface{}`
 
 GetRequestedClaims returns the RequestedClaims field if non-nil, zero value otherwise.
 
 ### GetRequestedClaimsOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetRequestedClaimsOk() (*map[string]interface{}, bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetRequestedClaimsOk() (*map[string]interface{}, bool)`
 
 GetRequestedClaimsOk returns a tuple with the RequestedClaims field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRequestedClaims
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetRequestedClaims(v map[string]interface{})`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetRequestedClaims(v map[string]interface{})`
 
 SetRequestedClaims sets RequestedClaims field to given value.
 
 ### HasRequestedClaims
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) HasRequestedClaims() bool`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasRequestedClaims() bool`
 
 HasRequestedClaims returns a boolean if a field has been set.
 
 ### GetScope
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetScope() []string`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetScope() []string`
 
 GetScope returns the Scope field if non-nil, zero value otherwise.
 
 ### GetScopeOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetScopeOk() (*[]string, bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetScopeOk() (*[]string, bool)`
 
 GetScopeOk returns a tuple with the Scope field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetScope
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetScope(v []string)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetScope(v []string)`
 
 SetScope sets Scope field to given value.
 
 ### HasScope
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) HasScope() bool`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasScope() bool`
 
 HasScope returns a boolean if a field has been set.
 
 ### GetTokenUrl
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetTokenUrl() string`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetTokenUrl() string`
 
 GetTokenUrl returns the TokenUrl field if non-nil, zero value otherwise.
 
 ### GetTokenUrlOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetTokenUrlOk() (*string, bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetTokenUrlOk() (*string, bool)`
 
 GetTokenUrlOk returns a tuple with the TokenUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTokenUrl
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetTokenUrl(v string)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetTokenUrl(v string)`
 
 SetTokenUrl sets TokenUrl field to given value.
 
 ### HasTokenUrl
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) HasTokenUrl() bool`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasTokenUrl() bool`
 
 HasTokenUrl returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetUpdatedAt() time.Time`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetUpdatedAt() time.Time`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) GetUpdatedAtOk() (*time.Time, bool)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetUpdatedAtOk() (*time.Time, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) SetUpdatedAt(v time.Time)`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetUpdatedAt(v time.Time)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
 
 ### HasUpdatedAt
 
-`func (o *ProjectRevisionThirdPartyLoginProvider) HasUpdatedAt() bool`
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasUpdatedAt() bool`
 
 HasUpdatedAt returns a boolean if a field has been set.
 
