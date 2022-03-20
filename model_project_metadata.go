@@ -16,16 +16,16 @@ import (
 	"time"
 )
 
-// NormalizedProject struct for NormalizedProject
-type NormalizedProject struct {
+// ProjectMetadata struct for ProjectMetadata
+type ProjectMetadata struct {
 	// The Project's Creation Date
 	CreatedAt time.Time `json:"created_at"`
-	CurrentRevision NormalizedProjectRevision `json:"current_revision"`
 	Hosts []string `json:"hosts"`
 	Id string `json:"id"`
-	Revisions []NormalizedProjectRevision `json:"revisions"`
+	// The project's name if set
+	Name string `json:"name"`
 	// The project's slug
-	Slug string `json:"slug"`
+	Slug *string `json:"slug,omitempty"`
 	// The state of the project.
 	State string `json:"state"`
 	SubscriptionId *string `json:"subscription_id,omitempty"`
@@ -33,33 +33,31 @@ type NormalizedProject struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-// NewNormalizedProject instantiates a new NormalizedProject object
+// NewProjectMetadata instantiates a new ProjectMetadata object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNormalizedProject(createdAt time.Time, currentRevision NormalizedProjectRevision, hosts []string, id string, revisions []NormalizedProjectRevision, slug string, state string, updatedAt time.Time) *NormalizedProject {
-	this := NormalizedProject{}
+func NewProjectMetadata(createdAt time.Time, hosts []string, id string, name string, state string, updatedAt time.Time) *ProjectMetadata {
+	this := ProjectMetadata{}
 	this.CreatedAt = createdAt
-	this.CurrentRevision = currentRevision
 	this.Hosts = hosts
 	this.Id = id
-	this.Revisions = revisions
-	this.Slug = slug
+	this.Name = name
 	this.State = state
 	this.UpdatedAt = updatedAt
 	return &this
 }
 
-// NewNormalizedProjectWithDefaults instantiates a new NormalizedProject object
+// NewProjectMetadataWithDefaults instantiates a new ProjectMetadata object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewNormalizedProjectWithDefaults() *NormalizedProject {
-	this := NormalizedProject{}
+func NewProjectMetadataWithDefaults() *ProjectMetadata {
+	this := ProjectMetadata{}
 	return &this
 }
 
 // GetCreatedAt returns the CreatedAt field value
-func (o *NormalizedProject) GetCreatedAt() time.Time {
+func (o *ProjectMetadata) GetCreatedAt() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -70,7 +68,7 @@ func (o *NormalizedProject) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *NormalizedProject) GetCreatedAtOk() (*time.Time, bool) {
+func (o *ProjectMetadata) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -78,36 +76,12 @@ func (o *NormalizedProject) GetCreatedAtOk() (*time.Time, bool) {
 }
 
 // SetCreatedAt sets field value
-func (o *NormalizedProject) SetCreatedAt(v time.Time) {
+func (o *ProjectMetadata) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
 }
 
-// GetCurrentRevision returns the CurrentRevision field value
-func (o *NormalizedProject) GetCurrentRevision() NormalizedProjectRevision {
-	if o == nil {
-		var ret NormalizedProjectRevision
-		return ret
-	}
-
-	return o.CurrentRevision
-}
-
-// GetCurrentRevisionOk returns a tuple with the CurrentRevision field value
-// and a boolean to check if the value has been set.
-func (o *NormalizedProject) GetCurrentRevisionOk() (*NormalizedProjectRevision, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.CurrentRevision, true
-}
-
-// SetCurrentRevision sets field value
-func (o *NormalizedProject) SetCurrentRevision(v NormalizedProjectRevision) {
-	o.CurrentRevision = v
-}
-
 // GetHosts returns the Hosts field value
-func (o *NormalizedProject) GetHosts() []string {
+func (o *ProjectMetadata) GetHosts() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -118,7 +92,7 @@ func (o *NormalizedProject) GetHosts() []string {
 
 // GetHostsOk returns a tuple with the Hosts field value
 // and a boolean to check if the value has been set.
-func (o *NormalizedProject) GetHostsOk() ([]string, bool) {
+func (o *ProjectMetadata) GetHostsOk() ([]string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -126,12 +100,12 @@ func (o *NormalizedProject) GetHostsOk() ([]string, bool) {
 }
 
 // SetHosts sets field value
-func (o *NormalizedProject) SetHosts(v []string) {
+func (o *ProjectMetadata) SetHosts(v []string) {
 	o.Hosts = v
 }
 
 // GetId returns the Id field value
-func (o *NormalizedProject) GetId() string {
+func (o *ProjectMetadata) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -142,7 +116,7 @@ func (o *NormalizedProject) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *NormalizedProject) GetIdOk() (*string, bool) {
+func (o *ProjectMetadata) GetIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -150,60 +124,68 @@ func (o *NormalizedProject) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value
-func (o *NormalizedProject) SetId(v string) {
+func (o *ProjectMetadata) SetId(v string) {
 	o.Id = v
 }
 
-// GetRevisions returns the Revisions field value
-func (o *NormalizedProject) GetRevisions() []NormalizedProjectRevision {
-	if o == nil {
-		var ret []NormalizedProjectRevision
-		return ret
-	}
-
-	return o.Revisions
-}
-
-// GetRevisionsOk returns a tuple with the Revisions field value
-// and a boolean to check if the value has been set.
-func (o *NormalizedProject) GetRevisionsOk() ([]NormalizedProjectRevision, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Revisions, true
-}
-
-// SetRevisions sets field value
-func (o *NormalizedProject) SetRevisions(v []NormalizedProjectRevision) {
-	o.Revisions = v
-}
-
-// GetSlug returns the Slug field value
-func (o *NormalizedProject) GetSlug() string {
+// GetName returns the Name field value
+func (o *ProjectMetadata) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Slug
+	return o.Name
 }
 
-// GetSlugOk returns a tuple with the Slug field value
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *NormalizedProject) GetSlugOk() (*string, bool) {
+func (o *ProjectMetadata) GetNameOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Slug, true
+	return &o.Name, true
 }
 
-// SetSlug sets field value
-func (o *NormalizedProject) SetSlug(v string) {
-	o.Slug = v
+// SetName sets field value
+func (o *ProjectMetadata) SetName(v string) {
+	o.Name = v
+}
+
+// GetSlug returns the Slug field value if set, zero value otherwise.
+func (o *ProjectMetadata) GetSlug() string {
+	if o == nil || o.Slug == nil {
+		var ret string
+		return ret
+	}
+	return *o.Slug
+}
+
+// GetSlugOk returns a tuple with the Slug field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectMetadata) GetSlugOk() (*string, bool) {
+	if o == nil || o.Slug == nil {
+		return nil, false
+	}
+	return o.Slug, true
+}
+
+// HasSlug returns a boolean if a field has been set.
+func (o *ProjectMetadata) HasSlug() bool {
+	if o != nil && o.Slug != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSlug gets a reference to the given string and assigns it to the Slug field.
+func (o *ProjectMetadata) SetSlug(v string) {
+	o.Slug = &v
 }
 
 // GetState returns the State field value
-func (o *NormalizedProject) GetState() string {
+func (o *ProjectMetadata) GetState() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -214,7 +196,7 @@ func (o *NormalizedProject) GetState() string {
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *NormalizedProject) GetStateOk() (*string, bool) {
+func (o *ProjectMetadata) GetStateOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -222,12 +204,12 @@ func (o *NormalizedProject) GetStateOk() (*string, bool) {
 }
 
 // SetState sets field value
-func (o *NormalizedProject) SetState(v string) {
+func (o *ProjectMetadata) SetState(v string) {
 	o.State = v
 }
 
 // GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise.
-func (o *NormalizedProject) GetSubscriptionId() string {
+func (o *ProjectMetadata) GetSubscriptionId() string {
 	if o == nil || o.SubscriptionId == nil {
 		var ret string
 		return ret
@@ -237,7 +219,7 @@ func (o *NormalizedProject) GetSubscriptionId() string {
 
 // GetSubscriptionIdOk returns a tuple with the SubscriptionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NormalizedProject) GetSubscriptionIdOk() (*string, bool) {
+func (o *ProjectMetadata) GetSubscriptionIdOk() (*string, bool) {
 	if o == nil || o.SubscriptionId == nil {
 		return nil, false
 	}
@@ -245,7 +227,7 @@ func (o *NormalizedProject) GetSubscriptionIdOk() (*string, bool) {
 }
 
 // HasSubscriptionId returns a boolean if a field has been set.
-func (o *NormalizedProject) HasSubscriptionId() bool {
+func (o *ProjectMetadata) HasSubscriptionId() bool {
 	if o != nil && o.SubscriptionId != nil {
 		return true
 	}
@@ -254,12 +236,12 @@ func (o *NormalizedProject) HasSubscriptionId() bool {
 }
 
 // SetSubscriptionId gets a reference to the given string and assigns it to the SubscriptionId field.
-func (o *NormalizedProject) SetSubscriptionId(v string) {
+func (o *ProjectMetadata) SetSubscriptionId(v string) {
 	o.SubscriptionId = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value
-func (o *NormalizedProject) GetUpdatedAt() time.Time {
+func (o *ProjectMetadata) GetUpdatedAt() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -270,7 +252,7 @@ func (o *NormalizedProject) GetUpdatedAt() time.Time {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value
 // and a boolean to check if the value has been set.
-func (o *NormalizedProject) GetUpdatedAtOk() (*time.Time, bool) {
+func (o *ProjectMetadata) GetUpdatedAtOk() (*time.Time, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -278,17 +260,14 @@ func (o *NormalizedProject) GetUpdatedAtOk() (*time.Time, bool) {
 }
 
 // SetUpdatedAt sets field value
-func (o *NormalizedProject) SetUpdatedAt(v time.Time) {
+func (o *ProjectMetadata) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
-func (o NormalizedProject) MarshalJSON() ([]byte, error) {
+func (o ProjectMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["created_at"] = o.CreatedAt
-	}
-	if true {
-		toSerialize["current_revision"] = o.CurrentRevision
 	}
 	if true {
 		toSerialize["hosts"] = o.Hosts
@@ -297,9 +276,9 @@ func (o NormalizedProject) MarshalJSON() ([]byte, error) {
 		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["revisions"] = o.Revisions
+		toSerialize["name"] = o.Name
 	}
-	if true {
+	if o.Slug != nil {
 		toSerialize["slug"] = o.Slug
 	}
 	if true {
@@ -314,38 +293,38 @@ func (o NormalizedProject) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableNormalizedProject struct {
-	value *NormalizedProject
+type NullableProjectMetadata struct {
+	value *ProjectMetadata
 	isSet bool
 }
 
-func (v NullableNormalizedProject) Get() *NormalizedProject {
+func (v NullableProjectMetadata) Get() *ProjectMetadata {
 	return v.value
 }
 
-func (v *NullableNormalizedProject) Set(val *NormalizedProject) {
+func (v *NullableProjectMetadata) Set(val *ProjectMetadata) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableNormalizedProject) IsSet() bool {
+func (v NullableProjectMetadata) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableNormalizedProject) Unset() {
+func (v *NullableProjectMetadata) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableNormalizedProject(val *NormalizedProject) *NullableNormalizedProject {
-	return &NullableNormalizedProject{value: val, isSet: true}
+func NewNullableProjectMetadata(val *ProjectMetadata) *NullableProjectMetadata {
+	return &NullableProjectMetadata{value: val, isSet: true}
 }
 
-func (v NullableNormalizedProject) MarshalJSON() ([]byte, error) {
+func (v NullableProjectMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableNormalizedProject) UnmarshalJSON(src []byte) error {
+func (v *NullableProjectMetadata) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
