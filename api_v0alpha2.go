@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.2
+API version: v0.2.0-alpha.4
 Contact: support@ory.sh
 */
 
@@ -822,9 +822,11 @@ Displaying all other sessions that belong to the logged-in user
 	ListSessionsExecute(r V0alpha2ApiListSessionsRequest) ([]Session, *http.Response, error)
 
 	/*
-	PatchProject Patch an Ory Cloud Project Configuration
+	PatchProject Patch an Ory Cloud Project Configuration`
 
-	This endpoints allows you to patch individual Ory Cloud Project configuration keys for
+	Deprecated: Use the `patchProjectWithRevision` endpoint instead to specify the exact revision the patch was generated for.
+
+This endpoints allows you to patch individual Ory Cloud Project configuration keys for
 Ory's services (identity, permission, ...). The configuration format is fully compatible
 with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).
 
@@ -6393,7 +6395,9 @@ func (r V0alpha2ApiPatchProjectRequest) Execute() (*SuccessfulProjectUpdate, *ht
 }
 
 /*
-PatchProject Patch an Ory Cloud Project Configuration
+PatchProject Patch an Ory Cloud Project Configuration`
+
+Deprecated: Use the `patchProjectWithRevision` endpoint instead to specify the exact revision the patch was generated for.
 
 This endpoints allows you to patch individual Ory Cloud Project configuration keys for
 Ory's services (identity, permission, ...). The configuration format is fully compatible

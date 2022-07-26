@@ -39,7 +39,7 @@ Method | HTTP request | Description
 [**ListIdentitySchemas**](V0alpha2Api.md#ListIdentitySchemas) | **Get** /schemas | 
 [**ListProjects**](V0alpha2Api.md#ListProjects) | **Get** /projects | List All Projects
 [**ListSessions**](V0alpha2Api.md#ListSessions) | **Get** /sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
-[**PatchProject**](V0alpha2Api.md#PatchProject) | **Patch** /projects/{project_id} | Patch an Ory Cloud Project Configuration
+[**PatchProject**](V0alpha2Api.md#PatchProject) | **Patch** /projects/{project_id} | Patch an Ory Cloud Project Configuration&#x60;
 [**PurgeProject**](V0alpha2Api.md#PurgeProject) | **Delete** /projects/{project_id} | Irrecoverably Purge a Project
 [**RemoveProjectMember**](V0alpha2Api.md#RemoveProjectMember) | **Delete** /projects/{project_id}/members/{member_id} | Remove a member associated with this project. This also sets their invite status to &#x60;REMOVED&#x60;.
 [**RevokeSession**](V0alpha2Api.md#RevokeSession) | **Delete** /sessions/{id} | Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
@@ -2423,7 +2423,7 @@ No authorization required
 
 > SuccessfulProjectUpdate PatchProject(ctx, projectId).JsonPatch(jsonPatch).Execute()
 
-Patch an Ory Cloud Project Configuration
+Patch an Ory Cloud Project Configuration`
 
 
 
