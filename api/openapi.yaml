@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v0.2.0-alpha.14
+  version: v0.2.0-alpha.15
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -8869,6 +8869,8 @@ components:
           type: string
         exclude_not_before_claim:
           type: boolean
+        expires_at:
+          $ref: '#/components/schemas/oAuth2ConsentSession_expires_at'
         extra:
           additionalProperties: true
           type: object
@@ -12509,6 +12511,24 @@ components:
           type: string
       required:
       - version
+      type: object
+    oAuth2ConsentSession_expires_at:
+      properties:
+        access_token:
+          format: date-time
+          type: string
+        authorize_code:
+          format: date-time
+          type: string
+        id_token:
+          format: date-time
+          type: string
+        par_context:
+          format: date-time
+          type: string
+        refresh_token:
+          format: date-time
+          type: string
       type: object
   securitySchemes:
     basic:

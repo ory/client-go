@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.14
+API version: v0.2.0-alpha.15
 Contact: support@ory.sh
 */
 
@@ -21,6 +21,7 @@ type OAuth2ConsentSession struct {
 	ClientId *string `json:"client_id,omitempty"`
 	ConsentChallenge *string `json:"consent_challenge,omitempty"`
 	ExcludeNotBeforeClaim *bool `json:"exclude_not_before_claim,omitempty"`
+	ExpiresAt *OAuth2ConsentSessionExpiresAt `json:"expires_at,omitempty"`
 	Extra map[string]interface{} `json:"extra,omitempty"`
 	Headers *Headers `json:"headers,omitempty"`
 	IdTokenClaims *IDTokenClaims `json:"id_token_claims,omitempty"`
@@ -172,6 +173,38 @@ func (o *OAuth2ConsentSession) HasExcludeNotBeforeClaim() bool {
 // SetExcludeNotBeforeClaim gets a reference to the given bool and assigns it to the ExcludeNotBeforeClaim field.
 func (o *OAuth2ConsentSession) SetExcludeNotBeforeClaim(v bool) {
 	o.ExcludeNotBeforeClaim = &v
+}
+
+// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
+func (o *OAuth2ConsentSession) GetExpiresAt() OAuth2ConsentSessionExpiresAt {
+	if o == nil || o.ExpiresAt == nil {
+		var ret OAuth2ConsentSessionExpiresAt
+		return ret
+	}
+	return *o.ExpiresAt
+}
+
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OAuth2ConsentSession) GetExpiresAtOk() (*OAuth2ConsentSessionExpiresAt, bool) {
+	if o == nil || o.ExpiresAt == nil {
+		return nil, false
+	}
+	return o.ExpiresAt, true
+}
+
+// HasExpiresAt returns a boolean if a field has been set.
+func (o *OAuth2ConsentSession) HasExpiresAt() bool {
+	if o != nil && o.ExpiresAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiresAt gets a reference to the given OAuth2ConsentSessionExpiresAt and assigns it to the ExpiresAt field.
+func (o *OAuth2ConsentSession) SetExpiresAt(v OAuth2ConsentSessionExpiresAt) {
+	o.ExpiresAt = &v
 }
 
 // GetExtra returns the Extra field value if set, zero value otherwise.
@@ -379,6 +412,9 @@ func (o OAuth2ConsentSession) MarshalJSON() ([]byte, error) {
 	}
 	if o.ExcludeNotBeforeClaim != nil {
 		toSerialize["exclude_not_before_claim"] = o.ExcludeNotBeforeClaim
+	}
+	if o.ExpiresAt != nil {
+		toSerialize["expires_at"] = o.ExpiresAt
 	}
 	if o.Extra != nil {
 		toSerialize["extra"] = o.Extra

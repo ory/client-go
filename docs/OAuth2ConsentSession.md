@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **ClientId** | Pointer to **string** |  | [optional] 
 **ConsentChallenge** | Pointer to **string** |  | [optional] 
 **ExcludeNotBeforeClaim** | Pointer to **bool** |  | [optional] 
+**ExpiresAt** | Pointer to [**OAuth2ConsentSessionExpiresAt**](OAuth2ConsentSessionExpiresAt.md) |  | [optional] 
 **Extra** | Pointer to **map[string]interface{}** |  | [optional] 
 **Headers** | Pointer to [**Headers**](Headers.md) |  | [optional] 
 **IdTokenClaims** | Pointer to [**IDTokenClaims**](IDTokenClaims.md) |  | [optional] 
@@ -133,6 +134,31 @@ SetExcludeNotBeforeClaim sets ExcludeNotBeforeClaim field to given value.
 `func (o *OAuth2ConsentSession) HasExcludeNotBeforeClaim() bool`
 
 HasExcludeNotBeforeClaim returns a boolean if a field has been set.
+
+### GetExpiresAt
+
+`func (o *OAuth2ConsentSession) GetExpiresAt() OAuth2ConsentSessionExpiresAt`
+
+GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
+
+### GetExpiresAtOk
+
+`func (o *OAuth2ConsentSession) GetExpiresAtOk() (*OAuth2ConsentSessionExpiresAt, bool)`
+
+GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpiresAt
+
+`func (o *OAuth2ConsentSession) SetExpiresAt(v OAuth2ConsentSessionExpiresAt)`
+
+SetExpiresAt sets ExpiresAt field to given value.
+
+### HasExpiresAt
+
+`func (o *OAuth2ConsentSession) HasExpiresAt() bool`
+
+HasExpiresAt returns a boolean if a field has been set.
 
 ### GetExtra
 
