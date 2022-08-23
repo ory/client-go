@@ -1,4 +1,4 @@
-# IdentitySchema
+# ManagedIdentitySchema
 
 ## Properties
 
@@ -14,164 +14,164 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewIdentitySchema
+### NewManagedIdentitySchema
 
-`func NewIdentitySchema(blobName string, blobUrl string, createdAt time.Time, id string, name string, updatedAt time.Time, ) *IdentitySchema`
+`func NewManagedIdentitySchema(blobName string, blobUrl string, createdAt time.Time, id string, name string, updatedAt time.Time, ) *ManagedIdentitySchema`
 
-NewIdentitySchema instantiates a new IdentitySchema object
+NewManagedIdentitySchema instantiates a new ManagedIdentitySchema object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewIdentitySchemaWithDefaults
+### NewManagedIdentitySchemaWithDefaults
 
-`func NewIdentitySchemaWithDefaults() *IdentitySchema`
+`func NewManagedIdentitySchemaWithDefaults() *ManagedIdentitySchema`
 
-NewIdentitySchemaWithDefaults instantiates a new IdentitySchema object
+NewManagedIdentitySchemaWithDefaults instantiates a new ManagedIdentitySchema object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetBlobName
 
-`func (o *IdentitySchema) GetBlobName() string`
+`func (o *ManagedIdentitySchema) GetBlobName() string`
 
 GetBlobName returns the BlobName field if non-nil, zero value otherwise.
 
 ### GetBlobNameOk
 
-`func (o *IdentitySchema) GetBlobNameOk() (*string, bool)`
+`func (o *ManagedIdentitySchema) GetBlobNameOk() (*string, bool)`
 
 GetBlobNameOk returns a tuple with the BlobName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBlobName
 
-`func (o *IdentitySchema) SetBlobName(v string)`
+`func (o *ManagedIdentitySchema) SetBlobName(v string)`
 
 SetBlobName sets BlobName field to given value.
 
 
 ### GetBlobUrl
 
-`func (o *IdentitySchema) GetBlobUrl() string`
+`func (o *ManagedIdentitySchema) GetBlobUrl() string`
 
 GetBlobUrl returns the BlobUrl field if non-nil, zero value otherwise.
 
 ### GetBlobUrlOk
 
-`func (o *IdentitySchema) GetBlobUrlOk() (*string, bool)`
+`func (o *ManagedIdentitySchema) GetBlobUrlOk() (*string, bool)`
 
 GetBlobUrlOk returns a tuple with the BlobUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBlobUrl
 
-`func (o *IdentitySchema) SetBlobUrl(v string)`
+`func (o *ManagedIdentitySchema) SetBlobUrl(v string)`
 
 SetBlobUrl sets BlobUrl field to given value.
 
 
 ### GetContentHash
 
-`func (o *IdentitySchema) GetContentHash() string`
+`func (o *ManagedIdentitySchema) GetContentHash() string`
 
 GetContentHash returns the ContentHash field if non-nil, zero value otherwise.
 
 ### GetContentHashOk
 
-`func (o *IdentitySchema) GetContentHashOk() (*string, bool)`
+`func (o *ManagedIdentitySchema) GetContentHashOk() (*string, bool)`
 
 GetContentHashOk returns a tuple with the ContentHash field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetContentHash
 
-`func (o *IdentitySchema) SetContentHash(v string)`
+`func (o *ManagedIdentitySchema) SetContentHash(v string)`
 
 SetContentHash sets ContentHash field to given value.
 
 ### HasContentHash
 
-`func (o *IdentitySchema) HasContentHash() bool`
+`func (o *ManagedIdentitySchema) HasContentHash() bool`
 
 HasContentHash returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
-`func (o *IdentitySchema) GetCreatedAt() time.Time`
+`func (o *ManagedIdentitySchema) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *IdentitySchema) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *ManagedIdentitySchema) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *IdentitySchema) SetCreatedAt(v time.Time)`
+`func (o *ManagedIdentitySchema) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetId
 
-`func (o *IdentitySchema) GetId() string`
+`func (o *ManagedIdentitySchema) GetId() string`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *IdentitySchema) GetIdOk() (*string, bool)`
+`func (o *ManagedIdentitySchema) GetIdOk() (*string, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *IdentitySchema) SetId(v string)`
+`func (o *ManagedIdentitySchema) SetId(v string)`
 
 SetId sets Id field to given value.
 
 
 ### GetName
 
-`func (o *IdentitySchema) GetName() string`
+`func (o *ManagedIdentitySchema) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *IdentitySchema) GetNameOk() (*string, bool)`
+`func (o *ManagedIdentitySchema) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *IdentitySchema) SetName(v string)`
+`func (o *ManagedIdentitySchema) SetName(v string)`
 
 SetName sets Name field to given value.
 
 
 ### GetUpdatedAt
 
-`func (o *IdentitySchema) GetUpdatedAt() time.Time`
+`func (o *ManagedIdentitySchema) GetUpdatedAt() time.Time`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *IdentitySchema) GetUpdatedAtOk() (*time.Time, bool)`
+`func (o *ManagedIdentitySchema) GetUpdatedAtOk() (*time.Time, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *IdentitySchema) SetUpdatedAt(v time.Time)`
+`func (o *ManagedIdentitySchema) SetUpdatedAt(v time.Time)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
 

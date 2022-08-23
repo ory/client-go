@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v0.2.0-alpha.4
+API version: v0.2.0-alpha.14
 Contact: support@ory.sh
 */
 
@@ -15,32 +15,32 @@ import (
 	"encoding/json"
 )
 
-// IsAlive200Response struct for IsAlive200Response
-type IsAlive200Response struct {
+// IsReady200Response struct for IsReady200Response
+type IsReady200Response struct {
 	// Always \"ok\".
 	Status string `json:"status"`
 }
 
-// NewIsAlive200Response instantiates a new IsAlive200Response object
+// NewIsReady200Response instantiates a new IsReady200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIsAlive200Response(status string) *IsAlive200Response {
-	this := IsAlive200Response{}
+func NewIsReady200Response(status string) *IsReady200Response {
+	this := IsReady200Response{}
 	this.Status = status
 	return &this
 }
 
-// NewIsAlive200ResponseWithDefaults instantiates a new IsAlive200Response object
+// NewIsReady200ResponseWithDefaults instantiates a new IsReady200Response object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewIsAlive200ResponseWithDefaults() *IsAlive200Response {
-	this := IsAlive200Response{}
+func NewIsReady200ResponseWithDefaults() *IsReady200Response {
+	this := IsReady200Response{}
 	return &this
 }
 
 // GetStatus returns the Status field value
-func (o *IsAlive200Response) GetStatus() string {
+func (o *IsReady200Response) GetStatus() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -51,7 +51,7 @@ func (o *IsAlive200Response) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *IsAlive200Response) GetStatusOk() (*string, bool) {
+func (o *IsReady200Response) GetStatusOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,11 +59,11 @@ func (o *IsAlive200Response) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *IsAlive200Response) SetStatus(v string) {
+func (o *IsReady200Response) SetStatus(v string) {
 	o.Status = v
 }
 
-func (o IsAlive200Response) MarshalJSON() ([]byte, error) {
+func (o IsReady200Response) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["status"] = o.Status
@@ -71,38 +71,38 @@ func (o IsAlive200Response) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableIsAlive200Response struct {
-	value *IsAlive200Response
+type NullableIsReady200Response struct {
+	value *IsReady200Response
 	isSet bool
 }
 
-func (v NullableIsAlive200Response) Get() *IsAlive200Response {
+func (v NullableIsReady200Response) Get() *IsReady200Response {
 	return v.value
 }
 
-func (v *NullableIsAlive200Response) Set(val *IsAlive200Response) {
+func (v *NullableIsReady200Response) Set(val *IsReady200Response) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableIsAlive200Response) IsSet() bool {
+func (v NullableIsReady200Response) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableIsAlive200Response) Unset() {
+func (v *NullableIsReady200Response) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableIsAlive200Response(val *IsAlive200Response) *NullableIsAlive200Response {
-	return &NullableIsAlive200Response{value: val, isSet: true}
+func NewNullableIsReady200Response(val *IsReady200Response) *NullableIsReady200Response {
+	return &NullableIsReady200Response{value: val, isSet: true}
 }
 
-func (v NullableIsAlive200Response) MarshalJSON() ([]byte, error) {
+func (v NullableIsReady200Response) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableIsAlive200Response) UnmarshalJSON(src []byte) error {
+func (v *NullableIsReady200Response) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

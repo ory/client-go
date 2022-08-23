@@ -1,4 +1,4 @@
-# IsAlive200Response
+# IsReady200Response
 
 ## Properties
 
@@ -8,39 +8,39 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewIsAlive200Response
+### NewIsReady200Response
 
-`func NewIsAlive200Response(status string, ) *IsAlive200Response`
+`func NewIsReady200Response(status string, ) *IsReady200Response`
 
-NewIsAlive200Response instantiates a new IsAlive200Response object
+NewIsReady200Response instantiates a new IsReady200Response object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewIsAlive200ResponseWithDefaults
+### NewIsReady200ResponseWithDefaults
 
-`func NewIsAlive200ResponseWithDefaults() *IsAlive200Response`
+`func NewIsReady200ResponseWithDefaults() *IsReady200Response`
 
-NewIsAlive200ResponseWithDefaults instantiates a new IsAlive200Response object
+NewIsReady200ResponseWithDefaults instantiates a new IsReady200Response object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetStatus
 
-`func (o *IsAlive200Response) GetStatus() string`
+`func (o *IsReady200Response) GetStatus() string`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *IsAlive200Response) GetStatusOk() (*string, bool)`
+`func (o *IsReady200Response) GetStatusOk() (*string, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *IsAlive200Response) SetStatus(v string)`
+`func (o *IsReady200Response) SetStatus(v string)`
 
 SetStatus sets Status field to given value.
 
