@@ -24,7 +24,7 @@ type Project struct {
 	Services ProjectServices `json:"services"`
 	// The project's slug
 	Slug string `json:"slug"`
-	// The state of the project.
+	// The state of the project. running Running halted Halted
 	State string `json:"state"`
 }
 

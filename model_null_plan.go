@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// NullPlan the model 'NullPlan'
+// NullPlan  unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
 type NullPlan string
 
 // List of NullPlan
@@ -25,6 +25,8 @@ const (
 	NULLPLAN_FREE NullPlan = "free"
 	NULLPLAN_START_UP_MONTHLY NullPlan = "start_up_monthly"
 	NULLPLAN_START_UP_YEARLY NullPlan = "start_up_yearly"
+	NULLPLAN_BUSINESS_MONTHLY NullPlan = "business_monthly"
+	NULLPLAN_BUSINESS_YEARLY NullPlan = "business_yearly"
 	NULLPLAN_CUSTOM NullPlan = "custom"
 )
 
@@ -33,6 +35,8 @@ var allowedNullPlanEnumValues = []NullPlan{
 	"free",
 	"start_up_monthly",
 	"start_up_yearly",
+	"business_monthly",
+	"business_yearly",
 	"custom",
 }
 

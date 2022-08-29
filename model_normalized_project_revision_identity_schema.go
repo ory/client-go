@@ -21,8 +21,8 @@ type NormalizedProjectRevisionIdentitySchema struct {
 	// The Project's Revision Creation Date
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Id *string `json:"id,omitempty"`
-	IdentitySchema *IdentitySchema `json:"identity_schema,omitempty"`
-	IdentitySchemaId *string `json:"identity_schema_id,omitempty"`
+	IdentitySchema *ManagedIdentitySchema `json:"identity_schema,omitempty"`
+	IdentitySchemaId NullableString `json:"identity_schema_id,omitempty"`
 	// The imported (named) ID of the Identity Schema referenced in the Ory Kratos config.
 	ImportId *string `json:"import_id,omitempty"`
 	// The ImportURL can be used to import an Identity Schema from a bse64 encoded string. In the future, this key also support HTTPS and other sources!  If you import an Ory Kratos configuration, this would be akin to the `identity.schemas.#.url` key.  The configuration will always return the import URL when you fetch it from the API.
@@ -118,9 +118,9 @@ func (o *NormalizedProjectRevisionIdentitySchema) SetId(v string) {
 }
 
 // GetIdentitySchema returns the IdentitySchema field value if set, zero value otherwise.
-func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchema() IdentitySchema {
+func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchema() ManagedIdentitySchema {
 	if o == nil || o.IdentitySchema == nil {
-		var ret IdentitySchema
+		var ret ManagedIdentitySchema
 		return ret
 	}
 	return *o.IdentitySchema
@@ -128,7 +128,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchema() IdentitySc
 
 // GetIdentitySchemaOk returns a tuple with the IdentitySchema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchemaOk() (*IdentitySchema, bool) {
+func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchemaOk() (*ManagedIdentitySchema, bool) {
 	if o == nil || o.IdentitySchema == nil {
 		return nil, false
 	}
@@ -144,41 +144,51 @@ func (o *NormalizedProjectRevisionIdentitySchema) HasIdentitySchema() bool {
 	return false
 }
 
-// SetIdentitySchema gets a reference to the given IdentitySchema and assigns it to the IdentitySchema field.
-func (o *NormalizedProjectRevisionIdentitySchema) SetIdentitySchema(v IdentitySchema) {
+// SetIdentitySchema gets a reference to the given ManagedIdentitySchema and assigns it to the IdentitySchema field.
+func (o *NormalizedProjectRevisionIdentitySchema) SetIdentitySchema(v ManagedIdentitySchema) {
 	o.IdentitySchema = &v
 }
 
-// GetIdentitySchemaId returns the IdentitySchemaId field value if set, zero value otherwise.
+// GetIdentitySchemaId returns the IdentitySchemaId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchemaId() string {
-	if o == nil || o.IdentitySchemaId == nil {
+	if o == nil || o.IdentitySchemaId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.IdentitySchemaId
+	return *o.IdentitySchemaId.Get()
 }
 
 // GetIdentitySchemaIdOk returns a tuple with the IdentitySchemaId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NormalizedProjectRevisionIdentitySchema) GetIdentitySchemaIdOk() (*string, bool) {
-	if o == nil || o.IdentitySchemaId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.IdentitySchemaId, true
+	return o.IdentitySchemaId.Get(), o.IdentitySchemaId.IsSet()
 }
 
 // HasIdentitySchemaId returns a boolean if a field has been set.
 func (o *NormalizedProjectRevisionIdentitySchema) HasIdentitySchemaId() bool {
-	if o != nil && o.IdentitySchemaId != nil {
+	if o != nil && o.IdentitySchemaId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetIdentitySchemaId gets a reference to the given string and assigns it to the IdentitySchemaId field.
+// SetIdentitySchemaId gets a reference to the given NullableString and assigns it to the IdentitySchemaId field.
 func (o *NormalizedProjectRevisionIdentitySchema) SetIdentitySchemaId(v string) {
-	o.IdentitySchemaId = &v
+	o.IdentitySchemaId.Set(&v)
+}
+// SetIdentitySchemaIdNil sets the value for IdentitySchemaId to be an explicit nil
+func (o *NormalizedProjectRevisionIdentitySchema) SetIdentitySchemaIdNil() {
+	o.IdentitySchemaId.Set(nil)
+}
+
+// UnsetIdentitySchemaId ensures that no value is present for IdentitySchemaId, not even an explicit nil
+func (o *NormalizedProjectRevisionIdentitySchema) UnsetIdentitySchemaId() {
+	o.IdentitySchemaId.Unset()
 }
 
 // GetImportId returns the ImportId field value if set, zero value otherwise.
@@ -384,8 +394,8 @@ func (o NormalizedProjectRevisionIdentitySchema) MarshalJSON() ([]byte, error) {
 	if o.IdentitySchema != nil {
 		toSerialize["identity_schema"] = o.IdentitySchema
 	}
-	if o.IdentitySchemaId != nil {
-		toSerialize["identity_schema_id"] = o.IdentitySchemaId
+	if o.IdentitySchemaId.IsSet() {
+		toSerialize["identity_schema_id"] = o.IdentitySchemaId.Get()
 	}
 	if o.ImportId != nil {
 		toSerialize["import_id"] = o.ImportId

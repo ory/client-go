@@ -19,16 +19,17 @@ import (
 // Subscription struct for Subscription
 type Subscription struct {
 	CreatedAt time.Time `json:"created_at"`
-	// The currently active plan of the subscription
+	// The currently active plan of the subscription unknown Unknown free Free start_up_monthly StartUpMonthly start_up_yearly StartUpYearly business_monthly BusinessMonthly business_yearly BusinessYearly custom Custom
 	CurrentPlan string `json:"current_plan"`
 	// The ID of the stripe customer
 	CustomerId string `json:"customer_id"`
 	Id string `json:"id"`
-	OngoingStripeCheckoutId *string `json:"ongoing_stripe_checkout_id,omitempty"`
+	OngoingStripeCheckoutId NullableString `json:"ongoing_stripe_checkout_id,omitempty"`
 	// Until when the subscription is payed
 	PayedUntil time.Time `json:"payed_until"`
 	PlanChangesAt *time.Time `json:"plan_changes_at,omitempty"`
 	PlanChangesTo NullPlan `json:"plan_changes_to"`
+	// For `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this state can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` state. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal state, the open invoice will be voided and no further invoices will be generated.  A subscription that is currently in a trial period is `trialing` and moves to `active` when the trial period is over.  If subscription `collection_method=charge_automatically` it becomes `past_due` when payment to renew it fails and `canceled` or `unpaid` (depending on your subscriptions settings) when Stripe has exhausted all payment retry attempts.  If subscription `collection_method=send_invoice` it becomes `past_due` when its invoice is not paid by the due date, and `canceled` or `unpaid` if it is still not paid by an additional deadline after that. Note that when a subscription has a status of `unpaid`, no subsequent invoices will be attempted (invoices will be created, but then immediately automatically closed). After receiving updated payment information from a customer, you may choose to reopen and pay their closed invoices.
 	Status string `json:"status"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
@@ -154,36 +155,46 @@ func (o *Subscription) SetId(v string) {
 	o.Id = v
 }
 
-// GetOngoingStripeCheckoutId returns the OngoingStripeCheckoutId field value if set, zero value otherwise.
+// GetOngoingStripeCheckoutId returns the OngoingStripeCheckoutId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Subscription) GetOngoingStripeCheckoutId() string {
-	if o == nil || o.OngoingStripeCheckoutId == nil {
+	if o == nil || o.OngoingStripeCheckoutId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.OngoingStripeCheckoutId
+	return *o.OngoingStripeCheckoutId.Get()
 }
 
 // GetOngoingStripeCheckoutIdOk returns a tuple with the OngoingStripeCheckoutId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Subscription) GetOngoingStripeCheckoutIdOk() (*string, bool) {
-	if o == nil || o.OngoingStripeCheckoutId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.OngoingStripeCheckoutId, true
+	return o.OngoingStripeCheckoutId.Get(), o.OngoingStripeCheckoutId.IsSet()
 }
 
 // HasOngoingStripeCheckoutId returns a boolean if a field has been set.
 func (o *Subscription) HasOngoingStripeCheckoutId() bool {
-	if o != nil && o.OngoingStripeCheckoutId != nil {
+	if o != nil && o.OngoingStripeCheckoutId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetOngoingStripeCheckoutId gets a reference to the given string and assigns it to the OngoingStripeCheckoutId field.
+// SetOngoingStripeCheckoutId gets a reference to the given NullableString and assigns it to the OngoingStripeCheckoutId field.
 func (o *Subscription) SetOngoingStripeCheckoutId(v string) {
-	o.OngoingStripeCheckoutId = &v
+	o.OngoingStripeCheckoutId.Set(&v)
+}
+// SetOngoingStripeCheckoutIdNil sets the value for OngoingStripeCheckoutId to be an explicit nil
+func (o *Subscription) SetOngoingStripeCheckoutIdNil() {
+	o.OngoingStripeCheckoutId.Set(nil)
+}
+
+// UnsetOngoingStripeCheckoutId ensures that no value is present for OngoingStripeCheckoutId, not even an explicit nil
+func (o *Subscription) UnsetOngoingStripeCheckoutId() {
+	o.OngoingStripeCheckoutId.Unset()
 }
 
 // GetPayedUntil returns the PayedUntil field value
@@ -328,8 +339,8 @@ func (o Subscription) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["id"] = o.Id
 	}
-	if o.OngoingStripeCheckoutId != nil {
-		toSerialize["ongoing_stripe_checkout_id"] = o.OngoingStripeCheckoutId
+	if o.OngoingStripeCheckoutId.IsSet() {
+		toSerialize["ongoing_stripe_checkout_id"] = o.OngoingStripeCheckoutId.Get()
 	}
 	if true {
 		toSerialize["payed_until"] = o.PayedUntil

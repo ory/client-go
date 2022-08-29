@@ -29,11 +29,79 @@ var (
 type V0alpha2Api interface {
 
 	/*
-	 * AdminCreateIdentity Create an Identity
-	 * This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...)
-using this method! A way to achieve that will be introduced in the future.
+	 * AdminAcceptOAuth2ConsentRequest Accept an OAuth 2.0 Consent Request
+	 * When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider
+to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if
+the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.
 
-Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to
+grant or deny the client access to the requested scope ("Application my-dropbox-app wants write access to all your private files").
+
+The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent
+provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted
+or rejected the request.
+
+This endpoint tells ORY Hydra that the subject has authorized the OAuth 2.0 client to access resources on his/her behalf.
+The consent provider includes additional information, such as session data for access and ID tokens, and if the
+consent request should be used as basis for future requests.
+
+The response contains a redirect URL which the consent provider should redirect the user-agent to.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiAdminAcceptOAuth2ConsentRequestRequest
+	 */
+	AdminAcceptOAuth2ConsentRequest(ctx context.Context) V0alpha2ApiApiAdminAcceptOAuth2ConsentRequestRequest
+
+	/*
+	 * AdminAcceptOAuth2ConsentRequestExecute executes the request
+	 * @return SuccessfulOAuth2RequestResponse
+	 */
+	AdminAcceptOAuth2ConsentRequestExecute(r V0alpha2ApiApiAdminAcceptOAuth2ConsentRequestRequest) (*SuccessfulOAuth2RequestResponse, *http.Response, error)
+
+	/*
+	 * AdminAcceptOAuth2LoginRequest Accept an OAuth 2.0 Login Request
+	 * When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory Hydra asks the login provider
+(sometimes called "identity provider") to authenticate the subject and then tell Ory Hydra now about it. The login
+provider is an web-app you write and host, and it must be able to authenticate ("show the subject a login screen")
+a subject (in OAuth2 the proper name for subject is "resource owner").
+
+The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login
+provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.
+
+This endpoint tells ORY Hydra that the subject has successfully authenticated and includes additional information such as
+the subject's ID and if ORY Hydra should remember the subject's subject agent for future authentication attempts by setting
+a cookie.
+
+The response contains a redirect URL which the login provider should redirect the user-agent to.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiAdminAcceptOAuth2LoginRequestRequest
+	 */
+	AdminAcceptOAuth2LoginRequest(ctx context.Context) V0alpha2ApiApiAdminAcceptOAuth2LoginRequestRequest
+
+	/*
+	 * AdminAcceptOAuth2LoginRequestExecute executes the request
+	 * @return SuccessfulOAuth2RequestResponse
+	 */
+	AdminAcceptOAuth2LoginRequestExecute(r V0alpha2ApiApiAdminAcceptOAuth2LoginRequestRequest) (*SuccessfulOAuth2RequestResponse, *http.Response, error)
+
+	/*
+	 * AdminAcceptOAuth2LogoutRequest Accept an OAuth 2.0 Logout Request
+	 * When a user or an application requests ORY Hydra to log out a user, this endpoint is used to confirm that logout request.
+
+The response contains a redirect URL which the consent provider should redirect the user-agent to.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiAdminAcceptOAuth2LogoutRequestRequest
+	 */
+	AdminAcceptOAuth2LogoutRequest(ctx context.Context) V0alpha2ApiApiAdminAcceptOAuth2LogoutRequestRequest
+
+	/*
+	 * AdminAcceptOAuth2LogoutRequestExecute executes the request
+	 * @return SuccessfulOAuth2RequestResponse
+	 */
+	AdminAcceptOAuth2LogoutRequestExecute(r V0alpha2ApiApiAdminAcceptOAuth2LogoutRequestRequest) (*SuccessfulOAuth2RequestResponse, *http.Response, error)
+
+	/*
+	 * AdminCreateIdentity Create an Identity
+	 * This endpoint creates an identity. Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return V0alpha2ApiApiAdminCreateIdentityRequest
 	 */
@@ -44,6 +112,41 @@ Learn how identities work in [Ory Kratos' User And Identity Model Documentation]
 	 * @return Identity
 	 */
 	AdminCreateIdentityExecute(r V0alpha2ApiApiAdminCreateIdentityRequest) (*Identity, *http.Response, error)
+
+	/*
+	 * AdminCreateJsonWebKeySet Generate a New JSON Web Key
+	 * This endpoint is capable of generating JSON Web Key Sets for you. There a different strategies available, such as symmetric cryptographic keys (HS256, HS512) and asymetric cryptographic keys (RS256, ECDSA). If the specified JSON Web Key Set does not exist, it will be created.
+
+A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param set The JSON Web Key Set
+	 * @return V0alpha2ApiApiAdminCreateJsonWebKeySetRequest
+	 */
+	AdminCreateJsonWebKeySet(ctx context.Context, set string) V0alpha2ApiApiAdminCreateJsonWebKeySetRequest
+
+	/*
+	 * AdminCreateJsonWebKeySetExecute executes the request
+	 * @return JsonWebKeySet
+	 */
+	AdminCreateJsonWebKeySetExecute(r V0alpha2ApiApiAdminCreateJsonWebKeySetRequest) (*JsonWebKeySet, *http.Response, error)
+
+	/*
+	 * AdminCreateOAuth2Client Create an OAuth 2.0 Client
+	 * Create a new OAuth 2.0 client. If you pass `client_secret` the secret is used, otherwise a random secret
+is generated. The secret is echoed in the response. It is not possible to retrieve it later on.
+
+OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiAdminCreateOAuth2ClientRequest
+	 */
+	AdminCreateOAuth2Client(ctx context.Context) V0alpha2ApiApiAdminCreateOAuth2ClientRequest
+
+	/*
+	 * AdminCreateOAuth2ClientExecute executes the request
+	 * @return OAuth2Client
+	 */
+	AdminCreateOAuth2ClientExecute(r V0alpha2ApiApiAdminCreateOAuth2ClientRequest) (*OAuth2Client, *http.Response, error)
 
 	/*
 	 * AdminCreateSelfServiceRecoveryLink Create a Recovery Link
@@ -95,6 +198,104 @@ To forcefully logout Identity from all devices and sessions
 	AdminDeleteIdentitySessionsExecute(r V0alpha2ApiApiAdminDeleteIdentitySessionsRequest) (*http.Response, error)
 
 	/*
+	 * AdminDeleteJsonWebKey Delete a JSON Web Key
+	 * Use this endpoint to delete a single JSON Web Key.
+
+A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param set The JSON Web Key Set
+	 * @param kid The JSON Web Key ID (kid)
+	 * @return V0alpha2ApiApiAdminDeleteJsonWebKeyRequest
+	 */
+	AdminDeleteJsonWebKey(ctx context.Context, set string, kid string) V0alpha2ApiApiAdminDeleteJsonWebKeyRequest
+
+	/*
+	 * AdminDeleteJsonWebKeyExecute executes the request
+	 */
+	AdminDeleteJsonWebKeyExecute(r V0alpha2ApiApiAdminDeleteJsonWebKeyRequest) (*http.Response, error)
+
+	/*
+	 * AdminDeleteJsonWebKeySet Delete a JSON Web Key Set
+	 * Use this endpoint to delete a complete JSON Web Key Set and all the keys in that set.
+
+A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param set The JSON Web Key Set
+	 * @return V0alpha2ApiApiAdminDeleteJsonWebKeySetRequest
+	 */
+	AdminDeleteJsonWebKeySet(ctx context.Context, set string) V0alpha2ApiApiAdminDeleteJsonWebKeySetRequest
+
+	/*
+	 * AdminDeleteJsonWebKeySetExecute executes the request
+	 */
+	AdminDeleteJsonWebKeySetExecute(r V0alpha2ApiApiAdminDeleteJsonWebKeySetRequest) (*http.Response, error)
+
+	/*
+	 * AdminDeleteOAuth2Client Deletes an OAuth 2.0 Client
+	 * Delete an existing OAuth 2.0 Client by its ID.
+
+OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+Make sure that this endpoint is well protected and only callable by first-party components.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id The id of the OAuth 2.0 Client.
+	 * @return V0alpha2ApiApiAdminDeleteOAuth2ClientRequest
+	 */
+	AdminDeleteOAuth2Client(ctx context.Context, id string) V0alpha2ApiApiAdminDeleteOAuth2ClientRequest
+
+	/*
+	 * AdminDeleteOAuth2ClientExecute executes the request
+	 */
+	AdminDeleteOAuth2ClientExecute(r V0alpha2ApiApiAdminDeleteOAuth2ClientRequest) (*http.Response, error)
+
+	/*
+	 * AdminDeleteOAuth2Token Delete OAuth2 Access Tokens from a Client
+	 * This endpoint deletes OAuth2 access tokens issued for a client from the database
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiAdminDeleteOAuth2TokenRequest
+	 */
+	AdminDeleteOAuth2Token(ctx context.Context) V0alpha2ApiApiAdminDeleteOAuth2TokenRequest
+
+	/*
+	 * AdminDeleteOAuth2TokenExecute executes the request
+	 */
+	AdminDeleteOAuth2TokenExecute(r V0alpha2ApiApiAdminDeleteOAuth2TokenRequest) (*http.Response, error)
+
+	/*
+	 * AdminDeleteTrustedOAuth2JwtGrantIssuer Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
+	 * Use this endpoint to delete trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you
+created the trust relationship.
+
+Once deleted, the associated issuer will no longer be able to perform the JSON Web Token (JWT) Profile
+for OAuth 2.0 Client Authentication and Authorization Grant.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id The id of the desired grant
+	 * @return V0alpha2ApiApiAdminDeleteTrustedOAuth2JwtGrantIssuerRequest
+	 */
+	AdminDeleteTrustedOAuth2JwtGrantIssuer(ctx context.Context, id string) V0alpha2ApiApiAdminDeleteTrustedOAuth2JwtGrantIssuerRequest
+
+	/*
+	 * AdminDeleteTrustedOAuth2JwtGrantIssuerExecute executes the request
+	 */
+	AdminDeleteTrustedOAuth2JwtGrantIssuerExecute(r V0alpha2ApiApiAdminDeleteTrustedOAuth2JwtGrantIssuerRequest) (*http.Response, error)
+
+	/*
+	 * AdminExtendSession Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.
+	 * Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id ID is the session's ID.
+	 * @return V0alpha2ApiApiAdminExtendSessionRequest
+	 */
+	AdminExtendSession(ctx context.Context, id string) V0alpha2ApiApiAdminExtendSessionRequest
+
+	/*
+	 * AdminExtendSessionExecute executes the request
+	 * @return Session
+	 */
+	AdminExtendSessionExecute(r V0alpha2ApiApiAdminExtendSessionRequest) (*Session, *http.Response, error)
+
+	/*
 	 * AdminGetIdentity Get an Identity
 	 * Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -108,6 +309,148 @@ To forcefully logout Identity from all devices and sessions
 	 * @return Identity
 	 */
 	AdminGetIdentityExecute(r V0alpha2ApiApiAdminGetIdentityRequest) (*Identity, *http.Response, error)
+
+	/*
+	 * AdminGetJsonWebKey Fetch a JSON Web Key
+	 * This endpoint returns a singular JSON Web Key. It is identified by the set and the specific key ID (kid).
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param set The JSON Web Key Set
+	 * @param kid The JSON Web Key ID (kid)
+	 * @return V0alpha2ApiApiAdminGetJsonWebKeyRequest
+	 */
+	AdminGetJsonWebKey(ctx context.Context, set string, kid string) V0alpha2ApiApiAdminGetJsonWebKeyRequest
+
+	/*
+	 * AdminGetJsonWebKeyExecute executes the request
+	 * @return JsonWebKeySet
+	 */
+	AdminGetJsonWebKeyExecute(r V0alpha2ApiApiAdminGetJsonWebKeyRequest) (*JsonWebKeySet, *http.Response, error)
+
+	/*
+	 * AdminGetJsonWebKeySet Retrieve a JSON Web Key Set
+	 * This endpoint can be used to retrieve JWK Sets stored in ORY Hydra.
+
+A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param set The JSON Web Key Set
+	 * @return V0alpha2ApiApiAdminGetJsonWebKeySetRequest
+	 */
+	AdminGetJsonWebKeySet(ctx context.Context, set string) V0alpha2ApiApiAdminGetJsonWebKeySetRequest
+
+	/*
+	 * AdminGetJsonWebKeySetExecute executes the request
+	 * @return JsonWebKeySet
+	 */
+	AdminGetJsonWebKeySetExecute(r V0alpha2ApiApiAdminGetJsonWebKeySetRequest) (*JsonWebKeySet, *http.Response, error)
+
+	/*
+	 * AdminGetOAuth2Client Get an OAuth 2.0 Client
+	 * Get an OAuth 2.0 client by its ID. This endpoint never returns the client secret.
+
+OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id The id of the OAuth 2.0 Client.
+	 * @return V0alpha2ApiApiAdminGetOAuth2ClientRequest
+	 */
+	AdminGetOAuth2Client(ctx context.Context, id string) V0alpha2ApiApiAdminGetOAuth2ClientRequest
+
+	/*
+	 * AdminGetOAuth2ClientExecute executes the request
+	 * @return OAuth2Client
+	 */
+	AdminGetOAuth2ClientExecute(r V0alpha2ApiApiAdminGetOAuth2ClientRequest) (*OAuth2Client, *http.Response, error)
+
+	/*
+	 * AdminGetOAuth2ConsentRequest Get OAuth 2.0 Consent Request Information
+	 * When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider
+to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if
+the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.
+
+The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to
+grant or deny the client access to the requested scope ("Application my-dropbox-app wants write access to all your private files").
+
+The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent
+provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted
+or rejected the request.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiAdminGetOAuth2ConsentRequestRequest
+	 */
+	AdminGetOAuth2ConsentRequest(ctx context.Context) V0alpha2ApiApiAdminGetOAuth2ConsentRequestRequest
+
+	/*
+	 * AdminGetOAuth2ConsentRequestExecute executes the request
+	 * @return OAuth2ConsentRequest
+	 */
+	AdminGetOAuth2ConsentRequestExecute(r V0alpha2ApiApiAdminGetOAuth2ConsentRequestRequest) (*OAuth2ConsentRequest, *http.Response, error)
+
+	/*
+	 * AdminGetOAuth2LoginRequest Get an OAuth 2.0 Login Request
+	 * When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider
+(sometimes called "identity provider") to authenticate the subject and then tell ORY Hydra now about it. The login
+provider is an web-app you write and host, and it must be able to authenticate ("show the subject a login screen")
+a subject (in OAuth2 the proper name for subject is "resource owner").
+
+The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login
+provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiAdminGetOAuth2LoginRequestRequest
+	 */
+	AdminGetOAuth2LoginRequest(ctx context.Context) V0alpha2ApiApiAdminGetOAuth2LoginRequestRequest
+
+	/*
+	 * AdminGetOAuth2LoginRequestExecute executes the request
+	 * @return OAuth2LoginRequest
+	 */
+	AdminGetOAuth2LoginRequestExecute(r V0alpha2ApiApiAdminGetOAuth2LoginRequestRequest) (*OAuth2LoginRequest, *http.Response, error)
+
+	/*
+	 * AdminGetOAuth2LogoutRequest Get an OAuth 2.0 Logout Request
+	 * Use this endpoint to fetch a logout request.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiAdminGetOAuth2LogoutRequestRequest
+	 */
+	AdminGetOAuth2LogoutRequest(ctx context.Context) V0alpha2ApiApiAdminGetOAuth2LogoutRequestRequest
+
+	/*
+	 * AdminGetOAuth2LogoutRequestExecute executes the request
+	 * @return OAuth2LogoutRequest
+	 */
+	AdminGetOAuth2LogoutRequestExecute(r V0alpha2ApiApiAdminGetOAuth2LogoutRequestRequest) (*OAuth2LogoutRequest, *http.Response, error)
+
+	/*
+	 * AdminGetTrustedOAuth2JwtGrantIssuer Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
+	 * Use this endpoint to get a trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you
+created the trust relationship.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id The id of the desired grant
+	 * @return V0alpha2ApiApiAdminGetTrustedOAuth2JwtGrantIssuerRequest
+	 */
+	AdminGetTrustedOAuth2JwtGrantIssuer(ctx context.Context, id string) V0alpha2ApiApiAdminGetTrustedOAuth2JwtGrantIssuerRequest
+
+	/*
+	 * AdminGetTrustedOAuth2JwtGrantIssuerExecute executes the request
+	 * @return TrustedOAuth2JwtGrantIssuer
+	 */
+	AdminGetTrustedOAuth2JwtGrantIssuerExecute(r V0alpha2ApiApiAdminGetTrustedOAuth2JwtGrantIssuerRequest) (*TrustedOAuth2JwtGrantIssuer, *http.Response, error)
+
+	/*
+	 * AdminIntrospectOAuth2Token Introspect OAuth2 Access or Refresh Tokens
+	 * The introspection endpoint allows to check if a token (both refresh and access) is active or not. An active token
+is neither expired nor revoked. If a token is active, additional information on the token will be included. You can
+set additional data for a token by setting `accessTokenExtra` during the consent flow.
+
+For more information [read this blog post](https://www.oauth.com/oauth2-servers/token-introspection-endpoint/).
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiAdminIntrospectOAuth2TokenRequest
+	 */
+	AdminIntrospectOAuth2Token(ctx context.Context) V0alpha2ApiApiAdminIntrospectOAuth2TokenRequest
+
+	/*
+	 * AdminIntrospectOAuth2TokenExecute executes the request
+	 * @return IntrospectedOAuth2Token
+	 */
+	AdminIntrospectOAuth2TokenExecute(r V0alpha2ApiApiAdminIntrospectOAuth2TokenRequest) (*IntrospectedOAuth2Token, *http.Response, error)
 
 	/*
 	 * AdminListIdentities List Identities
@@ -143,11 +486,216 @@ Listing all sessions that belong to an Identity in an administrative context.
 	AdminListIdentitySessionsExecute(r V0alpha2ApiApiAdminListIdentitySessionsRequest) ([]Session, *http.Response, error)
 
 	/*
-	 * AdminUpdateIdentity Update an Identity
-	 * This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...)
-using this method! A way to achieve that will be introduced in the future.
+	 * AdminListOAuth2Clients List OAuth 2.0 Clients
+	 * This endpoint lists all clients in the database, and never returns client secrets.
+As a default it lists the first 100 clients. The `limit` parameter can be used to retrieve more clients,
+but it has an upper bound at 500 objects. Pagination should be used to retrieve more than 500 objects.
 
-The full identity payload (except credentials) is expected. This endpoint does not support patching.
+OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+The "Link" header is also included in successful responses, which contains one or more links for pagination,
+formatted like so: '<https://project-slug.projects.oryapis.com/admin/clients?limit={limit}&offset={offset}>; rel="{page}"',
+where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can
+be included in this header, and will be separated by a comma.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiAdminListOAuth2ClientsRequest
+	 */
+	AdminListOAuth2Clients(ctx context.Context) V0alpha2ApiApiAdminListOAuth2ClientsRequest
+
+	/*
+	 * AdminListOAuth2ClientsExecute executes the request
+	 * @return []OAuth2Client
+	 */
+	AdminListOAuth2ClientsExecute(r V0alpha2ApiApiAdminListOAuth2ClientsRequest) ([]OAuth2Client, *http.Response, error)
+
+	/*
+	 * AdminListOAuth2SubjectConsentSessions List OAuth 2.0 Consent Sessions of a Subject
+	 * This endpoint lists all subject's granted consent sessions, including client and granted scope.
+If the subject is unknown or has not granted any consent sessions yet, the endpoint returns an
+empty JSON array with status code 200 OK.
+
+The "Link" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/oauth2/auth/sessions/consent?subject={user}&limit={limit}&offset={offset}>; rel="{page}"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'.
+Multiple links can be included in this header, and will be separated by a comma.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiAdminListOAuth2SubjectConsentSessionsRequest
+	 */
+	AdminListOAuth2SubjectConsentSessions(ctx context.Context) V0alpha2ApiApiAdminListOAuth2SubjectConsentSessionsRequest
+
+	/*
+	 * AdminListOAuth2SubjectConsentSessionsExecute executes the request
+	 * @return []PreviousOAuth2ConsentSession
+	 */
+	AdminListOAuth2SubjectConsentSessionsExecute(r V0alpha2ApiApiAdminListOAuth2SubjectConsentSessionsRequest) ([]PreviousOAuth2ConsentSession, *http.Response, error)
+
+	/*
+	 * AdminListTrustedOAuth2JwtGrantIssuers List Trusted OAuth2 JWT Bearer Grant Type Issuers
+	 * Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiAdminListTrustedOAuth2JwtGrantIssuersRequest
+	 */
+	AdminListTrustedOAuth2JwtGrantIssuers(ctx context.Context) V0alpha2ApiApiAdminListTrustedOAuth2JwtGrantIssuersRequest
+
+	/*
+	 * AdminListTrustedOAuth2JwtGrantIssuersExecute executes the request
+	 * @return []TrustedOAuth2JwtGrantIssuer
+	 */
+	AdminListTrustedOAuth2JwtGrantIssuersExecute(r V0alpha2ApiApiAdminListTrustedOAuth2JwtGrantIssuersRequest) ([]TrustedOAuth2JwtGrantIssuer, *http.Response, error)
+
+	/*
+	 * AdminPatchIdentity Partially updates an Identity's field using [JSON Patch](https://jsonpatch.com/)
+	 * NOTE: The fields `id`, `stateChangedAt` and `credentials` are not updateable.
+
+Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id ID must be set to the ID of identity you want to update
+	 * @return V0alpha2ApiApiAdminPatchIdentityRequest
+	 */
+	AdminPatchIdentity(ctx context.Context, id string) V0alpha2ApiApiAdminPatchIdentityRequest
+
+	/*
+	 * AdminPatchIdentityExecute executes the request
+	 * @return Identity
+	 */
+	AdminPatchIdentityExecute(r V0alpha2ApiApiAdminPatchIdentityRequest) (*Identity, *http.Response, error)
+
+	/*
+	 * AdminPatchOAuth2Client Patch an OAuth 2.0 Client
+	 * Patch an existing OAuth 2.0 Client. If you pass `client_secret`
+the secret will be updated and returned via the API. This is the
+only time you will be able to retrieve the client secret, so write it down and keep it safe.
+
+OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id The id of the OAuth 2.0 Client.
+	 * @return V0alpha2ApiApiAdminPatchOAuth2ClientRequest
+	 */
+	AdminPatchOAuth2Client(ctx context.Context, id string) V0alpha2ApiApiAdminPatchOAuth2ClientRequest
+
+	/*
+	 * AdminPatchOAuth2ClientExecute executes the request
+	 * @return OAuth2Client
+	 */
+	AdminPatchOAuth2ClientExecute(r V0alpha2ApiApiAdminPatchOAuth2ClientRequest) (*OAuth2Client, *http.Response, error)
+
+	/*
+	 * AdminRejectOAuth2ConsentRequest Reject an OAuth 2.0 Consent Request
+	 * When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider
+to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if
+the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.
+
+The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to
+grant or deny the client access to the requested scope ("Application my-dropbox-app wants write access to all your private files").
+
+The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent
+provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted
+or rejected the request.
+
+This endpoint tells ORY Hydra that the subject has not authorized the OAuth 2.0 client to access resources on his/her behalf.
+The consent provider must include a reason why the consent was not granted.
+
+The response contains a redirect URL which the consent provider should redirect the user-agent to.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiAdminRejectOAuth2ConsentRequestRequest
+	 */
+	AdminRejectOAuth2ConsentRequest(ctx context.Context) V0alpha2ApiApiAdminRejectOAuth2ConsentRequestRequest
+
+	/*
+	 * AdminRejectOAuth2ConsentRequestExecute executes the request
+	 * @return SuccessfulOAuth2RequestResponse
+	 */
+	AdminRejectOAuth2ConsentRequestExecute(r V0alpha2ApiApiAdminRejectOAuth2ConsentRequestRequest) (*SuccessfulOAuth2RequestResponse, *http.Response, error)
+
+	/*
+	 * AdminRejectOAuth2LoginRequest Reject an OAuth 2.0 Login Request
+	 * When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider
+(sometimes called "identity provider") to authenticate the subject and then tell ORY Hydra now about it. The login
+provider is an web-app you write and host, and it must be able to authenticate ("show the subject a login screen")
+a subject (in OAuth2 the proper name for subject is "resource owner").
+
+The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login
+provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.
+
+This endpoint tells ORY Hydra that the subject has not authenticated and includes a reason why the authentication
+was denied.
+
+The response contains a redirect URL which the login provider should redirect the user-agent to.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiAdminRejectOAuth2LoginRequestRequest
+	 */
+	AdminRejectOAuth2LoginRequest(ctx context.Context) V0alpha2ApiApiAdminRejectOAuth2LoginRequestRequest
+
+	/*
+	 * AdminRejectOAuth2LoginRequestExecute executes the request
+	 * @return SuccessfulOAuth2RequestResponse
+	 */
+	AdminRejectOAuth2LoginRequestExecute(r V0alpha2ApiApiAdminRejectOAuth2LoginRequestRequest) (*SuccessfulOAuth2RequestResponse, *http.Response, error)
+
+	/*
+	 * AdminRejectOAuth2LogoutRequest Reject an OAuth 2.0 Logout Request
+	 * When a user or an application requests ORY Hydra to log out a user, this endpoint is used to deny that logout request.
+No body is required.
+
+The response is empty as the logout provider has to chose what action to perform next.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiAdminRejectOAuth2LogoutRequestRequest
+	 */
+	AdminRejectOAuth2LogoutRequest(ctx context.Context) V0alpha2ApiApiAdminRejectOAuth2LogoutRequestRequest
+
+	/*
+	 * AdminRejectOAuth2LogoutRequestExecute executes the request
+	 */
+	AdminRejectOAuth2LogoutRequestExecute(r V0alpha2ApiApiAdminRejectOAuth2LogoutRequestRequest) (*http.Response, error)
+
+	/*
+	 * AdminRevokeOAuth2ConsentSessions Revokes OAuth 2.0 Consent Sessions of a Subject for a Specific OAuth 2.0 Client
+	 * This endpoint revokes a subject's granted consent sessions for a specific OAuth 2.0 Client and invalidates all
+associated OAuth 2.0 Access Tokens.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiAdminRevokeOAuth2ConsentSessionsRequest
+	 */
+	AdminRevokeOAuth2ConsentSessions(ctx context.Context) V0alpha2ApiApiAdminRevokeOAuth2ConsentSessionsRequest
+
+	/*
+	 * AdminRevokeOAuth2ConsentSessionsExecute executes the request
+	 */
+	AdminRevokeOAuth2ConsentSessionsExecute(r V0alpha2ApiApiAdminRevokeOAuth2ConsentSessionsRequest) (*http.Response, error)
+
+	/*
+	 * AdminRevokeOAuth2LoginSessions Invalidates All OAuth 2.0 Login Sessions of a Certain User
+	 * This endpoint invalidates a subject's authentication session. After revoking the authentication session, the subject
+has to re-authenticate at ORY Hydra. This endpoint does not invalidate any tokens and does not work with OpenID Connect
+Front- or Back-channel logout.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiAdminRevokeOAuth2LoginSessionsRequest
+	 */
+	AdminRevokeOAuth2LoginSessions(ctx context.Context) V0alpha2ApiApiAdminRevokeOAuth2LoginSessionsRequest
+
+	/*
+	 * AdminRevokeOAuth2LoginSessionsExecute executes the request
+	 */
+	AdminRevokeOAuth2LoginSessionsExecute(r V0alpha2ApiApiAdminRevokeOAuth2LoginSessionsRequest) (*http.Response, error)
+
+	/*
+	 * AdminTrustOAuth2JwtGrantIssuer Trust an OAuth2 JWT Bearer Grant Type Issuer
+	 * Use this endpoint to establish a trust relationship for a JWT issuer
+to perform JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication
+and Authorization Grants [RFC7523](https://datatracker.ietf.org/doc/html/rfc7523).
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiAdminTrustOAuth2JwtGrantIssuerRequest
+	 */
+	AdminTrustOAuth2JwtGrantIssuer(ctx context.Context) V0alpha2ApiApiAdminTrustOAuth2JwtGrantIssuerRequest
+
+	/*
+	 * AdminTrustOAuth2JwtGrantIssuerExecute executes the request
+	 * @return TrustedOAuth2JwtGrantIssuer
+	 */
+	AdminTrustOAuth2JwtGrantIssuerExecute(r V0alpha2ApiApiAdminTrustOAuth2JwtGrantIssuerRequest) (*TrustedOAuth2JwtGrantIssuer, *http.Response, error)
+
+	/*
+	 * AdminUpdateIdentity Update an Identity
+	 * This endpoint updates an identity. The full identity payload (except credentials) is expected. This endpoint does not support patching.
 
 Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -161,6 +709,74 @@ Learn how identities work in [Ory Kratos' User And Identity Model Documentation]
 	 * @return Identity
 	 */
 	AdminUpdateIdentityExecute(r V0alpha2ApiApiAdminUpdateIdentityRequest) (*Identity, *http.Response, error)
+
+	/*
+	 * AdminUpdateJsonWebKey Update a JSON Web Key
+	 * Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.
+
+A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param set The JSON Web Key Set
+	 * @param kid The JSON Web Key ID (kid)
+	 * @return V0alpha2ApiApiAdminUpdateJsonWebKeyRequest
+	 */
+	AdminUpdateJsonWebKey(ctx context.Context, set string, kid string) V0alpha2ApiApiAdminUpdateJsonWebKeyRequest
+
+	/*
+	 * AdminUpdateJsonWebKeyExecute executes the request
+	 * @return JsonWebKey
+	 */
+	AdminUpdateJsonWebKeyExecute(r V0alpha2ApiApiAdminUpdateJsonWebKeyRequest) (*JsonWebKey, *http.Response, error)
+
+	/*
+	 * AdminUpdateJsonWebKeySet Update a JSON Web Key Set
+	 * Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.
+
+A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param set The JSON Web Key Set
+	 * @return V0alpha2ApiApiAdminUpdateJsonWebKeySetRequest
+	 */
+	AdminUpdateJsonWebKeySet(ctx context.Context, set string) V0alpha2ApiApiAdminUpdateJsonWebKeySetRequest
+
+	/*
+	 * AdminUpdateJsonWebKeySetExecute executes the request
+	 * @return JsonWebKeySet
+	 */
+	AdminUpdateJsonWebKeySetExecute(r V0alpha2ApiApiAdminUpdateJsonWebKeySetRequest) (*JsonWebKeySet, *http.Response, error)
+
+	/*
+	 * AdminUpdateOAuth2Client Update an OAuth 2.0 Client
+	 * Update an existing OAuth 2.0 Client. If you pass `client_secret` the secret is used, otherwise a random secret
+is generated. The secret is echoed in the response. It is not possible to retrieve it later on.
+
+OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id The id of the OAuth 2.0 Client.
+	 * @return V0alpha2ApiApiAdminUpdateOAuth2ClientRequest
+	 */
+	AdminUpdateOAuth2Client(ctx context.Context, id string) V0alpha2ApiApiAdminUpdateOAuth2ClientRequest
+
+	/*
+	 * AdminUpdateOAuth2ClientExecute executes the request
+	 * @return OAuth2Client
+	 */
+	AdminUpdateOAuth2ClientExecute(r V0alpha2ApiApiAdminUpdateOAuth2ClientRequest) (*OAuth2Client, *http.Response, error)
+
+	/*
+	 * CreateProject Create a Project
+	 * Creates a new project.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiCreateProjectRequest
+	 */
+	CreateProject(ctx context.Context) V0alpha2ApiApiCreateProjectRequest
+
+	/*
+	 * CreateProjectExecute executes the request
+	 * @return Project
+	 */
+	CreateProjectExecute(r V0alpha2ApiApiCreateProjectRequest) (*Project, *http.Response, error)
 
 	/*
 	 * CreateSelfServiceLogoutFlowUrlForBrowsers Create a Logout URL for Browsers
@@ -186,19 +802,206 @@ When calling this endpoint from a backend, please ensure to properly forward the
 	CreateSelfServiceLogoutFlowUrlForBrowsersExecute(r V0alpha2ApiApiCreateSelfServiceLogoutFlowUrlForBrowsersRequest) (*SelfServiceLogoutUrl, *http.Response, error)
 
 	/*
-	 * GetJsonSchema Method for GetJsonSchema
+	 * DiscoverJsonWebKeys Discover JSON Web Keys
+	 * This endpoint returns JSON Web Keys required to verifying OpenID Connect ID Tokens and,
+if enabled, OAuth 2.0 JWT Access Tokens. This endpoint can be used with client libraries like
+[node-jwks-rsa](https://github.com/auth0/node-jwks-rsa) among others.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiDiscoverJsonWebKeysRequest
+	 */
+	DiscoverJsonWebKeys(ctx context.Context) V0alpha2ApiApiDiscoverJsonWebKeysRequest
+
+	/*
+	 * DiscoverJsonWebKeysExecute executes the request
+	 * @return JsonWebKeySet
+	 */
+	DiscoverJsonWebKeysExecute(r V0alpha2ApiApiDiscoverJsonWebKeysRequest) (*JsonWebKeySet, *http.Response, error)
+
+	/*
+	 * DiscoverOidcConfiguration OpenID Connect Discovery
+	 * The well known endpoint an be used to retrieve information for OpenID Connect clients. We encourage you to not roll
+your own OpenID Connect client but to use an OpenID Connect client library instead. You can learn more on this
+flow at https://openid.net/specs/openid-connect-discovery-1_0.html .
+
+Popular libraries for OpenID Connect clients include oidc-client-js (JavaScript), go-oidc (Golang), and others.
+For a full list of clients go here: https://openid.net/developers/certified/
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiDiscoverOidcConfigurationRequest
+	 */
+	DiscoverOidcConfiguration(ctx context.Context) V0alpha2ApiApiDiscoverOidcConfigurationRequest
+
+	/*
+	 * DiscoverOidcConfigurationExecute executes the request
+	 * @return OidcConfiguration
+	 */
+	DiscoverOidcConfigurationExecute(r V0alpha2ApiApiDiscoverOidcConfigurationRequest) (*OidcConfiguration, *http.Response, error)
+
+	/*
+	 * DynamicClientRegistrationCreateOAuth2Client Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+	 * This endpoint behaves like the administrative counterpart (`createOAuth2Client`) but is capable of facing the
+public internet directly and can be used in self-service. It implements the OpenID Connect
+Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint
+is disabled by default. It can be enabled by an administrator.
+
+Please note that using this endpoint you are not able to choose the `client_secret` nor the `client_id` as those
+values will be server generated when specifying `token_endpoint_auth_method` as `client_secret_basic` or
+`client_secret_post`.
+
+The `client_secret` will be returned in the response and you will not be able to retrieve it later on.
+Write the secret down and keep it somewhere safe.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiDynamicClientRegistrationCreateOAuth2ClientRequest
+	 */
+	DynamicClientRegistrationCreateOAuth2Client(ctx context.Context) V0alpha2ApiApiDynamicClientRegistrationCreateOAuth2ClientRequest
+
+	/*
+	 * DynamicClientRegistrationCreateOAuth2ClientExecute executes the request
+	 * @return OAuth2Client
+	 */
+	DynamicClientRegistrationCreateOAuth2ClientExecute(r V0alpha2ApiApiDynamicClientRegistrationCreateOAuth2ClientRequest) (*OAuth2Client, *http.Response, error)
+
+	/*
+	 * DynamicClientRegistrationDeleteOAuth2Client Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+	 * This endpoint behaves like the administrative counterpart (`deleteOAuth2Client`) but is capable of facing the
+public internet directly and can be used in self-service. It implements the OpenID Connect
+Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint
+is disabled by default. It can be enabled by an administrator.
+
+To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client
+uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query.
+If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.
+
+OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id The id of the OAuth 2.0 Client.
+	 * @return V0alpha2ApiApiDynamicClientRegistrationDeleteOAuth2ClientRequest
+	 */
+	DynamicClientRegistrationDeleteOAuth2Client(ctx context.Context, id string) V0alpha2ApiApiDynamicClientRegistrationDeleteOAuth2ClientRequest
+
+	/*
+	 * DynamicClientRegistrationDeleteOAuth2ClientExecute executes the request
+	 */
+	DynamicClientRegistrationDeleteOAuth2ClientExecute(r V0alpha2ApiApiDynamicClientRegistrationDeleteOAuth2ClientRequest) (*http.Response, error)
+
+	/*
+	 * DynamicClientRegistrationGetOAuth2Client Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+	 * This endpoint behaves like the administrative counterpart (`getOAuth2Client`) but is capable of facing the
+public internet directly and can be used in self-service. It implements the OpenID Connect
+Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint
+is disabled by default. It can be enabled by an administrator.
+
+To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client
+uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query.
+If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.
+
+OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id The id of the OAuth 2.0 Client.
+	 * @return V0alpha2ApiApiDynamicClientRegistrationGetOAuth2ClientRequest
+	 */
+	DynamicClientRegistrationGetOAuth2Client(ctx context.Context, id string) V0alpha2ApiApiDynamicClientRegistrationGetOAuth2ClientRequest
+
+	/*
+	 * DynamicClientRegistrationGetOAuth2ClientExecute executes the request
+	 * @return OAuth2Client
+	 */
+	DynamicClientRegistrationGetOAuth2ClientExecute(r V0alpha2ApiApiDynamicClientRegistrationGetOAuth2ClientRequest) (*OAuth2Client, *http.Response, error)
+
+	/*
+	 * DynamicClientRegistrationUpdateOAuth2Client Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+	 * This endpoint behaves like the administrative counterpart (`updateOAuth2Client`) but is capable of facing the
+public internet directly and can be used in self-service. It implements the OpenID Connect
+Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint
+is disabled by default. It can be enabled by an administrator.
+
+If you pass `client_secret` the secret is used, otherwise a random secret
+is generated. The secret is echoed in the response. It is not possible to retrieve it later on.
+
+To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client
+uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query.
+If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.
+
+OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id The id of the OAuth 2.0 Client.
+	 * @return V0alpha2ApiApiDynamicClientRegistrationUpdateOAuth2ClientRequest
+	 */
+	DynamicClientRegistrationUpdateOAuth2Client(ctx context.Context, id string) V0alpha2ApiApiDynamicClientRegistrationUpdateOAuth2ClientRequest
+
+	/*
+	 * DynamicClientRegistrationUpdateOAuth2ClientExecute executes the request
+	 * @return OAuth2Client
+	 */
+	DynamicClientRegistrationUpdateOAuth2ClientExecute(r V0alpha2ApiApiDynamicClientRegistrationUpdateOAuth2ClientRequest) (*OAuth2Client, *http.Response, error)
+
+	/*
+	 * GetIdentitySchema Method for GetIdentitySchema
 	 * Get a JSON Schema
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id ID must be set to the ID of schema you want to get
-	 * @return V0alpha2ApiApiGetJsonSchemaRequest
+	 * @return V0alpha2ApiApiGetIdentitySchemaRequest
 	 */
-	GetJsonSchema(ctx context.Context, id string) V0alpha2ApiApiGetJsonSchemaRequest
+	GetIdentitySchema(ctx context.Context, id string) V0alpha2ApiApiGetIdentitySchemaRequest
 
 	/*
-	 * GetJsonSchemaExecute executes the request
+	 * GetIdentitySchemaExecute executes the request
 	 * @return map[string]interface{}
 	 */
-	GetJsonSchemaExecute(r V0alpha2ApiApiGetJsonSchemaRequest) (map[string]interface{}, *http.Response, error)
+	GetIdentitySchemaExecute(r V0alpha2ApiApiGetIdentitySchemaRequest) (map[string]interface{}, *http.Response, error)
+
+	/*
+	 * GetOidcUserInfo OpenID Connect Userinfo
+	 * This endpoint returns the payload of the ID Token, including the idTokenExtra values, of
+the provided OAuth 2.0 Access Token.
+
+For more information please [refer to the spec](http://openid.net/specs/openid-connect-core-1_0.html#UserInfo).
+
+In the case of authentication error, a WWW-Authenticate header might be set in the response
+with more information about the error. See [the spec](https://datatracker.ietf.org/doc/html/rfc6750#section-3)
+for more details about header format.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiGetOidcUserInfoRequest
+	 */
+	GetOidcUserInfo(ctx context.Context) V0alpha2ApiApiGetOidcUserInfoRequest
+
+	/*
+	 * GetOidcUserInfoExecute executes the request
+	 * @return OidcUserInfo
+	 */
+	GetOidcUserInfoExecute(r V0alpha2ApiApiGetOidcUserInfoRequest) (*OidcUserInfo, *http.Response, error)
+
+	/*
+	 * GetProject Get a Project
+	 * Get a projects you have access to by its ID.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param projectId Project ID  The project's ID.
+	 * @return V0alpha2ApiApiGetProjectRequest
+	 */
+	GetProject(ctx context.Context, projectId string) V0alpha2ApiApiGetProjectRequest
+
+	/*
+	 * GetProjectExecute executes the request
+	 * @return Project
+	 */
+	GetProjectExecute(r V0alpha2ApiApiGetProjectRequest) (*Project, *http.Response, error)
+
+	/*
+	 * GetProjectMembers Get all members associated with this project.
+	 * This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param projectId Project ID  The project's ID.
+	 * @return V0alpha2ApiApiGetProjectMembersRequest
+	 */
+	GetProjectMembers(ctx context.Context, projectId string) V0alpha2ApiApiGetProjectMembersRequest
+
+	/*
+	 * GetProjectMembersExecute executes the request
+	 * @return []CloudAccount
+	 */
+	GetProjectMembersExecute(r V0alpha2ApiApiGetProjectMembersRequest) ([]CloudAccount, *http.Response, error)
 
 	/*
 	 * GetSelfServiceError Get Self-Service Errors
@@ -699,7 +1502,7 @@ you vulnerable to a variety of CSRF attacks.
 
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
-More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation).
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return V0alpha2ApiApiInitializeSelfServiceVerificationFlowWithoutBrowserRequest
 	 */
@@ -721,9 +1524,23 @@ More information can be found at [Ory Kratos Email and Phone Verification Docume
 
 	/*
 	 * ListIdentitySchemasExecute executes the request
-	 * @return []IdentitySchema
+	 * @return []IdentitySchemaContainer
 	 */
-	ListIdentitySchemasExecute(r V0alpha2ApiApiListIdentitySchemasRequest) ([]IdentitySchema, *http.Response, error)
+	ListIdentitySchemasExecute(r V0alpha2ApiApiListIdentitySchemasRequest) ([]IdentitySchemaContainer, *http.Response, error)
+
+	/*
+	 * ListProjects List All Projects
+	 * Lists all projects you have access to.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiListProjectsRequest
+	 */
+	ListProjects(ctx context.Context) V0alpha2ApiApiListProjectsRequest
+
+	/*
+	 * ListProjectsExecute executes the request
+	 * @return []ProjectMetadata
+	 */
+	ListProjectsExecute(r V0alpha2ApiApiListProjectsRequest) ([]ProjectMetadata, *http.Response, error)
 
 	/*
 	 * ListSessions This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the `/sessions/whoami` endpoint.
@@ -740,6 +1557,143 @@ Displaying all other sessions that belong to the logged-in user
 	 * @return []Session
 	 */
 	ListSessionsExecute(r V0alpha2ApiApiListSessionsRequest) ([]Session, *http.Response, error)
+
+	/*
+	 * PatchProject Patch an Ory Cloud Project Configuration`
+	 * Deprecated: Use the `patchProjectWithRevision` endpoint instead to specify the exact revision the patch was generated for.
+
+This endpoints allows you to patch individual Ory Cloud Project configuration keys for
+Ory's services (identity, permission, ...). The configuration format is fully compatible
+with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).
+
+This endpoint expects the `version` key to be set in the payload. If it is unset, it
+will try to import the config as if it is from the most recent version.
+
+If you have an older version of a configuration, you should set the version key in the payload!
+
+While this endpoint is able to process all configuration items related to features (e.g. password reset),
+it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the
+open source.
+
+For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings
+to help you understand which parts of your config could not be processed.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param projectId Project ID  The project's ID.
+	 * @return V0alpha2ApiApiPatchProjectRequest
+	 */
+	PatchProject(ctx context.Context, projectId string) V0alpha2ApiApiPatchProjectRequest
+
+	/*
+	 * PatchProjectExecute executes the request
+	 * @return SuccessfulProjectUpdate
+	 */
+	PatchProjectExecute(r V0alpha2ApiApiPatchProjectRequest) (*SuccessfulProjectUpdate, *http.Response, error)
+
+	/*
+	 * PerformOAuth2AuthorizationFlow The OAuth 2.0 Authorize Endpoint
+	 * This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows.
+OAuth2 is a very popular protocol and a library for your programming language will exists.
+
+To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc6749
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiPerformOAuth2AuthorizationFlowRequest
+	 */
+	PerformOAuth2AuthorizationFlow(ctx context.Context) V0alpha2ApiApiPerformOAuth2AuthorizationFlowRequest
+
+	/*
+	 * PerformOAuth2AuthorizationFlowExecute executes the request
+	 * @return OAuth2ApiError
+	 */
+	PerformOAuth2AuthorizationFlowExecute(r V0alpha2ApiApiPerformOAuth2AuthorizationFlowRequest) (*OAuth2ApiError, *http.Response, error)
+
+	/*
+	 * PerformOAuth2TokenFlow The OAuth 2.0 Token Endpoint
+	 * The client makes a request to the token endpoint by sending the
+following parameters using the "application/x-www-form-urlencoded" HTTP
+request entity-body.
+
+> Do not implement a client for this endpoint yourself. Use a library. There are many libraries
+> available for any programming language. You can find a list of libraries here: https://oauth.net/code/
+>
+> Do note that Hydra SDK does not implement this endpoint properly. Use one of the libraries listed above
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiPerformOAuth2TokenFlowRequest
+	 */
+	PerformOAuth2TokenFlow(ctx context.Context) V0alpha2ApiApiPerformOAuth2TokenFlowRequest
+
+	/*
+	 * PerformOAuth2TokenFlowExecute executes the request
+	 * @return OAuth2TokenResponse
+	 */
+	PerformOAuth2TokenFlowExecute(r V0alpha2ApiApiPerformOAuth2TokenFlowRequest) (*OAuth2TokenResponse, *http.Response, error)
+
+	/*
+	 * PerformOidcFrontOrBackChannelLogout OpenID Connect Front- or Back-channel Enabled Logout
+	 * This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front- / Back-channel logout:
+
+https://openid.net/specs/openid-connect-frontchannel-1_0.html
+https://openid.net/specs/openid-connect-backchannel-1_0.html
+
+Back-channel logout is performed asynchronously and does not affect logout flow.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiPerformOidcFrontOrBackChannelLogoutRequest
+	 */
+	PerformOidcFrontOrBackChannelLogout(ctx context.Context) V0alpha2ApiApiPerformOidcFrontOrBackChannelLogoutRequest
+
+	/*
+	 * PerformOidcFrontOrBackChannelLogoutExecute executes the request
+	 */
+	PerformOidcFrontOrBackChannelLogoutExecute(r V0alpha2ApiApiPerformOidcFrontOrBackChannelLogoutRequest) (*http.Response, error)
+
+	/*
+	 * PurgeProject Irrecoverably Purge a Project
+	 * !! Use with extreme caution !!
+
+Using this API endpoint you can purge (completely delete) a project and its data.
+This action can not be undone and will delete ALL your data.
+
+!! Use with extreme caution !!
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param projectId Project ID  The project's ID.
+	 * @return V0alpha2ApiApiPurgeProjectRequest
+	 */
+	PurgeProject(ctx context.Context, projectId string) V0alpha2ApiApiPurgeProjectRequest
+
+	/*
+	 * PurgeProjectExecute executes the request
+	 */
+	PurgeProjectExecute(r V0alpha2ApiApiPurgeProjectRequest) (*http.Response, error)
+
+	/*
+	 * RemoveProjectMember Remove a member associated with this project. This also sets their invite status to `REMOVED`.
+	 * This endpoint requires the user to be a member of the project with the role `OWNER`.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param projectId Project ID  The project's ID.
+	 * @param memberId Member ID
+	 * @return V0alpha2ApiApiRemoveProjectMemberRequest
+	 */
+	RemoveProjectMember(ctx context.Context, projectId string, memberId string) V0alpha2ApiApiRemoveProjectMemberRequest
+
+	/*
+	 * RemoveProjectMemberExecute executes the request
+	 */
+	RemoveProjectMemberExecute(r V0alpha2ApiApiRemoveProjectMemberRequest) (*http.Response, error)
+
+	/*
+	 * RevokeOAuth2Token Revoke an OAuth2 Access or Refresh Token
+	 * Revoking a token (both access and refresh) means that the tokens will be invalid. A revoked access token can no
+longer be used to make access requests, and a revoked refresh token can no longer be used to refresh an access token.
+Revoking a refresh token also invalidates the access token that was created with it. A token may only be revoked by
+the client the token was generated for.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return V0alpha2ApiApiRevokeOAuth2TokenRequest
+	 */
+	RevokeOAuth2Token(ctx context.Context) V0alpha2ApiApiRevokeOAuth2TokenRequest
+
+	/*
+	 * RevokeOAuth2TokenExecute executes the request
+	 */
+	RevokeOAuth2TokenExecute(r V0alpha2ApiApiRevokeOAuth2TokenRequest) (*http.Response, error)
 
 	/*
 	 * RevokeSession Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
@@ -786,7 +1740,7 @@ behaves differently for API and browser flows.
 
 API flows expect `application/json` to be sent in the body and responds with
 HTTP 200 and a application/json body with the session token on success;
-HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
+HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body;
 HTTP 400 on form validation errors.
 
 Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with
@@ -901,7 +1855,7 @@ behaves differently for API and browser flows.
 API flows expect `application/json` to be sent in the body and respond with
 HTTP 200 and a application/json body with the created identity success - if the session hook is configured the
 `session` and `session_token` will also be included;
-HTTP 303 redirect to a fresh registration flow if the original flow expired with the appropriate error messages set;
+HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body;
 HTTP 400 on form validation errors.
 
 Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with
@@ -1023,7 +1977,8 @@ More information can be found at [Ory Kratos Email and Phone Verification Docume
 	 * ToSession Check Who the Current HTTP Session Belongs To
 	 * Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated.
 Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent.
-Additionally when the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.
+Additionally when the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header
+in the response.
 
 If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:
 
@@ -1079,10 +2034,439 @@ As explained above, this request may fail due to several reasons. The `error.id`
 	 * @return Session
 	 */
 	ToSessionExecute(r V0alpha2ApiApiToSessionRequest) (*Session, *http.Response, error)
+
+	/*
+	 * UpdateProject Update an Ory Cloud Project Configuration
+	 * This endpoints allows you to update the Ory Cloud Project configuration for
+individual services (identity, permission, ...). The configuration is fully compatible
+with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).
+
+This endpoint expects the `version` key to be set in the payload. If it is unset, it
+will try to import the config as if it is from the most recent version.
+
+If you have an older version of a configuration, you should set the version key in the payload!
+
+While this endpoint is able to process all configuration items related to features (e.g. password reset),
+it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the
+open source.
+
+For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings
+to help you understand which parts of your config could not be processed.
+
+Be aware that updating any service's configuration will completely override your current configuration for that
+service!
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param projectId Project ID  The project's ID.
+	 * @return V0alpha2ApiApiUpdateProjectRequest
+	 */
+	UpdateProject(ctx context.Context, projectId string) V0alpha2ApiApiUpdateProjectRequest
+
+	/*
+	 * UpdateProjectExecute executes the request
+	 * @return SuccessfulProjectUpdate
+	 */
+	UpdateProjectExecute(r V0alpha2ApiApiUpdateProjectRequest) (*SuccessfulProjectUpdate, *http.Response, error)
 }
 
 // V0alpha2ApiService V0alpha2Api service
 type V0alpha2ApiService service
+
+type V0alpha2ApiApiAdminAcceptOAuth2ConsentRequestRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	consentChallenge *string
+	acceptOAuth2ConsentRequest *AcceptOAuth2ConsentRequest
+}
+
+func (r V0alpha2ApiApiAdminAcceptOAuth2ConsentRequestRequest) ConsentChallenge(consentChallenge string) V0alpha2ApiApiAdminAcceptOAuth2ConsentRequestRequest {
+	r.consentChallenge = &consentChallenge
+	return r
+}
+func (r V0alpha2ApiApiAdminAcceptOAuth2ConsentRequestRequest) AcceptOAuth2ConsentRequest(acceptOAuth2ConsentRequest AcceptOAuth2ConsentRequest) V0alpha2ApiApiAdminAcceptOAuth2ConsentRequestRequest {
+	r.acceptOAuth2ConsentRequest = &acceptOAuth2ConsentRequest
+	return r
+}
+
+func (r V0alpha2ApiApiAdminAcceptOAuth2ConsentRequestRequest) Execute() (*SuccessfulOAuth2RequestResponse, *http.Response, error) {
+	return r.ApiService.AdminAcceptOAuth2ConsentRequestExecute(r)
+}
+
+/*
+ * AdminAcceptOAuth2ConsentRequest Accept an OAuth 2.0 Consent Request
+ * When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider
+to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if
+the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.
+
+The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to
+grant or deny the client access to the requested scope ("Application my-dropbox-app wants write access to all your private files").
+
+The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent
+provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted
+or rejected the request.
+
+This endpoint tells ORY Hydra that the subject has authorized the OAuth 2.0 client to access resources on his/her behalf.
+The consent provider includes additional information, such as session data for access and ID tokens, and if the
+consent request should be used as basis for future requests.
+
+The response contains a redirect URL which the consent provider should redirect the user-agent to.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiAdminAcceptOAuth2ConsentRequestRequest
+ */
+func (a *V0alpha2ApiService) AdminAcceptOAuth2ConsentRequest(ctx context.Context) V0alpha2ApiApiAdminAcceptOAuth2ConsentRequestRequest {
+	return V0alpha2ApiApiAdminAcceptOAuth2ConsentRequestRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return SuccessfulOAuth2RequestResponse
+ */
+func (a *V0alpha2ApiService) AdminAcceptOAuth2ConsentRequestExecute(r V0alpha2ApiApiAdminAcceptOAuth2ConsentRequestRequest) (*SuccessfulOAuth2RequestResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *SuccessfulOAuth2RequestResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminAcceptOAuth2ConsentRequest")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/oauth2/auth/requests/consent/accept"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.consentChallenge == nil {
+		return localVarReturnValue, nil, reportError("consentChallenge is required and must be specified")
+	}
+
+	localVarQueryParams.Add("consent_challenge", parameterToString(*r.consentChallenge, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.acceptOAuth2ConsentRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminAcceptOAuth2LoginRequestRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	loginChallenge *string
+	acceptOAuth2LoginRequest *AcceptOAuth2LoginRequest
+}
+
+func (r V0alpha2ApiApiAdminAcceptOAuth2LoginRequestRequest) LoginChallenge(loginChallenge string) V0alpha2ApiApiAdminAcceptOAuth2LoginRequestRequest {
+	r.loginChallenge = &loginChallenge
+	return r
+}
+func (r V0alpha2ApiApiAdminAcceptOAuth2LoginRequestRequest) AcceptOAuth2LoginRequest(acceptOAuth2LoginRequest AcceptOAuth2LoginRequest) V0alpha2ApiApiAdminAcceptOAuth2LoginRequestRequest {
+	r.acceptOAuth2LoginRequest = &acceptOAuth2LoginRequest
+	return r
+}
+
+func (r V0alpha2ApiApiAdminAcceptOAuth2LoginRequestRequest) Execute() (*SuccessfulOAuth2RequestResponse, *http.Response, error) {
+	return r.ApiService.AdminAcceptOAuth2LoginRequestExecute(r)
+}
+
+/*
+ * AdminAcceptOAuth2LoginRequest Accept an OAuth 2.0 Login Request
+ * When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory Hydra asks the login provider
+(sometimes called "identity provider") to authenticate the subject and then tell Ory Hydra now about it. The login
+provider is an web-app you write and host, and it must be able to authenticate ("show the subject a login screen")
+a subject (in OAuth2 the proper name for subject is "resource owner").
+
+The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login
+provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.
+
+This endpoint tells ORY Hydra that the subject has successfully authenticated and includes additional information such as
+the subject's ID and if ORY Hydra should remember the subject's subject agent for future authentication attempts by setting
+a cookie.
+
+The response contains a redirect URL which the login provider should redirect the user-agent to.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiAdminAcceptOAuth2LoginRequestRequest
+ */
+func (a *V0alpha2ApiService) AdminAcceptOAuth2LoginRequest(ctx context.Context) V0alpha2ApiApiAdminAcceptOAuth2LoginRequestRequest {
+	return V0alpha2ApiApiAdminAcceptOAuth2LoginRequestRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return SuccessfulOAuth2RequestResponse
+ */
+func (a *V0alpha2ApiService) AdminAcceptOAuth2LoginRequestExecute(r V0alpha2ApiApiAdminAcceptOAuth2LoginRequestRequest) (*SuccessfulOAuth2RequestResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *SuccessfulOAuth2RequestResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminAcceptOAuth2LoginRequest")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/oauth2/auth/requests/login/accept"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.loginChallenge == nil {
+		return localVarReturnValue, nil, reportError("loginChallenge is required and must be specified")
+	}
+
+	localVarQueryParams.Add("login_challenge", parameterToString(*r.loginChallenge, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.acceptOAuth2LoginRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminAcceptOAuth2LogoutRequestRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	logoutChallenge *string
+}
+
+func (r V0alpha2ApiApiAdminAcceptOAuth2LogoutRequestRequest) LogoutChallenge(logoutChallenge string) V0alpha2ApiApiAdminAcceptOAuth2LogoutRequestRequest {
+	r.logoutChallenge = &logoutChallenge
+	return r
+}
+
+func (r V0alpha2ApiApiAdminAcceptOAuth2LogoutRequestRequest) Execute() (*SuccessfulOAuth2RequestResponse, *http.Response, error) {
+	return r.ApiService.AdminAcceptOAuth2LogoutRequestExecute(r)
+}
+
+/*
+ * AdminAcceptOAuth2LogoutRequest Accept an OAuth 2.0 Logout Request
+ * When a user or an application requests ORY Hydra to log out a user, this endpoint is used to confirm that logout request.
+
+The response contains a redirect URL which the consent provider should redirect the user-agent to.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiAdminAcceptOAuth2LogoutRequestRequest
+ */
+func (a *V0alpha2ApiService) AdminAcceptOAuth2LogoutRequest(ctx context.Context) V0alpha2ApiApiAdminAcceptOAuth2LogoutRequestRequest {
+	return V0alpha2ApiApiAdminAcceptOAuth2LogoutRequestRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return SuccessfulOAuth2RequestResponse
+ */
+func (a *V0alpha2ApiService) AdminAcceptOAuth2LogoutRequestExecute(r V0alpha2ApiApiAdminAcceptOAuth2LogoutRequestRequest) (*SuccessfulOAuth2RequestResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *SuccessfulOAuth2RequestResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminAcceptOAuth2LogoutRequest")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/oauth2/auth/requests/logout/accept"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.logoutChallenge == nil {
+		return localVarReturnValue, nil, reportError("logoutChallenge is required and must be specified")
+	}
+
+	localVarQueryParams.Add("logout_challenge", parameterToString(*r.logoutChallenge, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type V0alpha2ApiApiAdminCreateIdentityRequest struct {
 	ctx context.Context
@@ -1101,10 +2485,7 @@ func (r V0alpha2ApiApiAdminCreateIdentityRequest) Execute() (*Identity, *http.Re
 
 /*
  * AdminCreateIdentity Create an Identity
- * This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...)
-using this method! A way to achieve that will be introduced in the future.
-
-Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+ * This endpoint creates an identity. Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return V0alpha2ApiApiAdminCreateIdentityRequest
  */
@@ -1210,6 +2591,254 @@ func (a *V0alpha2ApiService) AdminCreateIdentityExecute(r V0alpha2ApiApiAdminCre
 			}
 			newErr.model = v
 		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminCreateJsonWebKeySetRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	set string
+	adminCreateJsonWebKeySetBody *AdminCreateJsonWebKeySetBody
+}
+
+func (r V0alpha2ApiApiAdminCreateJsonWebKeySetRequest) AdminCreateJsonWebKeySetBody(adminCreateJsonWebKeySetBody AdminCreateJsonWebKeySetBody) V0alpha2ApiApiAdminCreateJsonWebKeySetRequest {
+	r.adminCreateJsonWebKeySetBody = &adminCreateJsonWebKeySetBody
+	return r
+}
+
+func (r V0alpha2ApiApiAdminCreateJsonWebKeySetRequest) Execute() (*JsonWebKeySet, *http.Response, error) {
+	return r.ApiService.AdminCreateJsonWebKeySetExecute(r)
+}
+
+/*
+ * AdminCreateJsonWebKeySet Generate a New JSON Web Key
+ * This endpoint is capable of generating JSON Web Key Sets for you. There a different strategies available, such as symmetric cryptographic keys (HS256, HS512) and asymetric cryptographic keys (RS256, ECDSA). If the specified JSON Web Key Set does not exist, it will be created.
+
+A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param set The JSON Web Key Set
+ * @return V0alpha2ApiApiAdminCreateJsonWebKeySetRequest
+ */
+func (a *V0alpha2ApiService) AdminCreateJsonWebKeySet(ctx context.Context, set string) V0alpha2ApiApiAdminCreateJsonWebKeySetRequest {
+	return V0alpha2ApiApiAdminCreateJsonWebKeySetRequest{
+		ApiService: a,
+		ctx: ctx,
+		set: set,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return JsonWebKeySet
+ */
+func (a *V0alpha2ApiService) AdminCreateJsonWebKeySetExecute(r V0alpha2ApiApiAdminCreateJsonWebKeySetRequest) (*JsonWebKeySet, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *JsonWebKeySet
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminCreateJsonWebKeySet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/keys/{set}"
+	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterToString(r.set, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.adminCreateJsonWebKeySetBody == nil {
+		return localVarReturnValue, nil, reportError("adminCreateJsonWebKeySetBody is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.adminCreateJsonWebKeySetBody
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminCreateOAuth2ClientRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	oAuth2Client *OAuth2Client
+}
+
+func (r V0alpha2ApiApiAdminCreateOAuth2ClientRequest) OAuth2Client(oAuth2Client OAuth2Client) V0alpha2ApiApiAdminCreateOAuth2ClientRequest {
+	r.oAuth2Client = &oAuth2Client
+	return r
+}
+
+func (r V0alpha2ApiApiAdminCreateOAuth2ClientRequest) Execute() (*OAuth2Client, *http.Response, error) {
+	return r.ApiService.AdminCreateOAuth2ClientExecute(r)
+}
+
+/*
+ * AdminCreateOAuth2Client Create an OAuth 2.0 Client
+ * Create a new OAuth 2.0 client. If you pass `client_secret` the secret is used, otherwise a random secret
+is generated. The secret is echoed in the response. It is not possible to retrieve it later on.
+
+OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiAdminCreateOAuth2ClientRequest
+ */
+func (a *V0alpha2ApiService) AdminCreateOAuth2Client(ctx context.Context) V0alpha2ApiApiAdminCreateOAuth2ClientRequest {
+	return V0alpha2ApiApiAdminCreateOAuth2ClientRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return OAuth2Client
+ */
+func (a *V0alpha2ApiService) AdminCreateOAuth2ClientExecute(r V0alpha2ApiApiAdminCreateOAuth2ClientRequest) (*OAuth2Client, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *OAuth2Client
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminCreateOAuth2Client")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/clients"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.oAuth2Client == nil {
+		return localVarReturnValue, nil, reportError("oAuth2Client is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.oAuth2Client
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -1618,6 +3247,673 @@ func (a *V0alpha2ApiService) AdminDeleteIdentitySessionsExecute(r V0alpha2ApiApi
 	return localVarHTTPResponse, nil
 }
 
+type V0alpha2ApiApiAdminDeleteJsonWebKeyRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	set string
+	kid string
+}
+
+
+func (r V0alpha2ApiApiAdminDeleteJsonWebKeyRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AdminDeleteJsonWebKeyExecute(r)
+}
+
+/*
+ * AdminDeleteJsonWebKey Delete a JSON Web Key
+ * Use this endpoint to delete a single JSON Web Key.
+
+A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param set The JSON Web Key Set
+ * @param kid The JSON Web Key ID (kid)
+ * @return V0alpha2ApiApiAdminDeleteJsonWebKeyRequest
+ */
+func (a *V0alpha2ApiService) AdminDeleteJsonWebKey(ctx context.Context, set string, kid string) V0alpha2ApiApiAdminDeleteJsonWebKeyRequest {
+	return V0alpha2ApiApiAdminDeleteJsonWebKeyRequest{
+		ApiService: a,
+		ctx: ctx,
+		set: set,
+		kid: kid,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *V0alpha2ApiService) AdminDeleteJsonWebKeyExecute(r V0alpha2ApiApiAdminDeleteJsonWebKeyRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminDeleteJsonWebKey")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/keys/{set}/{kid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterToString(r.set, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"kid"+"}", url.PathEscape(parameterToString(r.kid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminDeleteJsonWebKeySetRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	set string
+}
+
+
+func (r V0alpha2ApiApiAdminDeleteJsonWebKeySetRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AdminDeleteJsonWebKeySetExecute(r)
+}
+
+/*
+ * AdminDeleteJsonWebKeySet Delete a JSON Web Key Set
+ * Use this endpoint to delete a complete JSON Web Key Set and all the keys in that set.
+
+A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param set The JSON Web Key Set
+ * @return V0alpha2ApiApiAdminDeleteJsonWebKeySetRequest
+ */
+func (a *V0alpha2ApiService) AdminDeleteJsonWebKeySet(ctx context.Context, set string) V0alpha2ApiApiAdminDeleteJsonWebKeySetRequest {
+	return V0alpha2ApiApiAdminDeleteJsonWebKeySetRequest{
+		ApiService: a,
+		ctx: ctx,
+		set: set,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *V0alpha2ApiService) AdminDeleteJsonWebKeySetExecute(r V0alpha2ApiApiAdminDeleteJsonWebKeySetRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminDeleteJsonWebKeySet")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/keys/{set}"
+	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterToString(r.set, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminDeleteOAuth2ClientRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	id string
+}
+
+
+func (r V0alpha2ApiApiAdminDeleteOAuth2ClientRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AdminDeleteOAuth2ClientExecute(r)
+}
+
+/*
+ * AdminDeleteOAuth2Client Deletes an OAuth 2.0 Client
+ * Delete an existing OAuth 2.0 Client by its ID.
+
+OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+Make sure that this endpoint is well protected and only callable by first-party components.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id The id of the OAuth 2.0 Client.
+ * @return V0alpha2ApiApiAdminDeleteOAuth2ClientRequest
+ */
+func (a *V0alpha2ApiService) AdminDeleteOAuth2Client(ctx context.Context, id string) V0alpha2ApiApiAdminDeleteOAuth2ClientRequest {
+	return V0alpha2ApiApiAdminDeleteOAuth2ClientRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *V0alpha2ApiService) AdminDeleteOAuth2ClientExecute(r V0alpha2ApiApiAdminDeleteOAuth2ClientRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminDeleteOAuth2Client")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/clients/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminDeleteOAuth2TokenRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	clientId *string
+}
+
+func (r V0alpha2ApiApiAdminDeleteOAuth2TokenRequest) ClientId(clientId string) V0alpha2ApiApiAdminDeleteOAuth2TokenRequest {
+	r.clientId = &clientId
+	return r
+}
+
+func (r V0alpha2ApiApiAdminDeleteOAuth2TokenRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AdminDeleteOAuth2TokenExecute(r)
+}
+
+/*
+ * AdminDeleteOAuth2Token Delete OAuth2 Access Tokens from a Client
+ * This endpoint deletes OAuth2 access tokens issued for a client from the database
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiAdminDeleteOAuth2TokenRequest
+ */
+func (a *V0alpha2ApiService) AdminDeleteOAuth2Token(ctx context.Context) V0alpha2ApiApiAdminDeleteOAuth2TokenRequest {
+	return V0alpha2ApiApiAdminDeleteOAuth2TokenRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *V0alpha2ApiService) AdminDeleteOAuth2TokenExecute(r V0alpha2ApiApiAdminDeleteOAuth2TokenRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminDeleteOAuth2Token")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/oauth2/tokens"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.clientId == nil {
+		return nil, reportError("clientId is required and must be specified")
+	}
+
+	localVarQueryParams.Add("client_id", parameterToString(*r.clientId, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminDeleteTrustedOAuth2JwtGrantIssuerRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	id string
+}
+
+
+func (r V0alpha2ApiApiAdminDeleteTrustedOAuth2JwtGrantIssuerRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AdminDeleteTrustedOAuth2JwtGrantIssuerExecute(r)
+}
+
+/*
+ * AdminDeleteTrustedOAuth2JwtGrantIssuer Delete a Trusted OAuth2 JWT Bearer Grant Type Issuer
+ * Use this endpoint to delete trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you
+created the trust relationship.
+
+Once deleted, the associated issuer will no longer be able to perform the JSON Web Token (JWT) Profile
+for OAuth 2.0 Client Authentication and Authorization Grant.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id The id of the desired grant
+ * @return V0alpha2ApiApiAdminDeleteTrustedOAuth2JwtGrantIssuerRequest
+ */
+func (a *V0alpha2ApiService) AdminDeleteTrustedOAuth2JwtGrantIssuer(ctx context.Context, id string) V0alpha2ApiApiAdminDeleteTrustedOAuth2JwtGrantIssuerRequest {
+	return V0alpha2ApiApiAdminDeleteTrustedOAuth2JwtGrantIssuerRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *V0alpha2ApiService) AdminDeleteTrustedOAuth2JwtGrantIssuerExecute(r V0alpha2ApiApiAdminDeleteTrustedOAuth2JwtGrantIssuerRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminDeleteTrustedOAuth2JwtGrantIssuer")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/trust/grants/jwt-bearer/issuers/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminExtendSessionRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	id string
+}
+
+
+func (r V0alpha2ApiApiAdminExtendSessionRequest) Execute() (*Session, *http.Response, error) {
+	return r.ApiService.AdminExtendSessionExecute(r)
+}
+
+/*
+ * AdminExtendSession Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.
+ * Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id ID is the session's ID.
+ * @return V0alpha2ApiApiAdminExtendSessionRequest
+ */
+func (a *V0alpha2ApiService) AdminExtendSession(ctx context.Context, id string) V0alpha2ApiApiAdminExtendSessionRequest {
+	return V0alpha2ApiApiAdminExtendSessionRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return Session
+ */
+func (a *V0alpha2ApiService) AdminExtendSessionExecute(r V0alpha2ApiApiAdminExtendSessionRequest) (*Session, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *Session
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminExtendSession")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/sessions/{id}/extend"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JsonError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v JsonError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v JsonError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type V0alpha2ApiApiAdminGetIdentityRequest struct {
 	ctx context.Context
 	ApiService V0alpha2Api
@@ -1744,6 +4040,997 @@ func (a *V0alpha2ApiService) AdminGetIdentityExecute(r V0alpha2ApiApiAdminGetIde
 			}
 			newErr.model = v
 		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminGetJsonWebKeyRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	set string
+	kid string
+}
+
+
+func (r V0alpha2ApiApiAdminGetJsonWebKeyRequest) Execute() (*JsonWebKeySet, *http.Response, error) {
+	return r.ApiService.AdminGetJsonWebKeyExecute(r)
+}
+
+/*
+ * AdminGetJsonWebKey Fetch a JSON Web Key
+ * This endpoint returns a singular JSON Web Key. It is identified by the set and the specific key ID (kid).
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param set The JSON Web Key Set
+ * @param kid The JSON Web Key ID (kid)
+ * @return V0alpha2ApiApiAdminGetJsonWebKeyRequest
+ */
+func (a *V0alpha2ApiService) AdminGetJsonWebKey(ctx context.Context, set string, kid string) V0alpha2ApiApiAdminGetJsonWebKeyRequest {
+	return V0alpha2ApiApiAdminGetJsonWebKeyRequest{
+		ApiService: a,
+		ctx: ctx,
+		set: set,
+		kid: kid,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return JsonWebKeySet
+ */
+func (a *V0alpha2ApiService) AdminGetJsonWebKeyExecute(r V0alpha2ApiApiAdminGetJsonWebKeyRequest) (*JsonWebKeySet, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *JsonWebKeySet
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminGetJsonWebKey")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/keys/{set}/{kid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterToString(r.set, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"kid"+"}", url.PathEscape(parameterToString(r.kid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminGetJsonWebKeySetRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	set string
+}
+
+
+func (r V0alpha2ApiApiAdminGetJsonWebKeySetRequest) Execute() (*JsonWebKeySet, *http.Response, error) {
+	return r.ApiService.AdminGetJsonWebKeySetExecute(r)
+}
+
+/*
+ * AdminGetJsonWebKeySet Retrieve a JSON Web Key Set
+ * This endpoint can be used to retrieve JWK Sets stored in ORY Hydra.
+
+A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param set The JSON Web Key Set
+ * @return V0alpha2ApiApiAdminGetJsonWebKeySetRequest
+ */
+func (a *V0alpha2ApiService) AdminGetJsonWebKeySet(ctx context.Context, set string) V0alpha2ApiApiAdminGetJsonWebKeySetRequest {
+	return V0alpha2ApiApiAdminGetJsonWebKeySetRequest{
+		ApiService: a,
+		ctx: ctx,
+		set: set,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return JsonWebKeySet
+ */
+func (a *V0alpha2ApiService) AdminGetJsonWebKeySetExecute(r V0alpha2ApiApiAdminGetJsonWebKeySetRequest) (*JsonWebKeySet, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *JsonWebKeySet
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminGetJsonWebKeySet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/keys/{set}"
+	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterToString(r.set, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminGetOAuth2ClientRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	id string
+}
+
+
+func (r V0alpha2ApiApiAdminGetOAuth2ClientRequest) Execute() (*OAuth2Client, *http.Response, error) {
+	return r.ApiService.AdminGetOAuth2ClientExecute(r)
+}
+
+/*
+ * AdminGetOAuth2Client Get an OAuth 2.0 Client
+ * Get an OAuth 2.0 client by its ID. This endpoint never returns the client secret.
+
+OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id The id of the OAuth 2.0 Client.
+ * @return V0alpha2ApiApiAdminGetOAuth2ClientRequest
+ */
+func (a *V0alpha2ApiService) AdminGetOAuth2Client(ctx context.Context, id string) V0alpha2ApiApiAdminGetOAuth2ClientRequest {
+	return V0alpha2ApiApiAdminGetOAuth2ClientRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return OAuth2Client
+ */
+func (a *V0alpha2ApiService) AdminGetOAuth2ClientExecute(r V0alpha2ApiApiAdminGetOAuth2ClientRequest) (*OAuth2Client, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *OAuth2Client
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminGetOAuth2Client")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/clients/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminGetOAuth2ConsentRequestRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	consentChallenge *string
+}
+
+func (r V0alpha2ApiApiAdminGetOAuth2ConsentRequestRequest) ConsentChallenge(consentChallenge string) V0alpha2ApiApiAdminGetOAuth2ConsentRequestRequest {
+	r.consentChallenge = &consentChallenge
+	return r
+}
+
+func (r V0alpha2ApiApiAdminGetOAuth2ConsentRequestRequest) Execute() (*OAuth2ConsentRequest, *http.Response, error) {
+	return r.ApiService.AdminGetOAuth2ConsentRequestExecute(r)
+}
+
+/*
+ * AdminGetOAuth2ConsentRequest Get OAuth 2.0 Consent Request Information
+ * When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider
+to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if
+the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.
+
+The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to
+grant or deny the client access to the requested scope ("Application my-dropbox-app wants write access to all your private files").
+
+The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent
+provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted
+or rejected the request.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiAdminGetOAuth2ConsentRequestRequest
+ */
+func (a *V0alpha2ApiService) AdminGetOAuth2ConsentRequest(ctx context.Context) V0alpha2ApiApiAdminGetOAuth2ConsentRequestRequest {
+	return V0alpha2ApiApiAdminGetOAuth2ConsentRequestRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return OAuth2ConsentRequest
+ */
+func (a *V0alpha2ApiService) AdminGetOAuth2ConsentRequestExecute(r V0alpha2ApiApiAdminGetOAuth2ConsentRequestRequest) (*OAuth2ConsentRequest, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *OAuth2ConsentRequest
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminGetOAuth2ConsentRequest")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/oauth2/auth/requests/consent"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.consentChallenge == nil {
+		return localVarReturnValue, nil, reportError("consentChallenge is required and must be specified")
+	}
+
+	localVarQueryParams.Add("consent_challenge", parameterToString(*r.consentChallenge, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 410 {
+			var v HandledOAuth2ConsentRequest
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminGetOAuth2LoginRequestRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	loginChallenge *string
+}
+
+func (r V0alpha2ApiApiAdminGetOAuth2LoginRequestRequest) LoginChallenge(loginChallenge string) V0alpha2ApiApiAdminGetOAuth2LoginRequestRequest {
+	r.loginChallenge = &loginChallenge
+	return r
+}
+
+func (r V0alpha2ApiApiAdminGetOAuth2LoginRequestRequest) Execute() (*OAuth2LoginRequest, *http.Response, error) {
+	return r.ApiService.AdminGetOAuth2LoginRequestExecute(r)
+}
+
+/*
+ * AdminGetOAuth2LoginRequest Get an OAuth 2.0 Login Request
+ * When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider
+(sometimes called "identity provider") to authenticate the subject and then tell ORY Hydra now about it. The login
+provider is an web-app you write and host, and it must be able to authenticate ("show the subject a login screen")
+a subject (in OAuth2 the proper name for subject is "resource owner").
+
+The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login
+provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiAdminGetOAuth2LoginRequestRequest
+ */
+func (a *V0alpha2ApiService) AdminGetOAuth2LoginRequest(ctx context.Context) V0alpha2ApiApiAdminGetOAuth2LoginRequestRequest {
+	return V0alpha2ApiApiAdminGetOAuth2LoginRequestRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return OAuth2LoginRequest
+ */
+func (a *V0alpha2ApiService) AdminGetOAuth2LoginRequestExecute(r V0alpha2ApiApiAdminGetOAuth2LoginRequestRequest) (*OAuth2LoginRequest, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *OAuth2LoginRequest
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminGetOAuth2LoginRequest")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/oauth2/auth/requests/login"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.loginChallenge == nil {
+		return localVarReturnValue, nil, reportError("loginChallenge is required and must be specified")
+	}
+
+	localVarQueryParams.Add("login_challenge", parameterToString(*r.loginChallenge, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 410 {
+			var v HandledOAuth2LoginRequest
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminGetOAuth2LogoutRequestRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	logoutChallenge *string
+}
+
+func (r V0alpha2ApiApiAdminGetOAuth2LogoutRequestRequest) LogoutChallenge(logoutChallenge string) V0alpha2ApiApiAdminGetOAuth2LogoutRequestRequest {
+	r.logoutChallenge = &logoutChallenge
+	return r
+}
+
+func (r V0alpha2ApiApiAdminGetOAuth2LogoutRequestRequest) Execute() (*OAuth2LogoutRequest, *http.Response, error) {
+	return r.ApiService.AdminGetOAuth2LogoutRequestExecute(r)
+}
+
+/*
+ * AdminGetOAuth2LogoutRequest Get an OAuth 2.0 Logout Request
+ * Use this endpoint to fetch a logout request.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiAdminGetOAuth2LogoutRequestRequest
+ */
+func (a *V0alpha2ApiService) AdminGetOAuth2LogoutRequest(ctx context.Context) V0alpha2ApiApiAdminGetOAuth2LogoutRequestRequest {
+	return V0alpha2ApiApiAdminGetOAuth2LogoutRequestRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return OAuth2LogoutRequest
+ */
+func (a *V0alpha2ApiService) AdminGetOAuth2LogoutRequestExecute(r V0alpha2ApiApiAdminGetOAuth2LogoutRequestRequest) (*OAuth2LogoutRequest, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *OAuth2LogoutRequest
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminGetOAuth2LogoutRequest")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/oauth2/auth/requests/logout"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.logoutChallenge == nil {
+		return localVarReturnValue, nil, reportError("logoutChallenge is required and must be specified")
+	}
+
+	localVarQueryParams.Add("logout_challenge", parameterToString(*r.logoutChallenge, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 410 {
+			var v HandledOAuth2LogoutRequest
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminGetTrustedOAuth2JwtGrantIssuerRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	id string
+}
+
+
+func (r V0alpha2ApiApiAdminGetTrustedOAuth2JwtGrantIssuerRequest) Execute() (*TrustedOAuth2JwtGrantIssuer, *http.Response, error) {
+	return r.ApiService.AdminGetTrustedOAuth2JwtGrantIssuerExecute(r)
+}
+
+/*
+ * AdminGetTrustedOAuth2JwtGrantIssuer Get a Trusted OAuth2 JWT Bearer Grant Type Issuer
+ * Use this endpoint to get a trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you
+created the trust relationship.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id The id of the desired grant
+ * @return V0alpha2ApiApiAdminGetTrustedOAuth2JwtGrantIssuerRequest
+ */
+func (a *V0alpha2ApiService) AdminGetTrustedOAuth2JwtGrantIssuer(ctx context.Context, id string) V0alpha2ApiApiAdminGetTrustedOAuth2JwtGrantIssuerRequest {
+	return V0alpha2ApiApiAdminGetTrustedOAuth2JwtGrantIssuerRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return TrustedOAuth2JwtGrantIssuer
+ */
+func (a *V0alpha2ApiService) AdminGetTrustedOAuth2JwtGrantIssuerExecute(r V0alpha2ApiApiAdminGetTrustedOAuth2JwtGrantIssuerRequest) (*TrustedOAuth2JwtGrantIssuer, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *TrustedOAuth2JwtGrantIssuer
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminGetTrustedOAuth2JwtGrantIssuer")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/trust/grants/jwt-bearer/issuers/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminIntrospectOAuth2TokenRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	token *string
+	scope *string
+}
+
+func (r V0alpha2ApiApiAdminIntrospectOAuth2TokenRequest) Token(token string) V0alpha2ApiApiAdminIntrospectOAuth2TokenRequest {
+	r.token = &token
+	return r
+}
+func (r V0alpha2ApiApiAdminIntrospectOAuth2TokenRequest) Scope(scope string) V0alpha2ApiApiAdminIntrospectOAuth2TokenRequest {
+	r.scope = &scope
+	return r
+}
+
+func (r V0alpha2ApiApiAdminIntrospectOAuth2TokenRequest) Execute() (*IntrospectedOAuth2Token, *http.Response, error) {
+	return r.ApiService.AdminIntrospectOAuth2TokenExecute(r)
+}
+
+/*
+ * AdminIntrospectOAuth2Token Introspect OAuth2 Access or Refresh Tokens
+ * The introspection endpoint allows to check if a token (both refresh and access) is active or not. An active token
+is neither expired nor revoked. If a token is active, additional information on the token will be included. You can
+set additional data for a token by setting `accessTokenExtra` during the consent flow.
+
+For more information [read this blog post](https://www.oauth.com/oauth2-servers/token-introspection-endpoint/).
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiAdminIntrospectOAuth2TokenRequest
+ */
+func (a *V0alpha2ApiService) AdminIntrospectOAuth2Token(ctx context.Context) V0alpha2ApiApiAdminIntrospectOAuth2TokenRequest {
+	return V0alpha2ApiApiAdminIntrospectOAuth2TokenRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return IntrospectedOAuth2Token
+ */
+func (a *V0alpha2ApiService) AdminIntrospectOAuth2TokenExecute(r V0alpha2ApiApiAdminIntrospectOAuth2TokenRequest) (*IntrospectedOAuth2Token, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *IntrospectedOAuth2Token
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminIntrospectOAuth2Token")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/oauth2/introspect"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.token == nil {
+		return localVarReturnValue, nil, reportError("token is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/x-www-form-urlencoded"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.scope != nil {
+		localVarFormParams.Add("scope", parameterToString(*r.scope, ""))
+	}
+	localVarFormParams.Add("token", parameterToString(*r.token, ""))
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2059,6 +5346,1470 @@ func (a *V0alpha2ApiService) AdminListIdentitySessionsExecute(r V0alpha2ApiApiAd
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type V0alpha2ApiApiAdminListOAuth2ClientsRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	pageSize *int64
+	pageToken *string
+	clientName *string
+	owner *string
+}
+
+func (r V0alpha2ApiApiAdminListOAuth2ClientsRequest) PageSize(pageSize int64) V0alpha2ApiApiAdminListOAuth2ClientsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+func (r V0alpha2ApiApiAdminListOAuth2ClientsRequest) PageToken(pageToken string) V0alpha2ApiApiAdminListOAuth2ClientsRequest {
+	r.pageToken = &pageToken
+	return r
+}
+func (r V0alpha2ApiApiAdminListOAuth2ClientsRequest) ClientName(clientName string) V0alpha2ApiApiAdminListOAuth2ClientsRequest {
+	r.clientName = &clientName
+	return r
+}
+func (r V0alpha2ApiApiAdminListOAuth2ClientsRequest) Owner(owner string) V0alpha2ApiApiAdminListOAuth2ClientsRequest {
+	r.owner = &owner
+	return r
+}
+
+func (r V0alpha2ApiApiAdminListOAuth2ClientsRequest) Execute() ([]OAuth2Client, *http.Response, error) {
+	return r.ApiService.AdminListOAuth2ClientsExecute(r)
+}
+
+/*
+ * AdminListOAuth2Clients List OAuth 2.0 Clients
+ * This endpoint lists all clients in the database, and never returns client secrets.
+As a default it lists the first 100 clients. The `limit` parameter can be used to retrieve more clients,
+but it has an upper bound at 500 objects. Pagination should be used to retrieve more than 500 objects.
+
+OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+The "Link" header is also included in successful responses, which contains one or more links for pagination,
+formatted like so: '<https://project-slug.projects.oryapis.com/admin/clients?limit={limit}&offset={offset}>; rel="{page}"',
+where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'. Multiple links can
+be included in this header, and will be separated by a comma.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiAdminListOAuth2ClientsRequest
+ */
+func (a *V0alpha2ApiService) AdminListOAuth2Clients(ctx context.Context) V0alpha2ApiApiAdminListOAuth2ClientsRequest {
+	return V0alpha2ApiApiAdminListOAuth2ClientsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return []OAuth2Client
+ */
+func (a *V0alpha2ApiService) AdminListOAuth2ClientsExecute(r V0alpha2ApiApiAdminListOAuth2ClientsRequest) ([]OAuth2Client, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  []OAuth2Client
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminListOAuth2Clients")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/clients"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.pageSize != nil {
+		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
+	}
+	if r.pageToken != nil {
+		localVarQueryParams.Add("page_token", parameterToString(*r.pageToken, ""))
+	}
+	if r.clientName != nil {
+		localVarQueryParams.Add("client_name", parameterToString(*r.clientName, ""))
+	}
+	if r.owner != nil {
+		localVarQueryParams.Add("owner", parameterToString(*r.owner, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminListOAuth2SubjectConsentSessionsRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	subject *string
+	link *string
+	xTotalCount *string
+}
+
+func (r V0alpha2ApiApiAdminListOAuth2SubjectConsentSessionsRequest) Subject(subject string) V0alpha2ApiApiAdminListOAuth2SubjectConsentSessionsRequest {
+	r.subject = &subject
+	return r
+}
+func (r V0alpha2ApiApiAdminListOAuth2SubjectConsentSessionsRequest) Link(link string) V0alpha2ApiApiAdminListOAuth2SubjectConsentSessionsRequest {
+	r.link = &link
+	return r
+}
+func (r V0alpha2ApiApiAdminListOAuth2SubjectConsentSessionsRequest) XTotalCount(xTotalCount string) V0alpha2ApiApiAdminListOAuth2SubjectConsentSessionsRequest {
+	r.xTotalCount = &xTotalCount
+	return r
+}
+
+func (r V0alpha2ApiApiAdminListOAuth2SubjectConsentSessionsRequest) Execute() ([]PreviousOAuth2ConsentSession, *http.Response, error) {
+	return r.ApiService.AdminListOAuth2SubjectConsentSessionsExecute(r)
+}
+
+/*
+ * AdminListOAuth2SubjectConsentSessions List OAuth 2.0 Consent Sessions of a Subject
+ * This endpoint lists all subject's granted consent sessions, including client and granted scope.
+If the subject is unknown or has not granted any consent sessions yet, the endpoint returns an
+empty JSON array with status code 200 OK.
+
+The "Link" header is also included in successful responses, which contains one or more links for pagination, formatted like so: '<https://hydra-url/admin/oauth2/auth/sessions/consent?subject={user}&limit={limit}&offset={offset}>; rel="{page}"', where page is one of the following applicable pages: 'first', 'next', 'last', and 'previous'.
+Multiple links can be included in this header, and will be separated by a comma.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiAdminListOAuth2SubjectConsentSessionsRequest
+ */
+func (a *V0alpha2ApiService) AdminListOAuth2SubjectConsentSessions(ctx context.Context) V0alpha2ApiApiAdminListOAuth2SubjectConsentSessionsRequest {
+	return V0alpha2ApiApiAdminListOAuth2SubjectConsentSessionsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return []PreviousOAuth2ConsentSession
+ */
+func (a *V0alpha2ApiService) AdminListOAuth2SubjectConsentSessionsExecute(r V0alpha2ApiApiAdminListOAuth2SubjectConsentSessionsRequest) ([]PreviousOAuth2ConsentSession, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  []PreviousOAuth2ConsentSession
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminListOAuth2SubjectConsentSessions")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/oauth2/auth/sessions/consent"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.subject == nil {
+		return localVarReturnValue, nil, reportError("subject is required and must be specified")
+	}
+
+	localVarQueryParams.Add("subject", parameterToString(*r.subject, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.link != nil {
+		localVarHeaderParams["link"] = parameterToString(*r.link, "")
+	}
+	if r.xTotalCount != nil {
+		localVarHeaderParams["x-total-count"] = parameterToString(*r.xTotalCount, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminListTrustedOAuth2JwtGrantIssuersRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	maxItems *int64
+	defaultItems *int64
+	issuer *string
+	limit *int64
+	offset *int64
+}
+
+func (r V0alpha2ApiApiAdminListTrustedOAuth2JwtGrantIssuersRequest) MaxItems(maxItems int64) V0alpha2ApiApiAdminListTrustedOAuth2JwtGrantIssuersRequest {
+	r.maxItems = &maxItems
+	return r
+}
+func (r V0alpha2ApiApiAdminListTrustedOAuth2JwtGrantIssuersRequest) DefaultItems(defaultItems int64) V0alpha2ApiApiAdminListTrustedOAuth2JwtGrantIssuersRequest {
+	r.defaultItems = &defaultItems
+	return r
+}
+func (r V0alpha2ApiApiAdminListTrustedOAuth2JwtGrantIssuersRequest) Issuer(issuer string) V0alpha2ApiApiAdminListTrustedOAuth2JwtGrantIssuersRequest {
+	r.issuer = &issuer
+	return r
+}
+func (r V0alpha2ApiApiAdminListTrustedOAuth2JwtGrantIssuersRequest) Limit(limit int64) V0alpha2ApiApiAdminListTrustedOAuth2JwtGrantIssuersRequest {
+	r.limit = &limit
+	return r
+}
+func (r V0alpha2ApiApiAdminListTrustedOAuth2JwtGrantIssuersRequest) Offset(offset int64) V0alpha2ApiApiAdminListTrustedOAuth2JwtGrantIssuersRequest {
+	r.offset = &offset
+	return r
+}
+
+func (r V0alpha2ApiApiAdminListTrustedOAuth2JwtGrantIssuersRequest) Execute() ([]TrustedOAuth2JwtGrantIssuer, *http.Response, error) {
+	return r.ApiService.AdminListTrustedOAuth2JwtGrantIssuersExecute(r)
+}
+
+/*
+ * AdminListTrustedOAuth2JwtGrantIssuers List Trusted OAuth2 JWT Bearer Grant Type Issuers
+ * Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiAdminListTrustedOAuth2JwtGrantIssuersRequest
+ */
+func (a *V0alpha2ApiService) AdminListTrustedOAuth2JwtGrantIssuers(ctx context.Context) V0alpha2ApiApiAdminListTrustedOAuth2JwtGrantIssuersRequest {
+	return V0alpha2ApiApiAdminListTrustedOAuth2JwtGrantIssuersRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return []TrustedOAuth2JwtGrantIssuer
+ */
+func (a *V0alpha2ApiService) AdminListTrustedOAuth2JwtGrantIssuersExecute(r V0alpha2ApiApiAdminListTrustedOAuth2JwtGrantIssuersRequest) ([]TrustedOAuth2JwtGrantIssuer, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  []TrustedOAuth2JwtGrantIssuer
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminListTrustedOAuth2JwtGrantIssuers")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/trust/grants/jwt-bearer/issuers"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.maxItems != nil {
+		localVarQueryParams.Add("MaxItems", parameterToString(*r.maxItems, ""))
+	}
+	if r.defaultItems != nil {
+		localVarQueryParams.Add("DefaultItems", parameterToString(*r.defaultItems, ""))
+	}
+	if r.issuer != nil {
+		localVarQueryParams.Add("issuer", parameterToString(*r.issuer, ""))
+	}
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
+	if r.offset != nil {
+		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminPatchIdentityRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	id string
+	jsonPatch *[]JsonPatch
+}
+
+func (r V0alpha2ApiApiAdminPatchIdentityRequest) JsonPatch(jsonPatch []JsonPatch) V0alpha2ApiApiAdminPatchIdentityRequest {
+	r.jsonPatch = &jsonPatch
+	return r
+}
+
+func (r V0alpha2ApiApiAdminPatchIdentityRequest) Execute() (*Identity, *http.Response, error) {
+	return r.ApiService.AdminPatchIdentityExecute(r)
+}
+
+/*
+ * AdminPatchIdentity Partially updates an Identity's field using [JSON Patch](https://jsonpatch.com/)
+ * NOTE: The fields `id`, `stateChangedAt` and `credentials` are not updateable.
+
+Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id ID must be set to the ID of identity you want to update
+ * @return V0alpha2ApiApiAdminPatchIdentityRequest
+ */
+func (a *V0alpha2ApiService) AdminPatchIdentity(ctx context.Context, id string) V0alpha2ApiApiAdminPatchIdentityRequest {
+	return V0alpha2ApiApiAdminPatchIdentityRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return Identity
+ */
+func (a *V0alpha2ApiService) AdminPatchIdentityExecute(r V0alpha2ApiApiAdminPatchIdentityRequest) (*Identity, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *Identity
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminPatchIdentity")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/identities/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.jsonPatch
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JsonError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v JsonError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v JsonError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v JsonError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminPatchOAuth2ClientRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	id string
+	jsonPatch *[]JsonPatch
+}
+
+func (r V0alpha2ApiApiAdminPatchOAuth2ClientRequest) JsonPatch(jsonPatch []JsonPatch) V0alpha2ApiApiAdminPatchOAuth2ClientRequest {
+	r.jsonPatch = &jsonPatch
+	return r
+}
+
+func (r V0alpha2ApiApiAdminPatchOAuth2ClientRequest) Execute() (*OAuth2Client, *http.Response, error) {
+	return r.ApiService.AdminPatchOAuth2ClientExecute(r)
+}
+
+/*
+ * AdminPatchOAuth2Client Patch an OAuth 2.0 Client
+ * Patch an existing OAuth 2.0 Client. If you pass `client_secret`
+the secret will be updated and returned via the API. This is the
+only time you will be able to retrieve the client secret, so write it down and keep it safe.
+
+OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id The id of the OAuth 2.0 Client.
+ * @return V0alpha2ApiApiAdminPatchOAuth2ClientRequest
+ */
+func (a *V0alpha2ApiService) AdminPatchOAuth2Client(ctx context.Context, id string) V0alpha2ApiApiAdminPatchOAuth2ClientRequest {
+	return V0alpha2ApiApiAdminPatchOAuth2ClientRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return OAuth2Client
+ */
+func (a *V0alpha2ApiService) AdminPatchOAuth2ClientExecute(r V0alpha2ApiApiAdminPatchOAuth2ClientRequest) (*OAuth2Client, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *OAuth2Client
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminPatchOAuth2Client")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/clients/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.jsonPatch == nil {
+		return localVarReturnValue, nil, reportError("jsonPatch is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.jsonPatch
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminRejectOAuth2ConsentRequestRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	consentChallenge *string
+	rejectOAuth2Request *RejectOAuth2Request
+}
+
+func (r V0alpha2ApiApiAdminRejectOAuth2ConsentRequestRequest) ConsentChallenge(consentChallenge string) V0alpha2ApiApiAdminRejectOAuth2ConsentRequestRequest {
+	r.consentChallenge = &consentChallenge
+	return r
+}
+func (r V0alpha2ApiApiAdminRejectOAuth2ConsentRequestRequest) RejectOAuth2Request(rejectOAuth2Request RejectOAuth2Request) V0alpha2ApiApiAdminRejectOAuth2ConsentRequestRequest {
+	r.rejectOAuth2Request = &rejectOAuth2Request
+	return r
+}
+
+func (r V0alpha2ApiApiAdminRejectOAuth2ConsentRequestRequest) Execute() (*SuccessfulOAuth2RequestResponse, *http.Response, error) {
+	return r.ApiService.AdminRejectOAuth2ConsentRequestExecute(r)
+}
+
+/*
+ * AdminRejectOAuth2ConsentRequest Reject an OAuth 2.0 Consent Request
+ * When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider
+to authenticate the subject and then tell ORY Hydra now about it. If the subject authenticated, he/she must now be asked if
+the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.
+
+The consent provider which handles this request and is a web app implemented and hosted by you. It shows a subject interface which asks the subject to
+grant or deny the client access to the requested scope ("Application my-dropbox-app wants write access to all your private files").
+
+The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent
+provider uses that challenge to fetch information on the OAuth2 request and then tells ORY Hydra if the subject accepted
+or rejected the request.
+
+This endpoint tells ORY Hydra that the subject has not authorized the OAuth 2.0 client to access resources on his/her behalf.
+The consent provider must include a reason why the consent was not granted.
+
+The response contains a redirect URL which the consent provider should redirect the user-agent to.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiAdminRejectOAuth2ConsentRequestRequest
+ */
+func (a *V0alpha2ApiService) AdminRejectOAuth2ConsentRequest(ctx context.Context) V0alpha2ApiApiAdminRejectOAuth2ConsentRequestRequest {
+	return V0alpha2ApiApiAdminRejectOAuth2ConsentRequestRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return SuccessfulOAuth2RequestResponse
+ */
+func (a *V0alpha2ApiService) AdminRejectOAuth2ConsentRequestExecute(r V0alpha2ApiApiAdminRejectOAuth2ConsentRequestRequest) (*SuccessfulOAuth2RequestResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *SuccessfulOAuth2RequestResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminRejectOAuth2ConsentRequest")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/oauth2/auth/requests/consent/reject"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.consentChallenge == nil {
+		return localVarReturnValue, nil, reportError("consentChallenge is required and must be specified")
+	}
+
+	localVarQueryParams.Add("consent_challenge", parameterToString(*r.consentChallenge, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.rejectOAuth2Request
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminRejectOAuth2LoginRequestRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	loginChallenge *string
+	rejectOAuth2Request *RejectOAuth2Request
+}
+
+func (r V0alpha2ApiApiAdminRejectOAuth2LoginRequestRequest) LoginChallenge(loginChallenge string) V0alpha2ApiApiAdminRejectOAuth2LoginRequestRequest {
+	r.loginChallenge = &loginChallenge
+	return r
+}
+func (r V0alpha2ApiApiAdminRejectOAuth2LoginRequestRequest) RejectOAuth2Request(rejectOAuth2Request RejectOAuth2Request) V0alpha2ApiApiAdminRejectOAuth2LoginRequestRequest {
+	r.rejectOAuth2Request = &rejectOAuth2Request
+	return r
+}
+
+func (r V0alpha2ApiApiAdminRejectOAuth2LoginRequestRequest) Execute() (*SuccessfulOAuth2RequestResponse, *http.Response, error) {
+	return r.ApiService.AdminRejectOAuth2LoginRequestExecute(r)
+}
+
+/*
+ * AdminRejectOAuth2LoginRequest Reject an OAuth 2.0 Login Request
+ * When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, ORY Hydra asks the login provider
+(sometimes called "identity provider") to authenticate the subject and then tell ORY Hydra now about it. The login
+provider is an web-app you write and host, and it must be able to authenticate ("show the subject a login screen")
+a subject (in OAuth2 the proper name for subject is "resource owner").
+
+The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login
+provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.
+
+This endpoint tells ORY Hydra that the subject has not authenticated and includes a reason why the authentication
+was denied.
+
+The response contains a redirect URL which the login provider should redirect the user-agent to.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiAdminRejectOAuth2LoginRequestRequest
+ */
+func (a *V0alpha2ApiService) AdminRejectOAuth2LoginRequest(ctx context.Context) V0alpha2ApiApiAdminRejectOAuth2LoginRequestRequest {
+	return V0alpha2ApiApiAdminRejectOAuth2LoginRequestRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return SuccessfulOAuth2RequestResponse
+ */
+func (a *V0alpha2ApiService) AdminRejectOAuth2LoginRequestExecute(r V0alpha2ApiApiAdminRejectOAuth2LoginRequestRequest) (*SuccessfulOAuth2RequestResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *SuccessfulOAuth2RequestResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminRejectOAuth2LoginRequest")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/oauth2/auth/requests/login/reject"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.loginChallenge == nil {
+		return localVarReturnValue, nil, reportError("loginChallenge is required and must be specified")
+	}
+
+	localVarQueryParams.Add("login_challenge", parameterToString(*r.loginChallenge, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.rejectOAuth2Request
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminRejectOAuth2LogoutRequestRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	logoutChallenge *string
+	rejectOAuth2Request *RejectOAuth2Request
+}
+
+func (r V0alpha2ApiApiAdminRejectOAuth2LogoutRequestRequest) LogoutChallenge(logoutChallenge string) V0alpha2ApiApiAdminRejectOAuth2LogoutRequestRequest {
+	r.logoutChallenge = &logoutChallenge
+	return r
+}
+func (r V0alpha2ApiApiAdminRejectOAuth2LogoutRequestRequest) RejectOAuth2Request(rejectOAuth2Request RejectOAuth2Request) V0alpha2ApiApiAdminRejectOAuth2LogoutRequestRequest {
+	r.rejectOAuth2Request = &rejectOAuth2Request
+	return r
+}
+
+func (r V0alpha2ApiApiAdminRejectOAuth2LogoutRequestRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AdminRejectOAuth2LogoutRequestExecute(r)
+}
+
+/*
+ * AdminRejectOAuth2LogoutRequest Reject an OAuth 2.0 Logout Request
+ * When a user or an application requests ORY Hydra to log out a user, this endpoint is used to deny that logout request.
+No body is required.
+
+The response is empty as the logout provider has to chose what action to perform next.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiAdminRejectOAuth2LogoutRequestRequest
+ */
+func (a *V0alpha2ApiService) AdminRejectOAuth2LogoutRequest(ctx context.Context) V0alpha2ApiApiAdminRejectOAuth2LogoutRequestRequest {
+	return V0alpha2ApiApiAdminRejectOAuth2LogoutRequestRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *V0alpha2ApiService) AdminRejectOAuth2LogoutRequestExecute(r V0alpha2ApiApiAdminRejectOAuth2LogoutRequestRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminRejectOAuth2LogoutRequest")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/oauth2/auth/requests/logout/reject"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.logoutChallenge == nil {
+		return nil, reportError("logoutChallenge is required and must be specified")
+	}
+
+	localVarQueryParams.Add("logout_challenge", parameterToString(*r.logoutChallenge, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.rejectOAuth2Request
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminRevokeOAuth2ConsentSessionsRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	subject *string
+	client *string
+	all *bool
+}
+
+func (r V0alpha2ApiApiAdminRevokeOAuth2ConsentSessionsRequest) Subject(subject string) V0alpha2ApiApiAdminRevokeOAuth2ConsentSessionsRequest {
+	r.subject = &subject
+	return r
+}
+func (r V0alpha2ApiApiAdminRevokeOAuth2ConsentSessionsRequest) Client(client string) V0alpha2ApiApiAdminRevokeOAuth2ConsentSessionsRequest {
+	r.client = &client
+	return r
+}
+func (r V0alpha2ApiApiAdminRevokeOAuth2ConsentSessionsRequest) All(all bool) V0alpha2ApiApiAdminRevokeOAuth2ConsentSessionsRequest {
+	r.all = &all
+	return r
+}
+
+func (r V0alpha2ApiApiAdminRevokeOAuth2ConsentSessionsRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AdminRevokeOAuth2ConsentSessionsExecute(r)
+}
+
+/*
+ * AdminRevokeOAuth2ConsentSessions Revokes OAuth 2.0 Consent Sessions of a Subject for a Specific OAuth 2.0 Client
+ * This endpoint revokes a subject's granted consent sessions for a specific OAuth 2.0 Client and invalidates all
+associated OAuth 2.0 Access Tokens.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiAdminRevokeOAuth2ConsentSessionsRequest
+ */
+func (a *V0alpha2ApiService) AdminRevokeOAuth2ConsentSessions(ctx context.Context) V0alpha2ApiApiAdminRevokeOAuth2ConsentSessionsRequest {
+	return V0alpha2ApiApiAdminRevokeOAuth2ConsentSessionsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *V0alpha2ApiService) AdminRevokeOAuth2ConsentSessionsExecute(r V0alpha2ApiApiAdminRevokeOAuth2ConsentSessionsRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminRevokeOAuth2ConsentSessions")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/oauth2/auth/sessions/consent"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.subject == nil {
+		return nil, reportError("subject is required and must be specified")
+	}
+
+	localVarQueryParams.Add("subject", parameterToString(*r.subject, ""))
+	if r.client != nil {
+		localVarQueryParams.Add("client", parameterToString(*r.client, ""))
+	}
+	if r.all != nil {
+		localVarQueryParams.Add("all", parameterToString(*r.all, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminRevokeOAuth2LoginSessionsRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	subject *string
+}
+
+func (r V0alpha2ApiApiAdminRevokeOAuth2LoginSessionsRequest) Subject(subject string) V0alpha2ApiApiAdminRevokeOAuth2LoginSessionsRequest {
+	r.subject = &subject
+	return r
+}
+
+func (r V0alpha2ApiApiAdminRevokeOAuth2LoginSessionsRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AdminRevokeOAuth2LoginSessionsExecute(r)
+}
+
+/*
+ * AdminRevokeOAuth2LoginSessions Invalidates All OAuth 2.0 Login Sessions of a Certain User
+ * This endpoint invalidates a subject's authentication session. After revoking the authentication session, the subject
+has to re-authenticate at ORY Hydra. This endpoint does not invalidate any tokens and does not work with OpenID Connect
+Front- or Back-channel logout.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiAdminRevokeOAuth2LoginSessionsRequest
+ */
+func (a *V0alpha2ApiService) AdminRevokeOAuth2LoginSessions(ctx context.Context) V0alpha2ApiApiAdminRevokeOAuth2LoginSessionsRequest {
+	return V0alpha2ApiApiAdminRevokeOAuth2LoginSessionsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *V0alpha2ApiService) AdminRevokeOAuth2LoginSessionsExecute(r V0alpha2ApiApiAdminRevokeOAuth2LoginSessionsRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminRevokeOAuth2LoginSessions")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/oauth2/auth/sessions/login"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.subject == nil {
+		return nil, reportError("subject is required and must be specified")
+	}
+
+	localVarQueryParams.Add("subject", parameterToString(*r.subject, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminTrustOAuth2JwtGrantIssuerRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	adminTrustOAuth2JwtGrantIssuerBody *AdminTrustOAuth2JwtGrantIssuerBody
+}
+
+func (r V0alpha2ApiApiAdminTrustOAuth2JwtGrantIssuerRequest) AdminTrustOAuth2JwtGrantIssuerBody(adminTrustOAuth2JwtGrantIssuerBody AdminTrustOAuth2JwtGrantIssuerBody) V0alpha2ApiApiAdminTrustOAuth2JwtGrantIssuerRequest {
+	r.adminTrustOAuth2JwtGrantIssuerBody = &adminTrustOAuth2JwtGrantIssuerBody
+	return r
+}
+
+func (r V0alpha2ApiApiAdminTrustOAuth2JwtGrantIssuerRequest) Execute() (*TrustedOAuth2JwtGrantIssuer, *http.Response, error) {
+	return r.ApiService.AdminTrustOAuth2JwtGrantIssuerExecute(r)
+}
+
+/*
+ * AdminTrustOAuth2JwtGrantIssuer Trust an OAuth2 JWT Bearer Grant Type Issuer
+ * Use this endpoint to establish a trust relationship for a JWT issuer
+to perform JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication
+and Authorization Grants [RFC7523](https://datatracker.ietf.org/doc/html/rfc7523).
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiAdminTrustOAuth2JwtGrantIssuerRequest
+ */
+func (a *V0alpha2ApiService) AdminTrustOAuth2JwtGrantIssuer(ctx context.Context) V0alpha2ApiApiAdminTrustOAuth2JwtGrantIssuerRequest {
+	return V0alpha2ApiApiAdminTrustOAuth2JwtGrantIssuerRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return TrustedOAuth2JwtGrantIssuer
+ */
+func (a *V0alpha2ApiService) AdminTrustOAuth2JwtGrantIssuerExecute(r V0alpha2ApiApiAdminTrustOAuth2JwtGrantIssuerRequest) (*TrustedOAuth2JwtGrantIssuer, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *TrustedOAuth2JwtGrantIssuer
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminTrustOAuth2JwtGrantIssuer")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/trust/grants/jwt-bearer/issuers"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.adminTrustOAuth2JwtGrantIssuerBody
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type V0alpha2ApiApiAdminUpdateIdentityRequest struct {
 	ctx context.Context
 	ApiService V0alpha2Api
@@ -2077,10 +6828,7 @@ func (r V0alpha2ApiApiAdminUpdateIdentityRequest) Execute() (*Identity, *http.Re
 
 /*
  * AdminUpdateIdentity Update an Identity
- * This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...)
-using this method! A way to achieve that will be introduced in the future.
-
-The full identity payload (except credentials) is expected. This endpoint does not support patching.
+ * This endpoint updates an identity. The full identity payload (except credentials) is expected. This endpoint does not support patching.
 
 Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -2201,6 +6949,527 @@ func (a *V0alpha2ApiService) AdminUpdateIdentityExecute(r V0alpha2ApiApiAdminUpd
 			}
 			newErr.model = v
 		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminUpdateJsonWebKeyRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	set string
+	kid string
+	jsonWebKey *JsonWebKey
+}
+
+func (r V0alpha2ApiApiAdminUpdateJsonWebKeyRequest) JsonWebKey(jsonWebKey JsonWebKey) V0alpha2ApiApiAdminUpdateJsonWebKeyRequest {
+	r.jsonWebKey = &jsonWebKey
+	return r
+}
+
+func (r V0alpha2ApiApiAdminUpdateJsonWebKeyRequest) Execute() (*JsonWebKey, *http.Response, error) {
+	return r.ApiService.AdminUpdateJsonWebKeyExecute(r)
+}
+
+/*
+ * AdminUpdateJsonWebKey Update a JSON Web Key
+ * Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.
+
+A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param set The JSON Web Key Set
+ * @param kid The JSON Web Key ID (kid)
+ * @return V0alpha2ApiApiAdminUpdateJsonWebKeyRequest
+ */
+func (a *V0alpha2ApiService) AdminUpdateJsonWebKey(ctx context.Context, set string, kid string) V0alpha2ApiApiAdminUpdateJsonWebKeyRequest {
+	return V0alpha2ApiApiAdminUpdateJsonWebKeyRequest{
+		ApiService: a,
+		ctx: ctx,
+		set: set,
+		kid: kid,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return JsonWebKey
+ */
+func (a *V0alpha2ApiService) AdminUpdateJsonWebKeyExecute(r V0alpha2ApiApiAdminUpdateJsonWebKeyRequest) (*JsonWebKey, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *JsonWebKey
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminUpdateJsonWebKey")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/keys/{set}/{kid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterToString(r.set, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"kid"+"}", url.PathEscape(parameterToString(r.kid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.jsonWebKey
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminUpdateJsonWebKeySetRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	set string
+	jsonWebKeySet *JsonWebKeySet
+}
+
+func (r V0alpha2ApiApiAdminUpdateJsonWebKeySetRequest) JsonWebKeySet(jsonWebKeySet JsonWebKeySet) V0alpha2ApiApiAdminUpdateJsonWebKeySetRequest {
+	r.jsonWebKeySet = &jsonWebKeySet
+	return r
+}
+
+func (r V0alpha2ApiApiAdminUpdateJsonWebKeySetRequest) Execute() (*JsonWebKeySet, *http.Response, error) {
+	return r.ApiService.AdminUpdateJsonWebKeySetExecute(r)
+}
+
+/*
+ * AdminUpdateJsonWebKeySet Update a JSON Web Key Set
+ * Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.
+
+A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param set The JSON Web Key Set
+ * @return V0alpha2ApiApiAdminUpdateJsonWebKeySetRequest
+ */
+func (a *V0alpha2ApiService) AdminUpdateJsonWebKeySet(ctx context.Context, set string) V0alpha2ApiApiAdminUpdateJsonWebKeySetRequest {
+	return V0alpha2ApiApiAdminUpdateJsonWebKeySetRequest{
+		ApiService: a,
+		ctx: ctx,
+		set: set,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return JsonWebKeySet
+ */
+func (a *V0alpha2ApiService) AdminUpdateJsonWebKeySetExecute(r V0alpha2ApiApiAdminUpdateJsonWebKeySetRequest) (*JsonWebKeySet, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *JsonWebKeySet
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminUpdateJsonWebKeySet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/keys/{set}"
+	localVarPath = strings.Replace(localVarPath, "{"+"set"+"}", url.PathEscape(parameterToString(r.set, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.jsonWebKeySet
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiAdminUpdateOAuth2ClientRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	id string
+	oAuth2Client *OAuth2Client
+}
+
+func (r V0alpha2ApiApiAdminUpdateOAuth2ClientRequest) OAuth2Client(oAuth2Client OAuth2Client) V0alpha2ApiApiAdminUpdateOAuth2ClientRequest {
+	r.oAuth2Client = &oAuth2Client
+	return r
+}
+
+func (r V0alpha2ApiApiAdminUpdateOAuth2ClientRequest) Execute() (*OAuth2Client, *http.Response, error) {
+	return r.ApiService.AdminUpdateOAuth2ClientExecute(r)
+}
+
+/*
+ * AdminUpdateOAuth2Client Update an OAuth 2.0 Client
+ * Update an existing OAuth 2.0 Client. If you pass `client_secret` the secret is used, otherwise a random secret
+is generated. The secret is echoed in the response. It is not possible to retrieve it later on.
+
+OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id The id of the OAuth 2.0 Client.
+ * @return V0alpha2ApiApiAdminUpdateOAuth2ClientRequest
+ */
+func (a *V0alpha2ApiService) AdminUpdateOAuth2Client(ctx context.Context, id string) V0alpha2ApiApiAdminUpdateOAuth2ClientRequest {
+	return V0alpha2ApiApiAdminUpdateOAuth2ClientRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return OAuth2Client
+ */
+func (a *V0alpha2ApiService) AdminUpdateOAuth2ClientExecute(r V0alpha2ApiApiAdminUpdateOAuth2ClientRequest) (*OAuth2Client, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *OAuth2Client
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.AdminUpdateOAuth2Client")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/clients/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.oAuth2Client == nil {
+		return localVarReturnValue, nil, reportError("oAuth2Client is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.oAuth2Client
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiCreateProjectRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	createProjectBody *CreateProjectBody
+}
+
+func (r V0alpha2ApiApiCreateProjectRequest) CreateProjectBody(createProjectBody CreateProjectBody) V0alpha2ApiApiCreateProjectRequest {
+	r.createProjectBody = &createProjectBody
+	return r
+}
+
+func (r V0alpha2ApiApiCreateProjectRequest) Execute() (*Project, *http.Response, error) {
+	return r.ApiService.CreateProjectExecute(r)
+}
+
+/*
+ * CreateProject Create a Project
+ * Creates a new project.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiCreateProjectRequest
+ */
+func (a *V0alpha2ApiService) CreateProject(ctx context.Context) V0alpha2ApiApiCreateProjectRequest {
+	return V0alpha2ApiApiCreateProjectRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return Project
+ */
+func (a *V0alpha2ApiService) CreateProjectExecute(r V0alpha2ApiApiCreateProjectRequest) (*Project, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *Project
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.CreateProject")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createProjectBody
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2354,26 +7623,751 @@ func (a *V0alpha2ApiService) CreateSelfServiceLogoutFlowUrlForBrowsersExecute(r 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type V0alpha2ApiApiGetJsonSchemaRequest struct {
+type V0alpha2ApiApiDiscoverJsonWebKeysRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+}
+
+
+func (r V0alpha2ApiApiDiscoverJsonWebKeysRequest) Execute() (*JsonWebKeySet, *http.Response, error) {
+	return r.ApiService.DiscoverJsonWebKeysExecute(r)
+}
+
+/*
+ * DiscoverJsonWebKeys Discover JSON Web Keys
+ * This endpoint returns JSON Web Keys required to verifying OpenID Connect ID Tokens and,
+if enabled, OAuth 2.0 JWT Access Tokens. This endpoint can be used with client libraries like
+[node-jwks-rsa](https://github.com/auth0/node-jwks-rsa) among others.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiDiscoverJsonWebKeysRequest
+ */
+func (a *V0alpha2ApiService) DiscoverJsonWebKeys(ctx context.Context) V0alpha2ApiApiDiscoverJsonWebKeysRequest {
+	return V0alpha2ApiApiDiscoverJsonWebKeysRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return JsonWebKeySet
+ */
+func (a *V0alpha2ApiService) DiscoverJsonWebKeysExecute(r V0alpha2ApiApiDiscoverJsonWebKeysRequest) (*JsonWebKeySet, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *JsonWebKeySet
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.DiscoverJsonWebKeys")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/.well-known/jwks.json"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiDiscoverOidcConfigurationRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+}
+
+
+func (r V0alpha2ApiApiDiscoverOidcConfigurationRequest) Execute() (*OidcConfiguration, *http.Response, error) {
+	return r.ApiService.DiscoverOidcConfigurationExecute(r)
+}
+
+/*
+ * DiscoverOidcConfiguration OpenID Connect Discovery
+ * The well known endpoint an be used to retrieve information for OpenID Connect clients. We encourage you to not roll
+your own OpenID Connect client but to use an OpenID Connect client library instead. You can learn more on this
+flow at https://openid.net/specs/openid-connect-discovery-1_0.html .
+
+Popular libraries for OpenID Connect clients include oidc-client-js (JavaScript), go-oidc (Golang), and others.
+For a full list of clients go here: https://openid.net/developers/certified/
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiDiscoverOidcConfigurationRequest
+ */
+func (a *V0alpha2ApiService) DiscoverOidcConfiguration(ctx context.Context) V0alpha2ApiApiDiscoverOidcConfigurationRequest {
+	return V0alpha2ApiApiDiscoverOidcConfigurationRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return OidcConfiguration
+ */
+func (a *V0alpha2ApiService) DiscoverOidcConfigurationExecute(r V0alpha2ApiApiDiscoverOidcConfigurationRequest) (*OidcConfiguration, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *OidcConfiguration
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.DiscoverOidcConfiguration")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/.well-known/openid-configuration"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiDynamicClientRegistrationCreateOAuth2ClientRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	oAuth2Client *OAuth2Client
+}
+
+func (r V0alpha2ApiApiDynamicClientRegistrationCreateOAuth2ClientRequest) OAuth2Client(oAuth2Client OAuth2Client) V0alpha2ApiApiDynamicClientRegistrationCreateOAuth2ClientRequest {
+	r.oAuth2Client = &oAuth2Client
+	return r
+}
+
+func (r V0alpha2ApiApiDynamicClientRegistrationCreateOAuth2ClientRequest) Execute() (*OAuth2Client, *http.Response, error) {
+	return r.ApiService.DynamicClientRegistrationCreateOAuth2ClientExecute(r)
+}
+
+/*
+ * DynamicClientRegistrationCreateOAuth2Client Register an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+ * This endpoint behaves like the administrative counterpart (`createOAuth2Client`) but is capable of facing the
+public internet directly and can be used in self-service. It implements the OpenID Connect
+Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint
+is disabled by default. It can be enabled by an administrator.
+
+Please note that using this endpoint you are not able to choose the `client_secret` nor the `client_id` as those
+values will be server generated when specifying `token_endpoint_auth_method` as `client_secret_basic` or
+`client_secret_post`.
+
+The `client_secret` will be returned in the response and you will not be able to retrieve it later on.
+Write the secret down and keep it somewhere safe.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiDynamicClientRegistrationCreateOAuth2ClientRequest
+ */
+func (a *V0alpha2ApiService) DynamicClientRegistrationCreateOAuth2Client(ctx context.Context) V0alpha2ApiApiDynamicClientRegistrationCreateOAuth2ClientRequest {
+	return V0alpha2ApiApiDynamicClientRegistrationCreateOAuth2ClientRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return OAuth2Client
+ */
+func (a *V0alpha2ApiService) DynamicClientRegistrationCreateOAuth2ClientExecute(r V0alpha2ApiApiDynamicClientRegistrationCreateOAuth2ClientRequest) (*OAuth2Client, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *OAuth2Client
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.DynamicClientRegistrationCreateOAuth2Client")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/oauth2/register"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.oAuth2Client == nil {
+		return localVarReturnValue, nil, reportError("oAuth2Client is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.oAuth2Client
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiDynamicClientRegistrationDeleteOAuth2ClientRequest struct {
 	ctx context.Context
 	ApiService V0alpha2Api
 	id string
 }
 
 
-func (r V0alpha2ApiApiGetJsonSchemaRequest) Execute() (map[string]interface{}, *http.Response, error) {
-	return r.ApiService.GetJsonSchemaExecute(r)
+func (r V0alpha2ApiApiDynamicClientRegistrationDeleteOAuth2ClientRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DynamicClientRegistrationDeleteOAuth2ClientExecute(r)
 }
 
 /*
- * GetJsonSchema Method for GetJsonSchema
+ * DynamicClientRegistrationDeleteOAuth2Client Deletes an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+ * This endpoint behaves like the administrative counterpart (`deleteOAuth2Client`) but is capable of facing the
+public internet directly and can be used in self-service. It implements the OpenID Connect
+Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint
+is disabled by default. It can be enabled by an administrator.
+
+To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client
+uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query.
+If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.
+
+OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id The id of the OAuth 2.0 Client.
+ * @return V0alpha2ApiApiDynamicClientRegistrationDeleteOAuth2ClientRequest
+ */
+func (a *V0alpha2ApiService) DynamicClientRegistrationDeleteOAuth2Client(ctx context.Context, id string) V0alpha2ApiApiDynamicClientRegistrationDeleteOAuth2ClientRequest {
+	return V0alpha2ApiApiDynamicClientRegistrationDeleteOAuth2ClientRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *V0alpha2ApiService) DynamicClientRegistrationDeleteOAuth2ClientExecute(r V0alpha2ApiApiDynamicClientRegistrationDeleteOAuth2ClientRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.DynamicClientRegistrationDeleteOAuth2Client")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/oauth2/register/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiDynamicClientRegistrationGetOAuth2ClientRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	id string
+}
+
+
+func (r V0alpha2ApiApiDynamicClientRegistrationGetOAuth2ClientRequest) Execute() (*OAuth2Client, *http.Response, error) {
+	return r.ApiService.DynamicClientRegistrationGetOAuth2ClientExecute(r)
+}
+
+/*
+ * DynamicClientRegistrationGetOAuth2Client Get an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+ * This endpoint behaves like the administrative counterpart (`getOAuth2Client`) but is capable of facing the
+public internet directly and can be used in self-service. It implements the OpenID Connect
+Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint
+is disabled by default. It can be enabled by an administrator.
+
+To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client
+uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query.
+If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.
+
+OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id The id of the OAuth 2.0 Client.
+ * @return V0alpha2ApiApiDynamicClientRegistrationGetOAuth2ClientRequest
+ */
+func (a *V0alpha2ApiService) DynamicClientRegistrationGetOAuth2Client(ctx context.Context, id string) V0alpha2ApiApiDynamicClientRegistrationGetOAuth2ClientRequest {
+	return V0alpha2ApiApiDynamicClientRegistrationGetOAuth2ClientRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return OAuth2Client
+ */
+func (a *V0alpha2ApiService) DynamicClientRegistrationGetOAuth2ClientExecute(r V0alpha2ApiApiDynamicClientRegistrationGetOAuth2ClientRequest) (*OAuth2Client, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *OAuth2Client
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.DynamicClientRegistrationGetOAuth2Client")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/oauth2/register/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiDynamicClientRegistrationUpdateOAuth2ClientRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	id string
+	oAuth2Client *OAuth2Client
+}
+
+func (r V0alpha2ApiApiDynamicClientRegistrationUpdateOAuth2ClientRequest) OAuth2Client(oAuth2Client OAuth2Client) V0alpha2ApiApiDynamicClientRegistrationUpdateOAuth2ClientRequest {
+	r.oAuth2Client = &oAuth2Client
+	return r
+}
+
+func (r V0alpha2ApiApiDynamicClientRegistrationUpdateOAuth2ClientRequest) Execute() (*OAuth2Client, *http.Response, error) {
+	return r.ApiService.DynamicClientRegistrationUpdateOAuth2ClientExecute(r)
+}
+
+/*
+ * DynamicClientRegistrationUpdateOAuth2Client Update an OAuth 2.0 Client using the OpenID / OAuth2 Dynamic Client Registration Management Protocol
+ * This endpoint behaves like the administrative counterpart (`updateOAuth2Client`) but is capable of facing the
+public internet directly and can be used in self-service. It implements the OpenID Connect
+Dynamic Client Registration Protocol. This feature needs to be enabled in the configuration. This endpoint
+is disabled by default. It can be enabled by an administrator.
+
+If you pass `client_secret` the secret is used, otherwise a random secret
+is generated. The secret is echoed in the response. It is not possible to retrieve it later on.
+
+To use this endpoint, you will need to present the client's authentication credentials. If the OAuth2 Client
+uses the Token Endpoint Authentication Method `client_secret_post`, you need to present the client secret in the URL query.
+If it uses `client_secret_basic`, present the Client ID and the Client Secret in the Authorization header.
+
+OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
+generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id The id of the OAuth 2.0 Client.
+ * @return V0alpha2ApiApiDynamicClientRegistrationUpdateOAuth2ClientRequest
+ */
+func (a *V0alpha2ApiService) DynamicClientRegistrationUpdateOAuth2Client(ctx context.Context, id string) V0alpha2ApiApiDynamicClientRegistrationUpdateOAuth2ClientRequest {
+	return V0alpha2ApiApiDynamicClientRegistrationUpdateOAuth2ClientRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return OAuth2Client
+ */
+func (a *V0alpha2ApiService) DynamicClientRegistrationUpdateOAuth2ClientExecute(r V0alpha2ApiApiDynamicClientRegistrationUpdateOAuth2ClientRequest) (*OAuth2Client, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *OAuth2Client
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.DynamicClientRegistrationUpdateOAuth2Client")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/oauth2/register/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.oAuth2Client == nil {
+		return localVarReturnValue, nil, reportError("oAuth2Client is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.oAuth2Client
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiGetIdentitySchemaRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	id string
+}
+
+
+func (r V0alpha2ApiApiGetIdentitySchemaRequest) Execute() (map[string]interface{}, *http.Response, error) {
+	return r.ApiService.GetIdentitySchemaExecute(r)
+}
+
+/*
+ * GetIdentitySchema Method for GetIdentitySchema
  * Get a JSON Schema
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id ID must be set to the ID of schema you want to get
- * @return V0alpha2ApiApiGetJsonSchemaRequest
+ * @return V0alpha2ApiApiGetIdentitySchemaRequest
  */
-func (a *V0alpha2ApiService) GetJsonSchema(ctx context.Context, id string) V0alpha2ApiApiGetJsonSchemaRequest {
-	return V0alpha2ApiApiGetJsonSchemaRequest{
+func (a *V0alpha2ApiService) GetIdentitySchema(ctx context.Context, id string) V0alpha2ApiApiGetIdentitySchemaRequest {
+	return V0alpha2ApiApiGetIdentitySchemaRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -2384,7 +8378,7 @@ func (a *V0alpha2ApiService) GetJsonSchema(ctx context.Context, id string) V0alp
  * Execute executes the request
  * @return map[string]interface{}
  */
-func (a *V0alpha2ApiService) GetJsonSchemaExecute(r V0alpha2ApiApiGetJsonSchemaRequest) (map[string]interface{}, *http.Response, error) {
+func (a *V0alpha2ApiService) GetIdentitySchemaExecute(r V0alpha2ApiApiGetIdentitySchemaRequest) (map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2394,7 +8388,7 @@ func (a *V0alpha2ApiService) GetJsonSchemaExecute(r V0alpha2ApiApiGetJsonSchemaR
 		localVarReturnValue  map[string]interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.GetJsonSchema")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.GetIdentitySchema")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2457,6 +8451,400 @@ func (a *V0alpha2ApiService) GetJsonSchemaExecute(r V0alpha2ApiApiGetJsonSchemaR
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v JsonError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiGetOidcUserInfoRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+}
+
+
+func (r V0alpha2ApiApiGetOidcUserInfoRequest) Execute() (*OidcUserInfo, *http.Response, error) {
+	return r.ApiService.GetOidcUserInfoExecute(r)
+}
+
+/*
+ * GetOidcUserInfo OpenID Connect Userinfo
+ * This endpoint returns the payload of the ID Token, including the idTokenExtra values, of
+the provided OAuth 2.0 Access Token.
+
+For more information please [refer to the spec](http://openid.net/specs/openid-connect-core-1_0.html#UserInfo).
+
+In the case of authentication error, a WWW-Authenticate header might be set in the response
+with more information about the error. See [the spec](https://datatracker.ietf.org/doc/html/rfc6750#section-3)
+for more details about header format.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiGetOidcUserInfoRequest
+ */
+func (a *V0alpha2ApiService) GetOidcUserInfo(ctx context.Context) V0alpha2ApiApiGetOidcUserInfoRequest {
+	return V0alpha2ApiApiGetOidcUserInfoRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return OidcUserInfo
+ */
+func (a *V0alpha2ApiService) GetOidcUserInfoExecute(r V0alpha2ApiApiGetOidcUserInfoRequest) (*OidcUserInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *OidcUserInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.GetOidcUserInfo")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/userinfo"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiGetProjectRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	projectId string
+}
+
+
+func (r V0alpha2ApiApiGetProjectRequest) Execute() (*Project, *http.Response, error) {
+	return r.ApiService.GetProjectExecute(r)
+}
+
+/*
+ * GetProject Get a Project
+ * Get a projects you have access to by its ID.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param projectId Project ID  The project's ID.
+ * @return V0alpha2ApiApiGetProjectRequest
+ */
+func (a *V0alpha2ApiService) GetProject(ctx context.Context, projectId string) V0alpha2ApiApiGetProjectRequest {
+	return V0alpha2ApiApiGetProjectRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectId: projectId,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return Project
+ */
+func (a *V0alpha2ApiService) GetProjectExecute(r V0alpha2ApiApiGetProjectRequest) (*Project, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *Project
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.GetProject")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects/{project_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiGetProjectMembersRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	projectId string
+}
+
+
+func (r V0alpha2ApiApiGetProjectMembersRequest) Execute() ([]CloudAccount, *http.Response, error) {
+	return r.ApiService.GetProjectMembersExecute(r)
+}
+
+/*
+ * GetProjectMembers Get all members associated with this project.
+ * This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param projectId Project ID  The project's ID.
+ * @return V0alpha2ApiApiGetProjectMembersRequest
+ */
+func (a *V0alpha2ApiService) GetProjectMembers(ctx context.Context, projectId string) V0alpha2ApiApiGetProjectMembersRequest {
+	return V0alpha2ApiApiGetProjectMembersRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectId: projectId,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return []CloudAccount
+ */
+func (a *V0alpha2ApiService) GetProjectMembersExecute(r V0alpha2ApiApiGetProjectMembersRequest) ([]CloudAccount, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  []CloudAccount
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.GetProjectMembers")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects/{project_id}/members"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2727,7 +9115,7 @@ func (a *V0alpha2ApiService) GetSelfServiceLoginFlowExecute(r V0alpha2ApiApiGetS
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.cookie != nil {
-		localVarHeaderParams["cookie"] = parameterToString(*r.cookie, "")
+		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -2902,7 +9290,7 @@ func (a *V0alpha2ApiService) GetSelfServiceRecoveryFlowExecute(r V0alpha2ApiApiG
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.cookie != nil {
-		localVarHeaderParams["cookie"] = parameterToString(*r.cookie, "")
+		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3072,7 +9460,7 @@ func (a *V0alpha2ApiService) GetSelfServiceRegistrationFlowExecute(r V0alpha2Api
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.cookie != nil {
-		localVarHeaderParams["cookie"] = parameterToString(*r.cookie, "")
+		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3256,7 +9644,7 @@ func (a *V0alpha2ApiService) GetSelfServiceSettingsFlowExecute(r V0alpha2ApiApiG
 		localVarHeaderParams["X-Session-Token"] = parameterToString(*r.xSessionToken, "")
 	}
 	if r.cookie != nil {
-		localVarHeaderParams["cookie"] = parameterToString(*r.cookie, "")
+		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -4971,7 +11359,7 @@ you vulnerable to a variety of CSRF attacks.
 
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
-More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/selfservice/flows/verify-email-account-activation).
+More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation).
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return V0alpha2ApiApiInitializeSelfServiceVerificationFlowWithoutBrowserRequest
  */
@@ -5096,7 +11484,7 @@ func (r V0alpha2ApiApiListIdentitySchemasRequest) Page(page int64) V0alpha2ApiAp
 	return r
 }
 
-func (r V0alpha2ApiApiListIdentitySchemasRequest) Execute() ([]IdentitySchema, *http.Response, error) {
+func (r V0alpha2ApiApiListIdentitySchemasRequest) Execute() ([]IdentitySchemaContainer, *http.Response, error) {
 	return r.ApiService.ListIdentitySchemasExecute(r)
 }
 
@@ -5115,16 +11503,16 @@ func (a *V0alpha2ApiService) ListIdentitySchemas(ctx context.Context) V0alpha2Ap
 
 /*
  * Execute executes the request
- * @return []IdentitySchema
+ * @return []IdentitySchemaContainer
  */
-func (a *V0alpha2ApiService) ListIdentitySchemasExecute(r V0alpha2ApiApiListIdentitySchemasRequest) ([]IdentitySchema, *http.Response, error) {
+func (a *V0alpha2ApiService) ListIdentitySchemasExecute(r V0alpha2ApiApiListIdentitySchemasRequest) ([]IdentitySchemaContainer, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []IdentitySchema
+		localVarReturnValue  []IdentitySchemaContainer
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.ListIdentitySchemas")
@@ -5192,6 +11580,145 @@ func (a *V0alpha2ApiService) ListIdentitySchemasExecute(r V0alpha2ApiApiListIden
 			}
 			newErr.model = v
 		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiListProjectsRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+}
+
+
+func (r V0alpha2ApiApiListProjectsRequest) Execute() ([]ProjectMetadata, *http.Response, error) {
+	return r.ApiService.ListProjectsExecute(r)
+}
+
+/*
+ * ListProjects List All Projects
+ * Lists all projects you have access to.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiListProjectsRequest
+ */
+func (a *V0alpha2ApiService) ListProjects(ctx context.Context) V0alpha2ApiApiListProjectsRequest {
+	return V0alpha2ApiApiListProjectsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return []ProjectMetadata
+ */
+func (a *V0alpha2ApiService) ListProjectsExecute(r V0alpha2ApiApiListProjectsRequest) ([]ProjectMetadata, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  []ProjectMetadata
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.ListProjects")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -5380,6 +11907,932 @@ func (a *V0alpha2ApiService) ListSessionsExecute(r V0alpha2ApiApiListSessionsReq
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiPatchProjectRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	projectId string
+	jsonPatch *[]JsonPatch
+}
+
+func (r V0alpha2ApiApiPatchProjectRequest) JsonPatch(jsonPatch []JsonPatch) V0alpha2ApiApiPatchProjectRequest {
+	r.jsonPatch = &jsonPatch
+	return r
+}
+
+func (r V0alpha2ApiApiPatchProjectRequest) Execute() (*SuccessfulProjectUpdate, *http.Response, error) {
+	return r.ApiService.PatchProjectExecute(r)
+}
+
+/*
+ * PatchProject Patch an Ory Cloud Project Configuration`
+ * Deprecated: Use the `patchProjectWithRevision` endpoint instead to specify the exact revision the patch was generated for.
+
+This endpoints allows you to patch individual Ory Cloud Project configuration keys for
+Ory's services (identity, permission, ...). The configuration format is fully compatible
+with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).
+
+This endpoint expects the `version` key to be set in the payload. If it is unset, it
+will try to import the config as if it is from the most recent version.
+
+If you have an older version of a configuration, you should set the version key in the payload!
+
+While this endpoint is able to process all configuration items related to features (e.g. password reset),
+it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the
+open source.
+
+For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings
+to help you understand which parts of your config could not be processed.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param projectId Project ID  The project's ID.
+ * @return V0alpha2ApiApiPatchProjectRequest
+ */
+func (a *V0alpha2ApiService) PatchProject(ctx context.Context, projectId string) V0alpha2ApiApiPatchProjectRequest {
+	return V0alpha2ApiApiPatchProjectRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectId: projectId,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return SuccessfulProjectUpdate
+ */
+func (a *V0alpha2ApiService) PatchProjectExecute(r V0alpha2ApiApiPatchProjectRequest) (*SuccessfulProjectUpdate, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *SuccessfulProjectUpdate
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.PatchProject")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects/{project_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.jsonPatch
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiPerformOAuth2AuthorizationFlowRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+}
+
+
+func (r V0alpha2ApiApiPerformOAuth2AuthorizationFlowRequest) Execute() (*OAuth2ApiError, *http.Response, error) {
+	return r.ApiService.PerformOAuth2AuthorizationFlowExecute(r)
+}
+
+/*
+ * PerformOAuth2AuthorizationFlow The OAuth 2.0 Authorize Endpoint
+ * This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows.
+OAuth2 is a very popular protocol and a library for your programming language will exists.
+
+To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc6749
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiPerformOAuth2AuthorizationFlowRequest
+ */
+func (a *V0alpha2ApiService) PerformOAuth2AuthorizationFlow(ctx context.Context) V0alpha2ApiApiPerformOAuth2AuthorizationFlowRequest {
+	return V0alpha2ApiApiPerformOAuth2AuthorizationFlowRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return OAuth2ApiError
+ */
+func (a *V0alpha2ApiService) PerformOAuth2AuthorizationFlowExecute(r V0alpha2ApiApiPerformOAuth2AuthorizationFlowRequest) (*OAuth2ApiError, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *OAuth2ApiError
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.PerformOAuth2AuthorizationFlow")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/oauth2/auth"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiPerformOAuth2TokenFlowRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	grantType *string
+	clientId *string
+	code *string
+	redirectUri *string
+	refreshToken *string
+}
+
+func (r V0alpha2ApiApiPerformOAuth2TokenFlowRequest) GrantType(grantType string) V0alpha2ApiApiPerformOAuth2TokenFlowRequest {
+	r.grantType = &grantType
+	return r
+}
+func (r V0alpha2ApiApiPerformOAuth2TokenFlowRequest) ClientId(clientId string) V0alpha2ApiApiPerformOAuth2TokenFlowRequest {
+	r.clientId = &clientId
+	return r
+}
+func (r V0alpha2ApiApiPerformOAuth2TokenFlowRequest) Code(code string) V0alpha2ApiApiPerformOAuth2TokenFlowRequest {
+	r.code = &code
+	return r
+}
+func (r V0alpha2ApiApiPerformOAuth2TokenFlowRequest) RedirectUri(redirectUri string) V0alpha2ApiApiPerformOAuth2TokenFlowRequest {
+	r.redirectUri = &redirectUri
+	return r
+}
+func (r V0alpha2ApiApiPerformOAuth2TokenFlowRequest) RefreshToken(refreshToken string) V0alpha2ApiApiPerformOAuth2TokenFlowRequest {
+	r.refreshToken = &refreshToken
+	return r
+}
+
+func (r V0alpha2ApiApiPerformOAuth2TokenFlowRequest) Execute() (*OAuth2TokenResponse, *http.Response, error) {
+	return r.ApiService.PerformOAuth2TokenFlowExecute(r)
+}
+
+/*
+ * PerformOAuth2TokenFlow The OAuth 2.0 Token Endpoint
+ * The client makes a request to the token endpoint by sending the
+following parameters using the "application/x-www-form-urlencoded" HTTP
+request entity-body.
+
+> Do not implement a client for this endpoint yourself. Use a library. There are many libraries
+> available for any programming language. You can find a list of libraries here: https://oauth.net/code/
+>
+> Do note that Hydra SDK does not implement this endpoint properly. Use one of the libraries listed above
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiPerformOAuth2TokenFlowRequest
+ */
+func (a *V0alpha2ApiService) PerformOAuth2TokenFlow(ctx context.Context) V0alpha2ApiApiPerformOAuth2TokenFlowRequest {
+	return V0alpha2ApiApiPerformOAuth2TokenFlowRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return OAuth2TokenResponse
+ */
+func (a *V0alpha2ApiService) PerformOAuth2TokenFlowExecute(r V0alpha2ApiApiPerformOAuth2TokenFlowRequest) (*OAuth2TokenResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *OAuth2TokenResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.PerformOAuth2TokenFlow")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/oauth2/token"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.grantType == nil {
+		return localVarReturnValue, nil, reportError("grantType is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/x-www-form-urlencoded"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.clientId != nil {
+		localVarFormParams.Add("client_id", parameterToString(*r.clientId, ""))
+	}
+	if r.code != nil {
+		localVarFormParams.Add("code", parameterToString(*r.code, ""))
+	}
+	localVarFormParams.Add("grant_type", parameterToString(*r.grantType, ""))
+	if r.redirectUri != nil {
+		localVarFormParams.Add("redirect_uri", parameterToString(*r.redirectUri, ""))
+	}
+	if r.refreshToken != nil {
+		localVarFormParams.Add("refresh_token", parameterToString(*r.refreshToken, ""))
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiPerformOidcFrontOrBackChannelLogoutRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+}
+
+
+func (r V0alpha2ApiApiPerformOidcFrontOrBackChannelLogoutRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PerformOidcFrontOrBackChannelLogoutExecute(r)
+}
+
+/*
+ * PerformOidcFrontOrBackChannelLogout OpenID Connect Front- or Back-channel Enabled Logout
+ * This endpoint initiates and completes user logout at Ory Hydra and initiates OpenID Connect Front- / Back-channel logout:
+
+https://openid.net/specs/openid-connect-frontchannel-1_0.html
+https://openid.net/specs/openid-connect-backchannel-1_0.html
+
+Back-channel logout is performed asynchronously and does not affect logout flow.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiPerformOidcFrontOrBackChannelLogoutRequest
+ */
+func (a *V0alpha2ApiService) PerformOidcFrontOrBackChannelLogout(ctx context.Context) V0alpha2ApiApiPerformOidcFrontOrBackChannelLogoutRequest {
+	return V0alpha2ApiApiPerformOidcFrontOrBackChannelLogoutRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *V0alpha2ApiService) PerformOidcFrontOrBackChannelLogoutExecute(r V0alpha2ApiApiPerformOidcFrontOrBackChannelLogoutRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.PerformOidcFrontOrBackChannelLogout")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/oauth2/sessions/logout"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiPurgeProjectRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	projectId string
+}
+
+
+func (r V0alpha2ApiApiPurgeProjectRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PurgeProjectExecute(r)
+}
+
+/*
+ * PurgeProject Irrecoverably Purge a Project
+ * !! Use with extreme caution !!
+
+Using this API endpoint you can purge (completely delete) a project and its data.
+This action can not be undone and will delete ALL your data.
+
+!! Use with extreme caution !!
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param projectId Project ID  The project's ID.
+ * @return V0alpha2ApiApiPurgeProjectRequest
+ */
+func (a *V0alpha2ApiService) PurgeProject(ctx context.Context, projectId string) V0alpha2ApiApiPurgeProjectRequest {
+	return V0alpha2ApiApiPurgeProjectRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectId: projectId,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *V0alpha2ApiService) PurgeProjectExecute(r V0alpha2ApiApiPurgeProjectRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.PurgeProject")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects/{project_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiRemoveProjectMemberRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	projectId string
+	memberId string
+}
+
+
+func (r V0alpha2ApiApiRemoveProjectMemberRequest) Execute() (*http.Response, error) {
+	return r.ApiService.RemoveProjectMemberExecute(r)
+}
+
+/*
+ * RemoveProjectMember Remove a member associated with this project. This also sets their invite status to `REMOVED`.
+ * This endpoint requires the user to be a member of the project with the role `OWNER`.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param projectId Project ID  The project's ID.
+ * @param memberId Member ID
+ * @return V0alpha2ApiApiRemoveProjectMemberRequest
+ */
+func (a *V0alpha2ApiService) RemoveProjectMember(ctx context.Context, projectId string, memberId string) V0alpha2ApiApiRemoveProjectMemberRequest {
+	return V0alpha2ApiApiRemoveProjectMemberRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectId: projectId,
+		memberId: memberId,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *V0alpha2ApiService) RemoveProjectMemberExecute(r V0alpha2ApiApiRemoveProjectMemberRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.RemoveProjectMember")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects/{project_id}/members/{member_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"member_id"+"}", url.PathEscape(parameterToString(r.memberId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiRevokeOAuth2TokenRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	token *string
+}
+
+func (r V0alpha2ApiApiRevokeOAuth2TokenRequest) Token(token string) V0alpha2ApiApiRevokeOAuth2TokenRequest {
+	r.token = &token
+	return r
+}
+
+func (r V0alpha2ApiApiRevokeOAuth2TokenRequest) Execute() (*http.Response, error) {
+	return r.ApiService.RevokeOAuth2TokenExecute(r)
+}
+
+/*
+ * RevokeOAuth2Token Revoke an OAuth2 Access or Refresh Token
+ * Revoking a token (both access and refresh) means that the tokens will be invalid. A revoked access token can no
+longer be used to make access requests, and a revoked refresh token can no longer be used to refresh an access token.
+Revoking a refresh token also invalidates the access token that was created with it. A token may only be revoked by
+the client the token was generated for.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return V0alpha2ApiApiRevokeOAuth2TokenRequest
+ */
+func (a *V0alpha2ApiService) RevokeOAuth2Token(ctx context.Context) V0alpha2ApiApiRevokeOAuth2TokenRequest {
+	return V0alpha2ApiApiRevokeOAuth2TokenRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *V0alpha2ApiService) RevokeOAuth2TokenExecute(r V0alpha2ApiApiRevokeOAuth2TokenRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.RevokeOAuth2Token")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/oauth2/revoke"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.token == nil {
+		return nil, reportError("token is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/x-www-form-urlencoded"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	localVarFormParams.Add("token", parameterToString(*r.token, ""))
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v OAuth2ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }
 
 type V0alpha2ApiApiRevokeSessionRequest struct {
@@ -5671,20 +13124,25 @@ type V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest struct {
 	ctx context.Context
 	ApiService V0alpha2Api
 	flow *string
-	xSessionToken *string
 	submitSelfServiceLoginFlowBody *SubmitSelfServiceLoginFlowBody
+	xSessionToken *string
+	cookie *string
 }
 
 func (r V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest) Flow(flow string) V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest {
 	r.flow = &flow
 	return r
 }
+func (r V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest) SubmitSelfServiceLoginFlowBody(submitSelfServiceLoginFlowBody SubmitSelfServiceLoginFlowBody) V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest {
+	r.submitSelfServiceLoginFlowBody = &submitSelfServiceLoginFlowBody
+	return r
+}
 func (r V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest) XSessionToken(xSessionToken string) V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest {
 	r.xSessionToken = &xSessionToken
 	return r
 }
-func (r V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest) SubmitSelfServiceLoginFlowBody(submitSelfServiceLoginFlowBody SubmitSelfServiceLoginFlowBody) V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest {
-	r.submitSelfServiceLoginFlowBody = &submitSelfServiceLoginFlowBody
+func (r V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest) Cookie(cookie string) V0alpha2ApiApiSubmitSelfServiceLoginFlowRequest {
+	r.cookie = &cookie
 	return r
 }
 
@@ -5705,7 +13163,7 @@ behaves differently for API and browser flows.
 
 API flows expect `application/json` to be sent in the body and responds with
 HTTP 200 and a application/json body with the session token on success;
-HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
+HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body;
 HTTP 400 on form validation errors.
 
 Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with
@@ -5764,6 +13222,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceLoginFlowExecute(r V0alpha2ApiApiS
 	if r.flow == nil {
 		return localVarReturnValue, nil, reportError("flow is required and must be specified")
 	}
+	if r.submitSelfServiceLoginFlowBody == nil {
+		return localVarReturnValue, nil, reportError("submitSelfServiceLoginFlowBody is required and must be specified")
+	}
 
 	localVarQueryParams.Add("flow", parameterToString(*r.flow, ""))
 	// to determine the Content-Type header
@@ -5785,6 +13246,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceLoginFlowExecute(r V0alpha2ApiApiS
 	}
 	if r.xSessionToken != nil {
 		localVarHeaderParams["X-Session-Token"] = parameterToString(*r.xSessionToken, "")
+	}
+	if r.cookie != nil {
+		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	// body params
 	localVarPostBody = r.submitSelfServiceLoginFlowBody
@@ -5812,6 +13276,16 @@ func (a *V0alpha2ApiService) SubmitSelfServiceLoginFlowExecute(r V0alpha2ApiApiS
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v SelfServiceLoginFlow
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 410 {
+			var v JsonError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -6113,20 +13587,25 @@ type V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest struct {
 	ctx context.Context
 	ApiService V0alpha2Api
 	flow *string
-	token *string
 	submitSelfServiceRecoveryFlowBody *SubmitSelfServiceRecoveryFlowBody
+	token *string
+	cookie *string
 }
 
 func (r V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest) Flow(flow string) V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest {
 	r.flow = &flow
 	return r
 }
+func (r V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest) SubmitSelfServiceRecoveryFlowBody(submitSelfServiceRecoveryFlowBody SubmitSelfServiceRecoveryFlowBody) V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest {
+	r.submitSelfServiceRecoveryFlowBody = &submitSelfServiceRecoveryFlowBody
+	return r
+}
 func (r V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest) Token(token string) V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest {
 	r.token = &token
 	return r
 }
-func (r V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest) SubmitSelfServiceRecoveryFlowBody(submitSelfServiceRecoveryFlowBody SubmitSelfServiceRecoveryFlowBody) V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest {
-	r.submitSelfServiceRecoveryFlowBody = &submitSelfServiceRecoveryFlowBody
+func (r V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest) Cookie(cookie string) V0alpha2ApiApiSubmitSelfServiceRecoveryFlowRequest {
+	r.cookie = &cookie
 	return r
 }
 
@@ -6189,6 +13668,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceRecoveryFlowExecute(r V0alpha2ApiA
 	if r.flow == nil {
 		return localVarReturnValue, nil, reportError("flow is required and must be specified")
 	}
+	if r.submitSelfServiceRecoveryFlowBody == nil {
+		return localVarReturnValue, nil, reportError("submitSelfServiceRecoveryFlowBody is required and must be specified")
+	}
 
 	localVarQueryParams.Add("flow", parameterToString(*r.flow, ""))
 	if r.token != nil {
@@ -6210,6 +13692,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceRecoveryFlowExecute(r V0alpha2ApiA
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.cookie != nil {
+		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	// body params
 	localVarPostBody = r.submitSelfServiceRecoveryFlowBody
@@ -6237,6 +13722,16 @@ func (a *V0alpha2ApiService) SubmitSelfServiceRecoveryFlowExecute(r V0alpha2ApiA
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v SelfServiceRecoveryFlow
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 410 {
+			var v JsonError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -6274,6 +13769,7 @@ type V0alpha2ApiApiSubmitSelfServiceRegistrationFlowRequest struct {
 	ApiService V0alpha2Api
 	flow *string
 	submitSelfServiceRegistrationFlowBody *SubmitSelfServiceRegistrationFlowBody
+	cookie *string
 }
 
 func (r V0alpha2ApiApiSubmitSelfServiceRegistrationFlowRequest) Flow(flow string) V0alpha2ApiApiSubmitSelfServiceRegistrationFlowRequest {
@@ -6282,6 +13778,10 @@ func (r V0alpha2ApiApiSubmitSelfServiceRegistrationFlowRequest) Flow(flow string
 }
 func (r V0alpha2ApiApiSubmitSelfServiceRegistrationFlowRequest) SubmitSelfServiceRegistrationFlowBody(submitSelfServiceRegistrationFlowBody SubmitSelfServiceRegistrationFlowBody) V0alpha2ApiApiSubmitSelfServiceRegistrationFlowRequest {
 	r.submitSelfServiceRegistrationFlowBody = &submitSelfServiceRegistrationFlowBody
+	return r
+}
+func (r V0alpha2ApiApiSubmitSelfServiceRegistrationFlowRequest) Cookie(cookie string) V0alpha2ApiApiSubmitSelfServiceRegistrationFlowRequest {
+	r.cookie = &cookie
 	return r
 }
 
@@ -6297,7 +13797,7 @@ behaves differently for API and browser flows.
 API flows expect `application/json` to be sent in the body and respond with
 HTTP 200 and a application/json body with the created identity success - if the session hook is configured the
 `session` and `session_token` will also be included;
-HTTP 303 redirect to a fresh registration flow if the original flow expired with the appropriate error messages set;
+HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body;
 HTTP 400 on form validation errors.
 
 Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with
@@ -6356,6 +13856,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceRegistrationFlowExecute(r V0alpha2
 	if r.flow == nil {
 		return localVarReturnValue, nil, reportError("flow is required and must be specified")
 	}
+	if r.submitSelfServiceRegistrationFlowBody == nil {
+		return localVarReturnValue, nil, reportError("submitSelfServiceRegistrationFlowBody is required and must be specified")
+	}
 
 	localVarQueryParams.Add("flow", parameterToString(*r.flow, ""))
 	// to determine the Content-Type header
@@ -6374,6 +13877,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceRegistrationFlowExecute(r V0alpha2
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.cookie != nil {
+		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	// body params
 	localVarPostBody = r.submitSelfServiceRegistrationFlowBody
@@ -6401,6 +13907,16 @@ func (a *V0alpha2ApiService) SubmitSelfServiceRegistrationFlowExecute(r V0alpha2
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v SelfServiceRegistrationFlow
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 410 {
+			var v JsonError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -6447,20 +13963,25 @@ type V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest struct {
 	ctx context.Context
 	ApiService V0alpha2Api
 	flow *string
-	xSessionToken *string
 	submitSelfServiceSettingsFlowBody *SubmitSelfServiceSettingsFlowBody
+	xSessionToken *string
+	cookie *string
 }
 
 func (r V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest) Flow(flow string) V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest {
 	r.flow = &flow
 	return r
 }
+func (r V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest) SubmitSelfServiceSettingsFlowBody(submitSelfServiceSettingsFlowBody SubmitSelfServiceSettingsFlowBody) V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest {
+	r.submitSelfServiceSettingsFlowBody = &submitSelfServiceSettingsFlowBody
+	return r
+}
 func (r V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest) XSessionToken(xSessionToken string) V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest {
 	r.xSessionToken = &xSessionToken
 	return r
 }
-func (r V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest) SubmitSelfServiceSettingsFlowBody(submitSelfServiceSettingsFlowBody SubmitSelfServiceSettingsFlowBody) V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest {
-	r.submitSelfServiceSettingsFlowBody = &submitSelfServiceSettingsFlowBody
+func (r V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest) Cookie(cookie string) V0alpha2ApiApiSubmitSelfServiceSettingsFlowRequest {
+	r.cookie = &cookie
 	return r
 }
 
@@ -6550,6 +14071,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceSettingsFlowExecute(r V0alpha2ApiA
 	if r.flow == nil {
 		return localVarReturnValue, nil, reportError("flow is required and must be specified")
 	}
+	if r.submitSelfServiceSettingsFlowBody == nil {
+		return localVarReturnValue, nil, reportError("submitSelfServiceSettingsFlowBody is required and must be specified")
+	}
 
 	localVarQueryParams.Add("flow", parameterToString(*r.flow, ""))
 	// to determine the Content-Type header
@@ -6571,6 +14095,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceSettingsFlowExecute(r V0alpha2ApiA
 	}
 	if r.xSessionToken != nil {
 		localVarHeaderParams["X-Session-Token"] = parameterToString(*r.xSessionToken, "")
+	}
+	if r.cookie != nil {
+		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	// body params
 	localVarPostBody = r.submitSelfServiceSettingsFlowBody
@@ -6626,6 +14153,16 @@ func (a *V0alpha2ApiService) SubmitSelfServiceSettingsFlowExecute(r V0alpha2ApiA
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 410 {
+			var v JsonError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v SelfServiceBrowserLocationChangeRequiredError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -6664,20 +14201,25 @@ type V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest struct {
 	ctx context.Context
 	ApiService V0alpha2Api
 	flow *string
-	token *string
 	submitSelfServiceVerificationFlowBody *SubmitSelfServiceVerificationFlowBody
+	token *string
+	cookie *string
 }
 
 func (r V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest) Flow(flow string) V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest {
 	r.flow = &flow
 	return r
 }
+func (r V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest) SubmitSelfServiceVerificationFlowBody(submitSelfServiceVerificationFlowBody SubmitSelfServiceVerificationFlowBody) V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest {
+	r.submitSelfServiceVerificationFlowBody = &submitSelfServiceVerificationFlowBody
+	return r
+}
 func (r V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest) Token(token string) V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest {
 	r.token = &token
 	return r
 }
-func (r V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest) SubmitSelfServiceVerificationFlowBody(submitSelfServiceVerificationFlowBody SubmitSelfServiceVerificationFlowBody) V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest {
-	r.submitSelfServiceVerificationFlowBody = &submitSelfServiceVerificationFlowBody
+func (r V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest) Cookie(cookie string) V0alpha2ApiApiSubmitSelfServiceVerificationFlowRequest {
+	r.cookie = &cookie
 	return r
 }
 
@@ -6740,6 +14282,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceVerificationFlowExecute(r V0alpha2
 	if r.flow == nil {
 		return localVarReturnValue, nil, reportError("flow is required and must be specified")
 	}
+	if r.submitSelfServiceVerificationFlowBody == nil {
+		return localVarReturnValue, nil, reportError("submitSelfServiceVerificationFlowBody is required and must be specified")
+	}
 
 	localVarQueryParams.Add("flow", parameterToString(*r.flow, ""))
 	if r.token != nil {
@@ -6761,6 +14306,9 @@ func (a *V0alpha2ApiService) SubmitSelfServiceVerificationFlowExecute(r V0alpha2
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.cookie != nil {
+		localVarHeaderParams["Cookie"] = parameterToString(*r.cookie, "")
 	}
 	// body params
 	localVarPostBody = r.submitSelfServiceVerificationFlowBody
@@ -6788,6 +14336,16 @@ func (a *V0alpha2ApiService) SubmitSelfServiceVerificationFlowExecute(r V0alpha2
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v SelfServiceVerificationFlow
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 410 {
+			var v JsonError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -6844,7 +14402,8 @@ func (r V0alpha2ApiApiToSessionRequest) Execute() (*Session, *http.Response, err
  * ToSession Check Who the Current HTTP Session Belongs To
  * Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated.
 Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent.
-Additionally when the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.
+Additionally when the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header
+in the response.
 
 If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:
 
@@ -6999,6 +14558,183 @@ func (a *V0alpha2ApiService) ToSessionExecute(r V0alpha2ApiApiToSessionRequest) 
 			}
 			newErr.model = v
 		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiUpdateProjectRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	projectId string
+	updateProject *UpdateProject
+}
+
+func (r V0alpha2ApiApiUpdateProjectRequest) UpdateProject(updateProject UpdateProject) V0alpha2ApiApiUpdateProjectRequest {
+	r.updateProject = &updateProject
+	return r
+}
+
+func (r V0alpha2ApiApiUpdateProjectRequest) Execute() (*SuccessfulProjectUpdate, *http.Response, error) {
+	return r.ApiService.UpdateProjectExecute(r)
+}
+
+/*
+ * UpdateProject Update an Ory Cloud Project Configuration
+ * This endpoints allows you to update the Ory Cloud Project configuration for
+individual services (identity, permission, ...). The configuration is fully compatible
+with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).
+
+This endpoint expects the `version` key to be set in the payload. If it is unset, it
+will try to import the config as if it is from the most recent version.
+
+If you have an older version of a configuration, you should set the version key in the payload!
+
+While this endpoint is able to process all configuration items related to features (e.g. password reset),
+it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the
+open source.
+
+For configuration items that can not be translated to Ory Cloud, this endpoint will return a list of warnings
+to help you understand which parts of your config could not be processed.
+
+Be aware that updating any service's configuration will completely override your current configuration for that
+service!
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param projectId Project ID  The project's ID.
+ * @return V0alpha2ApiApiUpdateProjectRequest
+ */
+func (a *V0alpha2ApiService) UpdateProject(ctx context.Context, projectId string) V0alpha2ApiApiUpdateProjectRequest {
+	return V0alpha2ApiApiUpdateProjectRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectId: projectId,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return SuccessfulProjectUpdate
+ */
+func (a *V0alpha2ApiService) UpdateProjectExecute(r V0alpha2ApiApiUpdateProjectRequest) (*SuccessfulProjectUpdate, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *SuccessfulProjectUpdate
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.UpdateProject")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects/{project_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterToString(r.projectId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateProject
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

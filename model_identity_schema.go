@@ -29,8 +29,6 @@ type IdentitySchema struct {
 	Id string `json:"id"`
 	// The schema name  This is set by the user and is for them to easily recognise their schema
 	Name string `json:"name"`
-	// The actual Identity JSON Schema
-	Schema map[string]interface{} `json:"schema,omitempty"`
 	// Last Time Schema was Updated
 	UpdatedAt time.Time `json:"updated_at"`
 }
@@ -210,38 +208,6 @@ func (o *IdentitySchema) SetName(v string) {
 	o.Name = v
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *IdentitySchema) GetSchema() map[string]interface{} {
-	if o == nil || o.Schema == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Schema
-}
-
-// GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IdentitySchema) GetSchemaOk() (map[string]interface{}, bool) {
-	if o == nil || o.Schema == nil {
-		return nil, false
-	}
-	return o.Schema, true
-}
-
-// HasSchema returns a boolean if a field has been set.
-func (o *IdentitySchema) HasSchema() bool {
-	if o != nil && o.Schema != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSchema gets a reference to the given map[string]interface{} and assigns it to the Schema field.
-func (o *IdentitySchema) SetSchema(v map[string]interface{}) {
-	o.Schema = v
-}
-
 // GetUpdatedAt returns the UpdatedAt field value
 func (o *IdentitySchema) GetUpdatedAt() time.Time {
 	if o == nil {
@@ -285,9 +251,6 @@ func (o IdentitySchema) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["name"] = o.Name
-	}
-	if o.Schema != nil {
-		toSerialize["schema"] = o.Schema
 	}
 	if true {
 		toSerialize["updated_at"] = o.UpdatedAt

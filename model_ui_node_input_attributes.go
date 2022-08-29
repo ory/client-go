@@ -17,11 +17,14 @@ import (
 
 // UiNodeInputAttributes InputAttributes represents the attributes of an input node
 type UiNodeInputAttributes struct {
+	// The autocomplete attribute for the input.
+	Autocomplete *string `json:"autocomplete,omitempty"`
 	// Sets the input's disabled field to true or false.
 	Disabled bool `json:"disabled"`
 	Label *UiText `json:"label,omitempty"`
 	// The input's element name.
 	Name string `json:"name"`
+	// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\".
 	NodeType string `json:"node_type"`
 	// OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.
 	Onclick *string `json:"onclick,omitempty"`
@@ -29,6 +32,7 @@ type UiNodeInputAttributes struct {
 	Pattern *string `json:"pattern,omitempty"`
 	// Mark this input field as required.
 	Required *bool `json:"required,omitempty"`
+	// The input's element type.
 	Type string `json:"type"`
 	// The input's value.
 	Value interface{} `json:"value,omitempty"`
@@ -53,6 +57,38 @@ func NewUiNodeInputAttributes(disabled bool, name string, nodeType string, type_
 func NewUiNodeInputAttributesWithDefaults() *UiNodeInputAttributes {
 	this := UiNodeInputAttributes{}
 	return &this
+}
+
+// GetAutocomplete returns the Autocomplete field value if set, zero value otherwise.
+func (o *UiNodeInputAttributes) GetAutocomplete() string {
+	if o == nil || o.Autocomplete == nil {
+		var ret string
+		return ret
+	}
+	return *o.Autocomplete
+}
+
+// GetAutocompleteOk returns a tuple with the Autocomplete field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UiNodeInputAttributes) GetAutocompleteOk() (*string, bool) {
+	if o == nil || o.Autocomplete == nil {
+		return nil, false
+	}
+	return o.Autocomplete, true
+}
+
+// HasAutocomplete returns a boolean if a field has been set.
+func (o *UiNodeInputAttributes) HasAutocomplete() bool {
+	if o != nil && o.Autocomplete != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAutocomplete gets a reference to the given string and assigns it to the Autocomplete field.
+func (o *UiNodeInputAttributes) SetAutocomplete(v string) {
+	o.Autocomplete = &v
 }
 
 // GetDisabled returns the Disabled field value
@@ -314,6 +350,9 @@ func (o *UiNodeInputAttributes) SetValue(v interface{}) {
 
 func (o UiNodeInputAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Autocomplete != nil {
+		toSerialize["autocomplete"] = o.Autocomplete
+	}
 	if true {
 		toSerialize["disabled"] = o.Disabled
 	}

@@ -4,10 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Autocomplete** | Pointer to **string** | The autocomplete attribute for the input. | [optional] 
 **Disabled** | **bool** | Sets the input&#39;s disabled field to true or false. | 
 **Label** | Pointer to [**UiText**](UiText.md) |  | [optional] 
 **Name** | **string** | The input&#39;s element name. | 
-**NodeType** | **string** |  | 
+**NodeType** | **string** | NodeType represents this node&#39;s types. It is a mirror of &#x60;node.type&#x60; and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \&quot;script\&quot;. | 
 **Onclick** | Pointer to **string** | OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn. | [optional] 
 **Pattern** | Pointer to **string** | The input&#39;s pattern. | [optional] 
 **Required** | Pointer to **bool** | Mark this input field as required. | [optional] 
@@ -15,9 +16,9 @@ Name | Type | Description | Notes
 **Value** | Pointer to **interface{}** | The input&#39;s value. | [optional] 
 **Id** | **string** | A unique identifier | 
 **Text** | [**UiText**](UiText.md) |  | 
-**Height** | Pointer to **int64** | Height of the image | [optional] 
+**Height** | **int64** | Height of the image | 
 **Src** | **string** | The script source | 
-**Width** | Pointer to **int64** | Width of the image | [optional] 
+**Width** | **int64** | Width of the image | 
 **Href** | **string** | The link&#39;s href (destination) URL.  format: uri | 
 **Title** | [**UiText**](UiText.md) |  | 
 **Async** | **bool** | The script async type | 
@@ -30,7 +31,7 @@ Name | Type | Description | Notes
 
 ### NewUiNodeAttributes
 
-`func NewUiNodeAttributes(disabled bool, name string, nodeType string, type_ string, id string, text UiText, src string, href string, title UiText, async bool, crossorigin string, integrity string, nonce string, referrerpolicy string, ) *UiNodeAttributes`
+`func NewUiNodeAttributes(disabled bool, name string, nodeType string, type_ string, id string, text UiText, height int64, src string, width int64, href string, title UiText, async bool, crossorigin string, integrity string, nonce string, referrerpolicy string, ) *UiNodeAttributes`
 
 NewUiNodeAttributes instantiates a new UiNodeAttributes object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +45,31 @@ will change when the set of required properties is changed
 NewUiNodeAttributesWithDefaults instantiates a new UiNodeAttributes object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAutocomplete
+
+`func (o *UiNodeAttributes) GetAutocomplete() string`
+
+GetAutocomplete returns the Autocomplete field if non-nil, zero value otherwise.
+
+### GetAutocompleteOk
+
+`func (o *UiNodeAttributes) GetAutocompleteOk() (*string, bool)`
+
+GetAutocompleteOk returns a tuple with the Autocomplete field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutocomplete
+
+`func (o *UiNodeAttributes) SetAutocomplete(v string)`
+
+SetAutocomplete sets Autocomplete field to given value.
+
+### HasAutocomplete
+
+`func (o *UiNodeAttributes) HasAutocomplete() bool`
+
+HasAutocomplete returns a boolean if a field has been set.
 
 ### GetDisabled
 
@@ -319,11 +345,6 @@ and a boolean to check if the value has been set.
 
 SetHeight sets Height field to given value.
 
-### HasHeight
-
-`func (o *UiNodeAttributes) HasHeight() bool`
-
-HasHeight returns a boolean if a field has been set.
 
 ### GetSrc
 
@@ -364,11 +385,6 @@ and a boolean to check if the value has been set.
 
 SetWidth sets Width field to given value.
 
-### HasWidth
-
-`func (o *UiNodeAttributes) HasWidth() bool`
-
-HasWidth returns a boolean if a field has been set.
 
 ### GetHref
 
