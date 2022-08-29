@@ -2900,8 +2900,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiTokens'
-          description: apiTokens
+                $ref: '#/components/schemas/projectApiTokens'
+          description: projectApiTokens
         default:
           content:
             application/json:
@@ -2936,8 +2936,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiToken'
-          description: apiToken
+                $ref: '#/components/schemas/projectApiToken'
+          description: projectApiToken
         default:
           content:
             application/json:
@@ -6492,40 +6492,6 @@ components:
         password:
           $ref: '#/components/schemas/adminCreateIdentityImportCredentialsPassword'
       type: object
-    apiToken:
-      example:
-        project_id: project_id
-        owner_id: owner_id
-        name: name
-        id: id
-        value: value
-      properties:
-        id:
-          format: uuid4
-          type: string
-        name:
-          description: "The Token's Name\n\nSet this to help you remember, for example,\
-            \ where you use the token."
-          type: string
-        owner_id:
-          format: uuid4
-          type: string
-        project_id:
-          format: uuid4
-          type: string
-        value:
-          description: The token's value
-          readOnly: true
-          type: string
-      required:
-      - id
-      - name
-      - owner_id
-      type: object
-    apiTokens:
-      items:
-        $ref: '#/components/schemas/apiToken'
-      type: array
     authenticatorAssuranceLevel:
       description: "The authenticator assurance level can be one of \"aal1\", \"aal2\"\
         , or \"aal3\". A higher number means that it is harder\nfor an attacker to\
@@ -9354,6 +9320,40 @@ components:
       - slug
       - state
       type: object
+    projectApiToken:
+      example:
+        project_id: project_id
+        owner_id: owner_id
+        name: name
+        id: id
+        value: value
+      properties:
+        id:
+          format: uuid4
+          type: string
+        name:
+          description: "The Token's Name\n\nSet this to help you remember, for example,\
+            \ where you use the token."
+          type: string
+        owner_id:
+          format: uuid4
+          type: string
+        project_id:
+          format: uuid4
+          type: string
+        value:
+          description: The token's value
+          readOnly: true
+          type: string
+      required:
+      - id
+      - name
+      - owner_id
+      type: object
+    projectApiTokens:
+      items:
+        $ref: '#/components/schemas/projectApiToken'
+      type: array
     projectHost:
       properties:
         host:

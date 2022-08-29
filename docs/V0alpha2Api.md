@@ -825,7 +825,7 @@ Name | Type | Description  | Notes
 
 ## CreateProjectApiToken
 
-> ApiToken CreateProjectApiToken(ctx, project).CreateProjectApiTokenRequest(createProjectApiTokenRequest).Execute()
+> ProjectApiToken CreateProjectApiToken(ctx, project).CreateProjectApiTokenRequest(createProjectApiTokenRequest).Execute()
 
 # Create API Token
 
@@ -854,7 +854,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.CreateProjectApiToken``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateProjectApiToken`: ApiToken
+    // response from `CreateProjectApiToken`: ProjectApiToken
     fmt.Fprintf(os.Stdout, "Response from `V0alpha2Api.CreateProjectApiToken`: %v\n", resp)
 }
 ```
@@ -879,7 +879,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiToken**](ApiToken.md)
+[**ProjectApiToken**](ProjectApiToken.md)
 
 ### Authorization
 
@@ -2434,7 +2434,7 @@ No authorization required
 
 ## ListProjectApiTokens
 
-> []ApiToken ListProjectApiTokens(ctx, project).Execute()
+> []ProjectApiToken ListProjectApiTokens(ctx, project).Execute()
 
 # List a Project's API Tokens
 
@@ -2462,7 +2462,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.ListProjectApiTokens``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListProjectApiTokens`: []ApiToken
+    // response from `ListProjectApiTokens`: []ProjectApiToken
     fmt.Fprintf(os.Stdout, "Response from `V0alpha2Api.ListProjectApiTokens`: %v\n", resp)
 }
 ```
@@ -2486,7 +2486,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]ApiToken**](ApiToken.md)
+[**[]ProjectApiToken**](ProjectApiToken.md)
 
 ### Authorization
 

@@ -213,9 +213,9 @@ Learn how identities work in [Ory Kratos' User And Identity Model Documentation]
 
 	/*
 	 * CreateProjectApiTokenExecute executes the request
-	 * @return ApiToken
+	 * @return ProjectApiToken
 	 */
-	CreateProjectApiTokenExecute(r V0alpha2ApiApiCreateProjectApiTokenRequest) (*ApiToken, *http.Response, error)
+	CreateProjectApiTokenExecute(r V0alpha2ApiApiCreateProjectApiTokenRequest) (*ProjectApiToken, *http.Response, error)
 
 	/*
 	 * CreateSelfServiceLogoutFlowUrlForBrowsers Create a Logout URL for Browsers
@@ -836,9 +836,9 @@ More information can be found at [Ory Kratos Email and Phone Verification Docume
 
 	/*
 	 * ListProjectApiTokensExecute executes the request
-	 * @return []ApiToken
+	 * @return []ProjectApiToken
 	 */
-	ListProjectApiTokensExecute(r V0alpha2ApiApiListProjectApiTokensRequest) ([]ApiToken, *http.Response, error)
+	ListProjectApiTokensExecute(r V0alpha2ApiApiListProjectApiTokensRequest) ([]ProjectApiToken, *http.Response, error)
 
 	/*
 	 * ListProjects # List All Projects
@@ -2884,7 +2884,7 @@ func (r V0alpha2ApiApiCreateProjectApiTokenRequest) CreateProjectApiTokenRequest
 	return r
 }
 
-func (r V0alpha2ApiApiCreateProjectApiTokenRequest) Execute() (*ApiToken, *http.Response, error) {
+func (r V0alpha2ApiApiCreateProjectApiTokenRequest) Execute() (*ProjectApiToken, *http.Response, error) {
 	return r.ApiService.CreateProjectApiTokenExecute(r)
 }
 
@@ -2905,16 +2905,16 @@ func (a *V0alpha2ApiService) CreateProjectApiToken(ctx context.Context, project 
 
 /*
  * Execute executes the request
- * @return ApiToken
+ * @return ProjectApiToken
  */
-func (a *V0alpha2ApiService) CreateProjectApiTokenExecute(r V0alpha2ApiApiCreateProjectApiTokenRequest) (*ApiToken, *http.Response, error) {
+func (a *V0alpha2ApiService) CreateProjectApiTokenExecute(r V0alpha2ApiApiCreateProjectApiTokenRequest) (*ProjectApiToken, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  *ApiToken
+		localVarReturnValue  *ProjectApiToken
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.CreateProjectApiToken")
@@ -6374,7 +6374,7 @@ type V0alpha2ApiApiListProjectApiTokensRequest struct {
 }
 
 
-func (r V0alpha2ApiApiListProjectApiTokensRequest) Execute() ([]ApiToken, *http.Response, error) {
+func (r V0alpha2ApiApiListProjectApiTokensRequest) Execute() ([]ProjectApiToken, *http.Response, error) {
 	return r.ApiService.ListProjectApiTokensExecute(r)
 }
 
@@ -6395,16 +6395,16 @@ func (a *V0alpha2ApiService) ListProjectApiTokens(ctx context.Context, project s
 
 /*
  * Execute executes the request
- * @return []ApiToken
+ * @return []ProjectApiToken
  */
-func (a *V0alpha2ApiService) ListProjectApiTokensExecute(r V0alpha2ApiApiListProjectApiTokensRequest) ([]ApiToken, *http.Response, error) {
+func (a *V0alpha2ApiService) ListProjectApiTokensExecute(r V0alpha2ApiApiListProjectApiTokensRequest) ([]ProjectApiToken, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []ApiToken
+		localVarReturnValue  []ProjectApiToken
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.ListProjectApiTokens")

@@ -23,7 +23,6 @@ docs/AdminCreateIdentityImportCredentialsPasswordConfig.md
 docs/AdminCreateSelfServiceRecoveryLinkBody.md
 docs/AdminIdentityImportCredentials.md
 docs/AdminUpdateIdentityBody.md
-docs/ApiToken.md
 docs/AuthenticatorAssuranceLevel.md
 docs/CloudAccount.md
 docs/CnameSettings.md
@@ -89,6 +88,7 @@ docs/PatchDelta.md
 docs/PatchDocument.md
 docs/PreviousConsentSession.md
 docs/Project.md
+docs/ProjectApiToken.md
 docs/ProjectHost.md
 docs/ProjectInvite.md
 docs/ProjectMetadata.md
@@ -195,7 +195,6 @@ model_admin_create_identity_import_credentials_password_config.go
 model_admin_create_self_service_recovery_link_body.go
 model_admin_identity_import_credentials.go
 model_admin_update_identity_body.go
-model_api_token.go
 model_authenticator_assurance_level.go
 model_cloud_account.go
 model_cname_settings.go
@@ -260,6 +259,7 @@ model_patch_delta.go
 model_patch_document.go
 model_previous_consent_session.go
 model_project.go
+model_project_api_token.go
 model_project_host.go
 model_project_invite.go
 model_project_metadata.go
