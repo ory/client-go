@@ -30,7 +30,6 @@ docs/CompletedRequest.md
 docs/ConsentRequest.md
 docs/ConsentRequestSession.md
 docs/CreateCustomHostnameBody.md
-docs/CreateProjectApiTokenRequest.md
 docs/CreateProjectBody.md
 docs/CreateSubscriptionPayload.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
@@ -88,7 +87,7 @@ docs/PatchDelta.md
 docs/PatchDocument.md
 docs/PreviousConsentSession.md
 docs/Project.md
-docs/ProjectApiToken.md
+docs/ProjectApiKey.md
 docs/ProjectHost.md
 docs/ProjectInvite.md
 docs/ProjectMetadata.md
@@ -202,7 +201,6 @@ model_completed_request.go
 model_consent_request.go
 model_consent_request_session.go
 model_create_custom_hostname_body.go
-model_create_project_api_token_request.go
 model_create_project_body.go
 model_create_subscription_payload.go
 model_error_authenticator_assurance_level_not_satisfied.go
@@ -259,7 +257,7 @@ model_patch_delta.go
 model_patch_document.go
 model_previous_consent_session.go
 model_project.go
-model_project_api_token.go
+model_project_api_key.go
 model_project_host.go
 model_project_invite.go
 model_project_metadata.go

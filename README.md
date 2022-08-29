@@ -143,9 +143,7 @@ Class | Method | HTTP request | Description
 *V0alpha2Api* | [**AdminPatchIdentity**](docs/V0alpha2Api.md#adminpatchidentity) | **Patch** /admin/identities/{id} | Partially updates an Identity&#39;s field using [JSON Patch](https://jsonpatch.com/)
 *V0alpha2Api* | [**AdminUpdateIdentity**](docs/V0alpha2Api.md#adminupdateidentity) | **Put** /admin/identities/{id} | Update an Identity
 *V0alpha2Api* | [**CreateProject**](docs/V0alpha2Api.md#createproject) | **Post** /projects | # Create a Project
-*V0alpha2Api* | [**CreateProjectApiToken**](docs/V0alpha2Api.md#createprojectapitoken) | **Post** /projects/{project}/tokens | # Create API Token
 *V0alpha2Api* | [**CreateSelfServiceLogoutFlowUrlForBrowsers**](docs/V0alpha2Api.md#createselfservicelogoutflowurlforbrowsers) | **Get** /self-service/logout/browser | Create a Logout URL for Browsers
-*V0alpha2Api* | [**DeleteProjectApiToken**](docs/V0alpha2Api.md#deleteprojectapitoken) | **Delete** /projects/{project}/tokens/{token_id} | # Delete API Token
 *V0alpha2Api* | [**GetIdentitySchema**](docs/V0alpha2Api.md#getidentityschema) | **Get** /schemas/{id} | 
 *V0alpha2Api* | [**GetProject**](docs/V0alpha2Api.md#getproject) | **Get** /projects/{project_id} | # Get a Project
 *V0alpha2Api* | [**GetProjectMembers**](docs/V0alpha2Api.md#getprojectmembers) | **Get** /projects/{project_id}/members | Get all members associated with this project.
@@ -167,7 +165,6 @@ Class | Method | HTTP request | Description
 *V0alpha2Api* | [**InitializeSelfServiceVerificationFlowForBrowsers**](docs/V0alpha2Api.md#initializeselfserviceverificationflowforbrowsers) | **Get** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
 *V0alpha2Api* | [**InitializeSelfServiceVerificationFlowWithoutBrowser**](docs/V0alpha2Api.md#initializeselfserviceverificationflowwithoutbrowser) | **Get** /self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
 *V0alpha2Api* | [**ListIdentitySchemas**](docs/V0alpha2Api.md#listidentityschemas) | **Get** /schemas | 
-*V0alpha2Api* | [**ListProjectApiTokens**](docs/V0alpha2Api.md#listprojectapitokens) | **Get** /projects/{project}/tokens | # List a Project&#39;s API Tokens
 *V0alpha2Api* | [**ListProjects**](docs/V0alpha2Api.md#listprojects) | **Get** /projects | # List All Projects
 *V0alpha2Api* | [**ListSessions**](docs/V0alpha2Api.md#listsessions) | **Get** /sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
 *V0alpha2Api* | [**PatchProject**](docs/V0alpha2Api.md#patchproject) | **Patch** /projects/{project_id} | Patch an Ory Cloud Project Configuration&#x60;
@@ -210,7 +207,6 @@ Class | Method | HTTP request | Description
  - [ConsentRequest](docs/ConsentRequest.md)
  - [ConsentRequestSession](docs/ConsentRequestSession.md)
  - [CreateCustomHostnameBody](docs/CreateCustomHostnameBody.md)
- - [CreateProjectApiTokenRequest](docs/CreateProjectApiTokenRequest.md)
  - [CreateProjectBody](docs/CreateProjectBody.md)
  - [CreateSubscriptionPayload](docs/CreateSubscriptionPayload.md)
  - [ErrorAuthenticatorAssuranceLevelNotSatisfied](docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md)
@@ -267,7 +263,7 @@ Class | Method | HTTP request | Description
  - [PatchDocument](docs/PatchDocument.md)
  - [PreviousConsentSession](docs/PreviousConsentSession.md)
  - [Project](docs/Project.md)
- - [ProjectApiToken](docs/ProjectApiToken.md)
+ - [ProjectApiKey](docs/ProjectApiKey.md)
  - [ProjectHost](docs/ProjectHost.md)
  - [ProjectInvite](docs/ProjectInvite.md)
  - [ProjectMetadata](docs/ProjectMetadata.md)

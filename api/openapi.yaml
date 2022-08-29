@@ -2882,109 +2882,6 @@ paths:
         invite status to `REMOVED`.
       tags:
       - v0alpha2
-  /projects/{project}/tokens:
-    get:
-      description: A list of all the project's API tokens.
-      operationId: listProjectApiTokens
-      parameters:
-      - description: The Project ID
-        explode: false
-        in: path
-        name: project
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/projectApiTokens'
-          description: projectApiTokens
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
-      security:
-      - oryAccessToken: []
-      summary: '# List a Project''s API Tokens'
-      tags:
-      - v0alpha2
-    post:
-      description: Create an API token for a project.
-      operationId: createProjectApiToken
-      parameters:
-      - description: The Project ID
-        explode: false
-        in: path
-        name: project
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/createProjectApiToken_request'
-        x-originalParamName: Body
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/projectApiToken'
-          description: projectApiToken
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
-      security:
-      - oryAccessToken: []
-      summary: '# Create API Token'
-      tags:
-      - v0alpha2
-  /projects/{project}/tokens/{token_id}:
-    delete:
-      description: Deletes an API Token and immediately removes it.
-      operationId: deleteProjectApiToken
-      parameters:
-      - description: The Project ID
-        explode: false
-        in: path
-        name: project
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The Token ID
-        explode: false
-        in: path
-        name: token_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: "Empty responses are sent when, for example, resources are\
-            \ deleted. The HTTP status code for empty responses is\ntypically 201."
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
-      security:
-      - oryAccessToken: []
-      summary: '# Delete API Token'
-      tags:
-      - v0alpha2
   /relation-tuples:
     get:
       description: Get all relation tuples that match the query. Only the namespace
@@ -9320,13 +9217,7 @@ components:
       - slug
       - state
       type: object
-    projectApiToken:
-      example:
-        project_id: project_id
-        owner_id: owner_id
-        name: name
-        id: id
-        value: value
+    projectApiKey:
       properties:
         id:
           format: uuid4
@@ -9350,9 +9241,9 @@ components:
       - name
       - owner_id
       type: object
-    projectApiTokens:
+    projectApiKeys:
       items:
-        $ref: '#/components/schemas/projectApiToken'
+        $ref: '#/components/schemas/projectApiKey'
       type: array
     projectHost:
       properties:
@@ -12444,15 +12335,6 @@ components:
           x-formData-name: refresh_token
       required:
       - grant_type
-      type: object
-    createProjectApiToken_request:
-      properties:
-        name:
-          description: "The Token Name\n\nA descriptive name for the token.\n\nin:\
-            \ body"
-          type: string
-      required:
-      - name
       type: object
     getVersion_200_response:
       example:
