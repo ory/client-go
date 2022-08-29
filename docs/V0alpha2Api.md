@@ -15,7 +15,9 @@ Method | HTTP request | Description
 [**AdminPatchIdentity**](V0alpha2Api.md#AdminPatchIdentity) | **Patch** /admin/identities/{id} | Partially updates an Identity&#39;s field using [JSON Patch](https://jsonpatch.com/)
 [**AdminUpdateIdentity**](V0alpha2Api.md#AdminUpdateIdentity) | **Put** /admin/identities/{id} | Update an Identity
 [**CreateProject**](V0alpha2Api.md#CreateProject) | **Post** /projects | # Create a Project
+[**CreateProjectApiKey**](V0alpha2Api.md#CreateProjectApiKey) | **Post** /projects/{project}/tokens | # Create API Token
 [**CreateSelfServiceLogoutFlowUrlForBrowsers**](V0alpha2Api.md#CreateSelfServiceLogoutFlowUrlForBrowsers) | **Get** /self-service/logout/browser | Create a Logout URL for Browsers
+[**DeleteProjectApiKey**](V0alpha2Api.md#DeleteProjectApiKey) | **Delete** /projects/{project}/tokens/{token_id} | # Delete API Token
 [**GetIdentitySchema**](V0alpha2Api.md#GetIdentitySchema) | **Get** /schemas/{id} | 
 [**GetProject**](V0alpha2Api.md#GetProject) | **Get** /projects/{project_id} | # Get a Project
 [**GetProjectMembers**](V0alpha2Api.md#GetProjectMembers) | **Get** /projects/{project_id}/members | Get all members associated with this project.
@@ -37,6 +39,7 @@ Method | HTTP request | Description
 [**InitializeSelfServiceVerificationFlowForBrowsers**](V0alpha2Api.md#InitializeSelfServiceVerificationFlowForBrowsers) | **Get** /self-service/verification/browser | Initialize Verification Flow for Browser Clients
 [**InitializeSelfServiceVerificationFlowWithoutBrowser**](V0alpha2Api.md#InitializeSelfServiceVerificationFlowWithoutBrowser) | **Get** /self-service/verification/api | Initialize Verification Flow for APIs, Services, Apps, ...
 [**ListIdentitySchemas**](V0alpha2Api.md#ListIdentitySchemas) | **Get** /schemas | 
+[**ListProjectApiKeys**](V0alpha2Api.md#ListProjectApiKeys) | **Get** /projects/{project}/tokens | # List a Project&#39;s API Tokens
 [**ListProjects**](V0alpha2Api.md#ListProjects) | **Get** /projects | # List All Projects
 [**ListSessions**](V0alpha2Api.md#ListSessions) | **Get** /sessions | This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the &#x60;/sessions/whoami&#x60; endpoint.
 [**PatchProject**](V0alpha2Api.md#PatchProject) | **Patch** /projects/{project_id} | Patch an Ory Cloud Project Configuration&#x60;
@@ -820,6 +823,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateProjectApiKey
+
+> ProjectApiKey CreateProjectApiKey(ctx, project).CreateProjectApiKeyRequest(createProjectApiKeyRequest).Execute()
+
+# Create API Token
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    project := "project_example" // string | The Project ID
+    createProjectApiKeyRequest := *openapiclient.NewCreateProjectApiKeyRequest("Name_example") // CreateProjectApiKeyRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.CreateProjectApiKey(context.Background(), project).CreateProjectApiKeyRequest(createProjectApiKeyRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.CreateProjectApiKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateProjectApiKey`: ProjectApiKey
+    fmt.Fprintf(os.Stdout, "Response from `V0alpha2Api.CreateProjectApiKey`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**project** | **string** | The Project ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateProjectApiKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createProjectApiKeyRequest** | [**CreateProjectApiKeyRequest**](CreateProjectApiKeyRequest.md) |  | 
+
+### Return type
+
+[**ProjectApiKey**](ProjectApiKey.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreateSelfServiceLogoutFlowUrlForBrowsers
 
 > SelfServiceLogoutUrl CreateSelfServiceLogoutFlowUrlForBrowsers(ctx).Cookie(cookie).Execute()
@@ -875,6 +950,77 @@ Name | Type | Description  | Notes
 ### Authorization
 
 No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteProjectApiKey
+
+> DeleteProjectApiKey(ctx, project, tokenId).Execute()
+
+# Delete API Token
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    project := "project_example" // string | The Project ID
+    tokenId := "tokenId_example" // string | The Token ID
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.DeleteProjectApiKey(context.Background(), project, tokenId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.DeleteProjectApiKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**project** | **string** | The Project ID | 
+**tokenId** | **string** | The Token ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteProjectApiKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -2275,6 +2421,76 @@ Name | Type | Description  | Notes
 ### Authorization
 
 No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListProjectApiKeys
+
+> []ProjectApiKey ListProjectApiKeys(ctx, project).Execute()
+
+# List a Project's API Tokens
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    project := "project_example" // string | The Project ID
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.V0alpha2Api.ListProjectApiKeys(context.Background(), project).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `V0alpha2Api.ListProjectApiKeys``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListProjectApiKeys`: []ProjectApiKey
+    fmt.Fprintf(os.Stdout, "Response from `V0alpha2Api.ListProjectApiKeys`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**project** | **string** | The Project ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListProjectApiKeysRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**[]ProjectApiKey**](ProjectApiKey.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
 
 ### HTTP request headers
 

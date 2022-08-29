@@ -203,6 +203,21 @@ Learn how identities work in [Ory Kratos' User And Identity Model Documentation]
 	CreateProjectExecute(r V0alpha2ApiApiCreateProjectRequest) (*Project, *http.Response, error)
 
 	/*
+	 * CreateProjectApiKey # Create API Token
+	 * Create an API token for a project.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param project The Project ID
+	 * @return V0alpha2ApiApiCreateProjectApiKeyRequest
+	 */
+	CreateProjectApiKey(ctx context.Context, project string) V0alpha2ApiApiCreateProjectApiKeyRequest
+
+	/*
+	 * CreateProjectApiKeyExecute executes the request
+	 * @return ProjectApiKey
+	 */
+	CreateProjectApiKeyExecute(r V0alpha2ApiApiCreateProjectApiKeyRequest) (*ProjectApiKey, *http.Response, error)
+
+	/*
 	 * CreateSelfServiceLogoutFlowUrlForBrowsers Create a Logout URL for Browsers
 	 * This endpoint initializes a browser-based user logout flow and a URL which can be used to log out the user.
 
@@ -224,6 +239,21 @@ When calling this endpoint from a backend, please ensure to properly forward the
 	 * @return SelfServiceLogoutUrl
 	 */
 	CreateSelfServiceLogoutFlowUrlForBrowsersExecute(r V0alpha2ApiApiCreateSelfServiceLogoutFlowUrlForBrowsersRequest) (*SelfServiceLogoutUrl, *http.Response, error)
+
+	/*
+	 * DeleteProjectApiKey # Delete API Token
+	 * Deletes an API Token and immediately removes it.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param project The Project ID
+	 * @param tokenId The Token ID
+	 * @return V0alpha2ApiApiDeleteProjectApiKeyRequest
+	 */
+	DeleteProjectApiKey(ctx context.Context, project string, tokenId string) V0alpha2ApiApiDeleteProjectApiKeyRequest
+
+	/*
+	 * DeleteProjectApiKeyExecute executes the request
+	 */
+	DeleteProjectApiKeyExecute(r V0alpha2ApiApiDeleteProjectApiKeyRequest) (*http.Response, error)
 
 	/*
 	 * GetIdentitySchema Method for GetIdentitySchema
@@ -794,6 +824,21 @@ More information can be found at [Ory Kratos Email and Phone Verification Docume
 	 * @return []IdentitySchemaContainer
 	 */
 	ListIdentitySchemasExecute(r V0alpha2ApiApiListIdentitySchemasRequest) ([]IdentitySchemaContainer, *http.Response, error)
+
+	/*
+	 * ListProjectApiKeys # List a Project's API Tokens
+	 * A list of all the project's API tokens.
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param project The Project ID
+	 * @return V0alpha2ApiApiListProjectApiKeysRequest
+	 */
+	ListProjectApiKeys(ctx context.Context, project string) V0alpha2ApiApiListProjectApiKeysRequest
+
+	/*
+	 * ListProjectApiKeysExecute executes the request
+	 * @return []ProjectApiKey
+	 */
+	ListProjectApiKeysExecute(r V0alpha2ApiApiListProjectApiKeysRequest) ([]ProjectApiKey, *http.Response, error)
 
 	/*
 	 * ListProjects # List All Projects
@@ -2827,6 +2872,126 @@ func (a *V0alpha2ApiService) CreateProjectExecute(r V0alpha2ApiApiCreateProjectR
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type V0alpha2ApiApiCreateProjectApiKeyRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	project string
+	createProjectApiKeyRequest *CreateProjectApiKeyRequest
+}
+
+func (r V0alpha2ApiApiCreateProjectApiKeyRequest) CreateProjectApiKeyRequest(createProjectApiKeyRequest CreateProjectApiKeyRequest) V0alpha2ApiApiCreateProjectApiKeyRequest {
+	r.createProjectApiKeyRequest = &createProjectApiKeyRequest
+	return r
+}
+
+func (r V0alpha2ApiApiCreateProjectApiKeyRequest) Execute() (*ProjectApiKey, *http.Response, error) {
+	return r.ApiService.CreateProjectApiKeyExecute(r)
+}
+
+/*
+ * CreateProjectApiKey # Create API Token
+ * Create an API token for a project.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param project The Project ID
+ * @return V0alpha2ApiApiCreateProjectApiKeyRequest
+ */
+func (a *V0alpha2ApiService) CreateProjectApiKey(ctx context.Context, project string) V0alpha2ApiApiCreateProjectApiKeyRequest {
+	return V0alpha2ApiApiCreateProjectApiKeyRequest{
+		ApiService: a,
+		ctx: ctx,
+		project: project,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return ProjectApiKey
+ */
+func (a *V0alpha2ApiService) CreateProjectApiKeyExecute(r V0alpha2ApiApiCreateProjectApiKeyRequest) (*ProjectApiKey, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *ProjectApiKey
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.CreateProjectApiKey")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects/{project}/tokens"
+	localVarPath = strings.Replace(localVarPath, "{"+"project"+"}", url.PathEscape(parameterToString(r.project, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createProjectApiKeyRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type V0alpha2ApiApiCreateSelfServiceLogoutFlowUrlForBrowsersRequest struct {
 	ctx context.Context
 	ApiService V0alpha2Api
@@ -2963,6 +3128,112 @@ func (a *V0alpha2ApiService) CreateSelfServiceLogoutFlowUrlForBrowsersExecute(r 
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiDeleteProjectApiKeyRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	project string
+	tokenId string
+}
+
+
+func (r V0alpha2ApiApiDeleteProjectApiKeyRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteProjectApiKeyExecute(r)
+}
+
+/*
+ * DeleteProjectApiKey # Delete API Token
+ * Deletes an API Token and immediately removes it.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param project The Project ID
+ * @param tokenId The Token ID
+ * @return V0alpha2ApiApiDeleteProjectApiKeyRequest
+ */
+func (a *V0alpha2ApiService) DeleteProjectApiKey(ctx context.Context, project string, tokenId string) V0alpha2ApiApiDeleteProjectApiKeyRequest {
+	return V0alpha2ApiApiDeleteProjectApiKeyRequest{
+		ApiService: a,
+		ctx: ctx,
+		project: project,
+		tokenId: tokenId,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *V0alpha2ApiService) DeleteProjectApiKeyExecute(r V0alpha2ApiApiDeleteProjectApiKeyRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.DeleteProjectApiKey")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects/{project}/tokens/{token_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"project"+"}", url.PathEscape(parameterToString(r.project, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"token_id"+"}", url.PathEscape(parameterToString(r.tokenId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }
 
 type V0alpha2ApiApiGetIdentitySchemaRequest struct {
@@ -6081,6 +6352,119 @@ func (a *V0alpha2ApiService) ListIdentitySchemasExecute(r V0alpha2ApiApiListIden
 			}
 			newErr.model = v
 		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type V0alpha2ApiApiListProjectApiKeysRequest struct {
+	ctx context.Context
+	ApiService V0alpha2Api
+	project string
+}
+
+
+func (r V0alpha2ApiApiListProjectApiKeysRequest) Execute() ([]ProjectApiKey, *http.Response, error) {
+	return r.ApiService.ListProjectApiKeysExecute(r)
+}
+
+/*
+ * ListProjectApiKeys # List a Project's API Tokens
+ * A list of all the project's API tokens.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param project The Project ID
+ * @return V0alpha2ApiApiListProjectApiKeysRequest
+ */
+func (a *V0alpha2ApiService) ListProjectApiKeys(ctx context.Context, project string) V0alpha2ApiApiListProjectApiKeysRequest {
+	return V0alpha2ApiApiListProjectApiKeysRequest{
+		ApiService: a,
+		ctx: ctx,
+		project: project,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return []ProjectApiKey
+ */
+func (a *V0alpha2ApiService) ListProjectApiKeysExecute(r V0alpha2ApiApiListProjectApiKeysRequest) ([]ProjectApiKey, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  []ProjectApiKey
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V0alpha2ApiService.ListProjectApiKeys")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects/{project}/tokens"
+	localVarPath = strings.Replace(localVarPath, "{"+"project"+"}", url.PathEscape(parameterToString(r.project, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v GenericError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

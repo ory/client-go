@@ -30,6 +30,7 @@ docs/CompletedRequest.md
 docs/ConsentRequest.md
 docs/ConsentRequestSession.md
 docs/CreateCustomHostnameBody.md
+docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
 docs/CreateSubscriptionPayload.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
@@ -201,6 +202,7 @@ model_completed_request.go
 model_consent_request.go
 model_consent_request_session.go
 model_create_custom_hostname_body.go
+model_create_project_api_key_request.go
 model_create_project_body.go
 model_create_subscription_payload.go
 model_error_authenticator_assurance_level_not_satisfied.go
