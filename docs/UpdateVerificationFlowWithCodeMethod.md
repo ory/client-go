@@ -1,4 +1,4 @@
-# UpdateVerificationFlowWithCodeMethodBody
+# UpdateVerificationFlowWithCodeMethod
 
 ## Properties
 
@@ -12,145 +12,145 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewUpdateVerificationFlowWithCodeMethodBody
+### NewUpdateVerificationFlowWithCodeMethod
 
-`func NewUpdateVerificationFlowWithCodeMethodBody() *UpdateVerificationFlowWithCodeMethodBody`
+`func NewUpdateVerificationFlowWithCodeMethod() *UpdateVerificationFlowWithCodeMethod`
 
-NewUpdateVerificationFlowWithCodeMethodBody instantiates a new UpdateVerificationFlowWithCodeMethodBody object
+NewUpdateVerificationFlowWithCodeMethod instantiates a new UpdateVerificationFlowWithCodeMethod object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewUpdateVerificationFlowWithCodeMethodBodyWithDefaults
+### NewUpdateVerificationFlowWithCodeMethodWithDefaults
 
-`func NewUpdateVerificationFlowWithCodeMethodBodyWithDefaults() *UpdateVerificationFlowWithCodeMethodBody`
+`func NewUpdateVerificationFlowWithCodeMethodWithDefaults() *UpdateVerificationFlowWithCodeMethod`
 
-NewUpdateVerificationFlowWithCodeMethodBodyWithDefaults instantiates a new UpdateVerificationFlowWithCodeMethodBody object
+NewUpdateVerificationFlowWithCodeMethodWithDefaults instantiates a new UpdateVerificationFlowWithCodeMethod object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetCode
 
-`func (o *UpdateVerificationFlowWithCodeMethodBody) GetCode() string`
+`func (o *UpdateVerificationFlowWithCodeMethod) GetCode() string`
 
 GetCode returns the Code field if non-nil, zero value otherwise.
 
 ### GetCodeOk
 
-`func (o *UpdateVerificationFlowWithCodeMethodBody) GetCodeOk() (*string, bool)`
+`func (o *UpdateVerificationFlowWithCodeMethod) GetCodeOk() (*string, bool)`
 
 GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCode
 
-`func (o *UpdateVerificationFlowWithCodeMethodBody) SetCode(v string)`
+`func (o *UpdateVerificationFlowWithCodeMethod) SetCode(v string)`
 
 SetCode sets Code field to given value.
 
 ### HasCode
 
-`func (o *UpdateVerificationFlowWithCodeMethodBody) HasCode() bool`
+`func (o *UpdateVerificationFlowWithCodeMethod) HasCode() bool`
 
 HasCode returns a boolean if a field has been set.
 
 ### GetCsrfToken
 
-`func (o *UpdateVerificationFlowWithCodeMethodBody) GetCsrfToken() string`
+`func (o *UpdateVerificationFlowWithCodeMethod) GetCsrfToken() string`
 
 GetCsrfToken returns the CsrfToken field if non-nil, zero value otherwise.
 
 ### GetCsrfTokenOk
 
-`func (o *UpdateVerificationFlowWithCodeMethodBody) GetCsrfTokenOk() (*string, bool)`
+`func (o *UpdateVerificationFlowWithCodeMethod) GetCsrfTokenOk() (*string, bool)`
 
 GetCsrfTokenOk returns a tuple with the CsrfToken field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCsrfToken
 
-`func (o *UpdateVerificationFlowWithCodeMethodBody) SetCsrfToken(v string)`
+`func (o *UpdateVerificationFlowWithCodeMethod) SetCsrfToken(v string)`
 
 SetCsrfToken sets CsrfToken field to given value.
 
 ### HasCsrfToken
 
-`func (o *UpdateVerificationFlowWithCodeMethodBody) HasCsrfToken() bool`
+`func (o *UpdateVerificationFlowWithCodeMethod) HasCsrfToken() bool`
 
 HasCsrfToken returns a boolean if a field has been set.
 
 ### GetEmail
 
-`func (o *UpdateVerificationFlowWithCodeMethodBody) GetEmail() string`
+`func (o *UpdateVerificationFlowWithCodeMethod) GetEmail() string`
 
 GetEmail returns the Email field if non-nil, zero value otherwise.
 
 ### GetEmailOk
 
-`func (o *UpdateVerificationFlowWithCodeMethodBody) GetEmailOk() (*string, bool)`
+`func (o *UpdateVerificationFlowWithCodeMethod) GetEmailOk() (*string, bool)`
 
 GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEmail
 
-`func (o *UpdateVerificationFlowWithCodeMethodBody) SetEmail(v string)`
+`func (o *UpdateVerificationFlowWithCodeMethod) SetEmail(v string)`
 
 SetEmail sets Email field to given value.
 
 ### HasEmail
 
-`func (o *UpdateVerificationFlowWithCodeMethodBody) HasEmail() bool`
+`func (o *UpdateVerificationFlowWithCodeMethod) HasEmail() bool`
 
 HasEmail returns a boolean if a field has been set.
 
 ### GetFlow
 
-`func (o *UpdateVerificationFlowWithCodeMethodBody) GetFlow() string`
+`func (o *UpdateVerificationFlowWithCodeMethod) GetFlow() string`
 
 GetFlow returns the Flow field if non-nil, zero value otherwise.
 
 ### GetFlowOk
 
-`func (o *UpdateVerificationFlowWithCodeMethodBody) GetFlowOk() (*string, bool)`
+`func (o *UpdateVerificationFlowWithCodeMethod) GetFlowOk() (*string, bool)`
 
 GetFlowOk returns a tuple with the Flow field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFlow
 
-`func (o *UpdateVerificationFlowWithCodeMethodBody) SetFlow(v string)`
+`func (o *UpdateVerificationFlowWithCodeMethod) SetFlow(v string)`
 
 SetFlow sets Flow field to given value.
 
 ### HasFlow
 
-`func (o *UpdateVerificationFlowWithCodeMethodBody) HasFlow() bool`
+`func (o *UpdateVerificationFlowWithCodeMethod) HasFlow() bool`
 
 HasFlow returns a boolean if a field has been set.
 
 ### GetMethod
 
-`func (o *UpdateVerificationFlowWithCodeMethodBody) GetMethod() string`
+`func (o *UpdateVerificationFlowWithCodeMethod) GetMethod() string`
 
 GetMethod returns the Method field if non-nil, zero value otherwise.
 
 ### GetMethodOk
 
-`func (o *UpdateVerificationFlowWithCodeMethodBody) GetMethodOk() (*string, bool)`
+`func (o *UpdateVerificationFlowWithCodeMethod) GetMethodOk() (*string, bool)`
 
 GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMethod
 
-`func (o *UpdateVerificationFlowWithCodeMethodBody) SetMethod(v string)`
+`func (o *UpdateVerificationFlowWithCodeMethod) SetMethod(v string)`
 
 SetMethod sets Method field to given value.
 
 ### HasMethod
 
-`func (o *UpdateVerificationFlowWithCodeMethodBody) HasMethod() bool`
+`func (o *UpdateVerificationFlowWithCodeMethod) HasMethod() bool`
 
 HasMethod returns a boolean if a field has been set.
 
