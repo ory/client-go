@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.1.41
+API version: v1.1.44
 Contact: support@ory.sh
 */
 
@@ -16,8 +16,8 @@ import (
 	"time"
 )
 
-// ProjectInvite struct for ProjectInvite
-type ProjectInvite struct {
+// MemberInvite struct for MemberInvite
+type MemberInvite struct {
 	// The Project's Revision Creation Date
 	CreatedAt time.Time `json:"created_at"`
 	// The invite's ID.
@@ -38,14 +38,14 @@ type ProjectInvite struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _ProjectInvite ProjectInvite
+type _MemberInvite MemberInvite
 
-// NewProjectInvite instantiates a new ProjectInvite object
+// NewMemberInvite instantiates a new MemberInvite object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectInvite(createdAt time.Time, id string, inviteeEmail string, ownerEmail string, ownerId string, projectId string, status string, updatedAt time.Time) *ProjectInvite {
-	this := ProjectInvite{}
+func NewMemberInvite(createdAt time.Time, id string, inviteeEmail string, ownerEmail string, ownerId string, projectId string, status string, updatedAt time.Time) *MemberInvite {
+	this := MemberInvite{}
 	this.CreatedAt = createdAt
 	this.Id = id
 	this.InviteeEmail = inviteeEmail
@@ -57,16 +57,16 @@ func NewProjectInvite(createdAt time.Time, id string, inviteeEmail string, owner
 	return &this
 }
 
-// NewProjectInviteWithDefaults instantiates a new ProjectInvite object
+// NewMemberInviteWithDefaults instantiates a new MemberInvite object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewProjectInviteWithDefaults() *ProjectInvite {
-	this := ProjectInvite{}
+func NewMemberInviteWithDefaults() *MemberInvite {
+	this := MemberInvite{}
 	return &this
 }
 
 // GetCreatedAt returns the CreatedAt field value
-func (o *ProjectInvite) GetCreatedAt() time.Time {
+func (o *MemberInvite) GetCreatedAt() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -77,7 +77,7 @@ func (o *ProjectInvite) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *ProjectInvite) GetCreatedAtOk() (*time.Time, bool) {
+func (o *MemberInvite) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -85,12 +85,12 @@ func (o *ProjectInvite) GetCreatedAtOk() (*time.Time, bool) {
 }
 
 // SetCreatedAt sets field value
-func (o *ProjectInvite) SetCreatedAt(v time.Time) {
+func (o *MemberInvite) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
 }
 
 // GetId returns the Id field value
-func (o *ProjectInvite) GetId() string {
+func (o *MemberInvite) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -101,7 +101,7 @@ func (o *ProjectInvite) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ProjectInvite) GetIdOk() (*string, bool) {
+func (o *MemberInvite) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -109,12 +109,12 @@ func (o *ProjectInvite) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value
-func (o *ProjectInvite) SetId(v string) {
+func (o *MemberInvite) SetId(v string) {
 	o.Id = v
 }
 
 // GetInviteeEmail returns the InviteeEmail field value
-func (o *ProjectInvite) GetInviteeEmail() string {
+func (o *MemberInvite) GetInviteeEmail() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -125,7 +125,7 @@ func (o *ProjectInvite) GetInviteeEmail() string {
 
 // GetInviteeEmailOk returns a tuple with the InviteeEmail field value
 // and a boolean to check if the value has been set.
-func (o *ProjectInvite) GetInviteeEmailOk() (*string, bool) {
+func (o *MemberInvite) GetInviteeEmailOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -133,12 +133,12 @@ func (o *ProjectInvite) GetInviteeEmailOk() (*string, bool) {
 }
 
 // SetInviteeEmail sets field value
-func (o *ProjectInvite) SetInviteeEmail(v string) {
+func (o *MemberInvite) SetInviteeEmail(v string) {
 	o.InviteeEmail = v
 }
 
 // GetInviteeId returns the InviteeId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProjectInvite) GetInviteeId() string {
+func (o *MemberInvite) GetInviteeId() string {
 	if o == nil || o.InviteeId.Get() == nil {
 		var ret string
 		return ret
@@ -149,7 +149,7 @@ func (o *ProjectInvite) GetInviteeId() string {
 // GetInviteeIdOk returns a tuple with the InviteeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProjectInvite) GetInviteeIdOk() (*string, bool) {
+func (o *MemberInvite) GetInviteeIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -157,7 +157,7 @@ func (o *ProjectInvite) GetInviteeIdOk() (*string, bool) {
 }
 
 // HasInviteeId returns a boolean if a field has been set.
-func (o *ProjectInvite) HasInviteeId() bool {
+func (o *MemberInvite) HasInviteeId() bool {
 	if o != nil && o.InviteeId.IsSet() {
 		return true
 	}
@@ -166,21 +166,21 @@ func (o *ProjectInvite) HasInviteeId() bool {
 }
 
 // SetInviteeId gets a reference to the given NullableString and assigns it to the InviteeId field.
-func (o *ProjectInvite) SetInviteeId(v string) {
+func (o *MemberInvite) SetInviteeId(v string) {
 	o.InviteeId.Set(&v)
 }
 // SetInviteeIdNil sets the value for InviteeId to be an explicit nil
-func (o *ProjectInvite) SetInviteeIdNil() {
+func (o *MemberInvite) SetInviteeIdNil() {
 	o.InviteeId.Set(nil)
 }
 
 // UnsetInviteeId ensures that no value is present for InviteeId, not even an explicit nil
-func (o *ProjectInvite) UnsetInviteeId() {
+func (o *MemberInvite) UnsetInviteeId() {
 	o.InviteeId.Unset()
 }
 
 // GetOwnerEmail returns the OwnerEmail field value
-func (o *ProjectInvite) GetOwnerEmail() string {
+func (o *MemberInvite) GetOwnerEmail() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -191,7 +191,7 @@ func (o *ProjectInvite) GetOwnerEmail() string {
 
 // GetOwnerEmailOk returns a tuple with the OwnerEmail field value
 // and a boolean to check if the value has been set.
-func (o *ProjectInvite) GetOwnerEmailOk() (*string, bool) {
+func (o *MemberInvite) GetOwnerEmailOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -199,12 +199,12 @@ func (o *ProjectInvite) GetOwnerEmailOk() (*string, bool) {
 }
 
 // SetOwnerEmail sets field value
-func (o *ProjectInvite) SetOwnerEmail(v string) {
+func (o *MemberInvite) SetOwnerEmail(v string) {
 	o.OwnerEmail = v
 }
 
 // GetOwnerId returns the OwnerId field value
-func (o *ProjectInvite) GetOwnerId() string {
+func (o *MemberInvite) GetOwnerId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -215,7 +215,7 @@ func (o *ProjectInvite) GetOwnerId() string {
 
 // GetOwnerIdOk returns a tuple with the OwnerId field value
 // and a boolean to check if the value has been set.
-func (o *ProjectInvite) GetOwnerIdOk() (*string, bool) {
+func (o *MemberInvite) GetOwnerIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -223,12 +223,12 @@ func (o *ProjectInvite) GetOwnerIdOk() (*string, bool) {
 }
 
 // SetOwnerId sets field value
-func (o *ProjectInvite) SetOwnerId(v string) {
+func (o *MemberInvite) SetOwnerId(v string) {
 	o.OwnerId = v
 }
 
 // GetProjectId returns the ProjectId field value
-func (o *ProjectInvite) GetProjectId() string {
+func (o *MemberInvite) GetProjectId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -239,7 +239,7 @@ func (o *ProjectInvite) GetProjectId() string {
 
 // GetProjectIdOk returns a tuple with the ProjectId field value
 // and a boolean to check if the value has been set.
-func (o *ProjectInvite) GetProjectIdOk() (*string, bool) {
+func (o *MemberInvite) GetProjectIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -247,12 +247,12 @@ func (o *ProjectInvite) GetProjectIdOk() (*string, bool) {
 }
 
 // SetProjectId sets field value
-func (o *ProjectInvite) SetProjectId(v string) {
+func (o *MemberInvite) SetProjectId(v string) {
 	o.ProjectId = v
 }
 
 // GetStatus returns the Status field value
-func (o *ProjectInvite) GetStatus() string {
+func (o *MemberInvite) GetStatus() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -263,7 +263,7 @@ func (o *ProjectInvite) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *ProjectInvite) GetStatusOk() (*string, bool) {
+func (o *MemberInvite) GetStatusOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -271,12 +271,12 @@ func (o *ProjectInvite) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *ProjectInvite) SetStatus(v string) {
+func (o *MemberInvite) SetStatus(v string) {
 	o.Status = v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value
-func (o *ProjectInvite) GetUpdatedAt() time.Time {
+func (o *MemberInvite) GetUpdatedAt() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -287,7 +287,7 @@ func (o *ProjectInvite) GetUpdatedAt() time.Time {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value
 // and a boolean to check if the value has been set.
-func (o *ProjectInvite) GetUpdatedAtOk() (*time.Time, bool) {
+func (o *MemberInvite) GetUpdatedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -295,11 +295,11 @@ func (o *ProjectInvite) GetUpdatedAtOk() (*time.Time, bool) {
 }
 
 // SetUpdatedAt sets field value
-func (o *ProjectInvite) SetUpdatedAt(v time.Time) {
+func (o *MemberInvite) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
-func (o ProjectInvite) MarshalJSON() ([]byte, error) {
+func (o MemberInvite) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["created_at"] = o.CreatedAt
@@ -336,11 +336,11 @@ func (o ProjectInvite) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o *ProjectInvite) UnmarshalJSON(bytes []byte) (err error) {
-	varProjectInvite := _ProjectInvite{}
+func (o *MemberInvite) UnmarshalJSON(bytes []byte) (err error) {
+	varMemberInvite := _MemberInvite{}
 
-	if err = json.Unmarshal(bytes, &varProjectInvite); err == nil {
-		*o = ProjectInvite(varProjectInvite)
+	if err = json.Unmarshal(bytes, &varMemberInvite); err == nil {
+		*o = MemberInvite(varMemberInvite)
 	}
 
 	additionalProperties := make(map[string]interface{})
@@ -361,38 +361,38 @@ func (o *ProjectInvite) UnmarshalJSON(bytes []byte) (err error) {
 	return err
 }
 
-type NullableProjectInvite struct {
-	value *ProjectInvite
+type NullableMemberInvite struct {
+	value *MemberInvite
 	isSet bool
 }
 
-func (v NullableProjectInvite) Get() *ProjectInvite {
+func (v NullableMemberInvite) Get() *MemberInvite {
 	return v.value
 }
 
-func (v *NullableProjectInvite) Set(val *ProjectInvite) {
+func (v *NullableMemberInvite) Set(val *MemberInvite) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableProjectInvite) IsSet() bool {
+func (v NullableMemberInvite) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableProjectInvite) Unset() {
+func (v *NullableMemberInvite) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableProjectInvite(val *ProjectInvite) *NullableProjectInvite {
-	return &NullableProjectInvite{value: val, isSet: true}
+func NewNullableMemberInvite(val *MemberInvite) *NullableMemberInvite {
+	return &NullableMemberInvite{value: val, isSet: true}
 }
 
-func (v NullableProjectInvite) MarshalJSON() ([]byte, error) {
+func (v NullableMemberInvite) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableProjectInvite) UnmarshalJSON(src []byte) error {
+func (v *NullableMemberInvite) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
