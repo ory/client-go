@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **time.Time** | The Project&#39;s Creation Date | 
-**Environment** | **string** | The environment of the project. prod Production dev Development | 
+**Environment** | **string** | The environment of the project. prod Production stage Staging dev Development | 
 **Hosts** | **[]string** |  | 
 **Id** | **string** | The project&#39;s ID. | [readonly] 
 **Name** | **string** | The project&#39;s name if set | 
@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **SubscriptionId** | Pointer to **NullableString** |  | [optional] 
 **SubscriptionPlan** | Pointer to **NullableString** |  | [optional] 
 **UpdatedAt** | **time.Time** | Last Time Project was Updated | 
+**Workspace** | Pointer to [**Workspace**](Workspace.md) |  | [optional] 
 **WorkspaceId** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
@@ -269,6 +270,31 @@ and a boolean to check if the value has been set.
 
 SetUpdatedAt sets UpdatedAt field to given value.
 
+
+### GetWorkspace
+
+`func (o *ProjectMetadata) GetWorkspace() Workspace`
+
+GetWorkspace returns the Workspace field if non-nil, zero value otherwise.
+
+### GetWorkspaceOk
+
+`func (o *ProjectMetadata) GetWorkspaceOk() (*Workspace, bool)`
+
+GetWorkspaceOk returns a tuple with the Workspace field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkspace
+
+`func (o *ProjectMetadata) SetWorkspace(v Workspace)`
+
+SetWorkspace sets Workspace field to given value.
+
+### HasWorkspace
+
+`func (o *ProjectMetadata) HasWorkspace() bool`
+
+HasWorkspace returns a boolean if a field has been set.
 
 ### GetWorkspaceId
 

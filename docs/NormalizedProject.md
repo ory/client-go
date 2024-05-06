@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **time.Time** | The Project&#39;s Creation Date | [readonly] 
 **CurrentRevision** | [**NormalizedProjectRevision**](NormalizedProjectRevision.md) |  | 
-**Environment** | **string** | The environment of the project. prod Production dev Development | 
+**Environment** | **string** | The environment of the project. prod Production stage Staging dev Development | 
 **Hosts** | **[]string** |  | 
 **Id** | **string** | The project&#39;s ID. | [readonly] 
 **Slug** | **string** | The project&#39;s slug | [readonly] 
@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **SubscriptionId** | Pointer to **NullableString** |  | [optional] 
 **SubscriptionPlan** | Pointer to **NullableString** |  | [optional] 
 **UpdatedAt** | **time.Time** | Last Time Project was Updated | [readonly] 
+**Workspace** | Pointer to [**Workspace**](Workspace.md) |  | [optional] 
 **WorkspaceId** | **NullableString** |  | 
 
 ## Methods
@@ -264,6 +265,31 @@ and a boolean to check if the value has been set.
 
 SetUpdatedAt sets UpdatedAt field to given value.
 
+
+### GetWorkspace
+
+`func (o *NormalizedProject) GetWorkspace() Workspace`
+
+GetWorkspace returns the Workspace field if non-nil, zero value otherwise.
+
+### GetWorkspaceOk
+
+`func (o *NormalizedProject) GetWorkspaceOk() (*Workspace, bool)`
+
+GetWorkspaceOk returns a tuple with the Workspace field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkspace
+
+`func (o *NormalizedProject) SetWorkspace(v Workspace)`
+
+SetWorkspace sets Workspace field to given value.
+
+### HasWorkspace
+
+`func (o *NormalizedProject) HasWorkspace() bool`
+
+HasWorkspace returns a boolean if a field has been set.
 
 ### GetWorkspaceId
 

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.9.0
+API version: v1.11.6
 Contact: support@ory.sh
 */
 
@@ -21,7 +21,7 @@ var _ MappedNullable = &MigrationOptions{}
 
 // MigrationOptions struct for MigrationOptions
 type MigrationOptions struct {
-	// The environment of the project in the workspace. Can be one of \"prod\" or \"dev\". Note that the number of projects in the \"prod\" environment is limited depending on the subscription. prod Production dev Development
+	// The environment of the project in the workspace. Can be one of \"prod\" or \"dev\". Note that the number of projects in the \"prod\" environment is limited depending on the subscription. prod Production stage Staging dev Development
 	Environment string `json:"environment"`
 	// The action to take with the project subscription. Can be one of \"migrate\", and \"ignore\". \"migrate\" will migrate the project subscription to the workspace. \"ignore\" will ignore the project subscription. migrate ProjectSubscriptionActionMigrate  ProjectSubscriptionActionMigrate will migrate the project subscription to the  workspace. ignore ProjectSubscriptionActionIgnore  ProjectSubscriptionActionIgnore will ignore the project subscription.
 	ProjectSubscription string `json:"project_subscription"`
@@ -117,8 +117,8 @@ func (o MigrationOptions) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *MigrationOptions) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
+func (o *MigrationOptions) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
@@ -128,7 +128,7 @@ func (o *MigrationOptions) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -142,7 +142,7 @@ func (o *MigrationOptions) UnmarshalJSON(bytes []byte) (err error) {
 
 	varMigrationOptions := _MigrationOptions{}
 
-	err = json.Unmarshal(bytes, &varMigrationOptions)
+	err = json.Unmarshal(data, &varMigrationOptions)
 
 	if err != nil {
 		return err
@@ -152,7 +152,7 @@ func (o *MigrationOptions) UnmarshalJSON(bytes []byte) (err error) {
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "environment")
 		delete(additionalProperties, "project_subscription")
 		o.AdditionalProperties = additionalProperties

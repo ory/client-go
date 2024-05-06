@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.9.0
+  version: v1.11.6
 servers:
 - url: "https://{project}.projects.oryapis.com/"
   variables:
@@ -718,7 +718,7 @@ paths:
       - identity
     patch:
       description: |-
-        Creates or delete multiple
+        Creates multiple
         [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
         This endpoint can also be used to [import
         credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities)
@@ -757,7 +757,7 @@ paths:
           description: errorGeneric
       security:
       - oryAccessToken: []
-      summary: Create and deletes multiple identities
+      summary: Create multiple identities
       tags:
       - identity
     post:
@@ -872,6 +872,8 @@ paths:
             - lookup_secret
             - webauthn
             - code
+            - passkey
+            - profile
             - link_recovery
             - code_recovery
             type: string
@@ -1036,6 +1038,8 @@ paths:
           lookup_secret CredentialsTypeLookup
           webauthn CredentialsTypeWebAuthn
           code CredentialsTypeCodeAuth
+          passkey CredentialsTypePasskey
+          profile CredentialsTypeProfile
           link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
           code_recovery CredentialsTypeRecoveryCode
         explode: false
@@ -1050,6 +1054,8 @@ paths:
           - lookup_secret
           - webauthn
           - code
+          - passkey
+          - profile
           - link_recovery
           - code_recovery
           type: string
@@ -1061,6 +1067,8 @@ paths:
           lookup_secret CredentialsTypeLookup
           webauthn CredentialsTypeWebAuthn
           code CredentialsTypeCodeAuth
+          passkey CredentialsTypePasskey
+          profile CredentialsTypeProfile
           link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
           code_recovery CredentialsTypeRecoveryCode
       responses:
@@ -2455,10 +2463,10 @@ paths:
         name: expand
         required: false
         schema:
-          enum:
-          - identity
-          - devices
           items:
+            enum:
+            - identity
+            - devices
             type: string
           type: array
         style: form
@@ -2549,10 +2557,10 @@ paths:
         name: expand
         required: false
         schema:
-          enum:
-          - identity
-          - devices
           items:
+            enum:
+            - identity
+            - devices
             type: string
           type: array
         style: form
@@ -2878,78 +2886,6 @@ paths:
       summary: Issues a Verifiable Credential
       tags:
       - oidc
-  /health/alive:
-    get:
-      description: |-
-        This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incoming
-        HTTP requests. This status does currently not include checks whether the database connection is working.
-
-        If the service supports TLS Edge Termination, this endpoint does not require the
-        `X-Forwarded-Proto` header to be set.
-
-        Be aware that if you are running multiple nodes of this service, the health status will never
-        refer to the cluster state, only to a single instance.
-      operationId: isAlive
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/healthStatus'
-          description: Ory Kratos is ready to accept connections.
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
-        default:
-          content:
-            text/plain:
-              schema:
-                type: string
-          description: Unexpected error
-      security:
-      - oryAccessToken: []
-      summary: Check HTTP Server Status
-      tags:
-      - metadata
-  /health/ready:
-    get:
-      description: |-
-        This endpoint returns a HTTP 200 status code when Ory Kratos is up running and the environment dependencies (e.g.
-        the database) are responsive as well.
-
-        If the service supports TLS Edge Termination, this endpoint does not require the
-        `X-Forwarded-Proto` header to be set.
-
-        Be aware that if you are running multiple nodes of Ory Kratos, the health status will never
-        refer to the cluster state, only to a single instance.
-      operationId: isReady
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/isReady_200_response'
-          description: Ory Kratos is ready to accept requests.
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/isReady_503_response'
-          description: Ory Kratos is not yet ready to accept requests.
-        default:
-          content:
-            text/plain:
-              schema:
-                type: string
-          description: Unexpected error
-      security:
-      - oryAccessToken: []
-      summary: Check HTTP Server and Database Status
-      tags:
-      - metadata
   /namespaces:
     get:
       description: Get all namespaces
@@ -7583,13 +7519,16 @@ components:
           description: |2-
 
             prod Production
+            stage Staging
             dev Development
           enum:
           - prod
+          - stage
           - dev
           type: string
           x-go-enum-desc: |-
             prod Production
+            stage Staging
             dev Development
         hydra_oauth2_allowed_top_level_claims:
           items:
@@ -8335,6 +8274,12 @@ components:
 
             This governs the "selfservice.flows.login.after.oidc.default_browser_return_url" setting.
           type: string
+        kratos_selfservice_flows_login_after_passkey_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Login After Passkey Default Return URL
+
+            This governs the "selfservice.flows.login.after.passkey.default_browser_return_url" setting.
+          type: string
         kratos_selfservice_flows_login_after_password_default_browser_return_url:
           description: |-
             Configures the Ory Kratos Login After Password Default Return URL
@@ -8433,6 +8378,12 @@ components:
 
             This governs the "selfservice.flows.registration.after.oidc.default_browser_return_url" setting.
           type: string
+        kratos_selfservice_flows_registration_after_passkey_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Registration After Passkey Default Return URL
+
+            This governs the "selfservice.flows.registration.after.password.default_browser_return_url" setting.
+          type: string
         kratos_selfservice_flows_registration_after_password_default_browser_return_url:
           description: |-
             Configures the Ory Kratos Registration After Password Default Return URL
@@ -8441,10 +8392,20 @@ components:
           type: string
         kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url:
           description: |-
-            Configures the Ory Kratos Registration After Password Default Return URL
+            Configures the Ory Kratos Registration After Webauthn Default Return URL
 
-            This governs the "selfservice.flows.registration.after.password.default_browser_return_url" setting.
+            This governs the "selfservice.flows.registration.after.webauthn.default_browser_return_url" setting.
           type: string
+        kratos_selfservice_flows_registration_enable_legacy_one_step:
+          description: |-
+            Disable two-step registration
+
+            Two-step registration is a significantly improved sign up flow and recommended
+            when using more than one sign up methods. To revert to one-step registration,
+            set this to `true`.
+
+            This governs the "selfservice.flows.registration.enable_legacy_one_step" setting.
+          type: boolean
         kratos_selfservice_flows_registration_enabled:
           description: |-
             Configures the Whether Ory Kratos Registration is Enabled
@@ -8489,6 +8450,12 @@ components:
 
             This governs the "selfservice.flows.settings.after.oidc.default_browser_return_url" setting.
           type: string
+        kratos_selfservice_flows_settings_after_passkey_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Settings Default Return URL After Updating Passkey
+
+            This governs the "selfservice.flows.settings.after.passkey.default_browser_return_url" setting.
+          type: string
         kratos_selfservice_flows_settings_after_password_default_browser_return_url:
           description: |-
             Configures the Ory Kratos Settings Default Return URL After Updating Passwords
@@ -8511,7 +8478,7 @@ components:
           description: |-
             Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn
 
-            This governs the "selfservice.flows.settings.webauthn.profile.default_browser_return_url" setting.
+            This governs the "selfservice.flows.settings.after.webauthn.default_browser_return_url" setting.
           type: string
         kratos_selfservice_flows_settings_lifespan:
           description: |-
@@ -8595,15 +8562,21 @@ components:
           type: boolean
         kratos_selfservice_methods_code_mfa_enabled:
           description: |-
-            Configues whether the code method can be used to fulfil MFA flows
+            Configures whether the code method can be used to fulfil MFA flows
 
             This governs the "selfservice.methods.code.mfa_enabled" setting.
           type: boolean
         kratos_selfservice_methods_code_passwordless_enabled:
           description: |-
-            Configues whether Ory Kratos Passwordless should use the Code Method
+            Configures whether Ory Kratos Passwordless should use the Code Method
 
             This governs the "selfservice.methods.code.passwordless_enabled" setting.
+          type: boolean
+        kratos_selfservice_methods_code_passwordless_login_fallback_enabled:
+          description: |-
+            This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.
+
+            This governs the "selfservice.methods.code.passwordless_login_fallback_enabled" setting.
           type: boolean
         kratos_selfservice_methods_link_config_base_url:
           description: |-
@@ -8647,6 +8620,30 @@ components:
             Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled
 
             This governs the "selfservice.methods.oidc.enabled" setting.
+          type: boolean
+        kratos_selfservice_methods_passkey_config_rp_display_name:
+          description: |-
+            Configures the Ory Kratos Passkey RP Display Name
+
+            This governs the "selfservice.methods.passkey.config.rp.display_name" setting.
+          type: string
+        kratos_selfservice_methods_passkey_config_rp_id:
+          description: |-
+            Configures the Ory Kratos Passkey RP ID
+
+            This governs the "selfservice.methods.passkey.config.rp.id" setting.
+          type: string
+        kratos_selfservice_methods_passkey_config_rp_origins:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
+        kratos_selfservice_methods_passkey_enabled:
+          description: |-
+            Configures whether Ory Kratos Passkey authentication is enabled
+
+            This governs the "selfservice.methods.passkey.enabled" setting.
           type: boolean
         kratos_selfservice_methods_password_config_haveibeenpwned_enabled:
           description: |-
@@ -8814,8 +8811,7 @@ components:
           readOnly: true
           type: string
         workspace_id:
-          format: uuid4
-          nullable: true
+          format: uuid
           type: string
       required:
       - environment
@@ -9226,15 +9222,17 @@ components:
       type: array
     SubscriptionStatus:
       description: |-
-        For `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this state can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` state. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal state, the open invoice will be voided and no further invoices will be generated.
+        For `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this status can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` status. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal status, the open invoice will be voided and no further invoices will be generated.
 
         A subscription that is currently in a trial period is `trialing` and moves to `active` when the trial period is over.
+
+        A subscription can only enter a `paused` status [when a trial ends without a payment method](https://stripe.com/billing/subscriptions/trials#create-free-trials-without-payment). A `paused` subscription doesn't generate invoices and can be resumed after your customer adds their payment method. The `paused` status is different from [pausing collection](https://stripe.com/billing/subscriptions/pause-payment), which still generates invoices and leaves the subscription's status unchanged.
 
         If subscription `collection_method=charge_automatically`, it becomes `past_due` when payment is required but cannot be paid (due to failed payment or awaiting additional user actions). Once Stripe has exhausted all payment retry attempts, the subscription will become `canceled` or `unpaid` (depending on your subscriptions settings).
 
         If subscription `collection_method=send_invoice` it becomes `past_due` when its invoice is not paid by the due date, and `canceled` or `unpaid` if it is still not paid by an additional deadline after that. Note that when a subscription has a status of `unpaid`, no subsequent invoices will be attempted (invoices will be created, but then immediately automatically closed). After receiving updated payment information from a customer, you may choose to reopen and pay their closed invoices.
       title: "Possible values are `incomplete`, `incomplete_expired`, `trialing`,\
-        \ `active`, `past_due`, `canceled`, or `unpaid`."
+        \ `active`, `past_due`, `canceled`, `unpaid`, or `paused`."
       type: string
     Time:
       format: date-time
@@ -9619,6 +9617,12 @@ components:
     continueWithVerificationUi:
       description: "Indicates, that the UI flow could be continued by showing a verification\
         \ ui"
+      example:
+        action: show_verification_ui
+        flow:
+          verifiable_address: verifiable_address
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          url: url
       properties:
         action:
           description: |-
@@ -9635,6 +9639,10 @@ components:
       - flow
       type: object
     continueWithVerificationUiFlow:
+      example:
+        verifiable_address: verifiable_address
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        url: url
       properties:
         id:
           description: The ID of the verification flow
@@ -9802,20 +9810,23 @@ components:
           description: |-
             The environment of the project.
             prod Production
+            stage Staging
             dev Development
           enum:
           - prod
+          - stage
           - dev
           type: string
           x-go-enum-desc: |-
             prod Production
+            stage Staging
             dev Development
         name:
           description: The name of the project to be created
           type: string
         workspace_id:
-          format: uuid4
-          nullable: true
+          description: The workspace to create the project in.
+          format: uuid
           type: string
       required:
       - environment
@@ -10152,6 +10163,15 @@ components:
         not satisfied.
       type: object
     errorBrowserLocationChangeRequired:
+      example:
+        error:
+          error:
+            debug: The database adapter was unable to find the element
+            status_code: 404
+            error_description: Object with ID 12345 does not exist
+            error: The requested resource could not be found
+            message: message
+        redirect_browser_to: redirect_browser_to
       properties:
         error:
           $ref: '#/components/schemas/errorGeneric'
@@ -10174,6 +10194,13 @@ components:
       type: object
     errorGeneric:
       description: The standard Ory JSON API error format.
+      example:
+        error:
+          debug: The database adapter was unable to find the element
+          status_code: 404
+          error_description: Object with ID 12345 does not exist
+          error: The requested resource could not be found
+          message: message
       properties:
         error:
           $ref: '#/components/schemas/genericErrorContent'
@@ -10328,6 +10355,21 @@ components:
     genericError:
       description: "Error responses are sent when an error (e.g. unauthorized, bad\
         \ request, ...) occurred."
+      example:
+        reason: User with ID 1234 does not exist.
+        request: d7ef54b1-ec15-46e6-bccb-524b82c035e6
+        code: 404
+        debug: SQL field "foo" is not a bool.
+        details: ""
+        id: id
+        error:
+          debug: The database adapter was unable to find the element
+          status_code: 404
+          error_description: Object with ID 12345 does not exist
+          error: The requested resource could not be found
+          message: message
+        message: The resource could not be found
+        status: Not Found
       properties:
         code:
           description: The status code
@@ -10381,6 +10423,12 @@ components:
       type: object
     genericErrorContent:
       description: Error response
+      example:
+        debug: The database adapter was unable to find the element
+        status_code: 404
+        error_description: Object with ID 12345 does not exist
+        error: The requested resource could not be found
+        message: message
       properties:
         debug:
           description: Debug contains debug information. This is usually not available
@@ -10551,14 +10599,14 @@ components:
           description: Errors contains a list of errors that caused the not ready
             status.
           type: object
+      title: The not ready status of the service.
       type: object
     healthStatus:
-      example:
-        status: status
       properties:
         status:
           description: Status always contains "ok".
           type: string
+      title: The health status of the service.
       type: object
     identity:
       description: "An [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model)\
@@ -10739,6 +10787,8 @@ components:
             lookup_secret CredentialsTypeLookup
             webauthn CredentialsTypeWebAuthn
             code CredentialsTypeCodeAuth
+            passkey CredentialsTypePasskey
+            profile CredentialsTypeProfile
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -10748,6 +10798,8 @@ components:
           - lookup_secret
           - webauthn
           - code
+          - passkey
+          - profile
           - link_recovery
           - code_recovery
           type: string
@@ -10758,6 +10810,8 @@ components:
             lookup_secret CredentialsTypeLookup
             webauthn CredentialsTypeWebAuthn
             code CredentialsTypeCodeAuth
+            passkey CredentialsTypePasskey
+            profile CredentialsTypeProfile
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         updated_at:
@@ -11534,7 +11588,22 @@ components:
               id: 0
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 0
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           - meta:
@@ -11552,7 +11621,22 @@ components:
               id: 0
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 0
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           method: method
@@ -11583,6 +11667,8 @@ components:
             lookup_secret CredentialsTypeLookup
             webauthn CredentialsTypeWebAuthn
             code CredentialsTypeCodeAuth
+            passkey CredentialsTypePasskey
+            profile CredentialsTypeProfile
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -11592,6 +11678,8 @@ components:
           - lookup_secret
           - webauthn
           - code
+          - passkey
+          - profile
           - link_recovery
           - code_recovery
           type: string
@@ -11602,6 +11690,8 @@ components:
             lookup_secret CredentialsTypeLookup
             webauthn CredentialsTypeWebAuthn
             code CredentialsTypeCodeAuth
+            passkey CredentialsTypePasskey
+            profile CredentialsTypeProfile
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         created_at:
@@ -12053,13 +12143,16 @@ components:
             "dev". Note that the number of projects in the "prod" environment is limited
             depending on the subscription.
             prod Production
+            stage Staging
             dev Development
           enum:
           - prod
+          - stage
           - dev
           type: string
           x-go-enum-desc: |-
             prod Production
+            stage Staging
             dev Development
         project_subscription:
           description: |-
@@ -12113,13 +12206,16 @@ components:
           description: |-
             The environment of the project.
             prod Production
+            stage Staging
             dev Development
           enum:
           - prod
+          - stage
           - dev
           type: string
           x-go-enum-desc: |-
             prod Production
+            stage Staging
             dev Development
         hosts:
           items:
@@ -12164,6 +12260,8 @@ components:
           format: date-time
           readOnly: true
           type: string
+        workspace:
+          $ref: '#/components/schemas/workspace'
         workspace_id:
           format: uuid4
           nullable: true
@@ -12937,6 +13035,12 @@ components:
 
             This governs the "selfservice.flows.login.after.oidc.default_browser_return_url" setting.
           type: string
+        kratos_selfservice_flows_login_after_passkey_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Login After Passkey Default Return URL
+
+            This governs the "selfservice.flows.login.after.passkey.default_browser_return_url" setting.
+          type: string
         kratos_selfservice_flows_login_after_password_default_browser_return_url:
           description: |-
             Configures the Ory Kratos Login After Password Default Return URL
@@ -13035,6 +13139,12 @@ components:
 
             This governs the "selfservice.flows.registration.after.oidc.default_browser_return_url" setting.
           type: string
+        kratos_selfservice_flows_registration_after_passkey_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Registration After Passkey Default Return URL
+
+            This governs the "selfservice.flows.registration.after.password.default_browser_return_url" setting.
+          type: string
         kratos_selfservice_flows_registration_after_password_default_browser_return_url:
           description: |-
             Configures the Ory Kratos Registration After Password Default Return URL
@@ -13043,10 +13153,20 @@ components:
           type: string
         kratos_selfservice_flows_registration_after_webauthn_default_browser_return_url:
           description: |-
-            Configures the Ory Kratos Registration After Password Default Return URL
+            Configures the Ory Kratos Registration After Webauthn Default Return URL
 
-            This governs the "selfservice.flows.registration.after.password.default_browser_return_url" setting.
+            This governs the "selfservice.flows.registration.after.webauthn.default_browser_return_url" setting.
           type: string
+        kratos_selfservice_flows_registration_enable_legacy_one_step:
+          description: |-
+            Disable two-step registration
+
+            Two-step registration is a significantly improved sign up flow and recommended
+            when using more than one sign up methods. To revert to one-step registration,
+            set this to `true`.
+
+            This governs the "selfservice.flows.registration.enable_legacy_one_step" setting.
+          type: boolean
         kratos_selfservice_flows_registration_enabled:
           description: |-
             Configures the Whether Ory Kratos Registration is Enabled
@@ -13091,6 +13211,12 @@ components:
 
             This governs the "selfservice.flows.settings.after.oidc.default_browser_return_url" setting.
           type: string
+        kratos_selfservice_flows_settings_after_passkey_default_browser_return_url:
+          description: |-
+            Configures the Ory Kratos Settings Default Return URL After Updating Passkey
+
+            This governs the "selfservice.flows.settings.after.passkey.default_browser_return_url" setting.
+          type: string
         kratos_selfservice_flows_settings_after_password_default_browser_return_url:
           description: |-
             Configures the Ory Kratos Settings Default Return URL After Updating Passwords
@@ -13113,7 +13239,7 @@ components:
           description: |-
             Configures the Ory Kratos Settings Default Return URL After Updating WebAuthn
 
-            This governs the "selfservice.flows.settings.webauthn.profile.default_browser_return_url" setting.
+            This governs the "selfservice.flows.settings.after.webauthn.default_browser_return_url" setting.
           type: string
         kratos_selfservice_flows_settings_lifespan:
           description: |-
@@ -13197,15 +13323,21 @@ components:
           type: boolean
         kratos_selfservice_methods_code_mfa_enabled:
           description: |-
-            Configues whether the code method can be used to fulfil MFA flows
+            Configures whether the code method can be used to fulfil MFA flows
 
             This governs the "selfservice.methods.code.mfa_enabled" setting.
           type: boolean
         kratos_selfservice_methods_code_passwordless_enabled:
           description: |-
-            Configues whether Ory Kratos Passwordless should use the Code Method
+            Configures whether Ory Kratos Passwordless should use the Code Method
 
             This governs the "selfservice.methods.code.passwordless_enabled" setting.
+          type: boolean
+        kratos_selfservice_methods_code_passwordless_login_fallback_enabled:
+          description: |-
+            This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.
+
+            This governs the "selfservice.methods.code.passwordless_login_fallback_enabled" setting.
           type: boolean
         kratos_selfservice_methods_link_config_base_url:
           description: |-
@@ -13249,6 +13381,30 @@ components:
             Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled
 
             This governs the "selfservice.methods.oidc.enabled" setting.
+          type: boolean
+        kratos_selfservice_methods_passkey_config_rp_display_name:
+          description: |-
+            Configures the Ory Kratos Passkey RP Display Name
+
+            This governs the "selfservice.methods.passkey.config.rp.display_name" setting.
+          type: string
+        kratos_selfservice_methods_passkey_config_rp_id:
+          description: |-
+            Configures the Ory Kratos Passkey RP ID
+
+            This governs the "selfservice.methods.passkey.config.rp.id" setting.
+          type: string
+        kratos_selfservice_methods_passkey_config_rp_origins:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
+        kratos_selfservice_methods_passkey_enabled:
+          description: |-
+            Configures whether Ory Kratos Passkey authentication is enabled
+
+            This governs the "selfservice.methods.passkey.enabled" setting.
           type: boolean
         kratos_selfservice_methods_password_config_haveibeenpwned_enabled:
           description: |-
@@ -16032,6 +16188,12 @@ components:
         subscription_id: subscription_id
         workspace_id: workspace_id
         environment: prod
+        workspace:
+          subscription_id: subscription_id
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         updated_at: 2000-01-23T04:56:07.000+00:00
         hosts:
         - hosts
@@ -16051,13 +16213,16 @@ components:
           description: |-
             The environment of the project.
             prod Production
+            stage Staging
             dev Development
           enum:
           - prod
+          - stage
           - dev
           type: string
           x-go-enum-desc: |-
             prod Production
+            stage Staging
             dev Development
         hosts:
           items:
@@ -16103,6 +16268,8 @@ components:
           description: Last Time Project was Updated
           format: date-time
           type: string
+        workspace:
+          $ref: '#/components/schemas/workspace'
         workspace_id:
           format: uuid4
           nullable: true
@@ -16199,6 +16366,7 @@ components:
             region_apac RegionAPAC
             region_global RegionGlobal
             production_projects ProductionProjects
+            staging_projects StagingProjects
             development_projects DevelopmentProjects
             daily_active_users DailyActiveUsers
             custom_domains CustomDomains
@@ -16226,6 +16394,7 @@ components:
           - region_apac
           - region_global
           - production_projects
+          - staging_projects
           - development_projects
           - daily_active_users
           - custom_domains
@@ -16254,6 +16423,7 @@ components:
             region_apac RegionAPAC
             region_global RegionGlobal
             production_projects ProductionProjects
+            staging_projects StagingProjects
             development_projects DevelopmentProjects
             daily_active_users DailyActiveUsers
             custom_domains CustomDomains
@@ -16344,7 +16514,22 @@ components:
               id: 0
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 0
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           - meta:
@@ -16362,7 +16547,22 @@ components:
               id: 0
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 0
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           method: method
@@ -16377,8 +16577,16 @@ components:
             text: text
             type: info
         continue_with:
-        - null
-        - null
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
         active: active
         return_to: return_to
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -16629,7 +16837,22 @@ components:
               id: 0
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 0
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           - meta:
@@ -16647,7 +16870,22 @@ components:
               id: 0
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 0
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           method: method
@@ -16676,6 +16914,8 @@ components:
             lookup_secret CredentialsTypeLookup
             webauthn CredentialsTypeWebAuthn
             code CredentialsTypeCodeAuth
+            passkey CredentialsTypePasskey
+            profile CredentialsTypeProfile
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -16685,6 +16925,8 @@ components:
           - lookup_secret
           - webauthn
           - code
+          - passkey
+          - profile
           - link_recovery
           - code_recovery
           type: string
@@ -16695,6 +16937,8 @@ components:
             lookup_secret CredentialsTypeLookup
             webauthn CredentialsTypeWebAuthn
             code CredentialsTypeCodeAuth
+            passkey CredentialsTypePasskey
+            profile CredentialsTypeProfile
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         expires_at:
@@ -17283,7 +17527,22 @@ components:
               id: 0
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 0
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           - meta:
@@ -17301,7 +17560,22 @@ components:
               id: 0
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 0
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           method: method
@@ -17366,8 +17640,16 @@ components:
           state: active
           metadata_public: "{}"
         continue_with:
-        - null
-        - null
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
         active: active
         return_to: return_to
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -17542,15 +17824,17 @@ components:
           type: string
         status:
           description: |-
-            For `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this state can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` state. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal state, the open invoice will be voided and no further invoices will be generated.
+            For `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this status can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` status. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal status, the open invoice will be voided and no further invoices will be generated.
 
             A subscription that is currently in a trial period is `trialing` and moves to `active` when the trial period is over.
+
+            A subscription can only enter a `paused` status [when a trial ends without a payment method](https://stripe.com/billing/subscriptions/trials#create-free-trials-without-payment). A `paused` subscription doesn't generate invoices and can be resumed after your customer adds their payment method. The `paused` status is different from [pausing collection](https://stripe.com/billing/subscriptions/pause-payment), which still generates invoices and leaves the subscription's status unchanged.
 
             If subscription `collection_method=charge_automatically`, it becomes `past_due` when payment is required but cannot be paid (due to failed payment or awaiting additional user actions). Once Stripe has exhausted all payment retry attempts, the subscription will become `canceled` or `unpaid` (depending on your subscriptions settings).
 
             If subscription `collection_method=send_invoice` it becomes `past_due` when its invoice is not paid by the due date, and `canceled` or `unpaid` if it is still not paid by an additional deadline after that. Note that when a subscription has a status of `unpaid`, no subsequent invoices will be attempted (invoices will be created, but then immediately automatically closed). After receiving updated payment information from a customer, you may choose to reopen and pay their closed invoices.
           title: "Possible values are `incomplete`, `incomplete_expired`, `trialing`,\
-            \ `active`, `past_due`, `canceled`, or `unpaid`."
+            \ `active`, `past_due`, `canceled`, `unpaid`, or `paused`."
           type: string
         stripe_checkout_expires_at:
           format: date-time
@@ -17673,7 +17957,27 @@ components:
           active: true
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           issued_at: 2000-01-23T04:56:07.000+00:00
+        continue_with:
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
       properties:
+        continue_with:
+          description: |-
+            Contains a list of actions, that could follow this flow
+
+            It can, for example, this will contain a reference to the verification flow, created as part of the user's
+            registration or the token of the session.
+          items:
+            $ref: '#/components/schemas/continueWith'
+          type: array
         session:
           $ref: '#/components/schemas/session'
         session_token:
@@ -17823,8 +18127,16 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           issued_at: 2000-01-23T04:56:07.000+00:00
         continue_with:
-        - null
-        - null
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
       properties:
         continue_with:
           description: |-
@@ -18142,7 +18454,22 @@ components:
             id: 0
             text: text
             type: info
-          attributes: null
+          attributes:
+            node_type: text
+            autocomplete: email
+            onclick: onclick
+            name: name
+            pattern: pattern
+            disabled: true
+            label:
+              context: "{}"
+              id: 0
+              text: text
+              type: info
+            type: text
+            value: ""
+            required: true
+            onload: onload
           type: text
           group: default
         - meta:
@@ -18160,7 +18487,22 @@ components:
             id: 0
             text: text
             type: info
-          attributes: null
+          attributes:
+            node_type: text
+            autocomplete: email
+            onclick: onclick
+            name: name
+            pattern: pattern
+            disabled: true
+            label:
+              context: "{}"
+              id: 0
+              text: text
+              type: info
+            type: text
+            value: ""
+            required: true
+            onload: onload
           type: text
           group: default
         method: method
@@ -18215,7 +18557,22 @@ components:
           id: 0
           text: text
           type: info
-        attributes: null
+        attributes:
+          node_type: text
+          autocomplete: email
+          onclick: onclick
+          name: name
+          pattern: pattern
+          disabled: true
+          label:
+            context: "{}"
+            id: 0
+            text: text
+            type: info
+          type: text
+          value: ""
+          required: true
+          onload: onload
         type: text
         group: default
       properties:
@@ -18233,6 +18590,7 @@ components:
             totp TOTPGroup
             lookup_secret LookupGroup
             webauthn WebAuthnGroup
+            passkey PasskeyGroup
           enum:
           - default
           - password
@@ -18243,6 +18601,7 @@ components:
           - totp
           - lookup_secret
           - webauthn
+          - passkey
           type: string
           x-go-enum-desc: |-
             default DefaultGroup
@@ -18254,6 +18613,7 @@ components:
             totp TOTPGroup
             lookup_secret LookupGroup
             webauthn WebAuthnGroup
+            passkey PasskeyGroup
         messages:
           items:
             $ref: '#/components/schemas/uiText'
@@ -18304,7 +18664,24 @@ components:
           description: |-
             NodeType represents this node's types. It is a mirror of `node.type` and
             is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is "a".
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
+          enum:
+          - text
+          - input
+          - img
+          - a
+          - script
           type: string
+          x-go-enum-desc: |-
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
         title:
           $ref: '#/components/schemas/uiText'
       required:
@@ -18343,7 +18720,24 @@ components:
           description: |-
             NodeType represents this node's types. It is a mirror of `node.type` and
             is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is "img".
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
+          enum:
+          - text
+          - input
+          - img
+          - a
+          - script
           type: string
+          x-go-enum-desc: |-
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
         src:
           description: |-
             The image's source URL.
@@ -18364,6 +18758,22 @@ components:
       type: object
     uiNodeInputAttributes:
       description: InputAttributes represents the attributes of an input node
+      example:
+        node_type: text
+        autocomplete: email
+        onclick: onclick
+        name: name
+        pattern: pattern
+        disabled: true
+        label:
+          context: "{}"
+          id: 0
+          text: text
+          type: info
+        type: text
+        value: ""
+        required: true
+        onload: onload
       properties:
         autocomplete:
           description: |-
@@ -18401,10 +18811,32 @@ components:
           description: |-
             NodeType represents this node's types. It is a mirror of `node.type` and
             is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is "input".
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
+          enum:
+          - text
+          - input
+          - img
+          - a
+          - script
           type: string
+          x-go-enum-desc: |-
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
         onclick:
           description: |-
             OnClick may contain javascript which should be executed on click. This is primarily
+            used for WebAuthn.
+          type: string
+        onload:
+          description: |-
+            OnLoad may contain javascript which should be executed on load. This is primarily
             used for WebAuthn.
           type: string
         pattern:
@@ -18497,7 +18929,24 @@ components:
           description: |-
             NodeType represents this node's types. It is a mirror of `node.type` and
             is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is "script".
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
+          enum:
+          - text
+          - input
+          - img
+          - a
+          - script
           type: string
+          x-go-enum-desc: |-
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
         nonce:
           description: |-
             Nonce for CSP
@@ -18536,7 +18985,24 @@ components:
           description: |-
             NodeType represents this node's types. It is a mirror of `node.type` and
             is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is "text".
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
+          enum:
+          - text
+          - input
+          - img
+          - a
+          - script
           type: string
+          x-go-enum-desc: |-
+            text Text
+            input Input
+            img Image
+            a Anchor
+            script Script
         text:
           $ref: '#/components/schemas/uiText'
       required:
@@ -18637,6 +19103,7 @@ components:
           code: '#/components/schemas/updateLoginFlowWithCodeMethod'
           lookup_secret: '#/components/schemas/updateLoginFlowWithLookupSecretMethod'
           oidc: '#/components/schemas/updateLoginFlowWithOidcMethod'
+          passkey: '#/components/schemas/updateLoginFlowWithPasskeyMethod'
           password: '#/components/schemas/updateLoginFlowWithPasswordMethod'
           totp: '#/components/schemas/updateLoginFlowWithTotpMethod'
           webauthn: '#/components/schemas/updateLoginFlowWithWebAuthnMethod'
@@ -18648,6 +19115,7 @@ components:
       - $ref: '#/components/schemas/updateLoginFlowWithWebAuthnMethod'
       - $ref: '#/components/schemas/updateLoginFlowWithLookupSecretMethod'
       - $ref: '#/components/schemas/updateLoginFlowWithCodeMethod'
+      - $ref: '#/components/schemas/updateLoginFlowWithPasskeyMethod'
     updateLoginFlowWithCodeMethod:
       description: Update Login flow using the code method
       properties:
@@ -18746,6 +19214,26 @@ components:
       required:
       - method
       - provider
+      type: object
+    updateLoginFlowWithPasskeyMethod:
+      description: Update Login Flow with Passkey Method
+      properties:
+        csrf_token:
+          description: Sending the anti-csrf token is only required for browser login
+            flows.
+          type: string
+        method:
+          description: Method should be set to "passkey" when logging in using the
+            Passkey strategy.
+          type: string
+        passkey_login:
+          description: |-
+            Login a WebAuthn Security Key
+
+            This must contain the ID of the WebAuthN connection.
+          type: string
+      required:
+      - method
       type: object
     updateLoginFlowWithPasswordMethod:
       description: Update Login Flow with Password Method
@@ -18927,6 +19415,7 @@ components:
         mapping:
           code: '#/components/schemas/updateRegistrationFlowWithCodeMethod'
           oidc: '#/components/schemas/updateRegistrationFlowWithOidcMethod'
+          passKey: '#/components/schemas/updateRegistrationFlowWithPasskeyMethod'
           password: '#/components/schemas/updateRegistrationFlowWithPasswordMethod'
           webauthn: '#/components/schemas/updateRegistrationFlowWithWebAuthnMethod'
         propertyName: method
@@ -18935,6 +19424,7 @@ components:
       - $ref: '#/components/schemas/updateRegistrationFlowWithOidcMethod'
       - $ref: '#/components/schemas/updateRegistrationFlowWithWebAuthnMethod'
       - $ref: '#/components/schemas/updateRegistrationFlowWithCodeMethod'
+      - $ref: '#/components/schemas/updateRegistrationFlowWithPasskeyMethod'
     updateRegistrationFlowWithCodeMethod:
       description: Update Registration Flow with Code Method
       properties:
@@ -19015,6 +19505,35 @@ components:
       - method
       - provider
       type: object
+    updateRegistrationFlowWithPasskeyMethod:
+      description: Update Registration Flow with Passkey Method
+      properties:
+        csrf_token:
+          description: CSRFToken is the anti-CSRF token
+          type: string
+        method:
+          description: |-
+            Method
+
+            Should be set to "passkey" when trying to add, update, or remove a Passkey.
+          type: string
+        passkey_register:
+          description: |-
+            Register a WebAuthn Security Key
+
+            It is expected that the JSON returned by the WebAuthn registration process
+            is included here.
+          type: string
+        traits:
+          description: The identity's traits
+          type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
+      required:
+      - method
+      - traits
+      type: object
     updateRegistrationFlowWithPasswordMethod:
       description: Update Registration Flow with Password Method
       properties:
@@ -19039,6 +19558,41 @@ components:
       required:
       - method
       - password
+      - traits
+      type: object
+    updateRegistrationFlowWithProfileMethod:
+      description: Update Registration Flow with Profile Method
+      properties:
+        csrf_token:
+          description: |-
+            The Anti-CSRF Token
+
+            This token is only required when performing browser flows.
+          type: string
+        method:
+          description: |-
+            Method
+
+            Should be set to profile when trying to update a profile.
+          type: string
+        screen:
+          description: |-
+            Screen requests navigation to a previous screen.
+
+            This must be set to credential-selection to go back to the credential
+            selection screen.
+          type: string
+        traits:
+          description: |-
+            Traits
+
+            The identity's traits.
+          type: object
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
+      required:
+      - method
       - traits
       type: object
     updateRegistrationFlowWithWebAuthnMethod:
@@ -19082,6 +19636,7 @@ components:
         mapping:
           lookup_secret: '#/components/schemas/updateSettingsFlowWithLookupMethod'
           oidc: '#/components/schemas/updateSettingsFlowWithOidcMethod'
+          passkey: '#/components/schemas/updateSettingsFlowWithPasskeyMethod'
           password: '#/components/schemas/updateSettingsFlowWithPasswordMethod'
           profile: '#/components/schemas/updateSettingsFlowWithProfileMethod'
           totp: '#/components/schemas/updateSettingsFlowWithTotpMethod'
@@ -19091,10 +19646,10 @@ components:
       - $ref: '#/components/schemas/updateSettingsFlowWithPasswordMethod'
       - $ref: '#/components/schemas/updateSettingsFlowWithProfileMethod'
       - $ref: '#/components/schemas/updateSettingsFlowWithOidcMethod'
-      - $ref: '#/components/schemas/updateSettingsFlowWithOidcMethod'
       - $ref: '#/components/schemas/updateSettingsFlowWithTotpMethod'
       - $ref: '#/components/schemas/updateSettingsFlowWithWebAuthnMethod'
       - $ref: '#/components/schemas/updateSettingsFlowWithLookupMethod'
+      - $ref: '#/components/schemas/updateSettingsFlowWithPasskeyMethod'
     updateSettingsFlowWithLookupMethod:
       description: Update Settings Flow with Lookup Method
       properties:
@@ -19177,6 +19732,34 @@ components:
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
             `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
           type: object
+      required:
+      - method
+      type: object
+    updateSettingsFlowWithPasskeyMethod:
+      description: Update Settings Flow with Passkey Method
+      properties:
+        csrf_token:
+          description: CSRFToken is the anti-CSRF token
+          type: string
+        method:
+          description: |-
+            Method
+
+            Should be set to "passkey" when trying to add, update, or remove a webAuthn pairing.
+          type: string
+        passkey_remove:
+          description: |-
+            Remove a WebAuthn Security Key
+
+            This must contain the ID of the WebAuthN connection.
+          type: string
+        passkey_settings_register:
+          description: |-
+            Register a WebAuthn Security Key
+
+            It is expected that the JSON returned by the WebAuthn registration process
+            is included here.
+          type: string
       required:
       - method
       type: object
@@ -19418,6 +20001,15 @@ components:
       - name
       type: object
     verifiableCredentialPrimingResponse:
+      example:
+        c_nonce_expires_in: 0
+        error_debug: error_debug
+        status_code: 6
+        c_nonce: c_nonce
+        error_description: error_description
+        format: format
+        error: error
+        error_hint: error_hint
       properties:
         c_nonce:
           type: string
@@ -19534,7 +20126,22 @@ components:
               id: 0
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 0
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           - meta:
@@ -19552,7 +20159,22 @@ components:
               id: 0
               text: text
               type: info
-            attributes: null
+            attributes:
+              node_type: text
+              autocomplete: email
+              onclick: onclick
+              name: name
+              pattern: pattern
+              disabled: true
+              label:
+                context: "{}"
+                id: 0
+                text: text
+                type: info
+              type: text
+              value: ""
+              required: true
+              onload: onload
             type: text
             group: default
           method: method
@@ -19652,6 +20274,12 @@ components:
     webAuthnJavaScript:
       type: string
     workspace:
+      example:
+        subscription_id: subscription_id
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
         created_at:
           format: date-time
@@ -19724,27 +20352,6 @@ components:
           x-formData-name: token
       required:
       - token
-      type: object
-    isReady_200_response:
-      example:
-        status: status
-      properties:
-        status:
-          description: Always "ok".
-          type: string
-      required:
-      - status
-      type: object
-    isReady_503_response:
-      properties:
-        errors:
-          additionalProperties:
-            type: string
-          description: Errors contains a list of errors that caused the not ready
-            status.
-          type: object
-      required:
-      - errors
       type: object
     revokeOAuth2Token_request:
       properties:

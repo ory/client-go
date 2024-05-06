@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Environment** | **string** | The environment of the project. prod Production dev Development | 
+**Environment** | **string** | The environment of the project. prod Production stage Staging dev Development | 
 **Name** | **string** | The name of the project to be created | 
-**WorkspaceId** | Pointer to **NullableString** |  | [optional] 
+**WorkspaceId** | Pointer to **string** | The workspace to create the project in. | [optional] 
 
 ## Methods
 
@@ -92,16 +92,6 @@ SetWorkspaceId sets WorkspaceId field to given value.
 
 HasWorkspaceId returns a boolean if a field has been set.
 
-### SetWorkspaceIdNil
-
-`func (o *CreateProjectBody) SetWorkspaceIdNil(b bool)`
-
- SetWorkspaceIdNil sets the value for WorkspaceId to be an explicit nil
-
-### UnsetWorkspaceId
-`func (o *CreateProjectBody) UnsetWorkspaceId()`
-
-UnsetWorkspaceId ensures that no value is present for WorkspaceId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

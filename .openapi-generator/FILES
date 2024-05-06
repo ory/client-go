@@ -113,8 +113,6 @@ docs/InternalIsOwnerForProjectBySlugBody.md
 docs/InternalIsOwnerForProjectBySlugResponse.md
 docs/IntrospectedOAuth2Token.md
 docs/IsOwnerForProjectBySlug.md
-docs/IsReady200Response.md
-docs/IsReady503Response.md
 docs/JsonPatch.md
 docs/JsonWebKey.md
 docs/JsonWebKeySet.md
@@ -244,6 +242,7 @@ docs/UpdateLoginFlowBody.md
 docs/UpdateLoginFlowWithCodeMethod.md
 docs/UpdateLoginFlowWithLookupSecretMethod.md
 docs/UpdateLoginFlowWithOidcMethod.md
+docs/UpdateLoginFlowWithPasskeyMethod.md
 docs/UpdateLoginFlowWithPasswordMethod.md
 docs/UpdateLoginFlowWithTotpMethod.md
 docs/UpdateLoginFlowWithWebAuthnMethod.md
@@ -253,11 +252,14 @@ docs/UpdateRecoveryFlowWithLinkMethod.md
 docs/UpdateRegistrationFlowBody.md
 docs/UpdateRegistrationFlowWithCodeMethod.md
 docs/UpdateRegistrationFlowWithOidcMethod.md
+docs/UpdateRegistrationFlowWithPasskeyMethod.md
 docs/UpdateRegistrationFlowWithPasswordMethod.md
+docs/UpdateRegistrationFlowWithProfileMethod.md
 docs/UpdateRegistrationFlowWithWebAuthnMethod.md
 docs/UpdateSettingsFlowBody.md
 docs/UpdateSettingsFlowWithLookupMethod.md
 docs/UpdateSettingsFlowWithOidcMethod.md
+docs/UpdateSettingsFlowWithPasskeyMethod.md
 docs/UpdateSettingsFlowWithPasswordMethod.md
 docs/UpdateSettingsFlowWithProfileMethod.md
 docs/UpdateSettingsFlowWithTotpMethod.md
@@ -374,8 +376,6 @@ model_internal_is_owner_for_project_by_slug_body.go
 model_internal_is_owner_for_project_by_slug_response.go
 model_introspected_o_auth2_token.go
 model_is_owner_for_project_by_slug.go
-model_is_ready_200_response.go
-model_is_ready_503_response.go
 model_json_patch.go
 model_json_web_key.go
 model_json_web_key_set.go
@@ -498,6 +498,7 @@ model_update_login_flow_body.go
 model_update_login_flow_with_code_method.go
 model_update_login_flow_with_lookup_secret_method.go
 model_update_login_flow_with_oidc_method.go
+model_update_login_flow_with_passkey_method.go
 model_update_login_flow_with_password_method.go
 model_update_login_flow_with_totp_method.go
 model_update_login_flow_with_web_authn_method.go
@@ -507,11 +508,14 @@ model_update_recovery_flow_with_link_method.go
 model_update_registration_flow_body.go
 model_update_registration_flow_with_code_method.go
 model_update_registration_flow_with_oidc_method.go
+model_update_registration_flow_with_passkey_method.go
 model_update_registration_flow_with_password_method.go
+model_update_registration_flow_with_profile_method.go
 model_update_registration_flow_with_web_authn_method.go
 model_update_settings_flow_body.go
 model_update_settings_flow_with_lookup_method.go
 model_update_settings_flow_with_oidc_method.go
+model_update_settings_flow_with_passkey_method.go
 model_update_settings_flow_with_password_method.go
 model_update_settings_flow_with_profile_method.go
 model_update_settings_flow_with_totp_method.go
