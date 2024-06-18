@@ -27,7 +27,8 @@ Name | Type | Description | Notes
 **HydraSecretsSystem** | Pointer to **[]string** |  | [optional] 
 **HydraServeCookiesSameSiteLegacyWorkaround** | Pointer to **bool** | Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \&quot;serve.cookies.same_site_legacy_workaround\&quot; setting. | [optional] 
 **HydraServeCookiesSameSiteMode** | Pointer to **string** | Configures the Ory Hydra Cookie Same Site Mode  This governs the \&quot;serve.cookies.same_site_mode\&quot; setting. | [optional] 
-**HydraStrategiesAccessToken** | Pointer to **string** | Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \&quot;strategies.access_token\&quot; setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt | [optional] [default to "opaque"]
+**HydraStrategiesAccessToken** | Pointer to **string** | Defines access token type  This governs the \&quot;strategies.access_token\&quot; setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt | [optional] [default to "opaque"]
+**HydraStrategiesJwtScopeClaim** | Pointer to **string** | Define the claim to use as the scope in the access token.  This governs the \&quot;strategies.jwt.scope_claim\&quot; setting:  list: The scope claim is an array of strings named &#x60;scope&#x60;: &#x60;{ \&quot;scope\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;] }&#x60; string: The scope claim is a space delimited list of strings named &#x60;scp&#x60;: &#x60;{ \&quot;scp\&quot;: \&quot;read write\&quot; }&#x60; both: The scope claim is both a space delimited list and an array of strings named &#x60;scope&#x60; and &#x60;scp&#x60;: &#x60;{ \&quot;scope\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;], \&quot;scp\&quot;: \&quot;read write\&quot; }&#x60; list OAuth2JWTScopeClaimList string OAuth2JWTScopeClaimString both OAuth2JWTScopeClaimBoth | [optional] [default to "list"]
 **HydraStrategiesScope** | Pointer to **string** | Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \&quot;strategies.scope\&quot; setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard | [optional] [default to "wildcard"]
 **HydraTtlAccessToken** | Pointer to **string** | This governs the \&quot;ttl.access_token\&quot; setting. | [optional] [default to "30m"]
 **HydraTtlAuthCode** | Pointer to **string** | Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \&quot;ttl.auth_code\&quot; setting. | [optional] [default to "720h"]
@@ -822,6 +823,31 @@ SetHydraStrategiesAccessToken sets HydraStrategiesAccessToken field to given val
 `func (o *CreateProjectNormalizedPayload) HasHydraStrategiesAccessToken() bool`
 
 HasHydraStrategiesAccessToken returns a boolean if a field has been set.
+
+### GetHydraStrategiesJwtScopeClaim
+
+`func (o *CreateProjectNormalizedPayload) GetHydraStrategiesJwtScopeClaim() string`
+
+GetHydraStrategiesJwtScopeClaim returns the HydraStrategiesJwtScopeClaim field if non-nil, zero value otherwise.
+
+### GetHydraStrategiesJwtScopeClaimOk
+
+`func (o *CreateProjectNormalizedPayload) GetHydraStrategiesJwtScopeClaimOk() (*string, bool)`
+
+GetHydraStrategiesJwtScopeClaimOk returns a tuple with the HydraStrategiesJwtScopeClaim field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraStrategiesJwtScopeClaim
+
+`func (o *CreateProjectNormalizedPayload) SetHydraStrategiesJwtScopeClaim(v string)`
+
+SetHydraStrategiesJwtScopeClaim sets HydraStrategiesJwtScopeClaim field to given value.
+
+### HasHydraStrategiesJwtScopeClaim
+
+`func (o *CreateProjectNormalizedPayload) HasHydraStrategiesJwtScopeClaim() bool`
+
+HasHydraStrategiesJwtScopeClaim returns a boolean if a field has been set.
 
 ### GetHydraStrategiesScope
 

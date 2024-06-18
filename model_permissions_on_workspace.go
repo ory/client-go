@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.11.7
+API version: v1.11.10
 Contact: support@ory.sh
 */
 
@@ -15,36 +15,36 @@ import (
 	"encoding/json"
 )
 
-// checks if the PermissionsOnWorkpaceResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PermissionsOnWorkpaceResponse{}
+// checks if the PermissionsOnWorkspace type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PermissionsOnWorkspace{}
 
-// PermissionsOnWorkpaceResponse Get Permissions on Project Request Parameters
-type PermissionsOnWorkpaceResponse struct {
+// PermissionsOnWorkspace Get Permissions on Project Request Parameters
+type PermissionsOnWorkspace struct {
 	Permissions *map[string]bool `json:"permissions,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _PermissionsOnWorkpaceResponse PermissionsOnWorkpaceResponse
+type _PermissionsOnWorkspace PermissionsOnWorkspace
 
-// NewPermissionsOnWorkpaceResponse instantiates a new PermissionsOnWorkpaceResponse object
+// NewPermissionsOnWorkspace instantiates a new PermissionsOnWorkspace object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPermissionsOnWorkpaceResponse() *PermissionsOnWorkpaceResponse {
-	this := PermissionsOnWorkpaceResponse{}
+func NewPermissionsOnWorkspace() *PermissionsOnWorkspace {
+	this := PermissionsOnWorkspace{}
 	return &this
 }
 
-// NewPermissionsOnWorkpaceResponseWithDefaults instantiates a new PermissionsOnWorkpaceResponse object
+// NewPermissionsOnWorkspaceWithDefaults instantiates a new PermissionsOnWorkspace object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPermissionsOnWorkpaceResponseWithDefaults() *PermissionsOnWorkpaceResponse {
-	this := PermissionsOnWorkpaceResponse{}
+func NewPermissionsOnWorkspaceWithDefaults() *PermissionsOnWorkspace {
+	this := PermissionsOnWorkspace{}
 	return &this
 }
 
 // GetPermissions returns the Permissions field value if set, zero value otherwise.
-func (o *PermissionsOnWorkpaceResponse) GetPermissions() map[string]bool {
+func (o *PermissionsOnWorkspace) GetPermissions() map[string]bool {
 	if o == nil || IsNil(o.Permissions) {
 		var ret map[string]bool
 		return ret
@@ -54,7 +54,7 @@ func (o *PermissionsOnWorkpaceResponse) GetPermissions() map[string]bool {
 
 // GetPermissionsOk returns a tuple with the Permissions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PermissionsOnWorkpaceResponse) GetPermissionsOk() (*map[string]bool, bool) {
+func (o *PermissionsOnWorkspace) GetPermissionsOk() (*map[string]bool, bool) {
 	if o == nil || IsNil(o.Permissions) {
 		return nil, false
 	}
@@ -62,7 +62,7 @@ func (o *PermissionsOnWorkpaceResponse) GetPermissionsOk() (*map[string]bool, bo
 }
 
 // HasPermissions returns a boolean if a field has been set.
-func (o *PermissionsOnWorkpaceResponse) HasPermissions() bool {
+func (o *PermissionsOnWorkspace) HasPermissions() bool {
 	if o != nil && !IsNil(o.Permissions) {
 		return true
 	}
@@ -71,11 +71,11 @@ func (o *PermissionsOnWorkpaceResponse) HasPermissions() bool {
 }
 
 // SetPermissions gets a reference to the given map[string]bool and assigns it to the Permissions field.
-func (o *PermissionsOnWorkpaceResponse) SetPermissions(v map[string]bool) {
+func (o *PermissionsOnWorkspace) SetPermissions(v map[string]bool) {
 	o.Permissions = &v
 }
 
-func (o PermissionsOnWorkpaceResponse) MarshalJSON() ([]byte, error) {
+func (o PermissionsOnWorkspace) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -83,7 +83,7 @@ func (o PermissionsOnWorkpaceResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PermissionsOnWorkpaceResponse) ToMap() (map[string]interface{}, error) {
+func (o PermissionsOnWorkspace) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Permissions) {
 		toSerialize["permissions"] = o.Permissions
@@ -96,16 +96,16 @@ func (o PermissionsOnWorkpaceResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *PermissionsOnWorkpaceResponse) UnmarshalJSON(data []byte) (err error) {
-	varPermissionsOnWorkpaceResponse := _PermissionsOnWorkpaceResponse{}
+func (o *PermissionsOnWorkspace) UnmarshalJSON(data []byte) (err error) {
+	varPermissionsOnWorkspace := _PermissionsOnWorkspace{}
 
-	err = json.Unmarshal(data, &varPermissionsOnWorkpaceResponse)
+	err = json.Unmarshal(data, &varPermissionsOnWorkspace)
 
 	if err != nil {
 		return err
 	}
 
-	*o = PermissionsOnWorkpaceResponse(varPermissionsOnWorkpaceResponse)
+	*o = PermissionsOnWorkspace(varPermissionsOnWorkspace)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -117,38 +117,38 @@ func (o *PermissionsOnWorkpaceResponse) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullablePermissionsOnWorkpaceResponse struct {
-	value *PermissionsOnWorkpaceResponse
+type NullablePermissionsOnWorkspace struct {
+	value *PermissionsOnWorkspace
 	isSet bool
 }
 
-func (v NullablePermissionsOnWorkpaceResponse) Get() *PermissionsOnWorkpaceResponse {
+func (v NullablePermissionsOnWorkspace) Get() *PermissionsOnWorkspace {
 	return v.value
 }
 
-func (v *NullablePermissionsOnWorkpaceResponse) Set(val *PermissionsOnWorkpaceResponse) {
+func (v *NullablePermissionsOnWorkspace) Set(val *PermissionsOnWorkspace) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePermissionsOnWorkpaceResponse) IsSet() bool {
+func (v NullablePermissionsOnWorkspace) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePermissionsOnWorkpaceResponse) Unset() {
+func (v *NullablePermissionsOnWorkspace) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePermissionsOnWorkpaceResponse(val *PermissionsOnWorkpaceResponse) *NullablePermissionsOnWorkpaceResponse {
-	return &NullablePermissionsOnWorkpaceResponse{value: val, isSet: true}
+func NewNullablePermissionsOnWorkspace(val *PermissionsOnWorkspace) *NullablePermissionsOnWorkspace {
+	return &NullablePermissionsOnWorkspace{value: val, isSet: true}
 }
 
-func (v NullablePermissionsOnWorkpaceResponse) MarshalJSON() ([]byte, error) {
+func (v NullablePermissionsOnWorkspace) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePermissionsOnWorkpaceResponse) UnmarshalJSON(src []byte) error {
+func (v *NullablePermissionsOnWorkspace) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

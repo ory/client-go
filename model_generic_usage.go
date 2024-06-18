@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.11.7
+API version: v1.11.10
 Contact: support@ory.sh
 */
 
@@ -21,8 +21,7 @@ var _ MappedNullable = &GenericUsage{}
 
 // GenericUsage struct for GenericUsage
 type GenericUsage struct {
-	// AdditionalPrice is the price per-unit in cent exceeding IncludedUsage. A price of 0 means that no other items can be consumed.
-	AdditionalPrice int64 `json:"additional_price"`
+	AdditionalPrice Money `json:"additional_price"`
 	// IncludedUsage is the number of included items.
 	IncludedUsage int64 `json:"included_usage"`
 	AdditionalProperties map[string]interface{}
@@ -34,7 +33,7 @@ type _GenericUsage GenericUsage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGenericUsage(additionalPrice int64, includedUsage int64) *GenericUsage {
+func NewGenericUsage(additionalPrice Money, includedUsage int64) *GenericUsage {
 	this := GenericUsage{}
 	this.AdditionalPrice = additionalPrice
 	this.IncludedUsage = includedUsage
@@ -50,9 +49,9 @@ func NewGenericUsageWithDefaults() *GenericUsage {
 }
 
 // GetAdditionalPrice returns the AdditionalPrice field value
-func (o *GenericUsage) GetAdditionalPrice() int64 {
+func (o *GenericUsage) GetAdditionalPrice() Money {
 	if o == nil {
-		var ret int64
+		var ret Money
 		return ret
 	}
 
@@ -61,7 +60,7 @@ func (o *GenericUsage) GetAdditionalPrice() int64 {
 
 // GetAdditionalPriceOk returns a tuple with the AdditionalPrice field value
 // and a boolean to check if the value has been set.
-func (o *GenericUsage) GetAdditionalPriceOk() (*int64, bool) {
+func (o *GenericUsage) GetAdditionalPriceOk() (*Money, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,7 +68,7 @@ func (o *GenericUsage) GetAdditionalPriceOk() (*int64, bool) {
 }
 
 // SetAdditionalPrice sets field value
-func (o *GenericUsage) SetAdditionalPrice(v int64) {
+func (o *GenericUsage) SetAdditionalPrice(v Money) {
 	o.AdditionalPrice = v
 }
 

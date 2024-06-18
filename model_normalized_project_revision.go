@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.11.7
+API version: v1.11.10
 Contact: support@ory.sh
 */
 
@@ -61,8 +61,10 @@ type NormalizedProjectRevision struct {
 	HydraServeCookiesSameSiteLegacyWorkaround *bool `json:"hydra_serve_cookies_same_site_legacy_workaround,omitempty"`
 	// Configures the Ory Hydra Cookie Same Site Mode  This governs the \"serve.cookies.same_site_mode\" setting.
 	HydraServeCookiesSameSiteMode *string `json:"hydra_serve_cookies_same_site_mode,omitempty"`
-	// Defines access token type. jwt is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
+	// Defines access token type  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
 	HydraStrategiesAccessToken *string `json:"hydra_strategies_access_token,omitempty"`
+	// Define the claim to use as the scope in the access token.  This governs the \"strategies.jwt.scope_claim\" setting:  list: The scope claim is an array of strings named `scope`: `{ \"scope\": [\"read\", \"write\"] }` string: The scope claim is a space delimited list of strings named `scp`: `{ \"scp\": \"read write\" }` both: The scope claim is both a space delimited list and an array of strings named `scope` and `scp`: `{ \"scope\": [\"read\", \"write\"], \"scp\": \"read write\" }` list OAuth2JWTScopeClaimList string OAuth2JWTScopeClaimString both OAuth2JWTScopeClaimBoth
+	HydraStrategiesJwtScopeClaim *string `json:"hydra_strategies_jwt_scope_claim,omitempty"`
 	// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard
 	HydraStrategiesScope *string `json:"hydra_strategies_scope,omitempty"`
 	// This governs the \"ttl.access_token\" setting.
@@ -419,6 +421,8 @@ func NewNormalizedProjectRevision(name string) *NormalizedProjectRevision {
 	this.HydraOauth2GrantJwtMaxTtl = &hydraOauth2GrantJwtMaxTtl
 	var hydraStrategiesAccessToken string = "opaque"
 	this.HydraStrategiesAccessToken = &hydraStrategiesAccessToken
+	var hydraStrategiesJwtScopeClaim string = "list"
+	this.HydraStrategiesJwtScopeClaim = &hydraStrategiesJwtScopeClaim
 	var hydraStrategiesScope string = "wildcard"
 	this.HydraStrategiesScope = &hydraStrategiesScope
 	var hydraTtlAccessToken string = "30m"
@@ -450,6 +454,8 @@ func NewNormalizedProjectRevisionWithDefaults() *NormalizedProjectRevision {
 	this.HydraOauth2GrantJwtMaxTtl = &hydraOauth2GrantJwtMaxTtl
 	var hydraStrategiesAccessToken string = "opaque"
 	this.HydraStrategiesAccessToken = &hydraStrategiesAccessToken
+	var hydraStrategiesJwtScopeClaim string = "list"
+	this.HydraStrategiesJwtScopeClaim = &hydraStrategiesJwtScopeClaim
 	var hydraStrategiesScope string = "wildcard"
 	this.HydraStrategiesScope = &hydraStrategiesScope
 	var hydraTtlAccessToken string = "30m"
@@ -1205,6 +1211,38 @@ func (o *NormalizedProjectRevision) HasHydraStrategiesAccessToken() bool {
 // SetHydraStrategiesAccessToken gets a reference to the given string and assigns it to the HydraStrategiesAccessToken field.
 func (o *NormalizedProjectRevision) SetHydraStrategiesAccessToken(v string) {
 	o.HydraStrategiesAccessToken = &v
+}
+
+// GetHydraStrategiesJwtScopeClaim returns the HydraStrategiesJwtScopeClaim field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraStrategiesJwtScopeClaim() string {
+	if o == nil || IsNil(o.HydraStrategiesJwtScopeClaim) {
+		var ret string
+		return ret
+	}
+	return *o.HydraStrategiesJwtScopeClaim
+}
+
+// GetHydraStrategiesJwtScopeClaimOk returns a tuple with the HydraStrategiesJwtScopeClaim field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraStrategiesJwtScopeClaimOk() (*string, bool) {
+	if o == nil || IsNil(o.HydraStrategiesJwtScopeClaim) {
+		return nil, false
+	}
+	return o.HydraStrategiesJwtScopeClaim, true
+}
+
+// HasHydraStrategiesJwtScopeClaim returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraStrategiesJwtScopeClaim() bool {
+	if o != nil && !IsNil(o.HydraStrategiesJwtScopeClaim) {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraStrategiesJwtScopeClaim gets a reference to the given string and assigns it to the HydraStrategiesJwtScopeClaim field.
+func (o *NormalizedProjectRevision) SetHydraStrategiesJwtScopeClaim(v string) {
+	o.HydraStrategiesJwtScopeClaim = &v
 }
 
 // GetHydraStrategiesScope returns the HydraStrategiesScope field value if set, zero value otherwise.
@@ -7009,6 +7047,9 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.HydraStrategiesAccessToken) {
 		toSerialize["hydra_strategies_access_token"] = o.HydraStrategiesAccessToken
 	}
+	if !IsNil(o.HydraStrategiesJwtScopeClaim) {
+		toSerialize["hydra_strategies_jwt_scope_claim"] = o.HydraStrategiesJwtScopeClaim
+	}
 	if !IsNil(o.HydraStrategiesScope) {
 		toSerialize["hydra_strategies_scope"] = o.HydraStrategiesScope
 	}
@@ -7610,6 +7651,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "hydra_serve_cookies_same_site_legacy_workaround")
 		delete(additionalProperties, "hydra_serve_cookies_same_site_mode")
 		delete(additionalProperties, "hydra_strategies_access_token")
+		delete(additionalProperties, "hydra_strategies_jwt_scope_claim")
 		delete(additionalProperties, "hydra_strategies_scope")
 		delete(additionalProperties, "hydra_ttl_access_token")
 		delete(additionalProperties, "hydra_ttl_auth_code")

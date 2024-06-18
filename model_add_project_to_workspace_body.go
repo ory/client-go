@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.11.7
+API version: v1.11.10
 Contact: support@ory.sh
 */
 
@@ -16,11 +16,11 @@ import (
 	"fmt"
 )
 
-// checks if the MigrationOptions type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &MigrationOptions{}
+// checks if the AddProjectToWorkspaceBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AddProjectToWorkspaceBody{}
 
-// MigrationOptions struct for MigrationOptions
-type MigrationOptions struct {
+// AddProjectToWorkspaceBody struct for AddProjectToWorkspaceBody
+type AddProjectToWorkspaceBody struct {
 	// The environment of the project in the workspace. Can be one of \"prod\" or \"dev\". Note that the number of projects in the \"prod\" environment is limited depending on the subscription. prod Production stage Staging dev Development
 	Environment string `json:"environment"`
 	// The action to take with the project subscription. Can be one of \"migrate\", and \"ignore\". \"migrate\" will migrate the project subscription to the workspace. \"ignore\" will ignore the project subscription. migrate ProjectSubscriptionActionMigrate  ProjectSubscriptionActionMigrate will migrate the project subscription to the  workspace. ignore ProjectSubscriptionActionIgnore  ProjectSubscriptionActionIgnore will ignore the project subscription.
@@ -28,29 +28,29 @@ type MigrationOptions struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _MigrationOptions MigrationOptions
+type _AddProjectToWorkspaceBody AddProjectToWorkspaceBody
 
-// NewMigrationOptions instantiates a new MigrationOptions object
+// NewAddProjectToWorkspaceBody instantiates a new AddProjectToWorkspaceBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMigrationOptions(environment string, projectSubscription string) *MigrationOptions {
-	this := MigrationOptions{}
+func NewAddProjectToWorkspaceBody(environment string, projectSubscription string) *AddProjectToWorkspaceBody {
+	this := AddProjectToWorkspaceBody{}
 	this.Environment = environment
 	this.ProjectSubscription = projectSubscription
 	return &this
 }
 
-// NewMigrationOptionsWithDefaults instantiates a new MigrationOptions object
+// NewAddProjectToWorkspaceBodyWithDefaults instantiates a new AddProjectToWorkspaceBody object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewMigrationOptionsWithDefaults() *MigrationOptions {
-	this := MigrationOptions{}
+func NewAddProjectToWorkspaceBodyWithDefaults() *AddProjectToWorkspaceBody {
+	this := AddProjectToWorkspaceBody{}
 	return &this
 }
 
 // GetEnvironment returns the Environment field value
-func (o *MigrationOptions) GetEnvironment() string {
+func (o *AddProjectToWorkspaceBody) GetEnvironment() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -61,7 +61,7 @@ func (o *MigrationOptions) GetEnvironment() string {
 
 // GetEnvironmentOk returns a tuple with the Environment field value
 // and a boolean to check if the value has been set.
-func (o *MigrationOptions) GetEnvironmentOk() (*string, bool) {
+func (o *AddProjectToWorkspaceBody) GetEnvironmentOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,12 +69,12 @@ func (o *MigrationOptions) GetEnvironmentOk() (*string, bool) {
 }
 
 // SetEnvironment sets field value
-func (o *MigrationOptions) SetEnvironment(v string) {
+func (o *AddProjectToWorkspaceBody) SetEnvironment(v string) {
 	o.Environment = v
 }
 
 // GetProjectSubscription returns the ProjectSubscription field value
-func (o *MigrationOptions) GetProjectSubscription() string {
+func (o *AddProjectToWorkspaceBody) GetProjectSubscription() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -85,7 +85,7 @@ func (o *MigrationOptions) GetProjectSubscription() string {
 
 // GetProjectSubscriptionOk returns a tuple with the ProjectSubscription field value
 // and a boolean to check if the value has been set.
-func (o *MigrationOptions) GetProjectSubscriptionOk() (*string, bool) {
+func (o *AddProjectToWorkspaceBody) GetProjectSubscriptionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,11 +93,11 @@ func (o *MigrationOptions) GetProjectSubscriptionOk() (*string, bool) {
 }
 
 // SetProjectSubscription sets field value
-func (o *MigrationOptions) SetProjectSubscription(v string) {
+func (o *AddProjectToWorkspaceBody) SetProjectSubscription(v string) {
 	o.ProjectSubscription = v
 }
 
-func (o MigrationOptions) MarshalJSON() ([]byte, error) {
+func (o AddProjectToWorkspaceBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -105,7 +105,7 @@ func (o MigrationOptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o MigrationOptions) ToMap() (map[string]interface{}, error) {
+func (o AddProjectToWorkspaceBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["environment"] = o.Environment
 	toSerialize["project_subscription"] = o.ProjectSubscription
@@ -117,7 +117,7 @@ func (o MigrationOptions) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *MigrationOptions) UnmarshalJSON(data []byte) (err error) {
+func (o *AddProjectToWorkspaceBody) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -140,15 +140,15 @@ func (o *MigrationOptions) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varMigrationOptions := _MigrationOptions{}
+	varAddProjectToWorkspaceBody := _AddProjectToWorkspaceBody{}
 
-	err = json.Unmarshal(data, &varMigrationOptions)
+	err = json.Unmarshal(data, &varAddProjectToWorkspaceBody)
 
 	if err != nil {
 		return err
 	}
 
-	*o = MigrationOptions(varMigrationOptions)
+	*o = AddProjectToWorkspaceBody(varAddProjectToWorkspaceBody)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -161,38 +161,38 @@ func (o *MigrationOptions) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableMigrationOptions struct {
-	value *MigrationOptions
+type NullableAddProjectToWorkspaceBody struct {
+	value *AddProjectToWorkspaceBody
 	isSet bool
 }
 
-func (v NullableMigrationOptions) Get() *MigrationOptions {
+func (v NullableAddProjectToWorkspaceBody) Get() *AddProjectToWorkspaceBody {
 	return v.value
 }
 
-func (v *NullableMigrationOptions) Set(val *MigrationOptions) {
+func (v *NullableAddProjectToWorkspaceBody) Set(val *AddProjectToWorkspaceBody) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMigrationOptions) IsSet() bool {
+func (v NullableAddProjectToWorkspaceBody) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMigrationOptions) Unset() {
+func (v *NullableAddProjectToWorkspaceBody) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMigrationOptions(val *MigrationOptions) *NullableMigrationOptions {
-	return &NullableMigrationOptions{value: val, isSet: true}
+func NewNullableAddProjectToWorkspaceBody(val *AddProjectToWorkspaceBody) *NullableAddProjectToWorkspaceBody {
+	return &NullableAddProjectToWorkspaceBody{value: val, isSet: true}
 }
 
-func (v NullableMigrationOptions) MarshalJSON() ([]byte, error) {
+func (v NullableAddProjectToWorkspaceBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMigrationOptions) UnmarshalJSON(src []byte) error {
+func (v *NullableAddProjectToWorkspaceBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

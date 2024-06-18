@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.11.7
+API version: v1.11.10
 Contact: support@ory.sh
 */
 
@@ -153,6 +153,10 @@ You can only delete second factor (aal2) credentials.
 
 	Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it
 will only extend the session after the specified time has passed.
+
+This endpoint returns per default a 204 No Content response on success. Older Ory Network projects may
+return a 200 OK response with the session in the body. Returning the session as part of the response
+will be deprecated in the future and should not be relied upon.
 
 Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
 
@@ -1371,6 +1375,10 @@ ExtendSession Extend a Session
 
 Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it
 will only extend the session after the specified time has passed.
+
+This endpoint returns per default a 204 No Content response on success. Older Ory Network projects may
+return a 200 OK response with the session in the body. Returning the session as part of the response
+will be deprecated in the future and should not be relied upon.
 
 Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
 

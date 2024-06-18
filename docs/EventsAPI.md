@@ -1,6 +1,6 @@
 # \EventsAPI
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryNetworkCookie](../README.md#oryNetworkCookie)
 
 ### HTTP request headers
 
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryNetworkCookie](../README.md#oryNetworkCookie)
 
 ### HTTP request headers
 
@@ -208,7 +208,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryNetworkCookie](../README.md#oryNetworkCookie)
 
 ### HTTP request headers
 
@@ -281,7 +281,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryNetworkCookie](../README.md#oryNetworkCookie)
 
 ### HTTP request headers
 

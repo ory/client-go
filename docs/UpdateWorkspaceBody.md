@@ -1,4 +1,4 @@
-# UpdateWorkspacePayload
+# UpdateWorkspaceBody
 
 ## Properties
 
@@ -8,39 +8,39 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewUpdateWorkspacePayload
+### NewUpdateWorkspaceBody
 
-`func NewUpdateWorkspacePayload(name string, ) *UpdateWorkspacePayload`
+`func NewUpdateWorkspaceBody(name string, ) *UpdateWorkspaceBody`
 
-NewUpdateWorkspacePayload instantiates a new UpdateWorkspacePayload object
+NewUpdateWorkspaceBody instantiates a new UpdateWorkspaceBody object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewUpdateWorkspacePayloadWithDefaults
+### NewUpdateWorkspaceBodyWithDefaults
 
-`func NewUpdateWorkspacePayloadWithDefaults() *UpdateWorkspacePayload`
+`func NewUpdateWorkspaceBodyWithDefaults() *UpdateWorkspaceBody`
 
-NewUpdateWorkspacePayloadWithDefaults instantiates a new UpdateWorkspacePayload object
+NewUpdateWorkspaceBodyWithDefaults instantiates a new UpdateWorkspaceBody object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetName
 
-`func (o *UpdateWorkspacePayload) GetName() string`
+`func (o *UpdateWorkspaceBody) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *UpdateWorkspacePayload) GetNameOk() (*string, bool)`
+`func (o *UpdateWorkspaceBody) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *UpdateWorkspacePayload) SetName(v string)`
+`func (o *UpdateWorkspaceBody) SetName(v string)`
 
 SetName sets Name field to given value.
 

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.11.7
+API version: v1.11.10
 Contact: support@ory.sh
 */
 
@@ -26,6 +26,7 @@ type Workspace struct {
 	Id string `json:"id"`
 	Name string `json:"name"`
 	SubscriptionId NullableString `json:"subscription_id,omitempty"`
+	SubscriptionPlan NullableString `json:"subscription_plan,omitempty"`
 	UpdatedAt time.Time `json:"updated_at"`
 	AdditionalProperties map[string]interface{}
 }
@@ -167,6 +168,48 @@ func (o *Workspace) UnsetSubscriptionId() {
 	o.SubscriptionId.Unset()
 }
 
+// GetSubscriptionPlan returns the SubscriptionPlan field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Workspace) GetSubscriptionPlan() string {
+	if o == nil || IsNil(o.SubscriptionPlan.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.SubscriptionPlan.Get()
+}
+
+// GetSubscriptionPlanOk returns a tuple with the SubscriptionPlan field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Workspace) GetSubscriptionPlanOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SubscriptionPlan.Get(), o.SubscriptionPlan.IsSet()
+}
+
+// HasSubscriptionPlan returns a boolean if a field has been set.
+func (o *Workspace) HasSubscriptionPlan() bool {
+	if o != nil && o.SubscriptionPlan.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscriptionPlan gets a reference to the given NullableString and assigns it to the SubscriptionPlan field.
+func (o *Workspace) SetSubscriptionPlan(v string) {
+	o.SubscriptionPlan.Set(&v)
+}
+// SetSubscriptionPlanNil sets the value for SubscriptionPlan to be an explicit nil
+func (o *Workspace) SetSubscriptionPlanNil() {
+	o.SubscriptionPlan.Set(nil)
+}
+
+// UnsetSubscriptionPlan ensures that no value is present for SubscriptionPlan, not even an explicit nil
+func (o *Workspace) UnsetSubscriptionPlan() {
+	o.SubscriptionPlan.Unset()
+}
+
 // GetUpdatedAt returns the UpdatedAt field value
 func (o *Workspace) GetUpdatedAt() time.Time {
 	if o == nil {
@@ -206,6 +249,9 @@ func (o Workspace) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	if o.SubscriptionId.IsSet() {
 		toSerialize["subscription_id"] = o.SubscriptionId.Get()
+	}
+	if o.SubscriptionPlan.IsSet() {
+		toSerialize["subscription_plan"] = o.SubscriptionPlan.Get()
 	}
 	toSerialize["updated_at"] = o.UpdatedAt
 
@@ -258,6 +304,7 @@ func (o *Workspace) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "subscription_id")
+		delete(additionalProperties, "subscription_plan")
 		delete(additionalProperties, "updated_at")
 		o.AdditionalProperties = additionalProperties
 	}

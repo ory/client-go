@@ -1,28 +1,25 @@
 # \ProjectAPI
 
-All URIs are relative to *https://playground.projects.oryapis.com*
+All URIs are relative to *https://.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateOrganization**](ProjectAPI.md#CreateOrganization) | **Post** /projects/{project_id}/organizations | 
 [**CreateProject**](ProjectAPI.md#CreateProject) | **Post** /projects | Create a Project
 [**CreateProjectApiKey**](ProjectAPI.md#CreateProjectApiKey) | **Post** /projects/{project}/tokens | Create project API token
-[**DeleteOrganization**](ProjectAPI.md#DeleteOrganization) | **Delete** /projects/{project_id}/organizations/{organization_id} | Delete a B2B SSO Organization for a project.
+[**DeleteOrganization**](ProjectAPI.md#DeleteOrganization) | **Delete** /projects/{project_id}/organizations/{organization_id} | 
 [**DeleteProjectApiKey**](ProjectAPI.md#DeleteProjectApiKey) | **Delete** /projects/{project}/tokens/{token_id} | Delete project API token
-[**GetActiveProjectInConsole**](ProjectAPI.md#GetActiveProjectInConsole) | **Get** /console/active/project | Returns the Ory Network Project selected in the Ory Network Console
-[**GetOrganization**](ProjectAPI.md#GetOrganization) | **Get** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by it&#39;s ID.
+[**GetOrganization**](ProjectAPI.md#GetOrganization) | **Get** /projects/{project_id}/organizations/{organization_id} | Returns a B2B SSO Organization for a project by its ID
 [**GetProject**](ProjectAPI.md#GetProject) | **Get** /projects/{project_id} | Get a Project
 [**GetProjectMembers**](ProjectAPI.md#GetProjectMembers) | **Get** /projects/{project}/members | Get all members associated with this project
-[**GetProjectMetrics**](ProjectAPI.md#GetProjectMetrics) | **Get** /projects/{project_id}/metrics | 
 [**ListOrganizations**](ProjectAPI.md#ListOrganizations) | **Get** /projects/{project_id}/organizations | 
 [**ListProjectApiKeys**](ProjectAPI.md#ListProjectApiKeys) | **Get** /projects/{project}/tokens | List a project&#39;s API Tokens
 [**ListProjects**](ProjectAPI.md#ListProjects) | **Get** /projects | List All Projects
 [**PatchProject**](ProjectAPI.md#PatchProject) | **Patch** /projects/{project_id} | Patch an Ory Network Project Configuration
 [**PurgeProject**](ProjectAPI.md#PurgeProject) | **Delete** /projects/{project_id} | Irrecoverably purge a project
 [**RemoveProjectMember**](ProjectAPI.md#RemoveProjectMember) | **Delete** /projects/{project}/members/{member} | Remove a member associated with this project
-[**SetActiveProjectInConsole**](ProjectAPI.md#SetActiveProjectInConsole) | **Put** /console/active/project | Sets the Ory Network Project active in the Ory Network Console
 [**SetProject**](ProjectAPI.md#SetProject) | **Put** /projects/{project_id} | Update an Ory Network Project Configuration
-[**UpdateOrganization**](ProjectAPI.md#UpdateOrganization) | **Put** /projects/{project_id}/organizations/{organization_id} | Update a B2B SSO Organization for a project.
+[**UpdateOrganization**](ProjectAPI.md#UpdateOrganization) | **Put** /projects/{project_id}/organizations/{organization_id} | 
 
 
 
@@ -86,7 +83,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryNetworkCookie](../README.md#oryNetworkCookie)
 
 ### HTTP request headers
 
@@ -152,7 +149,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryNetworkCookie](../README.md#oryNetworkCookie)
 
 ### HTTP request headers
 
@@ -224,7 +221,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryNetworkCookie](../README.md#oryNetworkCookie)
 
 ### HTTP request headers
 
@@ -240,7 +237,9 @@ Name | Type | Description  | Notes
 
 > DeleteOrganization(ctx, projectId, organizationId).Execute()
 
-Delete a B2B SSO Organization for a project.
+
+
+
 
 ### Example
 
@@ -293,7 +292,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryNetworkCookie](../README.md#oryNetworkCookie)
 
 ### HTTP request headers
 
@@ -364,68 +363,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetActiveProjectInConsole
-
-> ActiveProjectInConsole GetActiveProjectInConsole(ctx).Execute()
-
-Returns the Ory Network Project selected in the Ory Network Console
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/ory/client-go"
-)
-
-func main() {
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ProjectAPI.GetActiveProjectInConsole(context.Background()).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.GetActiveProjectInConsole``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetActiveProjectInConsole`: ActiveProjectInConsole
-	fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.GetActiveProjectInConsole`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetActiveProjectInConsoleRequest struct via the builder pattern
-
-
-### Return type
-
-[**ActiveProjectInConsole**](ActiveProjectInConsole.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
+[oryNetworkCookie](../README.md#oryNetworkCookie)
 
 ### HTTP request headers
 
@@ -441,7 +379,7 @@ Other parameters are passed through a pointer to a apiGetActiveProjectInConsoleR
 
 > GetOrganizationResponse GetOrganization(ctx, projectId, organizationId).Execute()
 
-Returns a B2B SSO Organization for a project by it's ID.
+Returns a B2B SSO Organization for a project by its ID
 
 ### Example
 
@@ -496,7 +434,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryNetworkCookie](../README.md#oryNetworkCookie)
 
 ### HTTP request headers
 
@@ -566,7 +504,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryNetworkCookie](../README.md#oryNetworkCookie)
 
 ### HTTP request headers
 
@@ -636,86 +574,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetProjectMetrics
-
-> GetProjectMetricsResponse GetProjectMetrics(ctx, projectId).EventType(eventType).Resolution(resolution).From(from).To(to).Execute()
-
-
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/ory/client-go"
-)
-
-func main() {
-	projectId := "projectId_example" // string | Project ID
-	eventType := "eventType_example" // string | The event type to query for
-	resolution := "resolution_example" // string | The resolution of the buckets  The minimum resolution is 1 minute.
-	from := time.Now() // time.Time | The start RFC3339 date of the time window
-	to := time.Now() // time.Time | The end RFC3339 date of the time window
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ProjectAPI.GetProjectMetrics(context.Background(), projectId).EventType(eventType).Resolution(resolution).From(from).To(to).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.GetProjectMetrics``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetProjectMetrics`: GetProjectMetricsResponse
-	fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.GetProjectMetrics`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **string** | Project ID | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetProjectMetricsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **eventType** | **string** | The event type to query for | 
- **resolution** | **string** | The resolution of the buckets  The minimum resolution is 1 minute. | 
- **from** | **time.Time** | The start RFC3339 date of the time window | 
- **to** | **time.Time** | The end RFC3339 date of the time window | 
-
-### Return type
-
-[**GetProjectMetricsResponse**](GetProjectMetricsResponse.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
+[oryNetworkCookie](../README.md#oryNetworkCookie)
 
 ### HTTP request headers
 
@@ -730,6 +589,8 @@ Name | Type | Description  | Notes
 ## ListOrganizations
 
 > ListOrganizationsResponse ListOrganizations(ctx, projectId).Execute()
+
+
 
 
 
@@ -783,7 +644,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryNetworkCookie](../README.md#oryNetworkCookie)
 
 ### HTTP request headers
 
@@ -853,7 +714,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryNetworkCookie](../README.md#oryNetworkCookie)
 
 ### HTTP request headers
 
@@ -914,7 +775,7 @@ Other parameters are passed through a pointer to a apiListProjectsRequest struct
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryNetworkCookie](../README.md#oryNetworkCookie)
 
 ### HTTP request headers
 
@@ -986,7 +847,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryNetworkCookie](../README.md#oryNetworkCookie)
 
 ### HTTP request headers
 
@@ -1054,7 +915,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryNetworkCookie](../README.md#oryNetworkCookie)
 
 ### HTTP request headers
 
@@ -1125,75 +986,11 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryNetworkCookie](../README.md#oryNetworkCookie)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## SetActiveProjectInConsole
-
-> SetActiveProjectInConsole(ctx).SetActiveProjectInConsoleBody(setActiveProjectInConsoleBody).Execute()
-
-Sets the Ory Network Project active in the Ory Network Console
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/ory/client-go"
-)
-
-func main() {
-	setActiveProjectInConsoleBody := *openapiclient.NewSetActiveProjectInConsoleBody("ProjectId_example") // SetActiveProjectInConsoleBody |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ProjectAPI.SetActiveProjectInConsole(context.Background()).SetActiveProjectInConsoleBody(setActiveProjectInConsoleBody).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.SetActiveProjectInConsole``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSetActiveProjectInConsoleRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **setActiveProjectInConsoleBody** | [**SetActiveProjectInConsoleBody**](SetActiveProjectInConsoleBody.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -1261,7 +1058,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryNetworkCookie](../README.md#oryNetworkCookie)
 
 ### HTTP request headers
 
@@ -1277,7 +1074,9 @@ Name | Type | Description  | Notes
 
 > Organization UpdateOrganization(ctx, projectId, organizationId).OrganizationBody(organizationBody).Execute()
 
-Update a B2B SSO Organization for a project.
+
+
+
 
 ### Example
 
@@ -1334,7 +1133,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryNetworkCookie](../README.md#oryNetworkCookie)
 
 ### HTTP request headers
 

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.11.7
+API version: v1.11.10
 Contact: support@ory.sh
 */
 
@@ -16,38 +16,38 @@ import (
 	"fmt"
 )
 
-// checks if the CreateWorkspacePayload type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CreateWorkspacePayload{}
+// checks if the UpdateWorkspaceBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateWorkspaceBody{}
 
-// CreateWorkspacePayload struct for CreateWorkspacePayload
-type CreateWorkspacePayload struct {
-	// The name of the workspace
+// UpdateWorkspaceBody struct for UpdateWorkspaceBody
+type UpdateWorkspaceBody struct {
+	// The name of the workspace.
 	Name string `json:"name"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _CreateWorkspacePayload CreateWorkspacePayload
+type _UpdateWorkspaceBody UpdateWorkspaceBody
 
-// NewCreateWorkspacePayload instantiates a new CreateWorkspacePayload object
+// NewUpdateWorkspaceBody instantiates a new UpdateWorkspaceBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateWorkspacePayload(name string) *CreateWorkspacePayload {
-	this := CreateWorkspacePayload{}
+func NewUpdateWorkspaceBody(name string) *UpdateWorkspaceBody {
+	this := UpdateWorkspaceBody{}
 	this.Name = name
 	return &this
 }
 
-// NewCreateWorkspacePayloadWithDefaults instantiates a new CreateWorkspacePayload object
+// NewUpdateWorkspaceBodyWithDefaults instantiates a new UpdateWorkspaceBody object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateWorkspacePayloadWithDefaults() *CreateWorkspacePayload {
-	this := CreateWorkspacePayload{}
+func NewUpdateWorkspaceBodyWithDefaults() *UpdateWorkspaceBody {
+	this := UpdateWorkspaceBody{}
 	return &this
 }
 
 // GetName returns the Name field value
-func (o *CreateWorkspacePayload) GetName() string {
+func (o *UpdateWorkspaceBody) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -58,7 +58,7 @@ func (o *CreateWorkspacePayload) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *CreateWorkspacePayload) GetNameOk() (*string, bool) {
+func (o *UpdateWorkspaceBody) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,11 +66,11 @@ func (o *CreateWorkspacePayload) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *CreateWorkspacePayload) SetName(v string) {
+func (o *UpdateWorkspaceBody) SetName(v string) {
 	o.Name = v
 }
 
-func (o CreateWorkspacePayload) MarshalJSON() ([]byte, error) {
+func (o UpdateWorkspaceBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -78,7 +78,7 @@ func (o CreateWorkspacePayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CreateWorkspacePayload) ToMap() (map[string]interface{}, error) {
+func (o UpdateWorkspaceBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
 
@@ -89,7 +89,7 @@ func (o CreateWorkspacePayload) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *CreateWorkspacePayload) UnmarshalJSON(data []byte) (err error) {
+func (o *UpdateWorkspaceBody) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -111,15 +111,15 @@ func (o *CreateWorkspacePayload) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varCreateWorkspacePayload := _CreateWorkspacePayload{}
+	varUpdateWorkspaceBody := _UpdateWorkspaceBody{}
 
-	err = json.Unmarshal(data, &varCreateWorkspacePayload)
+	err = json.Unmarshal(data, &varUpdateWorkspaceBody)
 
 	if err != nil {
 		return err
 	}
 
-	*o = CreateWorkspacePayload(varCreateWorkspacePayload)
+	*o = UpdateWorkspaceBody(varUpdateWorkspaceBody)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -131,38 +131,38 @@ func (o *CreateWorkspacePayload) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableCreateWorkspacePayload struct {
-	value *CreateWorkspacePayload
+type NullableUpdateWorkspaceBody struct {
+	value *UpdateWorkspaceBody
 	isSet bool
 }
 
-func (v NullableCreateWorkspacePayload) Get() *CreateWorkspacePayload {
+func (v NullableUpdateWorkspaceBody) Get() *UpdateWorkspaceBody {
 	return v.value
 }
 
-func (v *NullableCreateWorkspacePayload) Set(val *CreateWorkspacePayload) {
+func (v *NullableUpdateWorkspaceBody) Set(val *UpdateWorkspaceBody) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateWorkspacePayload) IsSet() bool {
+func (v NullableUpdateWorkspaceBody) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateWorkspacePayload) Unset() {
+func (v *NullableUpdateWorkspaceBody) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateWorkspacePayload(val *CreateWorkspacePayload) *NullableCreateWorkspacePayload {
-	return &NullableCreateWorkspacePayload{value: val, isSet: true}
+func NewNullableUpdateWorkspaceBody(val *UpdateWorkspaceBody) *NullableUpdateWorkspaceBody {
+	return &NullableUpdateWorkspaceBody{value: val, isSet: true}
 }
 
-func (v NullableCreateWorkspacePayload) MarshalJSON() ([]byte, error) {
+func (v NullableUpdateWorkspaceBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateWorkspacePayload) UnmarshalJSON(src []byte) error {
+func (v *NullableUpdateWorkspaceBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

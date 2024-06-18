@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.11.7
+API version: v1.11.10
 Contact: support@ory.sh
 */
 
@@ -23,6 +23,8 @@ var _ MappedNullable = &CreateRecoveryCodeForIdentityBody{}
 type CreateRecoveryCodeForIdentityBody struct {
 	// Code Expires In  The recovery code will expire after that amount of time has passed. Defaults to the configuration value of `selfservice.methods.code.config.lifespan`.
 	ExpiresIn *string `json:"expires_in,omitempty"`
+	// The flow type can either be `api` or `browser`.
+	FlowType *string `json:"flow_type,omitempty"`
 	// Identity to Recover  The identity's ID you wish to recover.
 	IdentityId string `json:"identity_id"`
 	AdditionalProperties map[string]interface{}
@@ -80,6 +82,38 @@ func (o *CreateRecoveryCodeForIdentityBody) SetExpiresIn(v string) {
 	o.ExpiresIn = &v
 }
 
+// GetFlowType returns the FlowType field value if set, zero value otherwise.
+func (o *CreateRecoveryCodeForIdentityBody) GetFlowType() string {
+	if o == nil || IsNil(o.FlowType) {
+		var ret string
+		return ret
+	}
+	return *o.FlowType
+}
+
+// GetFlowTypeOk returns a tuple with the FlowType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateRecoveryCodeForIdentityBody) GetFlowTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.FlowType) {
+		return nil, false
+	}
+	return o.FlowType, true
+}
+
+// HasFlowType returns a boolean if a field has been set.
+func (o *CreateRecoveryCodeForIdentityBody) HasFlowType() bool {
+	if o != nil && !IsNil(o.FlowType) {
+		return true
+	}
+
+	return false
+}
+
+// SetFlowType gets a reference to the given string and assigns it to the FlowType field.
+func (o *CreateRecoveryCodeForIdentityBody) SetFlowType(v string) {
+	o.FlowType = &v
+}
+
 // GetIdentityId returns the IdentityId field value
 func (o *CreateRecoveryCodeForIdentityBody) GetIdentityId() string {
 	if o == nil {
@@ -116,6 +150,9 @@ func (o CreateRecoveryCodeForIdentityBody) ToMap() (map[string]interface{}, erro
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.ExpiresIn) {
 		toSerialize["expires_in"] = o.ExpiresIn
+	}
+	if !IsNil(o.FlowType) {
+		toSerialize["flow_type"] = o.FlowType
 	}
 	toSerialize["identity_id"] = o.IdentityId
 
@@ -162,6 +199,7 @@ func (o *CreateRecoveryCodeForIdentityBody) UnmarshalJSON(data []byte) (err erro
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "expires_in")
+		delete(additionalProperties, "flow_type")
 		delete(additionalProperties, "identity_id")
 		o.AdditionalProperties = additionalProperties
 	}

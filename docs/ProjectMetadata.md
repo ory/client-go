@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Hosts** | **[]string** |  | 
 **Id** | **string** | The project&#39;s ID. | [readonly] 
 **Name** | **string** | The project&#39;s name if set | 
-**Slug** | Pointer to **string** | The project&#39;s slug | [optional] [readonly] 
+**Slug** | **string** | The project&#39;s slug | [readonly] 
 **State** | **string** | The state of the project. running Running halted Halted deleted Deleted | 
 **SubscriptionId** | Pointer to **NullableString** |  | [optional] 
 **SubscriptionPlan** | Pointer to **NullableString** |  | [optional] 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewProjectMetadata
 
-`func NewProjectMetadata(createdAt time.Time, environment string, hosts []string, id string, name string, state string, updatedAt time.Time, ) *ProjectMetadata`
+`func NewProjectMetadata(createdAt time.Time, environment string, hosts []string, id string, name string, slug string, state string, updatedAt time.Time, ) *ProjectMetadata`
 
 NewProjectMetadata instantiates a new ProjectMetadata object
 This constructor will assign default values to properties that have it defined,
@@ -155,11 +155,6 @@ and a boolean to check if the value has been set.
 
 SetSlug sets Slug field to given value.
 
-### HasSlug
-
-`func (o *ProjectMetadata) HasSlug() bool`
-
-HasSlug returns a boolean if a field has been set.
 
 ### GetState
 

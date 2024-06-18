@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.11.7
+API version: v1.11.10
 Contact: support@ory.sh
 */
 
@@ -23,6 +23,8 @@ var _ MappedNullable = &Project{}
 type Project struct {
 	CorsAdmin *ProjectCors `json:"cors_admin,omitempty"`
 	CorsPublic *ProjectCors `json:"cors_public,omitempty"`
+	// The environment of the project. prod Production stage Staging dev Development
+	Environment string `json:"environment"`
 	// The project's ID.
 	Id string `json:"id"`
 	// The name of the project.
@@ -44,8 +46,9 @@ type _Project Project
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProject(id string, name string, revisionId string, services ProjectServices, slug string, state string) *Project {
+func NewProject(environment string, id string, name string, revisionId string, services ProjectServices, slug string, state string) *Project {
 	this := Project{}
+	this.Environment = environment
 	this.Id = id
 	this.Name = name
 	this.RevisionId = revisionId
@@ -125,6 +128,30 @@ func (o *Project) HasCorsPublic() bool {
 // SetCorsPublic gets a reference to the given ProjectCors and assigns it to the CorsPublic field.
 func (o *Project) SetCorsPublic(v ProjectCors) {
 	o.CorsPublic = &v
+}
+
+// GetEnvironment returns the Environment field value
+func (o *Project) GetEnvironment() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Environment
+}
+
+// GetEnvironmentOk returns a tuple with the Environment field value
+// and a boolean to check if the value has been set.
+func (o *Project) GetEnvironmentOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Environment, true
+}
+
+// SetEnvironment sets field value
+func (o *Project) SetEnvironment(v string) {
+	o.Environment = v
 }
 
 // GetId returns the Id field value
@@ -329,6 +356,7 @@ func (o Project) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CorsPublic) {
 		toSerialize["cors_public"] = o.CorsPublic
 	}
+	toSerialize["environment"] = o.Environment
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["revision_id"] = o.RevisionId
@@ -351,6 +379,7 @@ func (o *Project) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"environment",
 		"id",
 		"name",
 		"revision_id",
@@ -388,6 +417,7 @@ func (o *Project) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "cors_admin")
 		delete(additionalProperties, "cors_public")
+		delete(additionalProperties, "environment")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "revision_id")

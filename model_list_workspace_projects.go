@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.11.7
+API version: v1.11.10
 Contact: support@ory.sh
 */
 
@@ -16,41 +16,41 @@ import (
 	"fmt"
 )
 
-// checks if the ListWorkspaceProjectsResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ListWorkspaceProjectsResponse{}
+// checks if the ListWorkspaceProjects type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListWorkspaceProjects{}
 
-// ListWorkspaceProjectsResponse struct for ListWorkspaceProjectsResponse
-type ListWorkspaceProjectsResponse struct {
+// ListWorkspaceProjects struct for ListWorkspaceProjects
+type ListWorkspaceProjects struct {
 	HasNextPage bool `json:"has_next_page"`
 	NextPage string `json:"next_page"`
 	Projects []ProjectMetadata `json:"projects"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _ListWorkspaceProjectsResponse ListWorkspaceProjectsResponse
+type _ListWorkspaceProjects ListWorkspaceProjects
 
-// NewListWorkspaceProjectsResponse instantiates a new ListWorkspaceProjectsResponse object
+// NewListWorkspaceProjects instantiates a new ListWorkspaceProjects object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListWorkspaceProjectsResponse(hasNextPage bool, nextPage string, projects []ProjectMetadata) *ListWorkspaceProjectsResponse {
-	this := ListWorkspaceProjectsResponse{}
+func NewListWorkspaceProjects(hasNextPage bool, nextPage string, projects []ProjectMetadata) *ListWorkspaceProjects {
+	this := ListWorkspaceProjects{}
 	this.HasNextPage = hasNextPage
 	this.NextPage = nextPage
 	this.Projects = projects
 	return &this
 }
 
-// NewListWorkspaceProjectsResponseWithDefaults instantiates a new ListWorkspaceProjectsResponse object
+// NewListWorkspaceProjectsWithDefaults instantiates a new ListWorkspaceProjects object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListWorkspaceProjectsResponseWithDefaults() *ListWorkspaceProjectsResponse {
-	this := ListWorkspaceProjectsResponse{}
+func NewListWorkspaceProjectsWithDefaults() *ListWorkspaceProjects {
+	this := ListWorkspaceProjects{}
 	return &this
 }
 
 // GetHasNextPage returns the HasNextPage field value
-func (o *ListWorkspaceProjectsResponse) GetHasNextPage() bool {
+func (o *ListWorkspaceProjects) GetHasNextPage() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -61,7 +61,7 @@ func (o *ListWorkspaceProjectsResponse) GetHasNextPage() bool {
 
 // GetHasNextPageOk returns a tuple with the HasNextPage field value
 // and a boolean to check if the value has been set.
-func (o *ListWorkspaceProjectsResponse) GetHasNextPageOk() (*bool, bool) {
+func (o *ListWorkspaceProjects) GetHasNextPageOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,12 +69,12 @@ func (o *ListWorkspaceProjectsResponse) GetHasNextPageOk() (*bool, bool) {
 }
 
 // SetHasNextPage sets field value
-func (o *ListWorkspaceProjectsResponse) SetHasNextPage(v bool) {
+func (o *ListWorkspaceProjects) SetHasNextPage(v bool) {
 	o.HasNextPage = v
 }
 
 // GetNextPage returns the NextPage field value
-func (o *ListWorkspaceProjectsResponse) GetNextPage() string {
+func (o *ListWorkspaceProjects) GetNextPage() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -85,7 +85,7 @@ func (o *ListWorkspaceProjectsResponse) GetNextPage() string {
 
 // GetNextPageOk returns a tuple with the NextPage field value
 // and a boolean to check if the value has been set.
-func (o *ListWorkspaceProjectsResponse) GetNextPageOk() (*string, bool) {
+func (o *ListWorkspaceProjects) GetNextPageOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,12 +93,12 @@ func (o *ListWorkspaceProjectsResponse) GetNextPageOk() (*string, bool) {
 }
 
 // SetNextPage sets field value
-func (o *ListWorkspaceProjectsResponse) SetNextPage(v string) {
+func (o *ListWorkspaceProjects) SetNextPage(v string) {
 	o.NextPage = v
 }
 
 // GetProjects returns the Projects field value
-func (o *ListWorkspaceProjectsResponse) GetProjects() []ProjectMetadata {
+func (o *ListWorkspaceProjects) GetProjects() []ProjectMetadata {
 	if o == nil {
 		var ret []ProjectMetadata
 		return ret
@@ -109,7 +109,7 @@ func (o *ListWorkspaceProjectsResponse) GetProjects() []ProjectMetadata {
 
 // GetProjectsOk returns a tuple with the Projects field value
 // and a boolean to check if the value has been set.
-func (o *ListWorkspaceProjectsResponse) GetProjectsOk() ([]ProjectMetadata, bool) {
+func (o *ListWorkspaceProjects) GetProjectsOk() ([]ProjectMetadata, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -117,11 +117,11 @@ func (o *ListWorkspaceProjectsResponse) GetProjectsOk() ([]ProjectMetadata, bool
 }
 
 // SetProjects sets field value
-func (o *ListWorkspaceProjectsResponse) SetProjects(v []ProjectMetadata) {
+func (o *ListWorkspaceProjects) SetProjects(v []ProjectMetadata) {
 	o.Projects = v
 }
 
-func (o ListWorkspaceProjectsResponse) MarshalJSON() ([]byte, error) {
+func (o ListWorkspaceProjects) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -129,7 +129,7 @@ func (o ListWorkspaceProjectsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ListWorkspaceProjectsResponse) ToMap() (map[string]interface{}, error) {
+func (o ListWorkspaceProjects) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["has_next_page"] = o.HasNextPage
 	toSerialize["next_page"] = o.NextPage
@@ -142,7 +142,7 @@ func (o ListWorkspaceProjectsResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ListWorkspaceProjectsResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *ListWorkspaceProjects) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -166,15 +166,15 @@ func (o *ListWorkspaceProjectsResponse) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varListWorkspaceProjectsResponse := _ListWorkspaceProjectsResponse{}
+	varListWorkspaceProjects := _ListWorkspaceProjects{}
 
-	err = json.Unmarshal(data, &varListWorkspaceProjectsResponse)
+	err = json.Unmarshal(data, &varListWorkspaceProjects)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ListWorkspaceProjectsResponse(varListWorkspaceProjectsResponse)
+	*o = ListWorkspaceProjects(varListWorkspaceProjects)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -188,38 +188,38 @@ func (o *ListWorkspaceProjectsResponse) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableListWorkspaceProjectsResponse struct {
-	value *ListWorkspaceProjectsResponse
+type NullableListWorkspaceProjects struct {
+	value *ListWorkspaceProjects
 	isSet bool
 }
 
-func (v NullableListWorkspaceProjectsResponse) Get() *ListWorkspaceProjectsResponse {
+func (v NullableListWorkspaceProjects) Get() *ListWorkspaceProjects {
 	return v.value
 }
 
-func (v *NullableListWorkspaceProjectsResponse) Set(val *ListWorkspaceProjectsResponse) {
+func (v *NullableListWorkspaceProjects) Set(val *ListWorkspaceProjects) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListWorkspaceProjectsResponse) IsSet() bool {
+func (v NullableListWorkspaceProjects) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListWorkspaceProjectsResponse) Unset() {
+func (v *NullableListWorkspaceProjects) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListWorkspaceProjectsResponse(val *ListWorkspaceProjectsResponse) *NullableListWorkspaceProjectsResponse {
-	return &NullableListWorkspaceProjectsResponse{value: val, isSet: true}
+func NewNullableListWorkspaceProjects(val *ListWorkspaceProjects) *NullableListWorkspaceProjects {
+	return &NullableListWorkspaceProjects{value: val, isSet: true}
 }
 
-func (v NullableListWorkspaceProjectsResponse) MarshalJSON() ([]byte, error) {
+func (v NullableListWorkspaceProjects) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListWorkspaceProjectsResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableListWorkspaceProjects) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
