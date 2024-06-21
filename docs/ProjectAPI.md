@@ -588,7 +588,7 @@ Name | Type | Description  | Notes
 
 ## ListOrganizations
 
-> ListOrganizationsResponse ListOrganizations(ctx, projectId).Execute()
+> ListOrganizationsResponse ListOrganizations(ctx, projectId).PageSize(pageSize).PageToken(pageToken).Domain(domain).Execute()
 
 
 
@@ -608,10 +608,13 @@ import (
 
 func main() {
 	projectId := "projectId_example" // string | Project ID  The project's ID.
+	pageSize := int64(789) // int64 | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to 250)
+	pageToken := "pageToken_example" // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)
+	domain := "domain_example" // string | Domain  If set, only organizations with that domain will be returned. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ProjectAPI.ListOrganizations(context.Background(), projectId).Execute()
+	resp, r, err := apiClient.ProjectAPI.ListOrganizations(context.Background(), projectId).PageSize(pageSize).PageToken(pageToken).Domain(domain).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ListOrganizations``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -637,6 +640,9 @@ Other parameters are passed through a pointer to a apiListOrganizationsRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **pageSize** | **int64** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [default to 250]
+ **pageToken** | **string** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | 
+ **domain** | **string** | Domain  If set, only organizations with that domain will be returned. | 
 
 ### Return type
 

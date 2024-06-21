@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.11.10
+API version: v1.11.11
 Contact: support@ory.sh
 */
 
@@ -30,6 +30,8 @@ type CreateProjectNormalizedPayload struct {
 	EnableAxV2 *bool `json:"enable_ax_v2,omitempty"`
 	//  prod Production stage Staging dev Development
 	Environment string `json:"environment"`
+	//  eu-central EUCentral us-east USEast us-west USWest global Global
+	HomeRegion *string `json:"home_region,omitempty"`
 	HydraOauth2AllowedTopLevelClaims []string `json:"hydra_oauth2_allowed_top_level_claims,omitempty"`
 	// Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
 	HydraOauth2ClientCredentialsDefaultGrantAllowedScope *bool `json:"hydra_oauth2_client_credentials_default_grant_allowed_scope,omitempty"`
@@ -599,6 +601,38 @@ func (o *CreateProjectNormalizedPayload) GetEnvironmentOk() (*string, bool) {
 // SetEnvironment sets field value
 func (o *CreateProjectNormalizedPayload) SetEnvironment(v string) {
 	o.Environment = v
+}
+
+// GetHomeRegion returns the HomeRegion field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetHomeRegion() string {
+	if o == nil || IsNil(o.HomeRegion) {
+		var ret string
+		return ret
+	}
+	return *o.HomeRegion
+}
+
+// GetHomeRegionOk returns a tuple with the HomeRegion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetHomeRegionOk() (*string, bool) {
+	if o == nil || IsNil(o.HomeRegion) {
+		return nil, false
+	}
+	return o.HomeRegion, true
+}
+
+// HasHomeRegion returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasHomeRegion() bool {
+	if o != nil && !IsNil(o.HomeRegion) {
+		return true
+	}
+
+	return false
+}
+
+// SetHomeRegion gets a reference to the given string and assigns it to the HomeRegion field.
+func (o *CreateProjectNormalizedPayload) SetHomeRegion(v string) {
+	o.HomeRegion = &v
 }
 
 // GetHydraOauth2AllowedTopLevelClaims returns the HydraOauth2AllowedTopLevelClaims field value if set, zero value otherwise.
@@ -7048,6 +7082,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 		toSerialize["enable_ax_v2"] = o.EnableAxV2
 	}
 	toSerialize["environment"] = o.Environment
+	if !IsNil(o.HomeRegion) {
+		toSerialize["home_region"] = o.HomeRegion
+	}
 	if !IsNil(o.HydraOauth2AllowedTopLevelClaims) {
 		toSerialize["hydra_oauth2_allowed_top_level_claims"] = o.HydraOauth2AllowedTopLevelClaims
 	}
@@ -7697,6 +7734,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "disable_account_experience_welcome_screen")
 		delete(additionalProperties, "enable_ax_v2")
 		delete(additionalProperties, "environment")
+		delete(additionalProperties, "home_region")
 		delete(additionalProperties, "hydra_oauth2_allowed_top_level_claims")
 		delete(additionalProperties, "hydra_oauth2_client_credentials_default_grant_allowed_scope")
 		delete(additionalProperties, "hydra_oauth2_exclude_not_before_claim")

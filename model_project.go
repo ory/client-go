@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.11.10
+API version: v1.11.11
 Contact: support@ory.sh
 */
 
@@ -25,6 +25,8 @@ type Project struct {
 	CorsPublic *ProjectCors `json:"cors_public,omitempty"`
 	// The environment of the project. prod Production stage Staging dev Development
 	Environment string `json:"environment"`
+	// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral us-east USEast us-west USWest global Global
+	HomeRegion string `json:"home_region"`
 	// The project's ID.
 	Id string `json:"id"`
 	// The name of the project.
@@ -46,9 +48,10 @@ type _Project Project
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProject(environment string, id string, name string, revisionId string, services ProjectServices, slug string, state string) *Project {
+func NewProject(environment string, homeRegion string, id string, name string, revisionId string, services ProjectServices, slug string, state string) *Project {
 	this := Project{}
 	this.Environment = environment
+	this.HomeRegion = homeRegion
 	this.Id = id
 	this.Name = name
 	this.RevisionId = revisionId
@@ -152,6 +155,30 @@ func (o *Project) GetEnvironmentOk() (*string, bool) {
 // SetEnvironment sets field value
 func (o *Project) SetEnvironment(v string) {
 	o.Environment = v
+}
+
+// GetHomeRegion returns the HomeRegion field value
+func (o *Project) GetHomeRegion() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.HomeRegion
+}
+
+// GetHomeRegionOk returns a tuple with the HomeRegion field value
+// and a boolean to check if the value has been set.
+func (o *Project) GetHomeRegionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.HomeRegion, true
+}
+
+// SetHomeRegion sets field value
+func (o *Project) SetHomeRegion(v string) {
+	o.HomeRegion = v
 }
 
 // GetId returns the Id field value
@@ -357,6 +384,7 @@ func (o Project) ToMap() (map[string]interface{}, error) {
 		toSerialize["cors_public"] = o.CorsPublic
 	}
 	toSerialize["environment"] = o.Environment
+	toSerialize["home_region"] = o.HomeRegion
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["revision_id"] = o.RevisionId
@@ -380,6 +408,7 @@ func (o *Project) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"environment",
+		"home_region",
 		"id",
 		"name",
 		"revision_id",
@@ -418,6 +447,7 @@ func (o *Project) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "cors_admin")
 		delete(additionalProperties, "cors_public")
 		delete(additionalProperties, "environment")
+		delete(additionalProperties, "home_region")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "revision_id")

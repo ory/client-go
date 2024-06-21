@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.11.10
+API version: v1.11.11
 Contact: support@ory.sh
 */
 
@@ -1390,6 +1390,27 @@ type ProjectAPIListOrganizationsRequest struct {
 	ctx context.Context
 	ApiService ProjectAPI
 	projectId string
+	pageSize *int64
+	pageToken *string
+	domain *string
+}
+
+// Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+func (r ProjectAPIListOrganizationsRequest) PageSize(pageSize int64) ProjectAPIListOrganizationsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+func (r ProjectAPIListOrganizationsRequest) PageToken(pageToken string) ProjectAPIListOrganizationsRequest {
+	r.pageToken = &pageToken
+	return r
+}
+
+// Domain  If set, only organizations with that domain will be returned.
+func (r ProjectAPIListOrganizationsRequest) Domain(domain string) ProjectAPIListOrganizationsRequest {
+	r.domain = &domain
+	return r
 }
 
 func (r ProjectAPIListOrganizationsRequest) Execute() (*ListOrganizationsResponse, *http.Response, error) {
@@ -1435,6 +1456,18 @@ func (a *ProjectAPIService) ListOrganizationsExecute(r ProjectAPIListOrganizatio
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.pageSize != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "")
+	} else {
+		var defaultValue int64 = 250
+		r.pageSize = &defaultValue
+	}
+	if r.pageToken != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "")
+	}
+	if r.domain != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "domain", r.domain, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

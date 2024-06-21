@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **time.Time** | The Project&#39;s Creation Date | 
 **Environment** | **string** | The environment of the project. prod Production stage Staging dev Development | 
+**HomeRegion** | **string** | The project&#39;s data home region eu-central EUCentral us-east USEast us-west USWest global Global | 
 **Hosts** | **[]string** |  | 
 **Id** | **string** | The project&#39;s ID. | [readonly] 
 **Name** | **string** | The project&#39;s name if set | 
@@ -21,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewProjectMetadata
 
-`func NewProjectMetadata(createdAt time.Time, environment string, hosts []string, id string, name string, slug string, state string, updatedAt time.Time, ) *ProjectMetadata`
+`func NewProjectMetadata(createdAt time.Time, environment string, homeRegion string, hosts []string, id string, name string, slug string, state string, updatedAt time.Time, ) *ProjectMetadata`
 
 NewProjectMetadata instantiates a new ProjectMetadata object
 This constructor will assign default values to properties that have it defined,
@@ -74,6 +75,26 @@ and a boolean to check if the value has been set.
 `func (o *ProjectMetadata) SetEnvironment(v string)`
 
 SetEnvironment sets Environment field to given value.
+
+
+### GetHomeRegion
+
+`func (o *ProjectMetadata) GetHomeRegion() string`
+
+GetHomeRegion returns the HomeRegion field if non-nil, zero value otherwise.
+
+### GetHomeRegionOk
+
+`func (o *ProjectMetadata) GetHomeRegionOk() (*string, bool)`
+
+GetHomeRegionOk returns a tuple with the HomeRegion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHomeRegion
+
+`func (o *ProjectMetadata) SetHomeRegion(v string)`
+
+SetHomeRegion sets HomeRegion field to given value.
 
 
 ### GetHosts

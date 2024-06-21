@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **DisableAccountExperienceWelcomeScreen** | Pointer to **bool** | Whether to disable the account experience welcome screen, which is hosted under &#x60;/ui/welcome&#x60;. | [optional] 
 **EnableAxV2** | Pointer to **bool** | Whether the new account experience is enabled and reachable. | [optional] 
 **Environment** | **string** |  prod Production stage Staging dev Development | 
+**HomeRegion** | Pointer to **string** |  eu-central EUCentral us-east USEast us-west USWest global Global | [optional] 
 **HydraOauth2AllowedTopLevelClaims** | Pointer to **[]string** |  | [optional] 
 **HydraOauth2ClientCredentialsDefaultGrantAllowedScope** | Pointer to **bool** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. | [optional] 
 **HydraOauth2ExcludeNotBeforeClaim** | Pointer to **bool** | Set to true if you want to exclude claim &#x60;nbf (not before)&#x60; part of access token.  This governs the \&quot;oauth2.exclude_not_before_claim\&quot; setting. | [optional] 
@@ -323,6 +324,31 @@ and a boolean to check if the value has been set.
 
 SetEnvironment sets Environment field to given value.
 
+
+### GetHomeRegion
+
+`func (o *CreateProjectNormalizedPayload) GetHomeRegion() string`
+
+GetHomeRegion returns the HomeRegion field if non-nil, zero value otherwise.
+
+### GetHomeRegionOk
+
+`func (o *CreateProjectNormalizedPayload) GetHomeRegionOk() (*string, bool)`
+
+GetHomeRegionOk returns a tuple with the HomeRegion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHomeRegion
+
+`func (o *CreateProjectNormalizedPayload) SetHomeRegion(v string)`
+
+SetHomeRegion sets HomeRegion field to given value.
+
+### HasHomeRegion
+
+`func (o *CreateProjectNormalizedPayload) HasHomeRegion() bool`
+
+HasHomeRegion returns a boolean if a field has been set.
 
 ### GetHydraOauth2AllowedTopLevelClaims
 

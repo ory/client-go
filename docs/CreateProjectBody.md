@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Environment** | **string** | The environment of the project. prod Production stage Staging dev Development | 
+**HomeRegion** | Pointer to **string** | Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral us-east USEast us-west USWest global Global | [optional] 
 **Name** | **string** | The name of the project to be created | 
 **WorkspaceId** | Pointer to **string** | The workspace to create the project in. | [optional] 
 
@@ -46,6 +47,31 @@ and a boolean to check if the value has been set.
 
 SetEnvironment sets Environment field to given value.
 
+
+### GetHomeRegion
+
+`func (o *CreateProjectBody) GetHomeRegion() string`
+
+GetHomeRegion returns the HomeRegion field if non-nil, zero value otherwise.
+
+### GetHomeRegionOk
+
+`func (o *CreateProjectBody) GetHomeRegionOk() (*string, bool)`
+
+GetHomeRegionOk returns a tuple with the HomeRegion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHomeRegion
+
+`func (o *CreateProjectBody) SetHomeRegion(v string)`
+
+SetHomeRegion sets HomeRegion field to given value.
+
+### HasHomeRegion
+
+`func (o *CreateProjectBody) HasHomeRegion() bool`
+
+HasHomeRegion returns a boolean if a field has been set.
 
 ### GetName
 

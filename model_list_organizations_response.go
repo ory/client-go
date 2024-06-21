@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.11.10
+API version: v1.11.11
 Contact: support@ory.sh
 */
 
@@ -21,6 +21,9 @@ var _ MappedNullable = &ListOrganizationsResponse{}
 
 // ListOrganizationsResponse B2B SSO Organization List
 type ListOrganizationsResponse struct {
+	HasNextPage bool `json:"has_next_page"`
+	NextPageToken string `json:"next_page_token"`
+	// The list of organizations
 	Organizations []Organization `json:"organizations"`
 	AdditionalProperties map[string]interface{}
 }
@@ -31,8 +34,10 @@ type _ListOrganizationsResponse ListOrganizationsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListOrganizationsResponse(organizations []Organization) *ListOrganizationsResponse {
+func NewListOrganizationsResponse(hasNextPage bool, nextPageToken string, organizations []Organization) *ListOrganizationsResponse {
 	this := ListOrganizationsResponse{}
+	this.HasNextPage = hasNextPage
+	this.NextPageToken = nextPageToken
 	this.Organizations = organizations
 	return &this
 }
@@ -43,6 +48,54 @@ func NewListOrganizationsResponse(organizations []Organization) *ListOrganizatio
 func NewListOrganizationsResponseWithDefaults() *ListOrganizationsResponse {
 	this := ListOrganizationsResponse{}
 	return &this
+}
+
+// GetHasNextPage returns the HasNextPage field value
+func (o *ListOrganizationsResponse) GetHasNextPage() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.HasNextPage
+}
+
+// GetHasNextPageOk returns a tuple with the HasNextPage field value
+// and a boolean to check if the value has been set.
+func (o *ListOrganizationsResponse) GetHasNextPageOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.HasNextPage, true
+}
+
+// SetHasNextPage sets field value
+func (o *ListOrganizationsResponse) SetHasNextPage(v bool) {
+	o.HasNextPage = v
+}
+
+// GetNextPageToken returns the NextPageToken field value
+func (o *ListOrganizationsResponse) GetNextPageToken() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.NextPageToken
+}
+
+// GetNextPageTokenOk returns a tuple with the NextPageToken field value
+// and a boolean to check if the value has been set.
+func (o *ListOrganizationsResponse) GetNextPageTokenOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NextPageToken, true
+}
+
+// SetNextPageToken sets field value
+func (o *ListOrganizationsResponse) SetNextPageToken(v string) {
+	o.NextPageToken = v
 }
 
 // GetOrganizations returns the Organizations field value
@@ -79,6 +132,8 @@ func (o ListOrganizationsResponse) MarshalJSON() ([]byte, error) {
 
 func (o ListOrganizationsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["has_next_page"] = o.HasNextPage
+	toSerialize["next_page_token"] = o.NextPageToken
 	toSerialize["organizations"] = o.Organizations
 
 	for key, value := range o.AdditionalProperties {
@@ -93,6 +148,8 @@ func (o *ListOrganizationsResponse) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"has_next_page",
+		"next_page_token",
 		"organizations",
 	}
 
@@ -123,6 +180,8 @@ func (o *ListOrganizationsResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "has_next_page")
+		delete(additionalProperties, "next_page_token")
 		delete(additionalProperties, "organizations")
 		o.AdditionalProperties = additionalProperties
 	}

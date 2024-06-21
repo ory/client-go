@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.11.10
+API version: v1.11.11
 Contact: support@ory.sh
 */
 
@@ -27,6 +27,8 @@ type NormalizedProject struct {
 	CurrentRevision NormalizedProjectRevision `json:"current_revision"`
 	// The environment of the project. prod Production stage Staging dev Development
 	Environment string `json:"environment"`
+	// The project's data home region. eu-central EUCentral us-east USEast us-west USWest global Global
+	HomeRegion string `json:"home_region"`
 	Hosts []string `json:"hosts"`
 	// The project's ID.
 	Id string `json:"id"`
@@ -49,11 +51,12 @@ type _NormalizedProject NormalizedProject
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNormalizedProject(createdAt time.Time, currentRevision NormalizedProjectRevision, environment string, hosts []string, id string, slug string, state string, updatedAt time.Time, workspaceId NullableString) *NormalizedProject {
+func NewNormalizedProject(createdAt time.Time, currentRevision NormalizedProjectRevision, environment string, homeRegion string, hosts []string, id string, slug string, state string, updatedAt time.Time, workspaceId NullableString) *NormalizedProject {
 	this := NormalizedProject{}
 	this.CreatedAt = createdAt
 	this.CurrentRevision = currentRevision
 	this.Environment = environment
+	this.HomeRegion = homeRegion
 	this.Hosts = hosts
 	this.Id = id
 	this.Slug = slug
@@ -141,6 +144,30 @@ func (o *NormalizedProject) GetEnvironmentOk() (*string, bool) {
 // SetEnvironment sets field value
 func (o *NormalizedProject) SetEnvironment(v string) {
 	o.Environment = v
+}
+
+// GetHomeRegion returns the HomeRegion field value
+func (o *NormalizedProject) GetHomeRegion() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.HomeRegion
+}
+
+// GetHomeRegionOk returns a tuple with the HomeRegion field value
+// and a boolean to check if the value has been set.
+func (o *NormalizedProject) GetHomeRegionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.HomeRegion, true
+}
+
+// SetHomeRegion sets field value
+func (o *NormalizedProject) SetHomeRegion(v string) {
+	o.HomeRegion = v
 }
 
 // GetHosts returns the Hosts field value
@@ -418,6 +445,7 @@ func (o NormalizedProject) ToMap() (map[string]interface{}, error) {
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["current_revision"] = o.CurrentRevision
 	toSerialize["environment"] = o.Environment
+	toSerialize["home_region"] = o.HomeRegion
 	toSerialize["hosts"] = o.Hosts
 	toSerialize["id"] = o.Id
 	toSerialize["slug"] = o.Slug
@@ -449,6 +477,7 @@ func (o *NormalizedProject) UnmarshalJSON(data []byte) (err error) {
 		"created_at",
 		"current_revision",
 		"environment",
+		"home_region",
 		"hosts",
 		"id",
 		"slug",
@@ -487,6 +516,7 @@ func (o *NormalizedProject) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "current_revision")
 		delete(additionalProperties, "environment")
+		delete(additionalProperties, "home_region")
 		delete(additionalProperties, "hosts")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "slug")

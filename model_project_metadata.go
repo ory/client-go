@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.11.10
+API version: v1.11.11
 Contact: support@ory.sh
 */
 
@@ -26,6 +26,8 @@ type ProjectMetadata struct {
 	CreatedAt time.Time `json:"created_at"`
 	// The environment of the project. prod Production stage Staging dev Development
 	Environment string `json:"environment"`
+	// The project's data home region eu-central EUCentral us-east USEast us-west USWest global Global
+	HomeRegion string `json:"home_region"`
 	Hosts []string `json:"hosts"`
 	// The project's ID.
 	Id string `json:"id"`
@@ -50,10 +52,11 @@ type _ProjectMetadata ProjectMetadata
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectMetadata(createdAt time.Time, environment string, hosts []string, id string, name string, slug string, state string, updatedAt time.Time) *ProjectMetadata {
+func NewProjectMetadata(createdAt time.Time, environment string, homeRegion string, hosts []string, id string, name string, slug string, state string, updatedAt time.Time) *ProjectMetadata {
 	this := ProjectMetadata{}
 	this.CreatedAt = createdAt
 	this.Environment = environment
+	this.HomeRegion = homeRegion
 	this.Hosts = hosts
 	this.Id = id
 	this.Name = name
@@ -117,6 +120,30 @@ func (o *ProjectMetadata) GetEnvironmentOk() (*string, bool) {
 // SetEnvironment sets field value
 func (o *ProjectMetadata) SetEnvironment(v string) {
 	o.Environment = v
+}
+
+// GetHomeRegion returns the HomeRegion field value
+func (o *ProjectMetadata) GetHomeRegion() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.HomeRegion
+}
+
+// GetHomeRegionOk returns a tuple with the HomeRegion field value
+// and a boolean to check if the value has been set.
+func (o *ProjectMetadata) GetHomeRegionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.HomeRegion, true
+}
+
+// SetHomeRegion sets field value
+func (o *ProjectMetadata) SetHomeRegion(v string) {
+	o.HomeRegion = v
 }
 
 // GetHosts returns the Hosts field value
@@ -433,6 +460,7 @@ func (o ProjectMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["environment"] = o.Environment
+	toSerialize["home_region"] = o.HomeRegion
 	toSerialize["hosts"] = o.Hosts
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
@@ -466,6 +494,7 @@ func (o *ProjectMetadata) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"created_at",
 		"environment",
+		"home_region",
 		"hosts",
 		"id",
 		"name",
@@ -503,6 +532,7 @@ func (o *ProjectMetadata) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "environment")
+		delete(additionalProperties, "home_region")
 		delete(additionalProperties, "hosts")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")

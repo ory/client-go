@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.11.10
+  version: v1.11.11
 servers:
 - url: "https://{project-slug}.projects.oryapis.com/"
   variables:
@@ -3805,6 +3805,34 @@ paths:
       operationId: listOrganizations
       parameters:
       - description: |-
+          Items per Page
+
+          This is the number of items per page to return.
+          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 250
+          format: int64
+          maximum: 1000
+          minimum: 1
+          type: integer
+        style: form
+      - description: |-
+          Next Page Token
+
+          The next page token.
+          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_token
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
           Project ID
 
           The project's ID.
@@ -3815,6 +3843,17 @@ paths:
         schema:
           type: string
         style: simple
+      - description: |-
+          Domain
+
+          If set, only organizations with that domain will be returned.
+        explode: true
+        in: query
+        name: domain
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -7803,6 +7842,24 @@ components:
             prod Production
             stage Staging
             dev Development
+        home_region:
+          description: |2-
+
+            eu-central EUCentral
+            us-east USEast
+            us-west USWest
+            global Global
+          enum:
+          - eu-central
+          - us-east
+          - us-west
+          - global
+          type: string
+          x-go-enum-desc: |-
+            eu-central EUCentral
+            us-east USEast
+            us-west USWest
+            global Global
         hydra_oauth2_allowed_top_level_claims:
           items:
             type: string
@@ -10446,6 +10503,26 @@ components:
             prod Production
             stage Staging
             dev Development
+        home_region:
+          description: |-
+            Home Region
+
+            The home region of the project. This is the region where the project will be created.
+            eu-central EUCentral
+            us-east USEast
+            us-west USWest
+            global Global
+          enum:
+          - eu-central
+          - us-east
+          - us-west
+          - global
+          type: string
+          x-go-enum-desc: |-
+            eu-central EUCentral
+            us-east USEast
+            us-west USWest
+            global Global
         name:
           description: The name of the project to be created
           type: string
@@ -12096,6 +12173,8 @@ components:
     listOrganizationsResponse:
       description: B2B SSO Organization List
       example:
+        next_page_token: next_page_token
+        has_next_page: true
         organizations:
         - updated_at: 2000-01-23T04:56:07.000+00:00
           project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -12114,57 +12193,66 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           label: label
       properties:
+        has_next_page:
+          type: boolean
+        next_page_token:
+          type: string
         organizations:
+          description: The list of organizations
           items:
             $ref: '#/components/schemas/organization'
           type: array
       required:
+      - has_next_page
+      - next_page_token
       - organizations
       type: object
     listWorkspaceProjects:
       example:
         next_page: next_page
         projects:
-        - subscription_id: subscription_id
-          workspace_id: workspace_id
-          environment: prod
-          workspace:
+        - workspace:
             subscription_id: subscription_id
             updated_at: 2000-01-23T04:56:07.000+00:00
             name: name
             created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             subscription_plan: subscription_plan
-          updated_at: 2000-01-23T04:56:07.000+00:00
+          home_region: eu-central
           hosts:
           - hosts
           - hosts
-          name: name
           created_at: 2000-01-23T04:56:07.000+00:00
+          subscription_plan: subscription_plan
+          subscription_id: subscription_id
+          workspace_id: workspace_id
+          environment: prod
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: running
           slug: slug
-          subscription_plan: subscription_plan
-        - subscription_id: subscription_id
-          workspace_id: workspace_id
-          environment: prod
-          workspace:
+        - workspace:
             subscription_id: subscription_id
             updated_at: 2000-01-23T04:56:07.000+00:00
             name: name
             created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             subscription_plan: subscription_plan
-          updated_at: 2000-01-23T04:56:07.000+00:00
+          home_region: eu-central
           hosts:
           - hosts
           - hosts
-          name: name
           created_at: 2000-01-23T04:56:07.000+00:00
+          subscription_plan: subscription_plan
+          subscription_id: subscription_id
+          workspace_id: workspace_id
+          environment: prod
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          name: name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: running
           slug: slug
-          subscription_plan: subscription_plan
         has_next_page: true
       properties:
         has_next_page:
@@ -12922,6 +13010,25 @@ components:
             prod Production
             stage Staging
             dev Development
+        home_region:
+          description: |-
+            The project's data home region.
+            eu-central EUCentral
+            us-east USEast
+            us-west USWest
+            global Global
+          enum:
+          - eu-central
+          - us-east
+          - us-west
+          - global
+          readOnly: true
+          type: string
+          x-go-enum-desc: |-
+            eu-central EUCentral
+            us-east USEast
+            us-west USWest
+            global Global
         hosts:
           items:
             type: string
@@ -12975,6 +13082,7 @@ components:
       - created_at
       - current_revision
       - environment
+      - home_region
       - hosts
       - id
       - slug
@@ -16389,6 +16497,7 @@ components:
       example:
         workspace_id: workspace_id
         environment: prod
+        home_region: eu-central
         name: name
         cors_admin:
           origins:
@@ -16431,6 +16540,26 @@ components:
             prod Production
             stage Staging
             dev Development
+        home_region:
+          description: |-
+            The project home region.
+
+            This is used to set where the project data is stored and where the project's endpoints are located.
+            eu-central EUCentral
+            us-east USEast
+            us-west USWest
+            global Global
+          enum:
+          - eu-central
+          - us-east
+          - us-west
+          - global
+          type: string
+          x-go-enum-desc: |-
+            eu-central EUCentral
+            us-east USEast
+            us-west USWest
+            global Global
         id:
           description: The project's ID.
           format: uuid
@@ -16472,6 +16601,7 @@ components:
           type: string
       required:
       - environment
+      - home_region
       - id
       - name
       - revision_id
@@ -16938,9 +17068,6 @@ components:
       type: array
     projectMetadata:
       example:
-        subscription_id: subscription_id
-        workspace_id: workspace_id
-        environment: prod
         workspace:
           subscription_id: subscription_id
           updated_at: 2000-01-23T04:56:07.000+00:00
@@ -16948,16 +17075,20 @@ components:
           created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           subscription_plan: subscription_plan
-        updated_at: 2000-01-23T04:56:07.000+00:00
+        home_region: eu-central
         hosts:
         - hosts
         - hosts
-        name: name
         created_at: 2000-01-23T04:56:07.000+00:00
+        subscription_plan: subscription_plan
+        subscription_id: subscription_id
+        workspace_id: workspace_id
+        environment: prod
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        name: name
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         state: running
         slug: slug
-        subscription_plan: subscription_plan
       properties:
         created_at:
           description: The Project's Creation Date
@@ -16978,6 +17109,24 @@ components:
             prod Production
             stage Staging
             dev Development
+        home_region:
+          description: |-
+            The project's data home region
+            eu-central EUCentral
+            us-east USEast
+            us-west USWest
+            global Global
+          enum:
+          - eu-central
+          - us-east
+          - us-west
+          - global
+          type: string
+          x-go-enum-desc: |-
+            eu-central EUCentral
+            us-east USEast
+            us-west USWest
+            global Global
         hosts:
           items:
             type: string
@@ -17031,6 +17180,7 @@ components:
       required:
       - created_at
       - environment
+      - home_region
       - hosts
       - id
       - name
@@ -17111,10 +17261,6 @@ components:
         feature:
           description: |2-
 
-            region_eu RegionEU
-            region_us RegionUS
-            region_apac RegionAPAC
-            region_global RegionGlobal
             production_projects ProductionProjects
             staging_projects StagingProjects
             development_projects DevelopmentProjects
@@ -17134,18 +17280,16 @@ components:
             rop_grant ResourceOwnerPasswordGrant
             concierge_onboarding ConciergeOnboarding
             credit Credit
+            data_location_global DataLocationGlobal
             m2m_token_issuance M2MTokenIssuance
             permission_checks PermissionChecks
+            data_location_regional DataLocationRegional  Required Features
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
             identities_list_rate_limit_tier RateLimitTierIdentitiesList
             permission_checks_rate_limit_tier RateLimitTierPermissionChecks
             oauth2_introspect_rate_limit_tier RateLimitTierOAuth2Introspect
           enum:
-          - region_eu
-          - region_us
-          - region_apac
-          - region_global
           - production_projects
           - staging_projects
           - development_projects
@@ -17165,8 +17309,10 @@ components:
           - rop_grant
           - concierge_onboarding
           - credit
+          - data_location_global
           - m2m_token_issuance
           - permission_checks
+          - data_location_regional
           - rate_limit_tier
           - session_rate_limit_tier
           - identities_list_rate_limit_tier
@@ -17174,10 +17320,6 @@ components:
           - oauth2_introspect_rate_limit_tier
           type: string
           x-go-enum-desc: |-
-            region_eu RegionEU
-            region_us RegionUS
-            region_apac RegionAPAC
-            region_global RegionGlobal
             production_projects ProductionProjects
             staging_projects StagingProjects
             development_projects DevelopmentProjects
@@ -17197,8 +17339,10 @@ components:
             rop_grant ResourceOwnerPasswordGrant
             concierge_onboarding ConciergeOnboarding
             credit Credit
+            data_location_global DataLocationGlobal
             m2m_token_issuance M2MTokenIssuance
             permission_checks PermissionChecks
+            data_location_regional DataLocationRegional  Required Features
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
             identities_list_rate_limit_tier RateLimitTierIdentitiesList
@@ -18936,6 +19080,7 @@ components:
         project:
           workspace_id: workspace_id
           environment: prod
+          home_region: eu-central
           name: name
           cors_admin:
             origins:
