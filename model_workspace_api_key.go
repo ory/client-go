@@ -17,52 +17,52 @@ import (
 	"fmt"
 )
 
-// checks if the ProjectApiKey type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ProjectApiKey{}
+// checks if the WorkspaceApiKey type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &WorkspaceApiKey{}
 
-// ProjectApiKey struct for ProjectApiKey
-type ProjectApiKey struct {
-	// The token's creation date
+// WorkspaceApiKey struct for WorkspaceApiKey
+type WorkspaceApiKey struct {
+	// The API key's creation date
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	// The token's ID.
+	// The key's ID.
 	Id string `json:"id"`
-	// The Token's Name  Set this to help you remember, for example, where you use the token.
+	// The API key's Name  Set this to help you remember, for example, where you use the API key.
 	Name string `json:"name"`
-	// The token's owner
+	// The key's owner
 	OwnerId string `json:"owner_id"`
-	// The Token's Project ID
-	ProjectId *string `json:"project_id,omitempty"`
-	// The token's last update date
+	// The API key's last update date
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	// The token's value
+	// The key's value
 	Value *string `json:"value,omitempty"`
+	// The API token's workspace ID
+	WorkspaceId *string `json:"workspace_id,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _ProjectApiKey ProjectApiKey
+type _WorkspaceApiKey WorkspaceApiKey
 
-// NewProjectApiKey instantiates a new ProjectApiKey object
+// NewWorkspaceApiKey instantiates a new WorkspaceApiKey object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectApiKey(id string, name string, ownerId string) *ProjectApiKey {
-	this := ProjectApiKey{}
+func NewWorkspaceApiKey(id string, name string, ownerId string) *WorkspaceApiKey {
+	this := WorkspaceApiKey{}
 	this.Id = id
 	this.Name = name
 	this.OwnerId = ownerId
 	return &this
 }
 
-// NewProjectApiKeyWithDefaults instantiates a new ProjectApiKey object
+// NewWorkspaceApiKeyWithDefaults instantiates a new WorkspaceApiKey object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewProjectApiKeyWithDefaults() *ProjectApiKey {
-	this := ProjectApiKey{}
+func NewWorkspaceApiKeyWithDefaults() *WorkspaceApiKey {
+	this := WorkspaceApiKey{}
 	return &this
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *ProjectApiKey) GetCreatedAt() time.Time {
+func (o *WorkspaceApiKey) GetCreatedAt() time.Time {
 	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
@@ -72,7 +72,7 @@ func (o *ProjectApiKey) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectApiKey) GetCreatedAtOk() (*time.Time, bool) {
+func (o *WorkspaceApiKey) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
@@ -80,7 +80,7 @@ func (o *ProjectApiKey) GetCreatedAtOk() (*time.Time, bool) {
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
-func (o *ProjectApiKey) HasCreatedAt() bool {
+func (o *WorkspaceApiKey) HasCreatedAt() bool {
 	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
@@ -89,12 +89,12 @@ func (o *ProjectApiKey) HasCreatedAt() bool {
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *ProjectApiKey) SetCreatedAt(v time.Time) {
+func (o *WorkspaceApiKey) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
 // GetId returns the Id field value
-func (o *ProjectApiKey) GetId() string {
+func (o *WorkspaceApiKey) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -105,7 +105,7 @@ func (o *ProjectApiKey) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ProjectApiKey) GetIdOk() (*string, bool) {
+func (o *WorkspaceApiKey) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -113,12 +113,12 @@ func (o *ProjectApiKey) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value
-func (o *ProjectApiKey) SetId(v string) {
+func (o *WorkspaceApiKey) SetId(v string) {
 	o.Id = v
 }
 
 // GetName returns the Name field value
-func (o *ProjectApiKey) GetName() string {
+func (o *WorkspaceApiKey) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -129,7 +129,7 @@ func (o *ProjectApiKey) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *ProjectApiKey) GetNameOk() (*string, bool) {
+func (o *WorkspaceApiKey) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -137,12 +137,12 @@ func (o *ProjectApiKey) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *ProjectApiKey) SetName(v string) {
+func (o *WorkspaceApiKey) SetName(v string) {
 	o.Name = v
 }
 
 // GetOwnerId returns the OwnerId field value
-func (o *ProjectApiKey) GetOwnerId() string {
+func (o *WorkspaceApiKey) GetOwnerId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -153,7 +153,7 @@ func (o *ProjectApiKey) GetOwnerId() string {
 
 // GetOwnerIdOk returns a tuple with the OwnerId field value
 // and a boolean to check if the value has been set.
-func (o *ProjectApiKey) GetOwnerIdOk() (*string, bool) {
+func (o *WorkspaceApiKey) GetOwnerIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -161,44 +161,12 @@ func (o *ProjectApiKey) GetOwnerIdOk() (*string, bool) {
 }
 
 // SetOwnerId sets field value
-func (o *ProjectApiKey) SetOwnerId(v string) {
+func (o *WorkspaceApiKey) SetOwnerId(v string) {
 	o.OwnerId = v
 }
 
-// GetProjectId returns the ProjectId field value if set, zero value otherwise.
-func (o *ProjectApiKey) GetProjectId() string {
-	if o == nil || IsNil(o.ProjectId) {
-		var ret string
-		return ret
-	}
-	return *o.ProjectId
-}
-
-// GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ProjectApiKey) GetProjectIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ProjectId) {
-		return nil, false
-	}
-	return o.ProjectId, true
-}
-
-// HasProjectId returns a boolean if a field has been set.
-func (o *ProjectApiKey) HasProjectId() bool {
-	if o != nil && !IsNil(o.ProjectId) {
-		return true
-	}
-
-	return false
-}
-
-// SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
-func (o *ProjectApiKey) SetProjectId(v string) {
-	o.ProjectId = &v
-}
-
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *ProjectApiKey) GetUpdatedAt() time.Time {
+func (o *WorkspaceApiKey) GetUpdatedAt() time.Time {
 	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
@@ -208,7 +176,7 @@ func (o *ProjectApiKey) GetUpdatedAt() time.Time {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectApiKey) GetUpdatedAtOk() (*time.Time, bool) {
+func (o *WorkspaceApiKey) GetUpdatedAtOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
@@ -216,7 +184,7 @@ func (o *ProjectApiKey) GetUpdatedAtOk() (*time.Time, bool) {
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
-func (o *ProjectApiKey) HasUpdatedAt() bool {
+func (o *WorkspaceApiKey) HasUpdatedAt() bool {
 	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
@@ -225,12 +193,12 @@ func (o *ProjectApiKey) HasUpdatedAt() bool {
 }
 
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *ProjectApiKey) SetUpdatedAt(v time.Time) {
+func (o *WorkspaceApiKey) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
-func (o *ProjectApiKey) GetValue() string {
+func (o *WorkspaceApiKey) GetValue() string {
 	if o == nil || IsNil(o.Value) {
 		var ret string
 		return ret
@@ -240,7 +208,7 @@ func (o *ProjectApiKey) GetValue() string {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectApiKey) GetValueOk() (*string, bool) {
+func (o *WorkspaceApiKey) GetValueOk() (*string, bool) {
 	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
@@ -248,7 +216,7 @@ func (o *ProjectApiKey) GetValueOk() (*string, bool) {
 }
 
 // HasValue returns a boolean if a field has been set.
-func (o *ProjectApiKey) HasValue() bool {
+func (o *WorkspaceApiKey) HasValue() bool {
 	if o != nil && !IsNil(o.Value) {
 		return true
 	}
@@ -257,11 +225,43 @@ func (o *ProjectApiKey) HasValue() bool {
 }
 
 // SetValue gets a reference to the given string and assigns it to the Value field.
-func (o *ProjectApiKey) SetValue(v string) {
+func (o *WorkspaceApiKey) SetValue(v string) {
 	o.Value = &v
 }
 
-func (o ProjectApiKey) MarshalJSON() ([]byte, error) {
+// GetWorkspaceId returns the WorkspaceId field value if set, zero value otherwise.
+func (o *WorkspaceApiKey) GetWorkspaceId() string {
+	if o == nil || IsNil(o.WorkspaceId) {
+		var ret string
+		return ret
+	}
+	return *o.WorkspaceId
+}
+
+// GetWorkspaceIdOk returns a tuple with the WorkspaceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceApiKey) GetWorkspaceIdOk() (*string, bool) {
+	if o == nil || IsNil(o.WorkspaceId) {
+		return nil, false
+	}
+	return o.WorkspaceId, true
+}
+
+// HasWorkspaceId returns a boolean if a field has been set.
+func (o *WorkspaceApiKey) HasWorkspaceId() bool {
+	if o != nil && !IsNil(o.WorkspaceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetWorkspaceId gets a reference to the given string and assigns it to the WorkspaceId field.
+func (o *WorkspaceApiKey) SetWorkspaceId(v string) {
+	o.WorkspaceId = &v
+}
+
+func (o WorkspaceApiKey) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -269,7 +269,7 @@ func (o ProjectApiKey) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ProjectApiKey) ToMap() (map[string]interface{}, error) {
+func (o WorkspaceApiKey) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
@@ -277,14 +277,14 @@ func (o ProjectApiKey) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["owner_id"] = o.OwnerId
-	if !IsNil(o.ProjectId) {
-		toSerialize["project_id"] = o.ProjectId
-	}
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 	if !IsNil(o.Value) {
 		toSerialize["value"] = o.Value
+	}
+	if !IsNil(o.WorkspaceId) {
+		toSerialize["workspace_id"] = o.WorkspaceId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -294,7 +294,7 @@ func (o ProjectApiKey) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ProjectApiKey) UnmarshalJSON(data []byte) (err error) {
+func (o *WorkspaceApiKey) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -318,15 +318,15 @@ func (o *ProjectApiKey) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varProjectApiKey := _ProjectApiKey{}
+	varWorkspaceApiKey := _WorkspaceApiKey{}
 
-	err = json.Unmarshal(data, &varProjectApiKey)
+	err = json.Unmarshal(data, &varWorkspaceApiKey)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ProjectApiKey(varProjectApiKey)
+	*o = WorkspaceApiKey(varWorkspaceApiKey)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -335,47 +335,47 @@ func (o *ProjectApiKey) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "owner_id")
-		delete(additionalProperties, "project_id")
 		delete(additionalProperties, "updated_at")
 		delete(additionalProperties, "value")
+		delete(additionalProperties, "workspace_id")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableProjectApiKey struct {
-	value *ProjectApiKey
+type NullableWorkspaceApiKey struct {
+	value *WorkspaceApiKey
 	isSet bool
 }
 
-func (v NullableProjectApiKey) Get() *ProjectApiKey {
+func (v NullableWorkspaceApiKey) Get() *WorkspaceApiKey {
 	return v.value
 }
 
-func (v *NullableProjectApiKey) Set(val *ProjectApiKey) {
+func (v *NullableWorkspaceApiKey) Set(val *WorkspaceApiKey) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableProjectApiKey) IsSet() bool {
+func (v NullableWorkspaceApiKey) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableProjectApiKey) Unset() {
+func (v *NullableWorkspaceApiKey) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableProjectApiKey(val *ProjectApiKey) *NullableProjectApiKey {
-	return &NullableProjectApiKey{value: val, isSet: true}
+func NewNullableWorkspaceApiKey(val *WorkspaceApiKey) *NullableWorkspaceApiKey {
+	return &NullableWorkspaceApiKey{value: val, isSet: true}
 }
 
-func (v NullableProjectApiKey) MarshalJSON() ([]byte, error) {
+func (v NullableWorkspaceApiKey) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableProjectApiKey) UnmarshalJSON(src []byte) error {
+func (v *NullableWorkspaceApiKey) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

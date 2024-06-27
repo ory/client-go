@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -270,7 +270,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -342,7 +342,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 

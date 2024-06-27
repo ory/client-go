@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -292,7 +292,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -363,7 +363,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -434,7 +434,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -504,7 +504,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -574,7 +574,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -650,7 +650,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -720,7 +720,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -781,7 +781,7 @@ Other parameters are passed through a pointer to a apiListProjectsRequest struct
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -853,7 +853,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -921,7 +921,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -992,7 +992,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -1064,7 +1064,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -1139,7 +1139,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oryNetworkCookie](../README.md#oryNetworkCookie)
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 

@@ -292,6 +292,7 @@ docs/Warning.md
 docs/WellknownAPI.md
 docs/Workspace.md
 docs/WorkspaceAPI.md
+docs/WorkspaceApiKey.md
 git_push.sh
 go.mod
 go.sum
@@ -556,6 +557,7 @@ model_verification_flow_state.go
 model_version.go
 model_warning.go
 model_workspace.go
+model_workspace_api_key.go
 response.go
 test/api_courier_test.go
 test/api_events_test.go
