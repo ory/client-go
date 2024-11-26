@@ -1,4 +1,5 @@
 # ory/client-go
+[![Go Reference](https://pkg.go.dev/badge/github.com/ory/client-go.svg)](https://pkg.go.dev/github.com/ory/client-go)
 
 This is the official Ory Client SDK for go.
 
