@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.18.5
+API version: v1.19.0
 Contact: support@ory.sh
 */
 
@@ -23,6 +23,7 @@ type UpdateSettingsFlowBody struct {
 	UpdateSettingsFlowWithPasskeyMethod *UpdateSettingsFlowWithPasskeyMethod
 	UpdateSettingsFlowWithPasswordMethod *UpdateSettingsFlowWithPasswordMethod
 	UpdateSettingsFlowWithProfileMethod *UpdateSettingsFlowWithProfileMethod
+	UpdateSettingsFlowWithSamlMethod *UpdateSettingsFlowWithSamlMethod
 	UpdateSettingsFlowWithTotpMethod *UpdateSettingsFlowWithTotpMethod
 	UpdateSettingsFlowWithWebAuthnMethod *UpdateSettingsFlowWithWebAuthnMethod
 }
@@ -59,6 +60,13 @@ func UpdateSettingsFlowWithPasswordMethodAsUpdateSettingsFlowBody(v *UpdateSetti
 func UpdateSettingsFlowWithProfileMethodAsUpdateSettingsFlowBody(v *UpdateSettingsFlowWithProfileMethod) UpdateSettingsFlowBody {
 	return UpdateSettingsFlowBody{
 		UpdateSettingsFlowWithProfileMethod: v,
+	}
+}
+
+// UpdateSettingsFlowWithSamlMethodAsUpdateSettingsFlowBody is a convenience function that returns UpdateSettingsFlowWithSamlMethod wrapped in UpdateSettingsFlowBody
+func UpdateSettingsFlowWithSamlMethodAsUpdateSettingsFlowBody(v *UpdateSettingsFlowWithSamlMethod) UpdateSettingsFlowBody {
+	return UpdateSettingsFlowBody{
+		UpdateSettingsFlowWithSamlMethod: v,
 	}
 }
 
@@ -147,6 +155,18 @@ func (dst *UpdateSettingsFlowBody) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'saml'
+	if jsonDict["method"] == "saml" {
+		// try to unmarshal JSON data into UpdateSettingsFlowWithSamlMethod
+		err = json.Unmarshal(data, &dst.UpdateSettingsFlowWithSamlMethod)
+		if err == nil {
+			return nil // data stored in dst.UpdateSettingsFlowWithSamlMethod, return on the first match
+		} else {
+			dst.UpdateSettingsFlowWithSamlMethod = nil
+			return fmt.Errorf("failed to unmarshal UpdateSettingsFlowBody as UpdateSettingsFlowWithSamlMethod: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'totp'
 	if jsonDict["method"] == "totp" {
 		// try to unmarshal JSON data into UpdateSettingsFlowWithTotpMethod
@@ -231,6 +251,18 @@ func (dst *UpdateSettingsFlowBody) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'updateSettingsFlowWithSamlMethod'
+	if jsonDict["method"] == "updateSettingsFlowWithSamlMethod" {
+		// try to unmarshal JSON data into UpdateSettingsFlowWithSamlMethod
+		err = json.Unmarshal(data, &dst.UpdateSettingsFlowWithSamlMethod)
+		if err == nil {
+			return nil // data stored in dst.UpdateSettingsFlowWithSamlMethod, return on the first match
+		} else {
+			dst.UpdateSettingsFlowWithSamlMethod = nil
+			return fmt.Errorf("failed to unmarshal UpdateSettingsFlowBody as UpdateSettingsFlowWithSamlMethod: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'updateSettingsFlowWithTotpMethod'
 	if jsonDict["method"] == "updateSettingsFlowWithTotpMethod" {
 		// try to unmarshal JSON data into UpdateSettingsFlowWithTotpMethod
@@ -280,6 +312,10 @@ func (src UpdateSettingsFlowBody) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.UpdateSettingsFlowWithProfileMethod)
 	}
 
+	if src.UpdateSettingsFlowWithSamlMethod != nil {
+		return json.Marshal(&src.UpdateSettingsFlowWithSamlMethod)
+	}
+
 	if src.UpdateSettingsFlowWithTotpMethod != nil {
 		return json.Marshal(&src.UpdateSettingsFlowWithTotpMethod)
 	}
@@ -316,6 +352,10 @@ func (obj *UpdateSettingsFlowBody) GetActualInstance() (interface{}) {
 		return obj.UpdateSettingsFlowWithProfileMethod
 	}
 
+	if obj.UpdateSettingsFlowWithSamlMethod != nil {
+		return obj.UpdateSettingsFlowWithSamlMethod
+	}
+
 	if obj.UpdateSettingsFlowWithTotpMethod != nil {
 		return obj.UpdateSettingsFlowWithTotpMethod
 	}
@@ -348,6 +388,10 @@ func (obj UpdateSettingsFlowBody) GetActualInstanceValue() (interface{}) {
 
 	if obj.UpdateSettingsFlowWithProfileMethod != nil {
 		return *obj.UpdateSettingsFlowWithProfileMethod
+	}
+
+	if obj.UpdateSettingsFlowWithSamlMethod != nil {
+		return *obj.UpdateSettingsFlowWithSamlMethod
 	}
 
 	if obj.UpdateSettingsFlowWithTotpMethod != nil {
