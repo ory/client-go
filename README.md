@@ -5,7 +5,7 @@ This is the official Ory Client SDK for go.
 ## Ory Network
 
 This SDK is for use with [Ory Network](https://www.ory.sh/docs/sdk).
-If you are developing aginst a self-hosted Ory instance, please use the individual Client SDK
+If you are developing against a self-hosted Ory instance, please use the individual Client SDK
 and refer to the [self-hosted documentation](https://www.ory.sh/docs/ecosystem/projects).
 
 
