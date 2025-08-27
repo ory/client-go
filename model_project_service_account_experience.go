@@ -13,102 +13,63 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
-// checks if the KetoNamespace type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &KetoNamespace{}
+// checks if the ProjectServiceAccountExperience type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProjectServiceAccountExperience{}
 
-// KetoNamespace struct for KetoNamespace
-type KetoNamespace struct {
-	Id *int64 `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
+// ProjectServiceAccountExperience struct for ProjectServiceAccountExperience
+type ProjectServiceAccountExperience struct {
+	Config map[string]interface{} `json:"config"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _KetoNamespace KetoNamespace
+type _ProjectServiceAccountExperience ProjectServiceAccountExperience
 
-// NewKetoNamespace instantiates a new KetoNamespace object
+// NewProjectServiceAccountExperience instantiates a new ProjectServiceAccountExperience object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKetoNamespace() *KetoNamespace {
-	this := KetoNamespace{}
+func NewProjectServiceAccountExperience(config map[string]interface{}) *ProjectServiceAccountExperience {
+	this := ProjectServiceAccountExperience{}
+	this.Config = config
 	return &this
 }
 
-// NewKetoNamespaceWithDefaults instantiates a new KetoNamespace object
+// NewProjectServiceAccountExperienceWithDefaults instantiates a new ProjectServiceAccountExperience object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewKetoNamespaceWithDefaults() *KetoNamespace {
-	this := KetoNamespace{}
+func NewProjectServiceAccountExperienceWithDefaults() *ProjectServiceAccountExperience {
+	this := ProjectServiceAccountExperience{}
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *KetoNamespace) GetId() int64 {
-	if o == nil || IsNil(o.Id) {
-		var ret int64
+// GetConfig returns the Config field value
+func (o *ProjectServiceAccountExperience) GetConfig() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Id
+
+	return o.Config
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetConfigOk returns a tuple with the Config field value
 // and a boolean to check if the value has been set.
-func (o *KetoNamespace) GetIdOk() (*int64, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
+func (o *ProjectServiceAccountExperience) GetConfigOk() (map[string]interface{}, bool) {
+	if o == nil {
+		return map[string]interface{}{}, false
 	}
-	return o.Id, true
+	return o.Config, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *KetoNamespace) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+// SetConfig sets field value
+func (o *ProjectServiceAccountExperience) SetConfig(v map[string]interface{}) {
+	o.Config = v
 }
 
-// SetId gets a reference to the given int64 and assigns it to the Id field.
-func (o *KetoNamespace) SetId(v int64) {
-	o.Id = &v
-}
-
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *KetoNamespace) GetName() string {
-	if o == nil || IsNil(o.Name) {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *KetoNamespace) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *KetoNamespace) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *KetoNamespace) SetName(v string) {
-	o.Name = &v
-}
-
-func (o KetoNamespace) MarshalJSON() ([]byte, error) {
+func (o ProjectServiceAccountExperience) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -116,14 +77,9 @@ func (o KetoNamespace) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o KetoNamespace) ToMap() (map[string]interface{}, error) {
+func (o ProjectServiceAccountExperience) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["config"] = o.Config
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -132,60 +88,80 @@ func (o KetoNamespace) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *KetoNamespace) UnmarshalJSON(data []byte) (err error) {
-	varKetoNamespace := _KetoNamespace{}
+func (o *ProjectServiceAccountExperience) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"config",
+	}
 
-	err = json.Unmarshal(data, &varKetoNamespace)
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varProjectServiceAccountExperience := _ProjectServiceAccountExperience{}
+
+	err = json.Unmarshal(data, &varProjectServiceAccountExperience)
 
 	if err != nil {
 		return err
 	}
 
-	*o = KetoNamespace(varKetoNamespace)
+	*o = ProjectServiceAccountExperience(varProjectServiceAccountExperience)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "name")
+		delete(additionalProperties, "config")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableKetoNamespace struct {
-	value *KetoNamespace
+type NullableProjectServiceAccountExperience struct {
+	value *ProjectServiceAccountExperience
 	isSet bool
 }
 
-func (v NullableKetoNamespace) Get() *KetoNamespace {
+func (v NullableProjectServiceAccountExperience) Get() *ProjectServiceAccountExperience {
 	return v.value
 }
 
-func (v *NullableKetoNamespace) Set(val *KetoNamespace) {
+func (v *NullableProjectServiceAccountExperience) Set(val *ProjectServiceAccountExperience) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableKetoNamespace) IsSet() bool {
+func (v NullableProjectServiceAccountExperience) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableKetoNamespace) Unset() {
+func (v *NullableProjectServiceAccountExperience) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableKetoNamespace(val *KetoNamespace) *NullableKetoNamespace {
-	return &NullableKetoNamespace{value: val, isSet: true}
+func NewNullableProjectServiceAccountExperience(val *ProjectServiceAccountExperience) *NullableProjectServiceAccountExperience {
+	return &NullableProjectServiceAccountExperience{value: val, isSet: true}
 }
 
-func (v NullableKetoNamespace) MarshalJSON() ([]byte, error) {
+func (v NullableProjectServiceAccountExperience) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableKetoNamespace) UnmarshalJSON(src []byte) error {
+func (v *NullableProjectServiceAccountExperience) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
