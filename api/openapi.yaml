@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.0
+  version: v1.22.1
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -20862,7 +20862,7 @@ components:
           description: |-
             Tokenized is the tokenized (e.g. JWT) version of the session.
 
-            It is only set when the `tokenize` query parameter was set to a valid tokenize template during calls to `/session/whoami`.
+            It is only set when the `tokenize_as` query parameter was set to a valid tokenize template during calls to `/session/whoami`.
           type: string
       required:
       - id
