@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.1
+  version: v1.22.2
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -9900,6 +9900,12 @@ components:
           title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
             \ JSON for SQL storage."
           type: array
+        kratos_secrets_pagination:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
         kratos_security_account_enumeration_mitigate:
           description: Configures if account enumeration should be mitigated when
             using identifier first login.
@@ -12368,28 +12374,28 @@ components:
           - ""
           type: string
           x-go-enum-desc: |-
-            initializing initializing
-            pending_validation pending_validation
-            deleted deleted
-            pending_issuance pending_issuance
-            pending_deployment pending_deployment
-            pending_deletion pending_deletion
-            pending_expiration pending_expiration
-            expired expired
-            active active
-            initializing_timed_out initializing_timed_out
-            validation_timed_out validation_timed_out
-            issuance_timed_out issuance_timed_out
-            deployment_timed_out deployment_timed_out
-            deletion_timed_out deletion_timed_out
-            pending_cleanup pending_cleanup
-            staging_deployment staging_deployment
-            staging_active staging_active
-            deactivating deactivating
-            inactive inactive
-            backup_issued backup_issued
-            holding_deployment holding_deployment
-             unknown  Cloudflare sometimes returns an empty string.
+            initializing _
+            pending_validation _
+            deleted _
+            pending_issuance _
+            pending_deployment _
+            pending_deletion _
+            pending_expiration _
+            expired _
+            active _
+            initializing_timed_out _
+            validation_timed_out _
+            issuance_timed_out _
+            deployment_timed_out _
+            deletion_timed_out _
+            pending_cleanup _
+            staging_deployment _
+            staging_active _
+            deactivating _
+            inactive _
+            backup_issued _
+            holding_deployment _
+             _  Cloudflare sometimes returns an empty string.
         updated_at:
           format: date-time
           type: string
@@ -13293,6 +13299,9 @@ components:
         schema:
           description: The actual Identity JSON Schema
           type: object
+      required:
+      - id
+      - schema
       type: object
     identitySchemaPreset:
       properties:
@@ -15761,6 +15770,12 @@ components:
           title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
             \ JSON for SQL storage."
           type: array
+        kratos_secrets_pagination:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
         kratos_security_account_enumeration_mitigate:
           description: Configures if account enumeration should be mitigated when
             using identifier first login.
@@ -16845,6 +16860,16 @@ components:
         project_revision_id:
           description: The Revision's ID this schema belongs to
           format: uuid
+          type: string
+        subject_source:
+          default: id
+          description: |-
+            Subject source for the tokenizer
+
+            Can be either id or external_id or empty
+          enum:
+          - id
+          - external_id
           type: string
         ttl:
           default: 1m
@@ -19791,6 +19816,7 @@ components:
             m2m_token_issuance M2MTokenIssuance
             permission_checks PermissionChecks
             captcha Captcha
+            identity_search_api IdentitySearchAPI
             saml_sp SAMLSP
             saml_idp SAMLIDP
             auto_link_policy AutoLinkPolicy
@@ -19839,6 +19865,7 @@ components:
           - m2m_token_issuance
           - permission_checks
           - captcha
+          - identity_search_api
           - saml_sp
           - saml_idp
           - auto_link_policy
@@ -19888,6 +19915,7 @@ components:
             m2m_token_issuance M2MTokenIssuance
             permission_checks PermissionChecks
             captcha Captcha
+            identity_search_api IdentitySearchAPI
             saml_sp SAMLSP
             saml_idp SAMLIDP
             auto_link_policy AutoLinkPolicy
