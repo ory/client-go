@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CustomHostnameId** | Pointer to **NullableString** |  | [optional] 
 **EnableScim** | **bool** | Feature flag to enable SCIM configuration | 
 **EnableSso** | **bool** | Feature flag to enable SSO configuration | 
 **ExpiresAt** | Pointer to **time.Time** |  | [optional] 
@@ -27,6 +28,41 @@ NewCreateOrganizationOnboardingPortalLinkBodyWithDefaults instantiates a new Cre
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetCustomHostnameId
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) GetCustomHostnameId() string`
+
+GetCustomHostnameId returns the CustomHostnameId field if non-nil, zero value otherwise.
+
+### GetCustomHostnameIdOk
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) GetCustomHostnameIdOk() (*string, bool)`
+
+GetCustomHostnameIdOk returns a tuple with the CustomHostnameId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomHostnameId
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) SetCustomHostnameId(v string)`
+
+SetCustomHostnameId sets CustomHostnameId field to given value.
+
+### HasCustomHostnameId
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) HasCustomHostnameId() bool`
+
+HasCustomHostnameId returns a boolean if a field has been set.
+
+### SetCustomHostnameIdNil
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) SetCustomHostnameIdNil(b bool)`
+
+ SetCustomHostnameIdNil sets the value for CustomHostnameId to be an explicit nil
+
+### UnsetCustomHostnameId
+`func (o *CreateOrganizationOnboardingPortalLinkBody) UnsetCustomHostnameId()`
+
+UnsetCustomHostnameId ensures that no value is present for CustomHostnameId, not even an explicit nil
 ### GetEnableScim
 
 `func (o *CreateOrganizationOnboardingPortalLinkBody) GetEnableScim() bool`
