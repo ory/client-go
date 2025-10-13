@@ -13,98 +13,91 @@ package client
 
 import (
 	"encoding/json"
-	"time"
 	"fmt"
 )
 
-// checks if the CreateWorkspaceApiKeyBody type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CreateWorkspaceApiKeyBody{}
+// checks if the RevisionAccountExperienceCustomTranslation type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RevisionAccountExperienceCustomTranslation{}
 
-// CreateWorkspaceApiKeyBody struct for CreateWorkspaceApiKeyBody
-type CreateWorkspaceApiKeyBody struct {
-	ExpiresAt *time.Time `json:"expires_at,omitempty"`
-	// The API Key Name  A descriptive name for the API key.
-	Name string `json:"name"`
+// RevisionAccountExperienceCustomTranslation struct for RevisionAccountExperienceCustomTranslation
+type RevisionAccountExperienceCustomTranslation struct {
+	// The locale (e.g. \"en\", \"de\")
+	Locale string `json:"locale"`
+	// The URL where the i18n json can be found
+	Translations string `json:"translations"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _CreateWorkspaceApiKeyBody CreateWorkspaceApiKeyBody
+type _RevisionAccountExperienceCustomTranslation RevisionAccountExperienceCustomTranslation
 
-// NewCreateWorkspaceApiKeyBody instantiates a new CreateWorkspaceApiKeyBody object
+// NewRevisionAccountExperienceCustomTranslation instantiates a new RevisionAccountExperienceCustomTranslation object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateWorkspaceApiKeyBody(name string) *CreateWorkspaceApiKeyBody {
-	this := CreateWorkspaceApiKeyBody{}
-	this.Name = name
+func NewRevisionAccountExperienceCustomTranslation(locale string, translations string) *RevisionAccountExperienceCustomTranslation {
+	this := RevisionAccountExperienceCustomTranslation{}
+	this.Locale = locale
+	this.Translations = translations
 	return &this
 }
 
-// NewCreateWorkspaceApiKeyBodyWithDefaults instantiates a new CreateWorkspaceApiKeyBody object
+// NewRevisionAccountExperienceCustomTranslationWithDefaults instantiates a new RevisionAccountExperienceCustomTranslation object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateWorkspaceApiKeyBodyWithDefaults() *CreateWorkspaceApiKeyBody {
-	this := CreateWorkspaceApiKeyBody{}
+func NewRevisionAccountExperienceCustomTranslationWithDefaults() *RevisionAccountExperienceCustomTranslation {
+	this := RevisionAccountExperienceCustomTranslation{}
 	return &this
 }
 
-// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
-func (o *CreateWorkspaceApiKeyBody) GetExpiresAt() time.Time {
-	if o == nil || IsNil(o.ExpiresAt) {
-		var ret time.Time
-		return ret
-	}
-	return *o.ExpiresAt
-}
-
-// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateWorkspaceApiKeyBody) GetExpiresAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.ExpiresAt) {
-		return nil, false
-	}
-	return o.ExpiresAt, true
-}
-
-// HasExpiresAt returns a boolean if a field has been set.
-func (o *CreateWorkspaceApiKeyBody) HasExpiresAt() bool {
-	if o != nil && !IsNil(o.ExpiresAt) {
-		return true
-	}
-
-	return false
-}
-
-// SetExpiresAt gets a reference to the given time.Time and assigns it to the ExpiresAt field.
-func (o *CreateWorkspaceApiKeyBody) SetExpiresAt(v time.Time) {
-	o.ExpiresAt = &v
-}
-
-// GetName returns the Name field value
-func (o *CreateWorkspaceApiKeyBody) GetName() string {
+// GetLocale returns the Locale field value
+func (o *RevisionAccountExperienceCustomTranslation) GetLocale() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Name
+	return o.Locale
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetLocaleOk returns a tuple with the Locale field value
 // and a boolean to check if the value has been set.
-func (o *CreateWorkspaceApiKeyBody) GetNameOk() (*string, bool) {
+func (o *RevisionAccountExperienceCustomTranslation) GetLocaleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return &o.Locale, true
 }
 
-// SetName sets field value
-func (o *CreateWorkspaceApiKeyBody) SetName(v string) {
-	o.Name = v
+// SetLocale sets field value
+func (o *RevisionAccountExperienceCustomTranslation) SetLocale(v string) {
+	o.Locale = v
 }
 
-func (o CreateWorkspaceApiKeyBody) MarshalJSON() ([]byte, error) {
+// GetTranslations returns the Translations field value
+func (o *RevisionAccountExperienceCustomTranslation) GetTranslations() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Translations
+}
+
+// GetTranslationsOk returns a tuple with the Translations field value
+// and a boolean to check if the value has been set.
+func (o *RevisionAccountExperienceCustomTranslation) GetTranslationsOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Translations, true
+}
+
+// SetTranslations sets field value
+func (o *RevisionAccountExperienceCustomTranslation) SetTranslations(v string) {
+	o.Translations = v
+}
+
+func (o RevisionAccountExperienceCustomTranslation) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -112,12 +105,10 @@ func (o CreateWorkspaceApiKeyBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CreateWorkspaceApiKeyBody) ToMap() (map[string]interface{}, error) {
+func (o RevisionAccountExperienceCustomTranslation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ExpiresAt) {
-		toSerialize["expires_at"] = o.ExpiresAt
-	}
-	toSerialize["name"] = o.Name
+	toSerialize["locale"] = o.Locale
+	toSerialize["translations"] = o.Translations
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -126,12 +117,13 @@ func (o CreateWorkspaceApiKeyBody) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *CreateWorkspaceApiKeyBody) UnmarshalJSON(data []byte) (err error) {
+func (o *RevisionAccountExperienceCustomTranslation) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"name",
+		"locale",
+		"translations",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -148,59 +140,59 @@ func (o *CreateWorkspaceApiKeyBody) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varCreateWorkspaceApiKeyBody := _CreateWorkspaceApiKeyBody{}
+	varRevisionAccountExperienceCustomTranslation := _RevisionAccountExperienceCustomTranslation{}
 
-	err = json.Unmarshal(data, &varCreateWorkspaceApiKeyBody)
+	err = json.Unmarshal(data, &varRevisionAccountExperienceCustomTranslation)
 
 	if err != nil {
 		return err
 	}
 
-	*o = CreateWorkspaceApiKeyBody(varCreateWorkspaceApiKeyBody)
+	*o = RevisionAccountExperienceCustomTranslation(varRevisionAccountExperienceCustomTranslation)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "expires_at")
-		delete(additionalProperties, "name")
+		delete(additionalProperties, "locale")
+		delete(additionalProperties, "translations")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableCreateWorkspaceApiKeyBody struct {
-	value *CreateWorkspaceApiKeyBody
+type NullableRevisionAccountExperienceCustomTranslation struct {
+	value *RevisionAccountExperienceCustomTranslation
 	isSet bool
 }
 
-func (v NullableCreateWorkspaceApiKeyBody) Get() *CreateWorkspaceApiKeyBody {
+func (v NullableRevisionAccountExperienceCustomTranslation) Get() *RevisionAccountExperienceCustomTranslation {
 	return v.value
 }
 
-func (v *NullableCreateWorkspaceApiKeyBody) Set(val *CreateWorkspaceApiKeyBody) {
+func (v *NullableRevisionAccountExperienceCustomTranslation) Set(val *RevisionAccountExperienceCustomTranslation) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateWorkspaceApiKeyBody) IsSet() bool {
+func (v NullableRevisionAccountExperienceCustomTranslation) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateWorkspaceApiKeyBody) Unset() {
+func (v *NullableRevisionAccountExperienceCustomTranslation) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateWorkspaceApiKeyBody(val *CreateWorkspaceApiKeyBody) *NullableCreateWorkspaceApiKeyBody {
-	return &NullableCreateWorkspaceApiKeyBody{value: val, isSet: true}
+func NewNullableRevisionAccountExperienceCustomTranslation(val *RevisionAccountExperienceCustomTranslation) *NullableRevisionAccountExperienceCustomTranslation {
+	return &NullableRevisionAccountExperienceCustomTranslation{value: val, isSet: true}
 }
 
-func (v NullableCreateWorkspaceApiKeyBody) MarshalJSON() ([]byte, error) {
+func (v NullableRevisionAccountExperienceCustomTranslation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateWorkspaceApiKeyBody) UnmarshalJSON(src []byte) error {
+func (v *NullableRevisionAccountExperienceCustomTranslation) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

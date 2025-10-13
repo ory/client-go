@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.5
+  version: v1.22.6
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -9023,6 +9023,14 @@ components:
     CreateProjectNormalizedPayload:
       description: Create project (normalized) request payload
       properties:
+        account_experience_custom_translations:
+          description: |-
+            The Account Experience's Custom Translations
+
+            Contains all Custom Translations for this project.
+          items:
+            $ref: '#/components/schemas/RevisionAccountExperienceCustomTranslation'
+          type: array
         account_experience_default_locale:
           description: Holds the default locale for the account experience.
           type: string
@@ -11122,6 +11130,18 @@ components:
       title: RecoveryAddressType must not exceed 16 characters as that is the limitation
         in the SQL Schema.
       type: string
+    RevisionAccountExperienceCustomTranslation:
+      properties:
+        locale:
+          description: "The locale (e.g. \"en\", \"de\")"
+          type: string
+        translations:
+          description: The URL where the i18n json can be found
+          type: string
+      required:
+      - locale
+      - translations
+      type: object
     SessionActivityDatapoint:
       properties:
         country:
@@ -11423,6 +11443,10 @@ components:
           type: string
         stylesheet:
           type: string
+        translations:
+          items:
+            $ref: '#/components/schemas/RevisionAccountExperienceCustomTranslation'
+          type: array
         verification_enabled:
           type: boolean
         verification_ui_url:
@@ -11439,6 +11463,7 @@ components:
       - registration_enabled
       - registration_ui_url
       - settings_ui_url
+      - translations
       - verification_enabled
       - verification_ui_url
       type: object
@@ -14932,6 +14957,14 @@ components:
       type: object
     normalizedProjectRevision:
       properties:
+        account_experience_custom_translations:
+          description: |-
+            The Account Experience's Custom Translations
+
+            Contains all Custom Translations for this project.
+          items:
+            $ref: '#/components/schemas/RevisionAccountExperienceCustomTranslation'
+          type: array
         account_experience_default_locale:
           description: Holds the default locale for the account experience.
           type: string
