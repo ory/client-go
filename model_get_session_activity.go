@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.6
+API version: v1.22.7
 Contact: support@ory.sh
 */
 
@@ -16,40 +16,40 @@ import (
 	"fmt"
 )
 
-// checks if the GetProjectMetricsResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &GetProjectMetricsResponse{}
+// checks if the GetSessionActivity type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetSessionActivity{}
 
-// GetProjectMetricsResponse Response of the getMetrics endpoint
-type GetProjectMetricsResponse struct {
+// GetSessionActivity Response of the getSessionActivity endpoint
+type GetSessionActivity struct {
 	// The list of data points.
-	Data []MetricsDatapoint `json:"data"`
+	Data []SessionActivityDatapoint `json:"data"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _GetProjectMetricsResponse GetProjectMetricsResponse
+type _GetSessionActivity GetSessionActivity
 
-// NewGetProjectMetricsResponse instantiates a new GetProjectMetricsResponse object
+// NewGetSessionActivity instantiates a new GetSessionActivity object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetProjectMetricsResponse(data []MetricsDatapoint) *GetProjectMetricsResponse {
-	this := GetProjectMetricsResponse{}
+func NewGetSessionActivity(data []SessionActivityDatapoint) *GetSessionActivity {
+	this := GetSessionActivity{}
 	this.Data = data
 	return &this
 }
 
-// NewGetProjectMetricsResponseWithDefaults instantiates a new GetProjectMetricsResponse object
+// NewGetSessionActivityWithDefaults instantiates a new GetSessionActivity object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetProjectMetricsResponseWithDefaults() *GetProjectMetricsResponse {
-	this := GetProjectMetricsResponse{}
+func NewGetSessionActivityWithDefaults() *GetSessionActivity {
+	this := GetSessionActivity{}
 	return &this
 }
 
 // GetData returns the Data field value
-func (o *GetProjectMetricsResponse) GetData() []MetricsDatapoint {
+func (o *GetSessionActivity) GetData() []SessionActivityDatapoint {
 	if o == nil {
-		var ret []MetricsDatapoint
+		var ret []SessionActivityDatapoint
 		return ret
 	}
 
@@ -58,7 +58,7 @@ func (o *GetProjectMetricsResponse) GetData() []MetricsDatapoint {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *GetProjectMetricsResponse) GetDataOk() ([]MetricsDatapoint, bool) {
+func (o *GetSessionActivity) GetDataOk() ([]SessionActivityDatapoint, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,11 +66,11 @@ func (o *GetProjectMetricsResponse) GetDataOk() ([]MetricsDatapoint, bool) {
 }
 
 // SetData sets field value
-func (o *GetProjectMetricsResponse) SetData(v []MetricsDatapoint) {
+func (o *GetSessionActivity) SetData(v []SessionActivityDatapoint) {
 	o.Data = v
 }
 
-func (o GetProjectMetricsResponse) MarshalJSON() ([]byte, error) {
+func (o GetSessionActivity) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -78,7 +78,7 @@ func (o GetProjectMetricsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o GetProjectMetricsResponse) ToMap() (map[string]interface{}, error) {
+func (o GetSessionActivity) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["data"] = o.Data
 
@@ -89,7 +89,7 @@ func (o GetProjectMetricsResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *GetProjectMetricsResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *GetSessionActivity) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -111,15 +111,15 @@ func (o *GetProjectMetricsResponse) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varGetProjectMetricsResponse := _GetProjectMetricsResponse{}
+	varGetSessionActivity := _GetSessionActivity{}
 
-	err = json.Unmarshal(data, &varGetProjectMetricsResponse)
+	err = json.Unmarshal(data, &varGetSessionActivity)
 
 	if err != nil {
 		return err
 	}
 
-	*o = GetProjectMetricsResponse(varGetProjectMetricsResponse)
+	*o = GetSessionActivity(varGetSessionActivity)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -131,38 +131,38 @@ func (o *GetProjectMetricsResponse) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableGetProjectMetricsResponse struct {
-	value *GetProjectMetricsResponse
+type NullableGetSessionActivity struct {
+	value *GetSessionActivity
 	isSet bool
 }
 
-func (v NullableGetProjectMetricsResponse) Get() *GetProjectMetricsResponse {
+func (v NullableGetSessionActivity) Get() *GetSessionActivity {
 	return v.value
 }
 
-func (v *NullableGetProjectMetricsResponse) Set(val *GetProjectMetricsResponse) {
+func (v *NullableGetSessionActivity) Set(val *GetSessionActivity) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetProjectMetricsResponse) IsSet() bool {
+func (v NullableGetSessionActivity) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetProjectMetricsResponse) Unset() {
+func (v *NullableGetSessionActivity) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetProjectMetricsResponse(val *GetProjectMetricsResponse) *NullableGetProjectMetricsResponse {
-	return &NullableGetProjectMetricsResponse{value: val, isSet: true}
+func NewNullableGetSessionActivity(val *GetSessionActivity) *NullableGetSessionActivity {
+	return &NullableGetSessionActivity{value: val, isSet: true}
 }
 
-func (v NullableGetProjectMetricsResponse) MarshalJSON() ([]byte, error) {
+func (v NullableGetSessionActivity) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetProjectMetricsResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableGetSessionActivity) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

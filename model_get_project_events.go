@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.6
+API version: v1.22.7
 Contact: support@ory.sh
 */
 
@@ -16,61 +16,95 @@ import (
 	"fmt"
 )
 
-// checks if the InternalIsOwnerForProjectBySlugResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &InternalIsOwnerForProjectBySlugResponse{}
+// checks if the GetProjectEvents type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetProjectEvents{}
 
-// InternalIsOwnerForProjectBySlugResponse struct for InternalIsOwnerForProjectBySlugResponse
-type InternalIsOwnerForProjectBySlugResponse struct {
-	// ProjectID is the project's ID.
-	ProjectId string `json:"project_id"`
+// GetProjectEvents Response of the getProjectEvents endpoint
+type GetProjectEvents struct {
+	// The list of data points.
+	Events []ProjectEventsDatapoint `json:"events"`
+	// Pagination token to be included in next page request
+	PageToken *string `json:"page_token,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _InternalIsOwnerForProjectBySlugResponse InternalIsOwnerForProjectBySlugResponse
+type _GetProjectEvents GetProjectEvents
 
-// NewInternalIsOwnerForProjectBySlugResponse instantiates a new InternalIsOwnerForProjectBySlugResponse object
+// NewGetProjectEvents instantiates a new GetProjectEvents object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInternalIsOwnerForProjectBySlugResponse(projectId string) *InternalIsOwnerForProjectBySlugResponse {
-	this := InternalIsOwnerForProjectBySlugResponse{}
-	this.ProjectId = projectId
+func NewGetProjectEvents(events []ProjectEventsDatapoint) *GetProjectEvents {
+	this := GetProjectEvents{}
+	this.Events = events
 	return &this
 }
 
-// NewInternalIsOwnerForProjectBySlugResponseWithDefaults instantiates a new InternalIsOwnerForProjectBySlugResponse object
+// NewGetProjectEventsWithDefaults instantiates a new GetProjectEvents object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewInternalIsOwnerForProjectBySlugResponseWithDefaults() *InternalIsOwnerForProjectBySlugResponse {
-	this := InternalIsOwnerForProjectBySlugResponse{}
+func NewGetProjectEventsWithDefaults() *GetProjectEvents {
+	this := GetProjectEvents{}
 	return &this
 }
 
-// GetProjectId returns the ProjectId field value
-func (o *InternalIsOwnerForProjectBySlugResponse) GetProjectId() string {
+// GetEvents returns the Events field value
+func (o *GetProjectEvents) GetEvents() []ProjectEventsDatapoint {
 	if o == nil {
-		var ret string
+		var ret []ProjectEventsDatapoint
 		return ret
 	}
 
-	return o.ProjectId
+	return o.Events
 }
 
-// GetProjectIdOk returns a tuple with the ProjectId field value
+// GetEventsOk returns a tuple with the Events field value
 // and a boolean to check if the value has been set.
-func (o *InternalIsOwnerForProjectBySlugResponse) GetProjectIdOk() (*string, bool) {
+func (o *GetProjectEvents) GetEventsOk() ([]ProjectEventsDatapoint, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ProjectId, true
+	return o.Events, true
 }
 
-// SetProjectId sets field value
-func (o *InternalIsOwnerForProjectBySlugResponse) SetProjectId(v string) {
-	o.ProjectId = v
+// SetEvents sets field value
+func (o *GetProjectEvents) SetEvents(v []ProjectEventsDatapoint) {
+	o.Events = v
 }
 
-func (o InternalIsOwnerForProjectBySlugResponse) MarshalJSON() ([]byte, error) {
+// GetPageToken returns the PageToken field value if set, zero value otherwise.
+func (o *GetProjectEvents) GetPageToken() string {
+	if o == nil || IsNil(o.PageToken) {
+		var ret string
+		return ret
+	}
+	return *o.PageToken
+}
+
+// GetPageTokenOk returns a tuple with the PageToken field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetProjectEvents) GetPageTokenOk() (*string, bool) {
+	if o == nil || IsNil(o.PageToken) {
+		return nil, false
+	}
+	return o.PageToken, true
+}
+
+// HasPageToken returns a boolean if a field has been set.
+func (o *GetProjectEvents) HasPageToken() bool {
+	if o != nil && !IsNil(o.PageToken) {
+		return true
+	}
+
+	return false
+}
+
+// SetPageToken gets a reference to the given string and assigns it to the PageToken field.
+func (o *GetProjectEvents) SetPageToken(v string) {
+	o.PageToken = &v
+}
+
+func (o GetProjectEvents) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -78,9 +112,12 @@ func (o InternalIsOwnerForProjectBySlugResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o InternalIsOwnerForProjectBySlugResponse) ToMap() (map[string]interface{}, error) {
+func (o GetProjectEvents) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["project_id"] = o.ProjectId
+	toSerialize["events"] = o.Events
+	if !IsNil(o.PageToken) {
+		toSerialize["page_token"] = o.PageToken
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -89,12 +126,12 @@ func (o InternalIsOwnerForProjectBySlugResponse) ToMap() (map[string]interface{}
 	return toSerialize, nil
 }
 
-func (o *InternalIsOwnerForProjectBySlugResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *GetProjectEvents) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"project_id",
+		"events",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -111,58 +148,59 @@ func (o *InternalIsOwnerForProjectBySlugResponse) UnmarshalJSON(data []byte) (er
 		}
 	}
 
-	varInternalIsOwnerForProjectBySlugResponse := _InternalIsOwnerForProjectBySlugResponse{}
+	varGetProjectEvents := _GetProjectEvents{}
 
-	err = json.Unmarshal(data, &varInternalIsOwnerForProjectBySlugResponse)
+	err = json.Unmarshal(data, &varGetProjectEvents)
 
 	if err != nil {
 		return err
 	}
 
-	*o = InternalIsOwnerForProjectBySlugResponse(varInternalIsOwnerForProjectBySlugResponse)
+	*o = GetProjectEvents(varGetProjectEvents)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "project_id")
+		delete(additionalProperties, "events")
+		delete(additionalProperties, "page_token")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableInternalIsOwnerForProjectBySlugResponse struct {
-	value *InternalIsOwnerForProjectBySlugResponse
+type NullableGetProjectEvents struct {
+	value *GetProjectEvents
 	isSet bool
 }
 
-func (v NullableInternalIsOwnerForProjectBySlugResponse) Get() *InternalIsOwnerForProjectBySlugResponse {
+func (v NullableGetProjectEvents) Get() *GetProjectEvents {
 	return v.value
 }
 
-func (v *NullableInternalIsOwnerForProjectBySlugResponse) Set(val *InternalIsOwnerForProjectBySlugResponse) {
+func (v *NullableGetProjectEvents) Set(val *GetProjectEvents) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableInternalIsOwnerForProjectBySlugResponse) IsSet() bool {
+func (v NullableGetProjectEvents) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableInternalIsOwnerForProjectBySlugResponse) Unset() {
+func (v *NullableGetProjectEvents) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableInternalIsOwnerForProjectBySlugResponse(val *InternalIsOwnerForProjectBySlugResponse) *NullableInternalIsOwnerForProjectBySlugResponse {
-	return &NullableInternalIsOwnerForProjectBySlugResponse{value: val, isSet: true}
+func NewNullableGetProjectEvents(val *GetProjectEvents) *NullableGetProjectEvents {
+	return &NullableGetProjectEvents{value: val, isSet: true}
 }
 
-func (v NullableInternalIsOwnerForProjectBySlugResponse) MarshalJSON() ([]byte, error) {
+func (v NullableGetProjectEvents) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableInternalIsOwnerForProjectBySlugResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableGetProjectEvents) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -1,4 +1,4 @@
-# GetMetricsEventTypesResponse
+# GetMetricsEventTypes
 
 ## Properties
 
@@ -8,39 +8,39 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewGetMetricsEventTypesResponse
+### NewGetMetricsEventTypes
 
-`func NewGetMetricsEventTypesResponse(events []string, ) *GetMetricsEventTypesResponse`
+`func NewGetMetricsEventTypes(events []string, ) *GetMetricsEventTypes`
 
-NewGetMetricsEventTypesResponse instantiates a new GetMetricsEventTypesResponse object
+NewGetMetricsEventTypes instantiates a new GetMetricsEventTypes object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewGetMetricsEventTypesResponseWithDefaults
+### NewGetMetricsEventTypesWithDefaults
 
-`func NewGetMetricsEventTypesResponseWithDefaults() *GetMetricsEventTypesResponse`
+`func NewGetMetricsEventTypesWithDefaults() *GetMetricsEventTypes`
 
-NewGetMetricsEventTypesResponseWithDefaults instantiates a new GetMetricsEventTypesResponse object
+NewGetMetricsEventTypesWithDefaults instantiates a new GetMetricsEventTypes object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetEvents
 
-`func (o *GetMetricsEventTypesResponse) GetEvents() []string`
+`func (o *GetMetricsEventTypes) GetEvents() []string`
 
 GetEvents returns the Events field if non-nil, zero value otherwise.
 
 ### GetEventsOk
 
-`func (o *GetMetricsEventTypesResponse) GetEventsOk() (*[]string, bool)`
+`func (o *GetMetricsEventTypes) GetEventsOk() (*[]string, bool)`
 
 GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEvents
 
-`func (o *GetMetricsEventTypesResponse) SetEvents(v []string)`
+`func (o *GetMetricsEventTypes) SetEvents(v []string)`
 
 SetEvents sets Events field to given value.
 

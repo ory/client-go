@@ -1,46 +1,46 @@
-# GetProjectMetricsResponse
+# GetAttributesCount
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**[]MetricsDatapoint**](MetricsDatapoint.md) | The list of data points. | [readonly] 
+**Data** | [**[]AttributesCountDatapoint**](AttributesCountDatapoint.md) | The list of data points. | [readonly] 
 
 ## Methods
 
-### NewGetProjectMetricsResponse
+### NewGetAttributesCount
 
-`func NewGetProjectMetricsResponse(data []MetricsDatapoint, ) *GetProjectMetricsResponse`
+`func NewGetAttributesCount(data []AttributesCountDatapoint, ) *GetAttributesCount`
 
-NewGetProjectMetricsResponse instantiates a new GetProjectMetricsResponse object
+NewGetAttributesCount instantiates a new GetAttributesCount object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewGetProjectMetricsResponseWithDefaults
+### NewGetAttributesCountWithDefaults
 
-`func NewGetProjectMetricsResponseWithDefaults() *GetProjectMetricsResponse`
+`func NewGetAttributesCountWithDefaults() *GetAttributesCount`
 
-NewGetProjectMetricsResponseWithDefaults instantiates a new GetProjectMetricsResponse object
+NewGetAttributesCountWithDefaults instantiates a new GetAttributesCount object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *GetProjectMetricsResponse) GetData() []MetricsDatapoint`
+`func (o *GetAttributesCount) GetData() []AttributesCountDatapoint`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *GetProjectMetricsResponse) GetDataOk() (*[]MetricsDatapoint, bool)`
+`func (o *GetAttributesCount) GetDataOk() (*[]AttributesCountDatapoint, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *GetProjectMetricsResponse) SetData(v []MetricsDatapoint)`
+`func (o *GetAttributesCount) SetData(v []AttributesCountDatapoint)`
 
 SetData sets Data field to given value.
 

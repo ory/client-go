@@ -1,46 +1,46 @@
-# GetSessionActivityResponse
+# GetProjectMetrics
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**[]SessionActivityDatapoint**](SessionActivityDatapoint.md) | The list of data points. | [readonly] 
+**Data** | [**[]MetricsDatapoint**](MetricsDatapoint.md) | The list of data points. | [readonly] 
 
 ## Methods
 
-### NewGetSessionActivityResponse
+### NewGetProjectMetrics
 
-`func NewGetSessionActivityResponse(data []SessionActivityDatapoint, ) *GetSessionActivityResponse`
+`func NewGetProjectMetrics(data []MetricsDatapoint, ) *GetProjectMetrics`
 
-NewGetSessionActivityResponse instantiates a new GetSessionActivityResponse object
+NewGetProjectMetrics instantiates a new GetProjectMetrics object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewGetSessionActivityResponseWithDefaults
+### NewGetProjectMetricsWithDefaults
 
-`func NewGetSessionActivityResponseWithDefaults() *GetSessionActivityResponse`
+`func NewGetProjectMetricsWithDefaults() *GetProjectMetrics`
 
-NewGetSessionActivityResponseWithDefaults instantiates a new GetSessionActivityResponse object
+NewGetProjectMetricsWithDefaults instantiates a new GetProjectMetrics object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *GetSessionActivityResponse) GetData() []SessionActivityDatapoint`
+`func (o *GetProjectMetrics) GetData() []MetricsDatapoint`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *GetSessionActivityResponse) GetDataOk() (*[]SessionActivityDatapoint, bool)`
+`func (o *GetProjectMetrics) GetDataOk() (*[]MetricsDatapoint, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *GetSessionActivityResponse) SetData(v []SessionActivityDatapoint)`
+`func (o *GetProjectMetrics) SetData(v []MetricsDatapoint)`
 
 SetData sets Data field to given value.
 

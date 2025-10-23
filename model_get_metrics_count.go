@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.6
+API version: v1.22.7
 Contact: support@ory.sh
 */
 
@@ -16,61 +16,88 @@ import (
 	"fmt"
 )
 
-// checks if the GetSessionActivityResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &GetSessionActivityResponse{}
+// checks if the GetMetricsCount type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetMetricsCount{}
 
-// GetSessionActivityResponse Response of the getSessionActivity endpoint
-type GetSessionActivityResponse struct {
-	// The list of data points.
-	Data []SessionActivityDatapoint `json:"data"`
+// GetMetricsCount Response of the getIdentityCount endpoint
+type GetMetricsCount struct {
+	// The total count
+	Count int64 `json:"count"`
+	// Helper field to identify the service used for this response
+	ServiceName string `json:"service_name"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _GetSessionActivityResponse GetSessionActivityResponse
+type _GetMetricsCount GetMetricsCount
 
-// NewGetSessionActivityResponse instantiates a new GetSessionActivityResponse object
+// NewGetMetricsCount instantiates a new GetMetricsCount object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetSessionActivityResponse(data []SessionActivityDatapoint) *GetSessionActivityResponse {
-	this := GetSessionActivityResponse{}
-	this.Data = data
+func NewGetMetricsCount(count int64, serviceName string) *GetMetricsCount {
+	this := GetMetricsCount{}
+	this.Count = count
+	this.ServiceName = serviceName
 	return &this
 }
 
-// NewGetSessionActivityResponseWithDefaults instantiates a new GetSessionActivityResponse object
+// NewGetMetricsCountWithDefaults instantiates a new GetMetricsCount object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetSessionActivityResponseWithDefaults() *GetSessionActivityResponse {
-	this := GetSessionActivityResponse{}
+func NewGetMetricsCountWithDefaults() *GetMetricsCount {
+	this := GetMetricsCount{}
 	return &this
 }
 
-// GetData returns the Data field value
-func (o *GetSessionActivityResponse) GetData() []SessionActivityDatapoint {
+// GetCount returns the Count field value
+func (o *GetMetricsCount) GetCount() int64 {
 	if o == nil {
-		var ret []SessionActivityDatapoint
+		var ret int64
 		return ret
 	}
 
-	return o.Data
+	return o.Count
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetCountOk returns a tuple with the Count field value
 // and a boolean to check if the value has been set.
-func (o *GetSessionActivityResponse) GetDataOk() ([]SessionActivityDatapoint, bool) {
+func (o *GetMetricsCount) GetCountOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Count, true
 }
 
-// SetData sets field value
-func (o *GetSessionActivityResponse) SetData(v []SessionActivityDatapoint) {
-	o.Data = v
+// SetCount sets field value
+func (o *GetMetricsCount) SetCount(v int64) {
+	o.Count = v
 }
 
-func (o GetSessionActivityResponse) MarshalJSON() ([]byte, error) {
+// GetServiceName returns the ServiceName field value
+func (o *GetMetricsCount) GetServiceName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ServiceName
+}
+
+// GetServiceNameOk returns a tuple with the ServiceName field value
+// and a boolean to check if the value has been set.
+func (o *GetMetricsCount) GetServiceNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ServiceName, true
+}
+
+// SetServiceName sets field value
+func (o *GetMetricsCount) SetServiceName(v string) {
+	o.ServiceName = v
+}
+
+func (o GetMetricsCount) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -78,9 +105,10 @@ func (o GetSessionActivityResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o GetSessionActivityResponse) ToMap() (map[string]interface{}, error) {
+func (o GetMetricsCount) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["data"] = o.Data
+	toSerialize["count"] = o.Count
+	toSerialize["service_name"] = o.ServiceName
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -89,12 +117,13 @@ func (o GetSessionActivityResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *GetSessionActivityResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *GetMetricsCount) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"data",
+		"count",
+		"service_name",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -111,58 +140,59 @@ func (o *GetSessionActivityResponse) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varGetSessionActivityResponse := _GetSessionActivityResponse{}
+	varGetMetricsCount := _GetMetricsCount{}
 
-	err = json.Unmarshal(data, &varGetSessionActivityResponse)
+	err = json.Unmarshal(data, &varGetMetricsCount)
 
 	if err != nil {
 		return err
 	}
 
-	*o = GetSessionActivityResponse(varGetSessionActivityResponse)
+	*o = GetMetricsCount(varGetMetricsCount)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "data")
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "service_name")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableGetSessionActivityResponse struct {
-	value *GetSessionActivityResponse
+type NullableGetMetricsCount struct {
+	value *GetMetricsCount
 	isSet bool
 }
 
-func (v NullableGetSessionActivityResponse) Get() *GetSessionActivityResponse {
+func (v NullableGetMetricsCount) Get() *GetMetricsCount {
 	return v.value
 }
 
-func (v *NullableGetSessionActivityResponse) Set(val *GetSessionActivityResponse) {
+func (v *NullableGetMetricsCount) Set(val *GetMetricsCount) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetSessionActivityResponse) IsSet() bool {
+func (v NullableGetMetricsCount) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetSessionActivityResponse) Unset() {
+func (v *NullableGetMetricsCount) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetSessionActivityResponse(val *GetSessionActivityResponse) *NullableGetSessionActivityResponse {
-	return &NullableGetSessionActivityResponse{value: val, isSet: true}
+func NewNullableGetMetricsCount(val *GetMetricsCount) *NullableGetMetricsCount {
+	return &NullableGetMetricsCount{value: val, isSet: true}
 }
 
-func (v NullableGetSessionActivityResponse) MarshalJSON() ([]byte, error) {
+func (v NullableGetMetricsCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetSessionActivityResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableGetMetricsCount) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

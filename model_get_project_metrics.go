@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.6
+API version: v1.22.7
 Contact: support@ory.sh
 */
 
@@ -16,95 +16,61 @@ import (
 	"fmt"
 )
 
-// checks if the GetProjectEventsResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &GetProjectEventsResponse{}
+// checks if the GetProjectMetrics type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetProjectMetrics{}
 
-// GetProjectEventsResponse Response of the getProjectEvents endpoint
-type GetProjectEventsResponse struct {
+// GetProjectMetrics Response of the getMetrics endpoint
+type GetProjectMetrics struct {
 	// The list of data points.
-	Events []ProjectEventsDatapoint `json:"events"`
-	// Pagination token to be included in next page request
-	PageToken *string `json:"page_token,omitempty"`
+	Data []MetricsDatapoint `json:"data"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _GetProjectEventsResponse GetProjectEventsResponse
+type _GetProjectMetrics GetProjectMetrics
 
-// NewGetProjectEventsResponse instantiates a new GetProjectEventsResponse object
+// NewGetProjectMetrics instantiates a new GetProjectMetrics object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetProjectEventsResponse(events []ProjectEventsDatapoint) *GetProjectEventsResponse {
-	this := GetProjectEventsResponse{}
-	this.Events = events
+func NewGetProjectMetrics(data []MetricsDatapoint) *GetProjectMetrics {
+	this := GetProjectMetrics{}
+	this.Data = data
 	return &this
 }
 
-// NewGetProjectEventsResponseWithDefaults instantiates a new GetProjectEventsResponse object
+// NewGetProjectMetricsWithDefaults instantiates a new GetProjectMetrics object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetProjectEventsResponseWithDefaults() *GetProjectEventsResponse {
-	this := GetProjectEventsResponse{}
+func NewGetProjectMetricsWithDefaults() *GetProjectMetrics {
+	this := GetProjectMetrics{}
 	return &this
 }
 
-// GetEvents returns the Events field value
-func (o *GetProjectEventsResponse) GetEvents() []ProjectEventsDatapoint {
+// GetData returns the Data field value
+func (o *GetProjectMetrics) GetData() []MetricsDatapoint {
 	if o == nil {
-		var ret []ProjectEventsDatapoint
+		var ret []MetricsDatapoint
 		return ret
 	}
 
-	return o.Events
+	return o.Data
 }
 
-// GetEventsOk returns a tuple with the Events field value
+// GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *GetProjectEventsResponse) GetEventsOk() ([]ProjectEventsDatapoint, bool) {
+func (o *GetProjectMetrics) GetDataOk() ([]MetricsDatapoint, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Events, true
+	return o.Data, true
 }
 
-// SetEvents sets field value
-func (o *GetProjectEventsResponse) SetEvents(v []ProjectEventsDatapoint) {
-	o.Events = v
+// SetData sets field value
+func (o *GetProjectMetrics) SetData(v []MetricsDatapoint) {
+	o.Data = v
 }
 
-// GetPageToken returns the PageToken field value if set, zero value otherwise.
-func (o *GetProjectEventsResponse) GetPageToken() string {
-	if o == nil || IsNil(o.PageToken) {
-		var ret string
-		return ret
-	}
-	return *o.PageToken
-}
-
-// GetPageTokenOk returns a tuple with the PageToken field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetProjectEventsResponse) GetPageTokenOk() (*string, bool) {
-	if o == nil || IsNil(o.PageToken) {
-		return nil, false
-	}
-	return o.PageToken, true
-}
-
-// HasPageToken returns a boolean if a field has been set.
-func (o *GetProjectEventsResponse) HasPageToken() bool {
-	if o != nil && !IsNil(o.PageToken) {
-		return true
-	}
-
-	return false
-}
-
-// SetPageToken gets a reference to the given string and assigns it to the PageToken field.
-func (o *GetProjectEventsResponse) SetPageToken(v string) {
-	o.PageToken = &v
-}
-
-func (o GetProjectEventsResponse) MarshalJSON() ([]byte, error) {
+func (o GetProjectMetrics) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -112,12 +78,9 @@ func (o GetProjectEventsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o GetProjectEventsResponse) ToMap() (map[string]interface{}, error) {
+func (o GetProjectMetrics) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["events"] = o.Events
-	if !IsNil(o.PageToken) {
-		toSerialize["page_token"] = o.PageToken
-	}
+	toSerialize["data"] = o.Data
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -126,12 +89,12 @@ func (o GetProjectEventsResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *GetProjectEventsResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *GetProjectMetrics) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"events",
+		"data",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -148,59 +111,58 @@ func (o *GetProjectEventsResponse) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varGetProjectEventsResponse := _GetProjectEventsResponse{}
+	varGetProjectMetrics := _GetProjectMetrics{}
 
-	err = json.Unmarshal(data, &varGetProjectEventsResponse)
+	err = json.Unmarshal(data, &varGetProjectMetrics)
 
 	if err != nil {
 		return err
 	}
 
-	*o = GetProjectEventsResponse(varGetProjectEventsResponse)
+	*o = GetProjectMetrics(varGetProjectMetrics)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "events")
-		delete(additionalProperties, "page_token")
+		delete(additionalProperties, "data")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableGetProjectEventsResponse struct {
-	value *GetProjectEventsResponse
+type NullableGetProjectMetrics struct {
+	value *GetProjectMetrics
 	isSet bool
 }
 
-func (v NullableGetProjectEventsResponse) Get() *GetProjectEventsResponse {
+func (v NullableGetProjectMetrics) Get() *GetProjectMetrics {
 	return v.value
 }
 
-func (v *NullableGetProjectEventsResponse) Set(val *GetProjectEventsResponse) {
+func (v *NullableGetProjectMetrics) Set(val *GetProjectMetrics) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetProjectEventsResponse) IsSet() bool {
+func (v NullableGetProjectMetrics) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetProjectEventsResponse) Unset() {
+func (v *NullableGetProjectMetrics) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetProjectEventsResponse(val *GetProjectEventsResponse) *NullableGetProjectEventsResponse {
-	return &NullableGetProjectEventsResponse{value: val, isSet: true}
+func NewNullableGetProjectMetrics(val *GetProjectMetrics) *NullableGetProjectMetrics {
+	return &NullableGetProjectMetrics{value: val, isSet: true}
 }
 
-func (v NullableGetProjectEventsResponse) MarshalJSON() ([]byte, error) {
+func (v NullableGetProjectMetrics) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetProjectEventsResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableGetProjectMetrics) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -1,46 +1,46 @@
-# GetAttributesCountResponse
+# GetSessionActivity
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**[]AttributesCountDatapoint**](AttributesCountDatapoint.md) | The list of data points. | [readonly] 
+**Data** | [**[]SessionActivityDatapoint**](SessionActivityDatapoint.md) | The list of data points. | [readonly] 
 
 ## Methods
 
-### NewGetAttributesCountResponse
+### NewGetSessionActivity
 
-`func NewGetAttributesCountResponse(data []AttributesCountDatapoint, ) *GetAttributesCountResponse`
+`func NewGetSessionActivity(data []SessionActivityDatapoint, ) *GetSessionActivity`
 
-NewGetAttributesCountResponse instantiates a new GetAttributesCountResponse object
+NewGetSessionActivity instantiates a new GetSessionActivity object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewGetAttributesCountResponseWithDefaults
+### NewGetSessionActivityWithDefaults
 
-`func NewGetAttributesCountResponseWithDefaults() *GetAttributesCountResponse`
+`func NewGetSessionActivityWithDefaults() *GetSessionActivity`
 
-NewGetAttributesCountResponseWithDefaults instantiates a new GetAttributesCountResponse object
+NewGetSessionActivityWithDefaults instantiates a new GetSessionActivity object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *GetAttributesCountResponse) GetData() []AttributesCountDatapoint`
+`func (o *GetSessionActivity) GetData() []SessionActivityDatapoint`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *GetAttributesCountResponse) GetDataOk() (*[]AttributesCountDatapoint, bool)`
+`func (o *GetSessionActivity) GetDataOk() (*[]SessionActivityDatapoint, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *GetAttributesCountResponse) SetData(v []AttributesCountDatapoint)`
+`func (o *GetSessionActivity) SetData(v []SessionActivityDatapoint)`
 
 SetData sets Data field to given value.
 

@@ -13,119 +13,64 @@ package client
 
 import (
 	"encoding/json"
-	"time"
 	"fmt"
 )
 
-// checks if the ProjectEventsDatapoint type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ProjectEventsDatapoint{}
+// checks if the GetMetricsEventTypes type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetMetricsEventTypes{}
 
-// ProjectEventsDatapoint struct for ProjectEventsDatapoint
-type ProjectEventsDatapoint struct {
-	// Event attributes with details
-	Attributes []Attribute `json:"attributes"`
-	// Name of the event
-	Name string `json:"name"`
-	// Time of occurence
-	Timestamp time.Time `json:"timestamp"`
+// GetMetricsEventTypes Response of the getMetricsEventTypes endpoint
+type GetMetricsEventTypes struct {
+	// The list of data points.
+	Events []string `json:"events"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _ProjectEventsDatapoint ProjectEventsDatapoint
+type _GetMetricsEventTypes GetMetricsEventTypes
 
-// NewProjectEventsDatapoint instantiates a new ProjectEventsDatapoint object
+// NewGetMetricsEventTypes instantiates a new GetMetricsEventTypes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectEventsDatapoint(attributes []Attribute, name string, timestamp time.Time) *ProjectEventsDatapoint {
-	this := ProjectEventsDatapoint{}
-	this.Attributes = attributes
-	this.Name = name
-	this.Timestamp = timestamp
+func NewGetMetricsEventTypes(events []string) *GetMetricsEventTypes {
+	this := GetMetricsEventTypes{}
+	this.Events = events
 	return &this
 }
 
-// NewProjectEventsDatapointWithDefaults instantiates a new ProjectEventsDatapoint object
+// NewGetMetricsEventTypesWithDefaults instantiates a new GetMetricsEventTypes object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewProjectEventsDatapointWithDefaults() *ProjectEventsDatapoint {
-	this := ProjectEventsDatapoint{}
+func NewGetMetricsEventTypesWithDefaults() *GetMetricsEventTypes {
+	this := GetMetricsEventTypes{}
 	return &this
 }
 
-// GetAttributes returns the Attributes field value
-func (o *ProjectEventsDatapoint) GetAttributes() []Attribute {
+// GetEvents returns the Events field value
+func (o *GetMetricsEventTypes) GetEvents() []string {
 	if o == nil {
-		var ret []Attribute
+		var ret []string
 		return ret
 	}
 
-	return o.Attributes
+	return o.Events
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value
+// GetEventsOk returns a tuple with the Events field value
 // and a boolean to check if the value has been set.
-func (o *ProjectEventsDatapoint) GetAttributesOk() ([]Attribute, bool) {
+func (o *GetMetricsEventTypes) GetEventsOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Attributes, true
+	return o.Events, true
 }
 
-// SetAttributes sets field value
-func (o *ProjectEventsDatapoint) SetAttributes(v []Attribute) {
-	o.Attributes = v
+// SetEvents sets field value
+func (o *GetMetricsEventTypes) SetEvents(v []string) {
+	o.Events = v
 }
 
-// GetName returns the Name field value
-func (o *ProjectEventsDatapoint) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ProjectEventsDatapoint) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ProjectEventsDatapoint) SetName(v string) {
-	o.Name = v
-}
-
-// GetTimestamp returns the Timestamp field value
-func (o *ProjectEventsDatapoint) GetTimestamp() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.Timestamp
-}
-
-// GetTimestampOk returns a tuple with the Timestamp field value
-// and a boolean to check if the value has been set.
-func (o *ProjectEventsDatapoint) GetTimestampOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Timestamp, true
-}
-
-// SetTimestamp sets field value
-func (o *ProjectEventsDatapoint) SetTimestamp(v time.Time) {
-	o.Timestamp = v
-}
-
-func (o ProjectEventsDatapoint) MarshalJSON() ([]byte, error) {
+func (o GetMetricsEventTypes) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -133,11 +78,9 @@ func (o ProjectEventsDatapoint) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ProjectEventsDatapoint) ToMap() (map[string]interface{}, error) {
+func (o GetMetricsEventTypes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["attributes"] = o.Attributes
-	toSerialize["name"] = o.Name
-	toSerialize["timestamp"] = o.Timestamp
+	toSerialize["events"] = o.Events
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -146,14 +89,12 @@ func (o ProjectEventsDatapoint) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ProjectEventsDatapoint) UnmarshalJSON(data []byte) (err error) {
+func (o *GetMetricsEventTypes) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"attributes",
-		"name",
-		"timestamp",
+		"events",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -170,60 +111,58 @@ func (o *ProjectEventsDatapoint) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varProjectEventsDatapoint := _ProjectEventsDatapoint{}
+	varGetMetricsEventTypes := _GetMetricsEventTypes{}
 
-	err = json.Unmarshal(data, &varProjectEventsDatapoint)
+	err = json.Unmarshal(data, &varGetMetricsEventTypes)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ProjectEventsDatapoint(varProjectEventsDatapoint)
+	*o = GetMetricsEventTypes(varGetMetricsEventTypes)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "attributes")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "events")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableProjectEventsDatapoint struct {
-	value *ProjectEventsDatapoint
+type NullableGetMetricsEventTypes struct {
+	value *GetMetricsEventTypes
 	isSet bool
 }
 
-func (v NullableProjectEventsDatapoint) Get() *ProjectEventsDatapoint {
+func (v NullableGetMetricsEventTypes) Get() *GetMetricsEventTypes {
 	return v.value
 }
 
-func (v *NullableProjectEventsDatapoint) Set(val *ProjectEventsDatapoint) {
+func (v *NullableGetMetricsEventTypes) Set(val *GetMetricsEventTypes) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableProjectEventsDatapoint) IsSet() bool {
+func (v NullableGetMetricsEventTypes) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableProjectEventsDatapoint) Unset() {
+func (v *NullableGetMetricsEventTypes) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableProjectEventsDatapoint(val *ProjectEventsDatapoint) *NullableProjectEventsDatapoint {
-	return &NullableProjectEventsDatapoint{value: val, isSet: true}
+func NewNullableGetMetricsEventTypes(val *GetMetricsEventTypes) *NullableGetMetricsEventTypes {
+	return &NullableGetMetricsEventTypes{value: val, isSet: true}
 }
 
-func (v NullableProjectEventsDatapoint) MarshalJSON() ([]byte, error) {
+func (v NullableGetMetricsEventTypes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableProjectEventsDatapoint) UnmarshalJSON(src []byte) error {
+func (v *NullableGetMetricsEventTypes) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

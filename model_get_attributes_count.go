@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.6
+API version: v1.22.7
 Contact: support@ory.sh
 */
 
@@ -16,61 +16,61 @@ import (
 	"fmt"
 )
 
-// checks if the GetMetricsEventTypesResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &GetMetricsEventTypesResponse{}
+// checks if the GetAttributesCount type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetAttributesCount{}
 
-// GetMetricsEventTypesResponse Response of the getMetricsEventTypes endpoint
-type GetMetricsEventTypesResponse struct {
+// GetAttributesCount Response of the getAttributesCount endpoint
+type GetAttributesCount struct {
 	// The list of data points.
-	Events []string `json:"events"`
+	Data []AttributesCountDatapoint `json:"data"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _GetMetricsEventTypesResponse GetMetricsEventTypesResponse
+type _GetAttributesCount GetAttributesCount
 
-// NewGetMetricsEventTypesResponse instantiates a new GetMetricsEventTypesResponse object
+// NewGetAttributesCount instantiates a new GetAttributesCount object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetMetricsEventTypesResponse(events []string) *GetMetricsEventTypesResponse {
-	this := GetMetricsEventTypesResponse{}
-	this.Events = events
+func NewGetAttributesCount(data []AttributesCountDatapoint) *GetAttributesCount {
+	this := GetAttributesCount{}
+	this.Data = data
 	return &this
 }
 
-// NewGetMetricsEventTypesResponseWithDefaults instantiates a new GetMetricsEventTypesResponse object
+// NewGetAttributesCountWithDefaults instantiates a new GetAttributesCount object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetMetricsEventTypesResponseWithDefaults() *GetMetricsEventTypesResponse {
-	this := GetMetricsEventTypesResponse{}
+func NewGetAttributesCountWithDefaults() *GetAttributesCount {
+	this := GetAttributesCount{}
 	return &this
 }
 
-// GetEvents returns the Events field value
-func (o *GetMetricsEventTypesResponse) GetEvents() []string {
+// GetData returns the Data field value
+func (o *GetAttributesCount) GetData() []AttributesCountDatapoint {
 	if o == nil {
-		var ret []string
+		var ret []AttributesCountDatapoint
 		return ret
 	}
 
-	return o.Events
+	return o.Data
 }
 
-// GetEventsOk returns a tuple with the Events field value
+// GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsEventTypesResponse) GetEventsOk() ([]string, bool) {
+func (o *GetAttributesCount) GetDataOk() ([]AttributesCountDatapoint, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Events, true
+	return o.Data, true
 }
 
-// SetEvents sets field value
-func (o *GetMetricsEventTypesResponse) SetEvents(v []string) {
-	o.Events = v
+// SetData sets field value
+func (o *GetAttributesCount) SetData(v []AttributesCountDatapoint) {
+	o.Data = v
 }
 
-func (o GetMetricsEventTypesResponse) MarshalJSON() ([]byte, error) {
+func (o GetAttributesCount) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -78,9 +78,9 @@ func (o GetMetricsEventTypesResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o GetMetricsEventTypesResponse) ToMap() (map[string]interface{}, error) {
+func (o GetAttributesCount) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["events"] = o.Events
+	toSerialize["data"] = o.Data
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -89,12 +89,12 @@ func (o GetMetricsEventTypesResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *GetMetricsEventTypesResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *GetAttributesCount) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"events",
+		"data",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -111,58 +111,58 @@ func (o *GetMetricsEventTypesResponse) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varGetMetricsEventTypesResponse := _GetMetricsEventTypesResponse{}
+	varGetAttributesCount := _GetAttributesCount{}
 
-	err = json.Unmarshal(data, &varGetMetricsEventTypesResponse)
+	err = json.Unmarshal(data, &varGetAttributesCount)
 
 	if err != nil {
 		return err
 	}
 
-	*o = GetMetricsEventTypesResponse(varGetMetricsEventTypesResponse)
+	*o = GetAttributesCount(varGetAttributesCount)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "events")
+		delete(additionalProperties, "data")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableGetMetricsEventTypesResponse struct {
-	value *GetMetricsEventTypesResponse
+type NullableGetAttributesCount struct {
+	value *GetAttributesCount
 	isSet bool
 }
 
-func (v NullableGetMetricsEventTypesResponse) Get() *GetMetricsEventTypesResponse {
+func (v NullableGetAttributesCount) Get() *GetAttributesCount {
 	return v.value
 }
 
-func (v *NullableGetMetricsEventTypesResponse) Set(val *GetMetricsEventTypesResponse) {
+func (v *NullableGetAttributesCount) Set(val *GetAttributesCount) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetMetricsEventTypesResponse) IsSet() bool {
+func (v NullableGetAttributesCount) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetMetricsEventTypesResponse) Unset() {
+func (v *NullableGetAttributesCount) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetMetricsEventTypesResponse(val *GetMetricsEventTypesResponse) *NullableGetMetricsEventTypesResponse {
-	return &NullableGetMetricsEventTypesResponse{value: val, isSet: true}
+func NewNullableGetAttributesCount(val *GetAttributesCount) *NullableGetAttributesCount {
+	return &NullableGetAttributesCount{value: val, isSet: true}
 }
 
-func (v NullableGetMetricsEventTypesResponse) MarshalJSON() ([]byte, error) {
+func (v NullableGetAttributesCount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetMetricsEventTypesResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableGetAttributesCount) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
