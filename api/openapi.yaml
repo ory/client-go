@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.8
+  version: v1.22.9
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -4052,7 +4052,10 @@ paths:
       - events
   /projects/{project_id}/organizations:
     get:
-      description: Lists all Enterprise SSO organizations in a project.
+      description: |-
+        Deprecated: use getProject instead
+
+        Lists all Enterprise SSO organizations in a project.
       operationId: listOrganizations
       parameters:
       - description: |-
@@ -4140,7 +4143,10 @@ paths:
       tags:
       - project
     post:
-      description: Creates an Enterprise SSO Organization in a project.
+      description: |-
+        Deprecated: use setProject or patchProjectWithRevision instead
+
+        Creates an Enterprise SSO Organization in a project.
       operationId: createOrganization
       parameters:
       - description: |-
@@ -4202,8 +4208,10 @@ paths:
       - project
   /projects/{project_id}/organizations/{organization_id}:
     delete:
-      description: Irrecoverably deletes an Enterprise SSO Organization in a project
-        by its ID.
+      description: |-
+        Deprecated: use setProject or patchProjectWithRevision instead
+
+        Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
       operationId: deleteOrganization
       parameters:
       - description: |-
@@ -4273,7 +4281,10 @@ paths:
       tags:
       - project
     get:
-      description: Retrieves an Enterprise SSO Organization for a project by its ID
+      description: |-
+        Deprecated: use getProject instead
+
+        Retrieves an Enterprise SSO Organization for a project by its ID
       operationId: getOrganization
       parameters:
       - description: |-
@@ -4333,7 +4344,10 @@ paths:
       tags:
       - project
     put:
-      description: Updates an Enterprise SSO Organization in a project by its ID.
+      description: |-
+        Deprecated: use setProject or patchProjectWithRevision instead
+
+        Updates an Enterprise SSO Organization in a project by its ID.
       operationId: updateOrganization
       parameters:
       - description: |-
@@ -5932,7 +5946,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: An optional identity schema to use for the registration flow.
+      - description: An optional identity schema to use for the login flow.
         explode: true
         in: query
         name: identity_schema
@@ -6072,7 +6086,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: An optional identity schema to use for the registration flow.
+      - description: An optional identity schema to use for the login flow.
         explode: true
         in: query
         name: identity_schema
