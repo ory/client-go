@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.23
+API version: v1.22.24
 Contact: support@ory.sh
 */
 
@@ -16,61 +16,115 @@ import (
 	"fmt"
 )
 
-// checks if the SetActiveProjectInConsoleBody type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &SetActiveProjectInConsoleBody{}
+// checks if the GenericOIDCProvider type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GenericOIDCProvider{}
 
-// SetActiveProjectInConsoleBody Set active project in the Ory Network Console Request Body
-type SetActiveProjectInConsoleBody struct {
-	// Project ID  The Project ID you want to set active.  format: uuid
-	ProjectId string `json:"project_id"`
+// GenericOIDCProvider struct for GenericOIDCProvider
+type GenericOIDCProvider struct {
+	// The client_id of the OIDC provider.
+	ClientId string `json:"client_id"`
+	// The client_secret of the OIDC provider.
+	ClientSecret string `json:"client_secret"`
+	// The issuer URL of the OIDC provider.
+	IssuerUrl string `json:"issuer_url"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _SetActiveProjectInConsoleBody SetActiveProjectInConsoleBody
+type _GenericOIDCProvider GenericOIDCProvider
 
-// NewSetActiveProjectInConsoleBody instantiates a new SetActiveProjectInConsoleBody object
+// NewGenericOIDCProvider instantiates a new GenericOIDCProvider object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSetActiveProjectInConsoleBody(projectId string) *SetActiveProjectInConsoleBody {
-	this := SetActiveProjectInConsoleBody{}
-	this.ProjectId = projectId
+func NewGenericOIDCProvider(clientId string, clientSecret string, issuerUrl string) *GenericOIDCProvider {
+	this := GenericOIDCProvider{}
+	this.ClientId = clientId
+	this.ClientSecret = clientSecret
+	this.IssuerUrl = issuerUrl
 	return &this
 }
 
-// NewSetActiveProjectInConsoleBodyWithDefaults instantiates a new SetActiveProjectInConsoleBody object
+// NewGenericOIDCProviderWithDefaults instantiates a new GenericOIDCProvider object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSetActiveProjectInConsoleBodyWithDefaults() *SetActiveProjectInConsoleBody {
-	this := SetActiveProjectInConsoleBody{}
+func NewGenericOIDCProviderWithDefaults() *GenericOIDCProvider {
+	this := GenericOIDCProvider{}
 	return &this
 }
 
-// GetProjectId returns the ProjectId field value
-func (o *SetActiveProjectInConsoleBody) GetProjectId() string {
+// GetClientId returns the ClientId field value
+func (o *GenericOIDCProvider) GetClientId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.ProjectId
+	return o.ClientId
 }
 
-// GetProjectIdOk returns a tuple with the ProjectId field value
+// GetClientIdOk returns a tuple with the ClientId field value
 // and a boolean to check if the value has been set.
-func (o *SetActiveProjectInConsoleBody) GetProjectIdOk() (*string, bool) {
+func (o *GenericOIDCProvider) GetClientIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ProjectId, true
+	return &o.ClientId, true
 }
 
-// SetProjectId sets field value
-func (o *SetActiveProjectInConsoleBody) SetProjectId(v string) {
-	o.ProjectId = v
+// SetClientId sets field value
+func (o *GenericOIDCProvider) SetClientId(v string) {
+	o.ClientId = v
 }
 
-func (o SetActiveProjectInConsoleBody) MarshalJSON() ([]byte, error) {
+// GetClientSecret returns the ClientSecret field value
+func (o *GenericOIDCProvider) GetClientSecret() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ClientSecret
+}
+
+// GetClientSecretOk returns a tuple with the ClientSecret field value
+// and a boolean to check if the value has been set.
+func (o *GenericOIDCProvider) GetClientSecretOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ClientSecret, true
+}
+
+// SetClientSecret sets field value
+func (o *GenericOIDCProvider) SetClientSecret(v string) {
+	o.ClientSecret = v
+}
+
+// GetIssuerUrl returns the IssuerUrl field value
+func (o *GenericOIDCProvider) GetIssuerUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.IssuerUrl
+}
+
+// GetIssuerUrlOk returns a tuple with the IssuerUrl field value
+// and a boolean to check if the value has been set.
+func (o *GenericOIDCProvider) GetIssuerUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IssuerUrl, true
+}
+
+// SetIssuerUrl sets field value
+func (o *GenericOIDCProvider) SetIssuerUrl(v string) {
+	o.IssuerUrl = v
+}
+
+func (o GenericOIDCProvider) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -78,9 +132,11 @@ func (o SetActiveProjectInConsoleBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o SetActiveProjectInConsoleBody) ToMap() (map[string]interface{}, error) {
+func (o GenericOIDCProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["project_id"] = o.ProjectId
+	toSerialize["client_id"] = o.ClientId
+	toSerialize["client_secret"] = o.ClientSecret
+	toSerialize["issuer_url"] = o.IssuerUrl
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -89,12 +145,14 @@ func (o SetActiveProjectInConsoleBody) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *SetActiveProjectInConsoleBody) UnmarshalJSON(data []byte) (err error) {
+func (o *GenericOIDCProvider) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"project_id",
+		"client_id",
+		"client_secret",
+		"issuer_url",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -111,58 +169,60 @@ func (o *SetActiveProjectInConsoleBody) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varSetActiveProjectInConsoleBody := _SetActiveProjectInConsoleBody{}
+	varGenericOIDCProvider := _GenericOIDCProvider{}
 
-	err = json.Unmarshal(data, &varSetActiveProjectInConsoleBody)
+	err = json.Unmarshal(data, &varGenericOIDCProvider)
 
 	if err != nil {
 		return err
 	}
 
-	*o = SetActiveProjectInConsoleBody(varSetActiveProjectInConsoleBody)
+	*o = GenericOIDCProvider(varGenericOIDCProvider)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "project_id")
+		delete(additionalProperties, "client_id")
+		delete(additionalProperties, "client_secret")
+		delete(additionalProperties, "issuer_url")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableSetActiveProjectInConsoleBody struct {
-	value *SetActiveProjectInConsoleBody
+type NullableGenericOIDCProvider struct {
+	value *GenericOIDCProvider
 	isSet bool
 }
 
-func (v NullableSetActiveProjectInConsoleBody) Get() *SetActiveProjectInConsoleBody {
+func (v NullableGenericOIDCProvider) Get() *GenericOIDCProvider {
 	return v.value
 }
 
-func (v *NullableSetActiveProjectInConsoleBody) Set(val *SetActiveProjectInConsoleBody) {
+func (v *NullableGenericOIDCProvider) Set(val *GenericOIDCProvider) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSetActiveProjectInConsoleBody) IsSet() bool {
+func (v NullableGenericOIDCProvider) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableSetActiveProjectInConsoleBody) Unset() {
+func (v *NullableGenericOIDCProvider) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSetActiveProjectInConsoleBody(val *SetActiveProjectInConsoleBody) *NullableSetActiveProjectInConsoleBody {
-	return &NullableSetActiveProjectInConsoleBody{value: val, isSet: true}
+func NewNullableGenericOIDCProvider(val *GenericOIDCProvider) *NullableGenericOIDCProvider {
+	return &NullableGenericOIDCProvider{value: val, isSet: true}
 }
 
-func (v NullableSetActiveProjectInConsoleBody) MarshalJSON() ([]byte, error) {
+func (v NullableGenericOIDCProvider) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSetActiveProjectInConsoleBody) UnmarshalJSON(src []byte) error {
+func (v *NullableGenericOIDCProvider) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

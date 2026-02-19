@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.23
+API version: v1.22.24
 Contact: support@ory.sh
 */
 
@@ -15,68 +15,67 @@ import (
 	"encoding/json"
 )
 
-// checks if the ActiveProjectInConsole type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ActiveProjectInConsole{}
+// checks if the CreateWorkspaceOrganizationBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateWorkspaceOrganizationBody{}
 
-// ActiveProjectInConsole The Active Project ID
-type ActiveProjectInConsole struct {
-	// The Active Project ID  format: uuid
-	ProjectId *string `json:"project_id,omitempty"`
+// CreateWorkspaceOrganizationBody struct for CreateWorkspaceOrganizationBody
+type CreateWorkspaceOrganizationBody struct {
+	GenericOidcProvider *GenericOIDCProvider `json:"generic_oidc_provider,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _ActiveProjectInConsole ActiveProjectInConsole
+type _CreateWorkspaceOrganizationBody CreateWorkspaceOrganizationBody
 
-// NewActiveProjectInConsole instantiates a new ActiveProjectInConsole object
+// NewCreateWorkspaceOrganizationBody instantiates a new CreateWorkspaceOrganizationBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewActiveProjectInConsole() *ActiveProjectInConsole {
-	this := ActiveProjectInConsole{}
+func NewCreateWorkspaceOrganizationBody() *CreateWorkspaceOrganizationBody {
+	this := CreateWorkspaceOrganizationBody{}
 	return &this
 }
 
-// NewActiveProjectInConsoleWithDefaults instantiates a new ActiveProjectInConsole object
+// NewCreateWorkspaceOrganizationBodyWithDefaults instantiates a new CreateWorkspaceOrganizationBody object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewActiveProjectInConsoleWithDefaults() *ActiveProjectInConsole {
-	this := ActiveProjectInConsole{}
+func NewCreateWorkspaceOrganizationBodyWithDefaults() *CreateWorkspaceOrganizationBody {
+	this := CreateWorkspaceOrganizationBody{}
 	return &this
 }
 
-// GetProjectId returns the ProjectId field value if set, zero value otherwise.
-func (o *ActiveProjectInConsole) GetProjectId() string {
-	if o == nil || IsNil(o.ProjectId) {
-		var ret string
+// GetGenericOidcProvider returns the GenericOidcProvider field value if set, zero value otherwise.
+func (o *CreateWorkspaceOrganizationBody) GetGenericOidcProvider() GenericOIDCProvider {
+	if o == nil || IsNil(o.GenericOidcProvider) {
+		var ret GenericOIDCProvider
 		return ret
 	}
-	return *o.ProjectId
+	return *o.GenericOidcProvider
 }
 
-// GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
+// GetGenericOidcProviderOk returns a tuple with the GenericOidcProvider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ActiveProjectInConsole) GetProjectIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ProjectId) {
+func (o *CreateWorkspaceOrganizationBody) GetGenericOidcProviderOk() (*GenericOIDCProvider, bool) {
+	if o == nil || IsNil(o.GenericOidcProvider) {
 		return nil, false
 	}
-	return o.ProjectId, true
+	return o.GenericOidcProvider, true
 }
 
-// HasProjectId returns a boolean if a field has been set.
-func (o *ActiveProjectInConsole) HasProjectId() bool {
-	if o != nil && !IsNil(o.ProjectId) {
+// HasGenericOidcProvider returns a boolean if a field has been set.
+func (o *CreateWorkspaceOrganizationBody) HasGenericOidcProvider() bool {
+	if o != nil && !IsNil(o.GenericOidcProvider) {
 		return true
 	}
 
 	return false
 }
 
-// SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
-func (o *ActiveProjectInConsole) SetProjectId(v string) {
-	o.ProjectId = &v
+// SetGenericOidcProvider gets a reference to the given GenericOIDCProvider and assigns it to the GenericOidcProvider field.
+func (o *CreateWorkspaceOrganizationBody) SetGenericOidcProvider(v GenericOIDCProvider) {
+	o.GenericOidcProvider = &v
 }
 
-func (o ActiveProjectInConsole) MarshalJSON() ([]byte, error) {
+func (o CreateWorkspaceOrganizationBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -84,10 +83,10 @@ func (o ActiveProjectInConsole) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ActiveProjectInConsole) ToMap() (map[string]interface{}, error) {
+func (o CreateWorkspaceOrganizationBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ProjectId) {
-		toSerialize["project_id"] = o.ProjectId
+	if !IsNil(o.GenericOidcProvider) {
+		toSerialize["generic_oidc_provider"] = o.GenericOidcProvider
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -97,59 +96,59 @@ func (o ActiveProjectInConsole) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ActiveProjectInConsole) UnmarshalJSON(data []byte) (err error) {
-	varActiveProjectInConsole := _ActiveProjectInConsole{}
+func (o *CreateWorkspaceOrganizationBody) UnmarshalJSON(data []byte) (err error) {
+	varCreateWorkspaceOrganizationBody := _CreateWorkspaceOrganizationBody{}
 
-	err = json.Unmarshal(data, &varActiveProjectInConsole)
+	err = json.Unmarshal(data, &varCreateWorkspaceOrganizationBody)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ActiveProjectInConsole(varActiveProjectInConsole)
+	*o = CreateWorkspaceOrganizationBody(varCreateWorkspaceOrganizationBody)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "project_id")
+		delete(additionalProperties, "generic_oidc_provider")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableActiveProjectInConsole struct {
-	value *ActiveProjectInConsole
+type NullableCreateWorkspaceOrganizationBody struct {
+	value *CreateWorkspaceOrganizationBody
 	isSet bool
 }
 
-func (v NullableActiveProjectInConsole) Get() *ActiveProjectInConsole {
+func (v NullableCreateWorkspaceOrganizationBody) Get() *CreateWorkspaceOrganizationBody {
 	return v.value
 }
 
-func (v *NullableActiveProjectInConsole) Set(val *ActiveProjectInConsole) {
+func (v *NullableCreateWorkspaceOrganizationBody) Set(val *CreateWorkspaceOrganizationBody) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableActiveProjectInConsole) IsSet() bool {
+func (v NullableCreateWorkspaceOrganizationBody) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableActiveProjectInConsole) Unset() {
+func (v *NullableCreateWorkspaceOrganizationBody) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableActiveProjectInConsole(val *ActiveProjectInConsole) *NullableActiveProjectInConsole {
-	return &NullableActiveProjectInConsole{value: val, isSet: true}
+func NewNullableCreateWorkspaceOrganizationBody(val *CreateWorkspaceOrganizationBody) *NullableCreateWorkspaceOrganizationBody {
+	return &NullableCreateWorkspaceOrganizationBody{value: val, isSet: true}
 }
 
-func (v NullableActiveProjectInConsole) MarshalJSON() ([]byte, error) {
+func (v NullableCreateWorkspaceOrganizationBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableActiveProjectInConsole) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateWorkspaceOrganizationBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
