@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.27
+  version: v1.22.28
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -10414,9 +10414,31 @@ components:
           title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
             \ JSON for SQL storage."
           type: array
+        kratos_selfservice_methods_captcha_config_byo:
+          description: |-
+            Configures whether to use BYO or managed widget
+
+            Reach out to your account manager to enable this feature.
+          type: boolean
+        kratos_selfservice_methods_captcha_config_cf_turnstile_byo_secret:
+          description: |-
+            Configures the Cloudflare Turnstile site secret for Ory BYO CAPTCHA protection
+
+            The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.
+
+            Reach out to your account manager to enable this feature.
+          type: string
+        kratos_selfservice_methods_captcha_config_cf_turnstile_byo_sitekey:
+          description: |-
+            Configures the Cloudflare Turnstile site key for Ory BYO CAPTCHA protection
+
+            The site key is public and will be shared with the client.
+
+            Reach out to your account manager to enable this feature.
+          type: string
         kratos_selfservice_methods_captcha_config_cf_turnstile_secret:
           description: |-
-            Configures the Cloudflare Turnstile site secret for CAPTCHA protection
+            Configures the Cloudflare Turnstile site secret for managed CAPTCHA protection
 
             The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.
 
@@ -10424,7 +10446,7 @@ components:
           type: string
         kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey:
           description: |-
-            Configures the Cloudflare Turnstile site key for CAPTCHA protection
+            Configures the Cloudflare Turnstile site key for managed CAPTCHA protection
 
             The site key is public and will be shared with the client.
 
@@ -16463,9 +16485,31 @@ components:
           title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
             \ JSON for SQL storage."
           type: array
+        kratos_selfservice_methods_captcha_config_byo:
+          description: |-
+            Configures whether to use BYO or managed widget
+
+            Reach out to your account manager to enable this feature.
+          type: boolean
+        kratos_selfservice_methods_captcha_config_cf_turnstile_byo_secret:
+          description: |-
+            Configures the Cloudflare Turnstile site secret for Ory BYO CAPTCHA protection
+
+            The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.
+
+            Reach out to your account manager to enable this feature.
+          type: string
+        kratos_selfservice_methods_captcha_config_cf_turnstile_byo_sitekey:
+          description: |-
+            Configures the Cloudflare Turnstile site key for Ory BYO CAPTCHA protection
+
+            The site key is public and will be shared with the client.
+
+            Reach out to your account manager to enable this feature.
+          type: string
         kratos_selfservice_methods_captcha_config_cf_turnstile_secret:
           description: |-
-            Configures the Cloudflare Turnstile site secret for CAPTCHA protection
+            Configures the Cloudflare Turnstile site secret for managed CAPTCHA protection
 
             The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.
 
@@ -16473,7 +16517,7 @@ components:
           type: string
         kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey:
           description: |-
-            Configures the Cloudflare Turnstile site key for CAPTCHA protection
+            Configures the Cloudflare Turnstile site key for managed CAPTCHA protection
 
             The site key is public and will be shared with the client.
 
@@ -23553,6 +23597,7 @@ components:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
             `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
+            `acr_values` (string): The `acr_values` specifies the Authentication Context Class Reference values for the authorization request.
           type: object
       required:
       - method
@@ -23913,6 +23958,7 @@ components:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
             `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
+            `acr_values` (string): The `acr_values` specifies the Authentication Context Class Reference values for the authorization request.
           type: object
       required:
       - method
@@ -24179,6 +24225,7 @@ components:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
             `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
+            `acr_values` (string): The `acr_values` specifies the Authentication Context Class Reference values for the authorization request.
           type: object
       required:
       - method
