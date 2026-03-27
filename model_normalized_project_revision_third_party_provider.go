@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.32
+API version: v1.22.33
 Contact: support@ory.sh
 */
 
@@ -65,6 +65,8 @@ type NormalizedProjectRevisionThirdPartyProvider struct {
 	SubjectSource NullableString `json:"subject_source,omitempty"`
 	// TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`.
 	TokenUrl *string `json:"token_url,omitempty"`
+	// UpdateIdentityOnLogin controls whether the identity is updated from OIDC claims on each login.  Possible values are \"never\" (default) and \"automatic\". never UpdateIdentityOnLoginNever  UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic  UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every  OIDC login and updates the identity's traits and metadata automatically.
+	UpdateIdentityOnLogin *string `json:"update_identity_on_login,omitempty"`
 	// Last Time Project's Revision was Updated
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -1065,6 +1067,38 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) SetTokenUrl(v string) {
 	o.TokenUrl = &v
 }
 
+// GetUpdateIdentityOnLogin returns the UpdateIdentityOnLogin field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetUpdateIdentityOnLogin() string {
+	if o == nil || IsNil(o.UpdateIdentityOnLogin) {
+		var ret string
+		return ret
+	}
+	return *o.UpdateIdentityOnLogin
+}
+
+// GetUpdateIdentityOnLoginOk returns a tuple with the UpdateIdentityOnLogin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetUpdateIdentityOnLoginOk() (*string, bool) {
+	if o == nil || IsNil(o.UpdateIdentityOnLogin) {
+		return nil, false
+	}
+	return o.UpdateIdentityOnLogin, true
+}
+
+// HasUpdateIdentityOnLogin returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasUpdateIdentityOnLogin() bool {
+	if o != nil && !IsNil(o.UpdateIdentityOnLogin) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdateIdentityOnLogin gets a reference to the given string and assigns it to the UpdateIdentityOnLogin field.
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetUpdateIdentityOnLogin(v string) {
+	o.UpdateIdentityOnLogin = &v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionThirdPartyProvider) GetUpdatedAt() time.Time {
 	if o == nil || IsNil(o.UpdatedAt) {
@@ -1191,6 +1225,9 @@ func (o NormalizedProjectRevisionThirdPartyProvider) ToMap() (map[string]interfa
 	if !IsNil(o.TokenUrl) {
 		toSerialize["token_url"] = o.TokenUrl
 	}
+	if !IsNil(o.UpdateIdentityOnLogin) {
+		toSerialize["update_identity_on_login"] = o.UpdateIdentityOnLogin
+	}
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
@@ -1244,6 +1281,7 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) UnmarshalJSON(data []byte)
 		delete(additionalProperties, "state")
 		delete(additionalProperties, "subject_source")
 		delete(additionalProperties, "token_url")
+		delete(additionalProperties, "update_identity_on_login")
 		delete(additionalProperties, "updated_at")
 		o.AdditionalProperties = additionalProperties
 	}
