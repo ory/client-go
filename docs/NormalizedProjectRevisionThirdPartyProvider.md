@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountLinkingMode** | Pointer to **string** | AccountLinkingMode controls how account conflicts are resolved for this provider.  Possible values are &#x60;confirm_with_existing_credential&#x60; (default) and &#x60;automatic&#x60;. &#x60;automatic&#x60; silently links accounts when the provider verifies email ownership. Only supported for &#x60;apple&#x60; and &#x60;google&#x60; providers. automatic AccountLinkingModeAutomatic  AccountLinkingModeAutomatic silently links accounts if the provider verifies email ownership. confirm_with_existing_credential AccountLinkingModeConfirmWithExistingCredential  AccountLinkingModeConfirmWithExistingCredential requires the user to confirm the account linking by providing an existing credential. | [optional] 
-**AdditionalIdTokenAudiences** | Pointer to **[]string** |  | [optional] 
+**AdditionalIdTokenAudiences** | Pointer to **[]string** | AdditionalIDTokenAudiences is a list of additional audiences allowed in the ID Token.  This is only relevant in OIDC flows that submit an IDToken instead of using the callback from the OIDC provider. | [optional] 
 **ApplePrivateKey** | Pointer to **NullableString** |  | [optional] 
 **ApplePrivateKeyId** | Pointer to **string** | Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret | [optional] 
 **AppleTeamId** | Pointer to **string** | Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret | [optional] 
@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 **ProviderId** | Pointer to **string** | ID is the provider&#39;s ID | [optional] 
 **ProxyOidcRedirectUrl** | Pointer to **string** | Proxy OIDC Redirect URL if overriding with a customer-controlled URL | [optional] [readonly] 
 **RequestedClaims** | Pointer to **map[string]interface{}** |  | [optional] 
-**Scope** | Pointer to **[]string** |  | [optional] 
+**Scope** | Pointer to **[]string** | Scope specifies optional requested permissions. | [optional] 
 **State** | Pointer to **string** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] 
 **SubjectSource** | Pointer to **NullableString** |  | [optional] 
 **TokenUrl** | Pointer to **string** | TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when &#x60;provider&#x60; is set to &#x60;generic&#x60;. | [optional] 
