@@ -16,61 +16,63 @@ import (
 	"fmt"
 )
 
-// checks if the GetProjectMetrics type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &GetProjectMetrics{}
+// checks if the UiNodeInputAttributesOption type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UiNodeInputAttributesOption{}
 
-// GetProjectMetrics Response of the getMetrics endpoint
-type GetProjectMetrics struct {
-	// The list of data points.
-	Data []MetricsDatapoint `json:"data"`
+// UiNodeInputAttributesOption Represents a single selectable value for an input whose JSON schema defined an `enum`. The value is always a scalar JSON type (string, number, or boolean) serialized verbatim from the schema. When present, clients should render the parent input as a select/dropdown.
+type UiNodeInputAttributesOption struct {
+	// The value that will be submitted when this option is picked. It is serialized verbatim from the JSON schema `enum` entry, so it is always a scalar JSON value (string, number, or boolean).
+	Value interface{} `json:"value"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _GetProjectMetrics GetProjectMetrics
+type _UiNodeInputAttributesOption UiNodeInputAttributesOption
 
-// NewGetProjectMetrics instantiates a new GetProjectMetrics object
+// NewUiNodeInputAttributesOption instantiates a new UiNodeInputAttributesOption object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetProjectMetrics(data []MetricsDatapoint) *GetProjectMetrics {
-	this := GetProjectMetrics{}
-	this.Data = data
+func NewUiNodeInputAttributesOption(value interface{}) *UiNodeInputAttributesOption {
+	this := UiNodeInputAttributesOption{}
+	this.Value = value
 	return &this
 }
 
-// NewGetProjectMetricsWithDefaults instantiates a new GetProjectMetrics object
+// NewUiNodeInputAttributesOptionWithDefaults instantiates a new UiNodeInputAttributesOption object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetProjectMetricsWithDefaults() *GetProjectMetrics {
-	this := GetProjectMetrics{}
+func NewUiNodeInputAttributesOptionWithDefaults() *UiNodeInputAttributesOption {
+	this := UiNodeInputAttributesOption{}
 	return &this
 }
 
-// GetData returns the Data field value
-func (o *GetProjectMetrics) GetData() []MetricsDatapoint {
+// GetValue returns the Value field value
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *UiNodeInputAttributesOption) GetValue() interface{} {
 	if o == nil {
-		var ret []MetricsDatapoint
+		var ret interface{}
 		return ret
 	}
 
-	return o.Data
+	return o.Value
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
-func (o *GetProjectMetrics) GetDataOk() ([]MetricsDatapoint, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UiNodeInputAttributesOption) GetValueOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Value, true
 }
 
-// SetData sets field value
-func (o *GetProjectMetrics) SetData(v []MetricsDatapoint) {
-	o.Data = v
+// SetValue sets field value
+func (o *UiNodeInputAttributesOption) SetValue(v interface{}) {
+	o.Value = v
 }
 
-func (o GetProjectMetrics) MarshalJSON() ([]byte, error) {
+func (o UiNodeInputAttributesOption) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -78,9 +80,11 @@ func (o GetProjectMetrics) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o GetProjectMetrics) ToMap() (map[string]interface{}, error) {
+func (o UiNodeInputAttributesOption) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["data"] = o.Data
+	if o.Value != nil {
+		toSerialize["value"] = o.Value
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -89,12 +93,12 @@ func (o GetProjectMetrics) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *GetProjectMetrics) UnmarshalJSON(data []byte) (err error) {
+func (o *UiNodeInputAttributesOption) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"data",
+		"value",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -111,58 +115,58 @@ func (o *GetProjectMetrics) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varGetProjectMetrics := _GetProjectMetrics{}
+	varUiNodeInputAttributesOption := _UiNodeInputAttributesOption{}
 
-	err = json.Unmarshal(data, &varGetProjectMetrics)
+	err = json.Unmarshal(data, &varUiNodeInputAttributesOption)
 
 	if err != nil {
 		return err
 	}
 
-	*o = GetProjectMetrics(varGetProjectMetrics)
+	*o = UiNodeInputAttributesOption(varUiNodeInputAttributesOption)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "data")
+		delete(additionalProperties, "value")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableGetProjectMetrics struct {
-	value *GetProjectMetrics
+type NullableUiNodeInputAttributesOption struct {
+	value *UiNodeInputAttributesOption
 	isSet bool
 }
 
-func (v NullableGetProjectMetrics) Get() *GetProjectMetrics {
+func (v NullableUiNodeInputAttributesOption) Get() *UiNodeInputAttributesOption {
 	return v.value
 }
 
-func (v *NullableGetProjectMetrics) Set(val *GetProjectMetrics) {
+func (v *NullableUiNodeInputAttributesOption) Set(val *UiNodeInputAttributesOption) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetProjectMetrics) IsSet() bool {
+func (v NullableUiNodeInputAttributesOption) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetProjectMetrics) Unset() {
+func (v *NullableUiNodeInputAttributesOption) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetProjectMetrics(val *GetProjectMetrics) *NullableGetProjectMetrics {
-	return &NullableGetProjectMetrics{value: val, isSet: true}
+func NewNullableUiNodeInputAttributesOption(val *UiNodeInputAttributesOption) *NullableUiNodeInputAttributesOption {
+	return &NullableUiNodeInputAttributesOption{value: val, isSet: true}
 }
 
-func (v NullableGetProjectMetrics) MarshalJSON() ([]byte, error) {
+func (v NullableUiNodeInputAttributesOption) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetProjectMetrics) UnmarshalJSON(src []byte) error {
+func (v *NullableUiNodeInputAttributesOption) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
