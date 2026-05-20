@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.40
+  version: v1.22.41
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -8699,36 +8699,6 @@ paths:
       summary: Verify API Key
       tags:
       - APIKeys
-  /v2alpha1/admin/derivedKeys/jwks.json:
-    get:
-      description: |-
-        Returns the JSON Web Key Set for token verification. Provides the public
-        keys needed to verify JWT tokens issued by this service. Keys are loaded
-        from configuration (file://, https://, or base64:// URIs). Follows the
-        JWKS standard (RFC 7517).
-
-        ```http
-        GET /v2alpha1/admin/derivedKeys/jwks.json
-        ```
-      operationId: AdminGetJWKS
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GetJWKSResponse"
-          description: A successful response.
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Status"
-          description: An unexpected error response.
-      security:
-      - oryAccessToken: []
-      summary: Get JWKS
-      tags:
-      - APIKeys
   /v2alpha1/admin/importedApiKeys:
     get:
       description: |-
@@ -9321,6 +9291,34 @@ paths:
                 $ref: "#/components/schemas/Status"
           description: An unexpected error response.
       summary: Revoke API Key (self-service)
+      tags:
+      - APIKeys
+  /v2alpha1/derivedKeys/jwks.json:
+    get:
+      description: |-
+        Returns the JSON Web Key Set for token verification. Provides the public
+        keys needed to verify JWT tokens issued by this service. Keys are loaded
+        from configuration (file://, https://, or base64:// URIs). Follows the
+        JWKS standard (RFC 7517).
+
+        ```http
+        GET /v2alpha1/derivedKeys/jwks.json
+        ```
+      operationId: GetJWKS
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetJWKSResponse"
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      summary: Get JWKS
       tags:
       - APIKeys
   /version:
