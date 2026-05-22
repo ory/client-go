@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.41
+  version: v1.22.42
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -10430,12 +10430,14 @@ components:
          - BATCH_IMPORT_ERROR_ALREADY_EXISTS: A key with this identifier already exists
          - BATCH_IMPORT_ERROR_FAILED_PRECONDITION: State conflict prevents the import
          - BATCH_IMPORT_ERROR_INTERNAL: Server error during import
+         - BATCH_IMPORT_ERROR_RESOURCE_EXHAUSTED: Per-tenant quota cap reached
       enum:
       - BATCH_IMPORT_ERROR_UNSPECIFIED
       - BATCH_IMPORT_ERROR_INVALID_ARGUMENT
       - BATCH_IMPORT_ERROR_ALREADY_EXISTS
       - BATCH_IMPORT_ERROR_FAILED_PRECONDITION
       - BATCH_IMPORT_ERROR_INTERNAL
+      - BATCH_IMPORT_ERROR_RESOURCE_EXHAUSTED
       type: string
     BatchImportResult:
       description: BatchImportResult contains the result for one key in a batch import
@@ -10768,8 +10770,18 @@ components:
 
             If set to `null` or `"0s"`, the graceful refresh token rotation is disabled.
 
-            This governs the "oauth2.grant.refresh_token_rotation_grace_period" setting.
+            This governs the "oauth2.grant.refresh_token.rotation_grace_period" setting.
           type: string
+        hydra_oauth2_grant_refresh_token_rotation_grace_reuse_count:
+          description: |-
+            Configures the OAuth2 Grant Refresh Token Rotation Grace Reuse Count.
+
+            The maximum number of times a refresh token can be reused within the grace period.
+            If set to `null` or `0`, the limit is disabled.
+
+            This governs the "oauth2.grant.refresh_token.rotation_grace_reuse_count" setting.
+          format: int64
+          type: integer
         hydra_oauth2_mirror_top_level_claims:
           description: |-
             Set to false if you don't want to mirror custom claims under 'ext'.
@@ -10805,6 +10817,23 @@ components:
             Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.
 
             This governs the "oauth2.token_hook.url" setting.
+          type: string
+        hydra_oauth2_token_prefix:
+          description: |-
+            Sets a per-project Access Token, Refresh Token, and Authorization Code
+            prefix. The literal "%s" is replaced at issuance time with the token kind:
+            "at" (access token), "rt" (refresh token), or "ac" (authorization code).
+            For example, "acme_%s_" yields "acme_at_…", "acme_rt_…", and "acme_ac_…".
+
+            Must be a fmt.Sprintf template with exactly one "%s" substitution. The
+            rendered prefix may contain only ASCII letters, digits, and underscores —
+            no other "%" directives ("%d", "%%", positional or width-flagged verbs),
+            no hyphens, dots, slashes, whitespace, quotes, or non-ASCII characters.
+            Leave empty to keep the default "ory_%s_" prefix.
+
+            This is an Enterprise feature.
+
+            This governs the "oauth2.token_prefix" setting.
           type: string
         hydra_oidc_dynamic_client_registration_default_scope:
           description: |-
@@ -12537,7 +12566,7 @@ components:
     GenericUsage:
       properties:
         additional_price:
-          $ref: "#/components/schemas/Money"
+          type: string
         included_usage:
           description: IncludedUsage is the number of included items.
           format: int64
@@ -13155,15 +13184,7 @@ components:
           type: string
       type: object
     Money:
-      properties:
-        Cents:
-          format: int64
-          type: integer
-        String:
-          type: string
-        Unit:
-          type: string
-      type: object
+      type: string
     NormalizedProjectRevisionCourierChannel:
       properties:
         channel_id:
@@ -13390,12 +13411,12 @@ components:
           type: string
         development_features:
           additionalProperties:
-            $ref: "#/components/schemas/GenericUsage"
+            $ref: "#/components/schemas/Usage"
           title: PlanFeatures are the feature definitions included in the plan.
           type: object
         features:
           additionalProperties:
-            $ref: "#/components/schemas/GenericUsage"
+            $ref: "#/components/schemas/Usage"
           title: PlanFeatures are the feature definitions included in the plan.
           type: object
         latest:
@@ -13407,12 +13428,12 @@ components:
           type: string
         production_features:
           additionalProperties:
-            $ref: "#/components/schemas/GenericUsage"
+            $ref: "#/components/schemas/Usage"
           title: PlanFeatures are the feature definitions included in the plan.
           type: object
         staging_features:
           additionalProperties:
-            $ref: "#/components/schemas/GenericUsage"
+            $ref: "#/components/schemas/Usage"
           title: PlanFeatures are the feature definitions included in the plan.
           type: object
         version:
@@ -13438,7 +13459,7 @@ components:
       type: object
     PlanFeatures:
       additionalProperties:
-        $ref: "#/components/schemas/GenericUsage"
+        $ref: "#/components/schemas/Usage"
       title: PlanFeatures are the feature definitions included in the plan.
       type: object
     Pricing:
@@ -13847,10 +13868,11 @@ components:
       - token
       type: object
     Usage:
-      properties:
-        GenericUsage:
-          $ref: "#/components/schemas/GenericUsage"
-      type: object
+      oneOf:
+      - $ref: "#/components/schemas/GenericUsage"
+      - type: string
+      - type: boolean
+      - type: number
     VerifiableCredentialProof:
       example:
         proof_type: proof_type
@@ -18708,8 +18730,18 @@ components:
 
             If set to `null` or `"0s"`, the graceful refresh token rotation is disabled.
 
-            This governs the "oauth2.grant.refresh_token_rotation_grace_period" setting.
+            This governs the "oauth2.grant.refresh_token.rotation_grace_period" setting.
           type: string
+        hydra_oauth2_grant_refresh_token_rotation_grace_reuse_count:
+          description: |-
+            Configures the OAuth2 Grant Refresh Token Rotation Grace Reuse Count.
+
+            The maximum number of times a refresh token can be reused within the grace period.
+            If set to `null` or `0`, the limit is disabled.
+
+            This governs the "oauth2.grant.refresh_token.rotation_grace_reuse_count" setting.
+          format: int64
+          type: integer
         hydra_oauth2_mirror_top_level_claims:
           description: |-
             Set to false if you don't want to mirror custom claims under 'ext'.
@@ -18745,6 +18777,23 @@ components:
             Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.
 
             This governs the "oauth2.token_hook.url" setting.
+          type: string
+        hydra_oauth2_token_prefix:
+          description: |-
+            Sets a per-project Access Token, Refresh Token, and Authorization Code
+            prefix. The literal "%s" is replaced at issuance time with the token kind:
+            "at" (access token), "rt" (refresh token), or "ac" (authorization code).
+            For example, "acme_%s_" yields "acme_at_…", "acme_rt_…", and "acme_ac_…".
+
+            Must be a fmt.Sprintf template with exactly one "%s" substitution. The
+            rendered prefix may contain only ASCII letters, digits, and underscores —
+            no other "%" directives ("%d", "%%", positional or width-flagged verbs),
+            no hyphens, dots, slashes, whitespace, quotes, or non-ASCII characters.
+            Leave empty to keep the default "ory_%s_" prefix.
+
+            This is an Enterprise feature.
+
+            This governs the "oauth2.token_prefix" setting.
           type: string
         hydra_oidc_dynamic_client_registration_default_scope:
           description: |-
@@ -23946,6 +23995,8 @@ components:
             default_smtp_email_customization DefaultSMTPEmailCustomization
             onboarding_portal OnboardingPortal
             console_organization_sso ConsoleOrganizationSSO
+            graceful_refresh_token_count GracefulRefreshTokenCount
+            hydra_token_prefix HydraTokenPrefix
             update_self_service_registration_rate_limit_tier RateLimitTierUpdateSelfServiceRegistration  Self-service rate limits
             update_self_service_recovery_rate_limit_tier RateLimitTierUpdateSelfServiceRecovery
             update_self_service_settings_rate_limit_tier RateLimitTierUpdateSelfServiceSettings
@@ -24016,6 +24067,8 @@ components:
           - default_smtp_email_customization
           - onboarding_portal
           - console_organization_sso
+          - graceful_refresh_token_count
+          - hydra_token_prefix
           - update_self_service_registration_rate_limit_tier
           - update_self_service_recovery_rate_limit_tier
           - update_self_service_settings_rate_limit_tier
@@ -24087,6 +24140,8 @@ components:
             default_smtp_email_customization DefaultSMTPEmailCustomization
             onboarding_portal OnboardingPortal
             console_organization_sso ConsoleOrganizationSSO
+            graceful_refresh_token_count GracefulRefreshTokenCount
+            hydra_token_prefix HydraTokenPrefix
             update_self_service_registration_rate_limit_tier RateLimitTierUpdateSelfServiceRegistration  Self-service rate limits
             update_self_service_recovery_rate_limit_tier RateLimitTierUpdateSelfServiceRecovery
             update_self_service_settings_rate_limit_tier RateLimitTierUpdateSelfServiceSettings
