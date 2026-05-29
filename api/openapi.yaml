@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.42
+  version: v1.22.43
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -10731,7 +10731,7 @@ components:
           type: boolean
         hydra_oauth2_exclude_not_before_claim:
           description: |-
-            Set to true if you want to exclude claim `nbf (not before)` part of access token.
+            Set to true if you want to omit the `nbf` (not valid before) claim in the access token.
 
             This governs the "oauth2.exclude_not_before_claim" setting.
           type: boolean
@@ -18691,7 +18691,7 @@ components:
           type: boolean
         hydra_oauth2_exclude_not_before_claim:
           description: |-
-            Set to true if you want to exclude claim `nbf (not before)` part of access token.
+            Set to true if you want to omit the `nbf` (not valid before) claim in the access token.
 
             This governs the "oauth2.exclude_not_before_claim" setting.
           type: boolean
