@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.43
+  version: v1.22.44
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -13303,6 +13303,7 @@ components:
     OrganizationBody:
       description: Create B2B SSO Organization Request Body
       example:
+        session_lifespan: 24h
         default_region: eu-central
         domains:
         - domains
@@ -13353,6 +13354,14 @@ components:
           type: array
         label:
           description: Label contains the organization's label.
+          type: string
+        session_lifespan:
+          description: |-
+            SessionLifespan overrides the project-level session.lifespan for sessions
+            issued for this organization. A Go duration string between 1m and 8760h
+            (e.g. "1h", "24h"). Send "" to clear and inherit the project default. Omit
+            to leave the existing value unchanged on update.
+          example: 24h
           type: string
       type: object
     ParseError:
@@ -14267,6 +14276,7 @@ components:
       type: string
     basicOrganization:
       example:
+        session_lifespan: 24h
         default_region: eu-central
         domains:
         - domains
@@ -14316,6 +14326,14 @@ components:
           type: string
         label:
           description: The organization's human-readable label.
+          type: string
+        session_lifespan:
+          description: |-
+            SessionLifespan overrides the project-level session lifespan for sessions
+            issued for this organization. A Go duration string between 1m and 8760h.
+            A null (or zero) value means the project default applies.
+          example: 24h
+          pattern: "^[0-9]+(s|m|h)$"
           type: string
       required:
       - domains
@@ -16021,6 +16039,7 @@ components:
     getOrganizationResponse:
       example:
         organization:
+          session_lifespan: 24h
           default_region: eu-central
           created_at: 2000-01-23T04:56:07.000+00:00
           domains:
@@ -17357,14 +17376,16 @@ components:
         next_page_token: next_page_token
         has_next_page: true
         organizations:
-        - default_region: eu-central
+        - session_lifespan: 24h
+          default_region: eu-central
           created_at: 2000-01-23T04:56:07.000+00:00
           domains:
           - domains
           - domains
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           label: label
-        - default_region: eu-central
+        - session_lifespan: 24h
+          default_region: eu-central
           created_at: 2000-01-23T04:56:07.000+00:00
           domains:
           - domains
@@ -22898,6 +22919,7 @@ components:
     organization:
       description: B2B SSO Organization
       example:
+        session_lifespan: 24h
         default_region: eu-central
         created_at: 2000-01-23T04:56:07.000+00:00
         domains:
@@ -22951,6 +22973,14 @@ components:
           type: string
         label:
           description: The organization's human-readable label.
+          type: string
+        session_lifespan:
+          description: |-
+            SessionLifespan overrides the project-level session lifespan for sessions
+            issued for this organization. A Go duration string between 1m and 8760h.
+            A null (or zero) value means the project default applies.
+          example: 24h
+          pattern: "^[0-9]+(s|m|h)$"
           type: string
       required:
       - created_at
@@ -23109,13 +23139,15 @@ components:
         home_region: eu-central
         name: name
         organizations:
-        - default_region: eu-central
+        - session_lifespan: 24h
+          default_region: eu-central
           domains:
           - domains
           - domains
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           label: label
-        - default_region: eu-central
+        - session_lifespan: 24h
+          default_region: eu-central
           domains:
           - domains
           - domains
@@ -26104,13 +26136,15 @@ components:
           home_region: eu-central
           name: name
           organizations:
-          - default_region: eu-central
+          - session_lifespan: 24h
+            default_region: eu-central
             domains:
             - domains
             - domains
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             label: label
-          - default_region: eu-central
+          - session_lifespan: 24h
+            default_region: eu-central
             domains:
             - domains
             - domains
@@ -28858,6 +28892,14 @@ components:
           items:
             type: string
           type: array
+        session_lifespan:
+          description: |-
+            SessionLifespan overrides the project-level session lifespan for sessions
+            issued for this organization. A Go duration string between 1m and 8760h.
+            A null (or zero) value means the project default applies.
+          example: 24h
+          pattern: "^[0-9]+(s|m|h)$"
+          type: string
       required:
       - created_at
       - domains
