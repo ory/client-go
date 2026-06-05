@@ -1,104 +1,104 @@
-# RotateIssuedAPIKeyResponse
+# RotateIssuedApiKeyResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IssuedApiKey** | Pointer to [**IssuedAPIKey**](IssuedAPIKey.md) |  | [optional] 
-**OldIssuedApiKey** | Pointer to [**IssuedAPIKey**](IssuedAPIKey.md) |  | [optional] 
+**IssuedApiKey** | Pointer to [**IssuedApiKey**](IssuedApiKey.md) |  | [optional] 
+**OldIssuedApiKey** | Pointer to [**IssuedApiKey**](IssuedApiKey.md) |  | [optional] 
 **Secret** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
-### NewRotateIssuedAPIKeyResponse
+### NewRotateIssuedApiKeyResponse
 
-`func NewRotateIssuedAPIKeyResponse() *RotateIssuedAPIKeyResponse`
+`func NewRotateIssuedApiKeyResponse() *RotateIssuedApiKeyResponse`
 
-NewRotateIssuedAPIKeyResponse instantiates a new RotateIssuedAPIKeyResponse object
+NewRotateIssuedApiKeyResponse instantiates a new RotateIssuedApiKeyResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewRotateIssuedAPIKeyResponseWithDefaults
+### NewRotateIssuedApiKeyResponseWithDefaults
 
-`func NewRotateIssuedAPIKeyResponseWithDefaults() *RotateIssuedAPIKeyResponse`
+`func NewRotateIssuedApiKeyResponseWithDefaults() *RotateIssuedApiKeyResponse`
 
-NewRotateIssuedAPIKeyResponseWithDefaults instantiates a new RotateIssuedAPIKeyResponse object
+NewRotateIssuedApiKeyResponseWithDefaults instantiates a new RotateIssuedApiKeyResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetIssuedApiKey
 
-`func (o *RotateIssuedAPIKeyResponse) GetIssuedApiKey() IssuedAPIKey`
+`func (o *RotateIssuedApiKeyResponse) GetIssuedApiKey() IssuedApiKey`
 
 GetIssuedApiKey returns the IssuedApiKey field if non-nil, zero value otherwise.
 
 ### GetIssuedApiKeyOk
 
-`func (o *RotateIssuedAPIKeyResponse) GetIssuedApiKeyOk() (*IssuedAPIKey, bool)`
+`func (o *RotateIssuedApiKeyResponse) GetIssuedApiKeyOk() (*IssuedApiKey, bool)`
 
 GetIssuedApiKeyOk returns a tuple with the IssuedApiKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIssuedApiKey
 
-`func (o *RotateIssuedAPIKeyResponse) SetIssuedApiKey(v IssuedAPIKey)`
+`func (o *RotateIssuedApiKeyResponse) SetIssuedApiKey(v IssuedApiKey)`
 
 SetIssuedApiKey sets IssuedApiKey field to given value.
 
 ### HasIssuedApiKey
 
-`func (o *RotateIssuedAPIKeyResponse) HasIssuedApiKey() bool`
+`func (o *RotateIssuedApiKeyResponse) HasIssuedApiKey() bool`
 
 HasIssuedApiKey returns a boolean if a field has been set.
 
 ### GetOldIssuedApiKey
 
-`func (o *RotateIssuedAPIKeyResponse) GetOldIssuedApiKey() IssuedAPIKey`
+`func (o *RotateIssuedApiKeyResponse) GetOldIssuedApiKey() IssuedApiKey`
 
 GetOldIssuedApiKey returns the OldIssuedApiKey field if non-nil, zero value otherwise.
 
 ### GetOldIssuedApiKeyOk
 
-`func (o *RotateIssuedAPIKeyResponse) GetOldIssuedApiKeyOk() (*IssuedAPIKey, bool)`
+`func (o *RotateIssuedApiKeyResponse) GetOldIssuedApiKeyOk() (*IssuedApiKey, bool)`
 
 GetOldIssuedApiKeyOk returns a tuple with the OldIssuedApiKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOldIssuedApiKey
 
-`func (o *RotateIssuedAPIKeyResponse) SetOldIssuedApiKey(v IssuedAPIKey)`
+`func (o *RotateIssuedApiKeyResponse) SetOldIssuedApiKey(v IssuedApiKey)`
 
 SetOldIssuedApiKey sets OldIssuedApiKey field to given value.
 
 ### HasOldIssuedApiKey
 
-`func (o *RotateIssuedAPIKeyResponse) HasOldIssuedApiKey() bool`
+`func (o *RotateIssuedApiKeyResponse) HasOldIssuedApiKey() bool`
 
 HasOldIssuedApiKey returns a boolean if a field has been set.
 
 ### GetSecret
 
-`func (o *RotateIssuedAPIKeyResponse) GetSecret() string`
+`func (o *RotateIssuedApiKeyResponse) GetSecret() string`
 
 GetSecret returns the Secret field if non-nil, zero value otherwise.
 
 ### GetSecretOk
 
-`func (o *RotateIssuedAPIKeyResponse) GetSecretOk() (*string, bool)`
+`func (o *RotateIssuedApiKeyResponse) GetSecretOk() (*string, bool)`
 
 GetSecretOk returns a tuple with the Secret field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSecret
 
-`func (o *RotateIssuedAPIKeyResponse) SetSecret(v string)`
+`func (o *RotateIssuedApiKeyResponse) SetSecret(v string)`
 
 SetSecret sets Secret field to given value.
 
 ### HasSecret
 
-`func (o *RotateIssuedAPIKeyResponse) HasSecret() bool`
+`func (o *RotateIssuedApiKeyResponse) HasSecret() bool`
 
 HasSecret returns a boolean if a field has been set.
 

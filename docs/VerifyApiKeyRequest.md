@@ -1,4 +1,4 @@
-# VerifyAPIKeyRequest
+# VerifyApiKeyRequest
 
 ## Properties
 
@@ -8,45 +8,45 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewVerifyAPIKeyRequest
+### NewVerifyApiKeyRequest
 
-`func NewVerifyAPIKeyRequest() *VerifyAPIKeyRequest`
+`func NewVerifyApiKeyRequest() *VerifyApiKeyRequest`
 
-NewVerifyAPIKeyRequest instantiates a new VerifyAPIKeyRequest object
+NewVerifyApiKeyRequest instantiates a new VerifyApiKeyRequest object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewVerifyAPIKeyRequestWithDefaults
+### NewVerifyApiKeyRequestWithDefaults
 
-`func NewVerifyAPIKeyRequestWithDefaults() *VerifyAPIKeyRequest`
+`func NewVerifyApiKeyRequestWithDefaults() *VerifyApiKeyRequest`
 
-NewVerifyAPIKeyRequestWithDefaults instantiates a new VerifyAPIKeyRequest object
+NewVerifyApiKeyRequestWithDefaults instantiates a new VerifyApiKeyRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetCredential
 
-`func (o *VerifyAPIKeyRequest) GetCredential() string`
+`func (o *VerifyApiKeyRequest) GetCredential() string`
 
 GetCredential returns the Credential field if non-nil, zero value otherwise.
 
 ### GetCredentialOk
 
-`func (o *VerifyAPIKeyRequest) GetCredentialOk() (*string, bool)`
+`func (o *VerifyApiKeyRequest) GetCredentialOk() (*string, bool)`
 
 GetCredentialOk returns a tuple with the Credential field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCredential
 
-`func (o *VerifyAPIKeyRequest) SetCredential(v string)`
+`func (o *VerifyApiKeyRequest) SetCredential(v string)`
 
 SetCredential sets Credential field to given value.
 
 ### HasCredential
 
-`func (o *VerifyAPIKeyRequest) HasCredential() bool`
+`func (o *VerifyApiKeyRequest) HasCredential() bool`
 
 HasCredential returns a boolean if a field has been set.
 

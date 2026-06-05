@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.47
+API version: v1.22.48
 Contact: support@ory.sh
 */
 
@@ -15,38 +15,38 @@ import (
 	"encoding/json"
 )
 
-// checks if the BatchImportAPIKeysResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &BatchImportAPIKeysResponse{}
+// checks if the BatchCreateImportedApiKeysResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BatchCreateImportedApiKeysResponse{}
 
-// BatchImportAPIKeysResponse BatchImportAPIKeysResponse returns per-item results and summary counters.
-type BatchImportAPIKeysResponse struct {
+// BatchCreateImportedApiKeysResponse BatchCreateImportedApiKeysResponse returns per-item results and summary counters.
+type BatchCreateImportedApiKeysResponse struct {
 	FailureCount *int32 `json:"failure_count,omitempty"`
-	Results []BatchImportResult `json:"results,omitempty"`
+	Results []BatchCreateImportedApiKeysResult `json:"results,omitempty"`
 	SuccessCount *int32 `json:"success_count,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _BatchImportAPIKeysResponse BatchImportAPIKeysResponse
+type _BatchCreateImportedApiKeysResponse BatchCreateImportedApiKeysResponse
 
-// NewBatchImportAPIKeysResponse instantiates a new BatchImportAPIKeysResponse object
+// NewBatchCreateImportedApiKeysResponse instantiates a new BatchCreateImportedApiKeysResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBatchImportAPIKeysResponse() *BatchImportAPIKeysResponse {
-	this := BatchImportAPIKeysResponse{}
+func NewBatchCreateImportedApiKeysResponse() *BatchCreateImportedApiKeysResponse {
+	this := BatchCreateImportedApiKeysResponse{}
 	return &this
 }
 
-// NewBatchImportAPIKeysResponseWithDefaults instantiates a new BatchImportAPIKeysResponse object
+// NewBatchCreateImportedApiKeysResponseWithDefaults instantiates a new BatchCreateImportedApiKeysResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewBatchImportAPIKeysResponseWithDefaults() *BatchImportAPIKeysResponse {
-	this := BatchImportAPIKeysResponse{}
+func NewBatchCreateImportedApiKeysResponseWithDefaults() *BatchCreateImportedApiKeysResponse {
+	this := BatchCreateImportedApiKeysResponse{}
 	return &this
 }
 
 // GetFailureCount returns the FailureCount field value if set, zero value otherwise.
-func (o *BatchImportAPIKeysResponse) GetFailureCount() int32 {
+func (o *BatchCreateImportedApiKeysResponse) GetFailureCount() int32 {
 	if o == nil || IsNil(o.FailureCount) {
 		var ret int32
 		return ret
@@ -56,7 +56,7 @@ func (o *BatchImportAPIKeysResponse) GetFailureCount() int32 {
 
 // GetFailureCountOk returns a tuple with the FailureCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BatchImportAPIKeysResponse) GetFailureCountOk() (*int32, bool) {
+func (o *BatchCreateImportedApiKeysResponse) GetFailureCountOk() (*int32, bool) {
 	if o == nil || IsNil(o.FailureCount) {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *BatchImportAPIKeysResponse) GetFailureCountOk() (*int32, bool) {
 }
 
 // HasFailureCount returns a boolean if a field has been set.
-func (o *BatchImportAPIKeysResponse) HasFailureCount() bool {
+func (o *BatchCreateImportedApiKeysResponse) HasFailureCount() bool {
 	if o != nil && !IsNil(o.FailureCount) {
 		return true
 	}
@@ -73,14 +73,14 @@ func (o *BatchImportAPIKeysResponse) HasFailureCount() bool {
 }
 
 // SetFailureCount gets a reference to the given int32 and assigns it to the FailureCount field.
-func (o *BatchImportAPIKeysResponse) SetFailureCount(v int32) {
+func (o *BatchCreateImportedApiKeysResponse) SetFailureCount(v int32) {
 	o.FailureCount = &v
 }
 
 // GetResults returns the Results field value if set, zero value otherwise.
-func (o *BatchImportAPIKeysResponse) GetResults() []BatchImportResult {
+func (o *BatchCreateImportedApiKeysResponse) GetResults() []BatchCreateImportedApiKeysResult {
 	if o == nil || IsNil(o.Results) {
-		var ret []BatchImportResult
+		var ret []BatchCreateImportedApiKeysResult
 		return ret
 	}
 	return o.Results
@@ -88,7 +88,7 @@ func (o *BatchImportAPIKeysResponse) GetResults() []BatchImportResult {
 
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BatchImportAPIKeysResponse) GetResultsOk() ([]BatchImportResult, bool) {
+func (o *BatchCreateImportedApiKeysResponse) GetResultsOk() ([]BatchCreateImportedApiKeysResult, bool) {
 	if o == nil || IsNil(o.Results) {
 		return nil, false
 	}
@@ -96,7 +96,7 @@ func (o *BatchImportAPIKeysResponse) GetResultsOk() ([]BatchImportResult, bool) 
 }
 
 // HasResults returns a boolean if a field has been set.
-func (o *BatchImportAPIKeysResponse) HasResults() bool {
+func (o *BatchCreateImportedApiKeysResponse) HasResults() bool {
 	if o != nil && !IsNil(o.Results) {
 		return true
 	}
@@ -104,13 +104,13 @@ func (o *BatchImportAPIKeysResponse) HasResults() bool {
 	return false
 }
 
-// SetResults gets a reference to the given []BatchImportResult and assigns it to the Results field.
-func (o *BatchImportAPIKeysResponse) SetResults(v []BatchImportResult) {
+// SetResults gets a reference to the given []BatchCreateImportedApiKeysResult and assigns it to the Results field.
+func (o *BatchCreateImportedApiKeysResponse) SetResults(v []BatchCreateImportedApiKeysResult) {
 	o.Results = v
 }
 
 // GetSuccessCount returns the SuccessCount field value if set, zero value otherwise.
-func (o *BatchImportAPIKeysResponse) GetSuccessCount() int32 {
+func (o *BatchCreateImportedApiKeysResponse) GetSuccessCount() int32 {
 	if o == nil || IsNil(o.SuccessCount) {
 		var ret int32
 		return ret
@@ -120,7 +120,7 @@ func (o *BatchImportAPIKeysResponse) GetSuccessCount() int32 {
 
 // GetSuccessCountOk returns a tuple with the SuccessCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BatchImportAPIKeysResponse) GetSuccessCountOk() (*int32, bool) {
+func (o *BatchCreateImportedApiKeysResponse) GetSuccessCountOk() (*int32, bool) {
 	if o == nil || IsNil(o.SuccessCount) {
 		return nil, false
 	}
@@ -128,7 +128,7 @@ func (o *BatchImportAPIKeysResponse) GetSuccessCountOk() (*int32, bool) {
 }
 
 // HasSuccessCount returns a boolean if a field has been set.
-func (o *BatchImportAPIKeysResponse) HasSuccessCount() bool {
+func (o *BatchCreateImportedApiKeysResponse) HasSuccessCount() bool {
 	if o != nil && !IsNil(o.SuccessCount) {
 		return true
 	}
@@ -137,11 +137,11 @@ func (o *BatchImportAPIKeysResponse) HasSuccessCount() bool {
 }
 
 // SetSuccessCount gets a reference to the given int32 and assigns it to the SuccessCount field.
-func (o *BatchImportAPIKeysResponse) SetSuccessCount(v int32) {
+func (o *BatchCreateImportedApiKeysResponse) SetSuccessCount(v int32) {
 	o.SuccessCount = &v
 }
 
-func (o BatchImportAPIKeysResponse) MarshalJSON() ([]byte, error) {
+func (o BatchCreateImportedApiKeysResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -149,7 +149,7 @@ func (o BatchImportAPIKeysResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o BatchImportAPIKeysResponse) ToMap() (map[string]interface{}, error) {
+func (o BatchCreateImportedApiKeysResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.FailureCount) {
 		toSerialize["failure_count"] = o.FailureCount
@@ -168,16 +168,16 @@ func (o BatchImportAPIKeysResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *BatchImportAPIKeysResponse) UnmarshalJSON(data []byte) (err error) {
-	varBatchImportAPIKeysResponse := _BatchImportAPIKeysResponse{}
+func (o *BatchCreateImportedApiKeysResponse) UnmarshalJSON(data []byte) (err error) {
+	varBatchCreateImportedApiKeysResponse := _BatchCreateImportedApiKeysResponse{}
 
-	err = json.Unmarshal(data, &varBatchImportAPIKeysResponse)
+	err = json.Unmarshal(data, &varBatchCreateImportedApiKeysResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = BatchImportAPIKeysResponse(varBatchImportAPIKeysResponse)
+	*o = BatchCreateImportedApiKeysResponse(varBatchCreateImportedApiKeysResponse)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -191,38 +191,38 @@ func (o *BatchImportAPIKeysResponse) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableBatchImportAPIKeysResponse struct {
-	value *BatchImportAPIKeysResponse
+type NullableBatchCreateImportedApiKeysResponse struct {
+	value *BatchCreateImportedApiKeysResponse
 	isSet bool
 }
 
-func (v NullableBatchImportAPIKeysResponse) Get() *BatchImportAPIKeysResponse {
+func (v NullableBatchCreateImportedApiKeysResponse) Get() *BatchCreateImportedApiKeysResponse {
 	return v.value
 }
 
-func (v *NullableBatchImportAPIKeysResponse) Set(val *BatchImportAPIKeysResponse) {
+func (v *NullableBatchCreateImportedApiKeysResponse) Set(val *BatchCreateImportedApiKeysResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableBatchImportAPIKeysResponse) IsSet() bool {
+func (v NullableBatchCreateImportedApiKeysResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableBatchImportAPIKeysResponse) Unset() {
+func (v *NullableBatchCreateImportedApiKeysResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableBatchImportAPIKeysResponse(val *BatchImportAPIKeysResponse) *NullableBatchImportAPIKeysResponse {
-	return &NullableBatchImportAPIKeysResponse{value: val, isSet: true}
+func NewNullableBatchCreateImportedApiKeysResponse(val *BatchCreateImportedApiKeysResponse) *NullableBatchCreateImportedApiKeysResponse {
+	return &NullableBatchCreateImportedApiKeysResponse{value: val, isSet: true}
 }
 
-func (v NullableBatchImportAPIKeysResponse) MarshalJSON() ([]byte, error) {
+func (v NullableBatchCreateImportedApiKeysResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableBatchImportAPIKeysResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableBatchCreateImportedApiKeysResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

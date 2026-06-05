@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.47
+API version: v1.22.48
 Contact: support@ory.sh
 */
 
@@ -15,105 +15,72 @@ import (
 	"encoding/json"
 )
 
-// checks if the AdminRevokeAPIKeyBody type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &AdminRevokeAPIKeyBody{}
+// checks if the RotateTalosKeyBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RotateTalosKeyBody{}
 
-// AdminRevokeAPIKeyBody struct for AdminRevokeAPIKeyBody
-type AdminRevokeAPIKeyBody struct {
-	// Optional free-text explanation. Only allowed when reason is PRIVILEGE_WITHDRAWN.
-	Description *string `json:"description,omitempty"`
-	Reason *RevocationReason `json:"reason,omitempty"`
+// RotateTalosKeyBody Rotate Talos key request body
+type RotateTalosKeyBody struct {
+	// Rotation mode. Use \"graceful\" to keep the old key for verification of existing tokens, or \"revoke\" to discard it immediately.
+	Mode *string `json:"mode,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _AdminRevokeAPIKeyBody AdminRevokeAPIKeyBody
+type _RotateTalosKeyBody RotateTalosKeyBody
 
-// NewAdminRevokeAPIKeyBody instantiates a new AdminRevokeAPIKeyBody object
+// NewRotateTalosKeyBody instantiates a new RotateTalosKeyBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAdminRevokeAPIKeyBody() *AdminRevokeAPIKeyBody {
-	this := AdminRevokeAPIKeyBody{}
-	var reason RevocationReason = REVOCATIONREASON_REVOCATION_REASON_UNSPECIFIED
-	this.Reason = &reason
+func NewRotateTalosKeyBody() *RotateTalosKeyBody {
+	this := RotateTalosKeyBody{}
+	var mode string = "graceful"
+	this.Mode = &mode
 	return &this
 }
 
-// NewAdminRevokeAPIKeyBodyWithDefaults instantiates a new AdminRevokeAPIKeyBody object
+// NewRotateTalosKeyBodyWithDefaults instantiates a new RotateTalosKeyBody object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAdminRevokeAPIKeyBodyWithDefaults() *AdminRevokeAPIKeyBody {
-	this := AdminRevokeAPIKeyBody{}
-	var reason RevocationReason = REVOCATIONREASON_REVOCATION_REASON_UNSPECIFIED
-	this.Reason = &reason
+func NewRotateTalosKeyBodyWithDefaults() *RotateTalosKeyBody {
+	this := RotateTalosKeyBody{}
+	var mode string = "graceful"
+	this.Mode = &mode
 	return &this
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *AdminRevokeAPIKeyBody) GetDescription() string {
-	if o == nil || IsNil(o.Description) {
+// GetMode returns the Mode field value if set, zero value otherwise.
+func (o *RotateTalosKeyBody) GetMode() string {
+	if o == nil || IsNil(o.Mode) {
 		var ret string
 		return ret
 	}
-	return *o.Description
+	return *o.Mode
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminRevokeAPIKeyBody) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
+func (o *RotateTalosKeyBody) GetModeOk() (*string, bool) {
+	if o == nil || IsNil(o.Mode) {
 		return nil, false
 	}
-	return o.Description, true
+	return o.Mode, true
 }
 
-// HasDescription returns a boolean if a field has been set.
-func (o *AdminRevokeAPIKeyBody) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+// HasMode returns a boolean if a field has been set.
+func (o *RotateTalosKeyBody) HasMode() bool {
+	if o != nil && !IsNil(o.Mode) {
 		return true
 	}
 
 	return false
 }
 
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *AdminRevokeAPIKeyBody) SetDescription(v string) {
-	o.Description = &v
+// SetMode gets a reference to the given string and assigns it to the Mode field.
+func (o *RotateTalosKeyBody) SetMode(v string) {
+	o.Mode = &v
 }
 
-// GetReason returns the Reason field value if set, zero value otherwise.
-func (o *AdminRevokeAPIKeyBody) GetReason() RevocationReason {
-	if o == nil || IsNil(o.Reason) {
-		var ret RevocationReason
-		return ret
-	}
-	return *o.Reason
-}
-
-// GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AdminRevokeAPIKeyBody) GetReasonOk() (*RevocationReason, bool) {
-	if o == nil || IsNil(o.Reason) {
-		return nil, false
-	}
-	return o.Reason, true
-}
-
-// HasReason returns a boolean if a field has been set.
-func (o *AdminRevokeAPIKeyBody) HasReason() bool {
-	if o != nil && !IsNil(o.Reason) {
-		return true
-	}
-
-	return false
-}
-
-// SetReason gets a reference to the given RevocationReason and assigns it to the Reason field.
-func (o *AdminRevokeAPIKeyBody) SetReason(v RevocationReason) {
-	o.Reason = &v
-}
-
-func (o AdminRevokeAPIKeyBody) MarshalJSON() ([]byte, error) {
+func (o RotateTalosKeyBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -121,13 +88,10 @@ func (o AdminRevokeAPIKeyBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o AdminRevokeAPIKeyBody) ToMap() (map[string]interface{}, error) {
+func (o RotateTalosKeyBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
-	if !IsNil(o.Reason) {
-		toSerialize["reason"] = o.Reason
+	if !IsNil(o.Mode) {
+		toSerialize["mode"] = o.Mode
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -137,60 +101,59 @@ func (o AdminRevokeAPIKeyBody) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *AdminRevokeAPIKeyBody) UnmarshalJSON(data []byte) (err error) {
-	varAdminRevokeAPIKeyBody := _AdminRevokeAPIKeyBody{}
+func (o *RotateTalosKeyBody) UnmarshalJSON(data []byte) (err error) {
+	varRotateTalosKeyBody := _RotateTalosKeyBody{}
 
-	err = json.Unmarshal(data, &varAdminRevokeAPIKeyBody)
+	err = json.Unmarshal(data, &varRotateTalosKeyBody)
 
 	if err != nil {
 		return err
 	}
 
-	*o = AdminRevokeAPIKeyBody(varAdminRevokeAPIKeyBody)
+	*o = RotateTalosKeyBody(varRotateTalosKeyBody)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "reason")
+		delete(additionalProperties, "mode")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableAdminRevokeAPIKeyBody struct {
-	value *AdminRevokeAPIKeyBody
+type NullableRotateTalosKeyBody struct {
+	value *RotateTalosKeyBody
 	isSet bool
 }
 
-func (v NullableAdminRevokeAPIKeyBody) Get() *AdminRevokeAPIKeyBody {
+func (v NullableRotateTalosKeyBody) Get() *RotateTalosKeyBody {
 	return v.value
 }
 
-func (v *NullableAdminRevokeAPIKeyBody) Set(val *AdminRevokeAPIKeyBody) {
+func (v *NullableRotateTalosKeyBody) Set(val *RotateTalosKeyBody) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAdminRevokeAPIKeyBody) IsSet() bool {
+func (v NullableRotateTalosKeyBody) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableAdminRevokeAPIKeyBody) Unset() {
+func (v *NullableRotateTalosKeyBody) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAdminRevokeAPIKeyBody(val *AdminRevokeAPIKeyBody) *NullableAdminRevokeAPIKeyBody {
-	return &NullableAdminRevokeAPIKeyBody{value: val, isSet: true}
+func NewNullableRotateTalosKeyBody(val *RotateTalosKeyBody) *NullableRotateTalosKeyBody {
+	return &NullableRotateTalosKeyBody{value: val, isSet: true}
 }
 
-func (v NullableAdminRevokeAPIKeyBody) MarshalJSON() ([]byte, error) {
+func (v NullableRotateTalosKeyBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAdminRevokeAPIKeyBody) UnmarshalJSON(src []byte) error {
+func (v *NullableRotateTalosKeyBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

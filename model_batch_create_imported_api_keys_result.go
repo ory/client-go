@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.47
+API version: v1.22.48
 Contact: support@ory.sh
 */
 
@@ -15,45 +15,45 @@ import (
 	"encoding/json"
 )
 
-// checks if the BatchImportResult type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &BatchImportResult{}
+// checks if the BatchCreateImportedApiKeysResult type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BatchCreateImportedApiKeysResult{}
 
-// BatchImportResult BatchImportResult contains the result for one key in a batch import request.
-type BatchImportResult struct {
-	ErrorCode *BatchImportErrorCode `json:"error_code,omitempty"`
+// BatchCreateImportedApiKeysResult BatchCreateImportedApiKeysResult contains the result for one key in a batch import request.
+type BatchCreateImportedApiKeysResult struct {
+	ErrorCode *BatchCreateImportedApiKeysErrorCode `json:"error_code,omitempty"`
 	ErrorMessage *string `json:"error_message,omitempty"`
-	ImportedApiKey *ImportedAPIKey `json:"imported_api_key,omitempty"`
+	ImportedApiKey *ImportedApiKey `json:"imported_api_key,omitempty"`
 	Index *int32 `json:"index,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _BatchImportResult BatchImportResult
+type _BatchCreateImportedApiKeysResult BatchCreateImportedApiKeysResult
 
-// NewBatchImportResult instantiates a new BatchImportResult object
+// NewBatchCreateImportedApiKeysResult instantiates a new BatchCreateImportedApiKeysResult object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBatchImportResult() *BatchImportResult {
-	this := BatchImportResult{}
-	var errorCode BatchImportErrorCode = BATCHIMPORTERRORCODE_BATCH_IMPORT_ERROR_UNSPECIFIED
+func NewBatchCreateImportedApiKeysResult() *BatchCreateImportedApiKeysResult {
+	this := BatchCreateImportedApiKeysResult{}
+	var errorCode BatchCreateImportedApiKeysErrorCode = BATCHCREATEIMPORTEDAPIKEYSERRORCODE_BATCH_CREATE_IMPORTED_API_KEYS_ERROR_UNSPECIFIED
 	this.ErrorCode = &errorCode
 	return &this
 }
 
-// NewBatchImportResultWithDefaults instantiates a new BatchImportResult object
+// NewBatchCreateImportedApiKeysResultWithDefaults instantiates a new BatchCreateImportedApiKeysResult object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewBatchImportResultWithDefaults() *BatchImportResult {
-	this := BatchImportResult{}
-	var errorCode BatchImportErrorCode = BATCHIMPORTERRORCODE_BATCH_IMPORT_ERROR_UNSPECIFIED
+func NewBatchCreateImportedApiKeysResultWithDefaults() *BatchCreateImportedApiKeysResult {
+	this := BatchCreateImportedApiKeysResult{}
+	var errorCode BatchCreateImportedApiKeysErrorCode = BATCHCREATEIMPORTEDAPIKEYSERRORCODE_BATCH_CREATE_IMPORTED_API_KEYS_ERROR_UNSPECIFIED
 	this.ErrorCode = &errorCode
 	return &this
 }
 
 // GetErrorCode returns the ErrorCode field value if set, zero value otherwise.
-func (o *BatchImportResult) GetErrorCode() BatchImportErrorCode {
+func (o *BatchCreateImportedApiKeysResult) GetErrorCode() BatchCreateImportedApiKeysErrorCode {
 	if o == nil || IsNil(o.ErrorCode) {
-		var ret BatchImportErrorCode
+		var ret BatchCreateImportedApiKeysErrorCode
 		return ret
 	}
 	return *o.ErrorCode
@@ -61,7 +61,7 @@ func (o *BatchImportResult) GetErrorCode() BatchImportErrorCode {
 
 // GetErrorCodeOk returns a tuple with the ErrorCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BatchImportResult) GetErrorCodeOk() (*BatchImportErrorCode, bool) {
+func (o *BatchCreateImportedApiKeysResult) GetErrorCodeOk() (*BatchCreateImportedApiKeysErrorCode, bool) {
 	if o == nil || IsNil(o.ErrorCode) {
 		return nil, false
 	}
@@ -69,7 +69,7 @@ func (o *BatchImportResult) GetErrorCodeOk() (*BatchImportErrorCode, bool) {
 }
 
 // HasErrorCode returns a boolean if a field has been set.
-func (o *BatchImportResult) HasErrorCode() bool {
+func (o *BatchCreateImportedApiKeysResult) HasErrorCode() bool {
 	if o != nil && !IsNil(o.ErrorCode) {
 		return true
 	}
@@ -77,13 +77,13 @@ func (o *BatchImportResult) HasErrorCode() bool {
 	return false
 }
 
-// SetErrorCode gets a reference to the given BatchImportErrorCode and assigns it to the ErrorCode field.
-func (o *BatchImportResult) SetErrorCode(v BatchImportErrorCode) {
+// SetErrorCode gets a reference to the given BatchCreateImportedApiKeysErrorCode and assigns it to the ErrorCode field.
+func (o *BatchCreateImportedApiKeysResult) SetErrorCode(v BatchCreateImportedApiKeysErrorCode) {
 	o.ErrorCode = &v
 }
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
-func (o *BatchImportResult) GetErrorMessage() string {
+func (o *BatchCreateImportedApiKeysResult) GetErrorMessage() string {
 	if o == nil || IsNil(o.ErrorMessage) {
 		var ret string
 		return ret
@@ -93,7 +93,7 @@ func (o *BatchImportResult) GetErrorMessage() string {
 
 // GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BatchImportResult) GetErrorMessageOk() (*string, bool) {
+func (o *BatchCreateImportedApiKeysResult) GetErrorMessageOk() (*string, bool) {
 	if o == nil || IsNil(o.ErrorMessage) {
 		return nil, false
 	}
@@ -101,7 +101,7 @@ func (o *BatchImportResult) GetErrorMessageOk() (*string, bool) {
 }
 
 // HasErrorMessage returns a boolean if a field has been set.
-func (o *BatchImportResult) HasErrorMessage() bool {
+func (o *BatchCreateImportedApiKeysResult) HasErrorMessage() bool {
 	if o != nil && !IsNil(o.ErrorMessage) {
 		return true
 	}
@@ -110,14 +110,14 @@ func (o *BatchImportResult) HasErrorMessage() bool {
 }
 
 // SetErrorMessage gets a reference to the given string and assigns it to the ErrorMessage field.
-func (o *BatchImportResult) SetErrorMessage(v string) {
+func (o *BatchCreateImportedApiKeysResult) SetErrorMessage(v string) {
 	o.ErrorMessage = &v
 }
 
 // GetImportedApiKey returns the ImportedApiKey field value if set, zero value otherwise.
-func (o *BatchImportResult) GetImportedApiKey() ImportedAPIKey {
+func (o *BatchCreateImportedApiKeysResult) GetImportedApiKey() ImportedApiKey {
 	if o == nil || IsNil(o.ImportedApiKey) {
-		var ret ImportedAPIKey
+		var ret ImportedApiKey
 		return ret
 	}
 	return *o.ImportedApiKey
@@ -125,7 +125,7 @@ func (o *BatchImportResult) GetImportedApiKey() ImportedAPIKey {
 
 // GetImportedApiKeyOk returns a tuple with the ImportedApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BatchImportResult) GetImportedApiKeyOk() (*ImportedAPIKey, bool) {
+func (o *BatchCreateImportedApiKeysResult) GetImportedApiKeyOk() (*ImportedApiKey, bool) {
 	if o == nil || IsNil(o.ImportedApiKey) {
 		return nil, false
 	}
@@ -133,7 +133,7 @@ func (o *BatchImportResult) GetImportedApiKeyOk() (*ImportedAPIKey, bool) {
 }
 
 // HasImportedApiKey returns a boolean if a field has been set.
-func (o *BatchImportResult) HasImportedApiKey() bool {
+func (o *BatchCreateImportedApiKeysResult) HasImportedApiKey() bool {
 	if o != nil && !IsNil(o.ImportedApiKey) {
 		return true
 	}
@@ -141,13 +141,13 @@ func (o *BatchImportResult) HasImportedApiKey() bool {
 	return false
 }
 
-// SetImportedApiKey gets a reference to the given ImportedAPIKey and assigns it to the ImportedApiKey field.
-func (o *BatchImportResult) SetImportedApiKey(v ImportedAPIKey) {
+// SetImportedApiKey gets a reference to the given ImportedApiKey and assigns it to the ImportedApiKey field.
+func (o *BatchCreateImportedApiKeysResult) SetImportedApiKey(v ImportedApiKey) {
 	o.ImportedApiKey = &v
 }
 
 // GetIndex returns the Index field value if set, zero value otherwise.
-func (o *BatchImportResult) GetIndex() int32 {
+func (o *BatchCreateImportedApiKeysResult) GetIndex() int32 {
 	if o == nil || IsNil(o.Index) {
 		var ret int32
 		return ret
@@ -157,7 +157,7 @@ func (o *BatchImportResult) GetIndex() int32 {
 
 // GetIndexOk returns a tuple with the Index field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BatchImportResult) GetIndexOk() (*int32, bool) {
+func (o *BatchCreateImportedApiKeysResult) GetIndexOk() (*int32, bool) {
 	if o == nil || IsNil(o.Index) {
 		return nil, false
 	}
@@ -165,7 +165,7 @@ func (o *BatchImportResult) GetIndexOk() (*int32, bool) {
 }
 
 // HasIndex returns a boolean if a field has been set.
-func (o *BatchImportResult) HasIndex() bool {
+func (o *BatchCreateImportedApiKeysResult) HasIndex() bool {
 	if o != nil && !IsNil(o.Index) {
 		return true
 	}
@@ -174,11 +174,11 @@ func (o *BatchImportResult) HasIndex() bool {
 }
 
 // SetIndex gets a reference to the given int32 and assigns it to the Index field.
-func (o *BatchImportResult) SetIndex(v int32) {
+func (o *BatchCreateImportedApiKeysResult) SetIndex(v int32) {
 	o.Index = &v
 }
 
-func (o BatchImportResult) MarshalJSON() ([]byte, error) {
+func (o BatchCreateImportedApiKeysResult) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -186,7 +186,7 @@ func (o BatchImportResult) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o BatchImportResult) ToMap() (map[string]interface{}, error) {
+func (o BatchCreateImportedApiKeysResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.ErrorCode) {
 		toSerialize["error_code"] = o.ErrorCode
@@ -208,16 +208,16 @@ func (o BatchImportResult) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *BatchImportResult) UnmarshalJSON(data []byte) (err error) {
-	varBatchImportResult := _BatchImportResult{}
+func (o *BatchCreateImportedApiKeysResult) UnmarshalJSON(data []byte) (err error) {
+	varBatchCreateImportedApiKeysResult := _BatchCreateImportedApiKeysResult{}
 
-	err = json.Unmarshal(data, &varBatchImportResult)
+	err = json.Unmarshal(data, &varBatchCreateImportedApiKeysResult)
 
 	if err != nil {
 		return err
 	}
 
-	*o = BatchImportResult(varBatchImportResult)
+	*o = BatchCreateImportedApiKeysResult(varBatchCreateImportedApiKeysResult)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -232,38 +232,38 @@ func (o *BatchImportResult) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableBatchImportResult struct {
-	value *BatchImportResult
+type NullableBatchCreateImportedApiKeysResult struct {
+	value *BatchCreateImportedApiKeysResult
 	isSet bool
 }
 
-func (v NullableBatchImportResult) Get() *BatchImportResult {
+func (v NullableBatchCreateImportedApiKeysResult) Get() *BatchCreateImportedApiKeysResult {
 	return v.value
 }
 
-func (v *NullableBatchImportResult) Set(val *BatchImportResult) {
+func (v *NullableBatchCreateImportedApiKeysResult) Set(val *BatchCreateImportedApiKeysResult) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableBatchImportResult) IsSet() bool {
+func (v NullableBatchCreateImportedApiKeysResult) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableBatchImportResult) Unset() {
+func (v *NullableBatchCreateImportedApiKeysResult) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableBatchImportResult(val *BatchImportResult) *NullableBatchImportResult {
-	return &NullableBatchImportResult{value: val, isSet: true}
+func NewNullableBatchCreateImportedApiKeysResult(val *BatchCreateImportedApiKeysResult) *NullableBatchCreateImportedApiKeysResult {
+	return &NullableBatchCreateImportedApiKeysResult{value: val, isSet: true}
 }
 
-func (v NullableBatchImportResult) MarshalJSON() ([]byte, error) {
+func (v NullableBatchCreateImportedApiKeysResult) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableBatchImportResult) UnmarshalJSON(src []byte) error {
+func (v *NullableBatchCreateImportedApiKeysResult) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

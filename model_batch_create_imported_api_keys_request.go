@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.47
+API version: v1.22.48
 Contact: support@ory.sh
 */
 
@@ -15,38 +15,38 @@ import (
 	"encoding/json"
 )
 
-// checks if the BatchImportAPIKeysRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &BatchImportAPIKeysRequest{}
+// checks if the BatchCreateImportedApiKeysRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BatchCreateImportedApiKeysRequest{}
 
-// BatchImportAPIKeysRequest BatchImportAPIKeysRequest imports multiple external API keys in one request. The maximum batch size is 1000 keys.
-type BatchImportAPIKeysRequest struct {
-	Requests []ImportAPIKeyRequest `json:"requests,omitempty"`
+// BatchCreateImportedApiKeysRequest BatchCreateImportedApiKeysRequest imports multiple external API keys in one request. The maximum batch size is 1000 keys.
+type BatchCreateImportedApiKeysRequest struct {
+	Requests []ImportApiKeyRequest `json:"requests,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _BatchImportAPIKeysRequest BatchImportAPIKeysRequest
+type _BatchCreateImportedApiKeysRequest BatchCreateImportedApiKeysRequest
 
-// NewBatchImportAPIKeysRequest instantiates a new BatchImportAPIKeysRequest object
+// NewBatchCreateImportedApiKeysRequest instantiates a new BatchCreateImportedApiKeysRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBatchImportAPIKeysRequest() *BatchImportAPIKeysRequest {
-	this := BatchImportAPIKeysRequest{}
+func NewBatchCreateImportedApiKeysRequest() *BatchCreateImportedApiKeysRequest {
+	this := BatchCreateImportedApiKeysRequest{}
 	return &this
 }
 
-// NewBatchImportAPIKeysRequestWithDefaults instantiates a new BatchImportAPIKeysRequest object
+// NewBatchCreateImportedApiKeysRequestWithDefaults instantiates a new BatchCreateImportedApiKeysRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewBatchImportAPIKeysRequestWithDefaults() *BatchImportAPIKeysRequest {
-	this := BatchImportAPIKeysRequest{}
+func NewBatchCreateImportedApiKeysRequestWithDefaults() *BatchCreateImportedApiKeysRequest {
+	this := BatchCreateImportedApiKeysRequest{}
 	return &this
 }
 
 // GetRequests returns the Requests field value if set, zero value otherwise.
-func (o *BatchImportAPIKeysRequest) GetRequests() []ImportAPIKeyRequest {
+func (o *BatchCreateImportedApiKeysRequest) GetRequests() []ImportApiKeyRequest {
 	if o == nil || IsNil(o.Requests) {
-		var ret []ImportAPIKeyRequest
+		var ret []ImportApiKeyRequest
 		return ret
 	}
 	return o.Requests
@@ -54,7 +54,7 @@ func (o *BatchImportAPIKeysRequest) GetRequests() []ImportAPIKeyRequest {
 
 // GetRequestsOk returns a tuple with the Requests field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BatchImportAPIKeysRequest) GetRequestsOk() ([]ImportAPIKeyRequest, bool) {
+func (o *BatchCreateImportedApiKeysRequest) GetRequestsOk() ([]ImportApiKeyRequest, bool) {
 	if o == nil || IsNil(o.Requests) {
 		return nil, false
 	}
@@ -62,7 +62,7 @@ func (o *BatchImportAPIKeysRequest) GetRequestsOk() ([]ImportAPIKeyRequest, bool
 }
 
 // HasRequests returns a boolean if a field has been set.
-func (o *BatchImportAPIKeysRequest) HasRequests() bool {
+func (o *BatchCreateImportedApiKeysRequest) HasRequests() bool {
 	if o != nil && !IsNil(o.Requests) {
 		return true
 	}
@@ -70,12 +70,12 @@ func (o *BatchImportAPIKeysRequest) HasRequests() bool {
 	return false
 }
 
-// SetRequests gets a reference to the given []ImportAPIKeyRequest and assigns it to the Requests field.
-func (o *BatchImportAPIKeysRequest) SetRequests(v []ImportAPIKeyRequest) {
+// SetRequests gets a reference to the given []ImportApiKeyRequest and assigns it to the Requests field.
+func (o *BatchCreateImportedApiKeysRequest) SetRequests(v []ImportApiKeyRequest) {
 	o.Requests = v
 }
 
-func (o BatchImportAPIKeysRequest) MarshalJSON() ([]byte, error) {
+func (o BatchCreateImportedApiKeysRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -83,7 +83,7 @@ func (o BatchImportAPIKeysRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o BatchImportAPIKeysRequest) ToMap() (map[string]interface{}, error) {
+func (o BatchCreateImportedApiKeysRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Requests) {
 		toSerialize["requests"] = o.Requests
@@ -96,16 +96,16 @@ func (o BatchImportAPIKeysRequest) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *BatchImportAPIKeysRequest) UnmarshalJSON(data []byte) (err error) {
-	varBatchImportAPIKeysRequest := _BatchImportAPIKeysRequest{}
+func (o *BatchCreateImportedApiKeysRequest) UnmarshalJSON(data []byte) (err error) {
+	varBatchCreateImportedApiKeysRequest := _BatchCreateImportedApiKeysRequest{}
 
-	err = json.Unmarshal(data, &varBatchImportAPIKeysRequest)
+	err = json.Unmarshal(data, &varBatchCreateImportedApiKeysRequest)
 
 	if err != nil {
 		return err
 	}
 
-	*o = BatchImportAPIKeysRequest(varBatchImportAPIKeysRequest)
+	*o = BatchCreateImportedApiKeysRequest(varBatchCreateImportedApiKeysRequest)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -117,38 +117,38 @@ func (o *BatchImportAPIKeysRequest) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableBatchImportAPIKeysRequest struct {
-	value *BatchImportAPIKeysRequest
+type NullableBatchCreateImportedApiKeysRequest struct {
+	value *BatchCreateImportedApiKeysRequest
 	isSet bool
 }
 
-func (v NullableBatchImportAPIKeysRequest) Get() *BatchImportAPIKeysRequest {
+func (v NullableBatchCreateImportedApiKeysRequest) Get() *BatchCreateImportedApiKeysRequest {
 	return v.value
 }
 
-func (v *NullableBatchImportAPIKeysRequest) Set(val *BatchImportAPIKeysRequest) {
+func (v *NullableBatchCreateImportedApiKeysRequest) Set(val *BatchCreateImportedApiKeysRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableBatchImportAPIKeysRequest) IsSet() bool {
+func (v NullableBatchCreateImportedApiKeysRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableBatchImportAPIKeysRequest) Unset() {
+func (v *NullableBatchCreateImportedApiKeysRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableBatchImportAPIKeysRequest(val *BatchImportAPIKeysRequest) *NullableBatchImportAPIKeysRequest {
-	return &NullableBatchImportAPIKeysRequest{value: val, isSet: true}
+func NewNullableBatchCreateImportedApiKeysRequest(val *BatchCreateImportedApiKeysRequest) *NullableBatchCreateImportedApiKeysRequest {
+	return &NullableBatchCreateImportedApiKeysRequest{value: val, isSet: true}
 }
 
-func (v NullableBatchImportAPIKeysRequest) MarshalJSON() ([]byte, error) {
+func (v NullableBatchCreateImportedApiKeysRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableBatchImportAPIKeysRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableBatchCreateImportedApiKeysRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

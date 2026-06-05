@@ -1,4 +1,4 @@
-# AdminRevokeAPIKeyBody
+# AdminRevokeImportedApiKeyBody
 
 ## Properties
 
@@ -9,70 +9,70 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewAdminRevokeAPIKeyBody
+### NewAdminRevokeImportedApiKeyBody
 
-`func NewAdminRevokeAPIKeyBody() *AdminRevokeAPIKeyBody`
+`func NewAdminRevokeImportedApiKeyBody() *AdminRevokeImportedApiKeyBody`
 
-NewAdminRevokeAPIKeyBody instantiates a new AdminRevokeAPIKeyBody object
+NewAdminRevokeImportedApiKeyBody instantiates a new AdminRevokeImportedApiKeyBody object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewAdminRevokeAPIKeyBodyWithDefaults
+### NewAdminRevokeImportedApiKeyBodyWithDefaults
 
-`func NewAdminRevokeAPIKeyBodyWithDefaults() *AdminRevokeAPIKeyBody`
+`func NewAdminRevokeImportedApiKeyBodyWithDefaults() *AdminRevokeImportedApiKeyBody`
 
-NewAdminRevokeAPIKeyBodyWithDefaults instantiates a new AdminRevokeAPIKeyBody object
+NewAdminRevokeImportedApiKeyBodyWithDefaults instantiates a new AdminRevokeImportedApiKeyBody object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetDescription
 
-`func (o *AdminRevokeAPIKeyBody) GetDescription() string`
+`func (o *AdminRevokeImportedApiKeyBody) GetDescription() string`
 
 GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *AdminRevokeAPIKeyBody) GetDescriptionOk() (*string, bool)`
+`func (o *AdminRevokeImportedApiKeyBody) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDescription
 
-`func (o *AdminRevokeAPIKeyBody) SetDescription(v string)`
+`func (o *AdminRevokeImportedApiKeyBody) SetDescription(v string)`
 
 SetDescription sets Description field to given value.
 
 ### HasDescription
 
-`func (o *AdminRevokeAPIKeyBody) HasDescription() bool`
+`func (o *AdminRevokeImportedApiKeyBody) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
 
 ### GetReason
 
-`func (o *AdminRevokeAPIKeyBody) GetReason() RevocationReason`
+`func (o *AdminRevokeImportedApiKeyBody) GetReason() RevocationReason`
 
 GetReason returns the Reason field if non-nil, zero value otherwise.
 
 ### GetReasonOk
 
-`func (o *AdminRevokeAPIKeyBody) GetReasonOk() (*RevocationReason, bool)`
+`func (o *AdminRevokeImportedApiKeyBody) GetReasonOk() (*RevocationReason, bool)`
 
 GetReasonOk returns a tuple with the Reason field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReason
 
-`func (o *AdminRevokeAPIKeyBody) SetReason(v RevocationReason)`
+`func (o *AdminRevokeImportedApiKeyBody) SetReason(v RevocationReason)`
 
 SetReason sets Reason field to given value.
 
 ### HasReason
 
-`func (o *AdminRevokeAPIKeyBody) HasReason() bool`
+`func (o *AdminRevokeImportedApiKeyBody) HasReason() bool`
 
 HasReason returns a boolean if a field has been set.
 

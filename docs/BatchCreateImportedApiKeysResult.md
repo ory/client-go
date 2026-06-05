@@ -1,130 +1,130 @@
-# BatchImportResult
+# BatchCreateImportedApiKeysResult
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ErrorCode** | Pointer to [**BatchImportErrorCode**](BatchImportErrorCode.md) |  | [optional] [default to BATCHIMPORTERRORCODE_BATCH_IMPORT_ERROR_UNSPECIFIED]
+**ErrorCode** | Pointer to [**BatchCreateImportedApiKeysErrorCode**](BatchCreateImportedApiKeysErrorCode.md) |  | [optional] [default to BATCHCREATEIMPORTEDAPIKEYSERRORCODE_BATCH_CREATE_IMPORTED_API_KEYS_ERROR_UNSPECIFIED]
 **ErrorMessage** | Pointer to **string** |  | [optional] 
-**ImportedApiKey** | Pointer to [**ImportedAPIKey**](ImportedAPIKey.md) |  | [optional] 
+**ImportedApiKey** | Pointer to [**ImportedApiKey**](ImportedApiKey.md) |  | [optional] 
 **Index** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
-### NewBatchImportResult
+### NewBatchCreateImportedApiKeysResult
 
-`func NewBatchImportResult() *BatchImportResult`
+`func NewBatchCreateImportedApiKeysResult() *BatchCreateImportedApiKeysResult`
 
-NewBatchImportResult instantiates a new BatchImportResult object
+NewBatchCreateImportedApiKeysResult instantiates a new BatchCreateImportedApiKeysResult object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewBatchImportResultWithDefaults
+### NewBatchCreateImportedApiKeysResultWithDefaults
 
-`func NewBatchImportResultWithDefaults() *BatchImportResult`
+`func NewBatchCreateImportedApiKeysResultWithDefaults() *BatchCreateImportedApiKeysResult`
 
-NewBatchImportResultWithDefaults instantiates a new BatchImportResult object
+NewBatchCreateImportedApiKeysResultWithDefaults instantiates a new BatchCreateImportedApiKeysResult object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetErrorCode
 
-`func (o *BatchImportResult) GetErrorCode() BatchImportErrorCode`
+`func (o *BatchCreateImportedApiKeysResult) GetErrorCode() BatchCreateImportedApiKeysErrorCode`
 
 GetErrorCode returns the ErrorCode field if non-nil, zero value otherwise.
 
 ### GetErrorCodeOk
 
-`func (o *BatchImportResult) GetErrorCodeOk() (*BatchImportErrorCode, bool)`
+`func (o *BatchCreateImportedApiKeysResult) GetErrorCodeOk() (*BatchCreateImportedApiKeysErrorCode, bool)`
 
 GetErrorCodeOk returns a tuple with the ErrorCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetErrorCode
 
-`func (o *BatchImportResult) SetErrorCode(v BatchImportErrorCode)`
+`func (o *BatchCreateImportedApiKeysResult) SetErrorCode(v BatchCreateImportedApiKeysErrorCode)`
 
 SetErrorCode sets ErrorCode field to given value.
 
 ### HasErrorCode
 
-`func (o *BatchImportResult) HasErrorCode() bool`
+`func (o *BatchCreateImportedApiKeysResult) HasErrorCode() bool`
 
 HasErrorCode returns a boolean if a field has been set.
 
 ### GetErrorMessage
 
-`func (o *BatchImportResult) GetErrorMessage() string`
+`func (o *BatchCreateImportedApiKeysResult) GetErrorMessage() string`
 
 GetErrorMessage returns the ErrorMessage field if non-nil, zero value otherwise.
 
 ### GetErrorMessageOk
 
-`func (o *BatchImportResult) GetErrorMessageOk() (*string, bool)`
+`func (o *BatchCreateImportedApiKeysResult) GetErrorMessageOk() (*string, bool)`
 
 GetErrorMessageOk returns a tuple with the ErrorMessage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetErrorMessage
 
-`func (o *BatchImportResult) SetErrorMessage(v string)`
+`func (o *BatchCreateImportedApiKeysResult) SetErrorMessage(v string)`
 
 SetErrorMessage sets ErrorMessage field to given value.
 
 ### HasErrorMessage
 
-`func (o *BatchImportResult) HasErrorMessage() bool`
+`func (o *BatchCreateImportedApiKeysResult) HasErrorMessage() bool`
 
 HasErrorMessage returns a boolean if a field has been set.
 
 ### GetImportedApiKey
 
-`func (o *BatchImportResult) GetImportedApiKey() ImportedAPIKey`
+`func (o *BatchCreateImportedApiKeysResult) GetImportedApiKey() ImportedApiKey`
 
 GetImportedApiKey returns the ImportedApiKey field if non-nil, zero value otherwise.
 
 ### GetImportedApiKeyOk
 
-`func (o *BatchImportResult) GetImportedApiKeyOk() (*ImportedAPIKey, bool)`
+`func (o *BatchCreateImportedApiKeysResult) GetImportedApiKeyOk() (*ImportedApiKey, bool)`
 
 GetImportedApiKeyOk returns a tuple with the ImportedApiKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetImportedApiKey
 
-`func (o *BatchImportResult) SetImportedApiKey(v ImportedAPIKey)`
+`func (o *BatchCreateImportedApiKeysResult) SetImportedApiKey(v ImportedApiKey)`
 
 SetImportedApiKey sets ImportedApiKey field to given value.
 
 ### HasImportedApiKey
 
-`func (o *BatchImportResult) HasImportedApiKey() bool`
+`func (o *BatchCreateImportedApiKeysResult) HasImportedApiKey() bool`
 
 HasImportedApiKey returns a boolean if a field has been set.
 
 ### GetIndex
 
-`func (o *BatchImportResult) GetIndex() int32`
+`func (o *BatchCreateImportedApiKeysResult) GetIndex() int32`
 
 GetIndex returns the Index field if non-nil, zero value otherwise.
 
 ### GetIndexOk
 
-`func (o *BatchImportResult) GetIndexOk() (*int32, bool)`
+`func (o *BatchCreateImportedApiKeysResult) GetIndexOk() (*int32, bool)`
 
 GetIndexOk returns a tuple with the Index field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIndex
 
-`func (o *BatchImportResult) SetIndex(v int32)`
+`func (o *BatchCreateImportedApiKeysResult) SetIndex(v int32)`
 
 SetIndex sets Index field to given value.
 
 ### HasIndex
 
-`func (o *BatchImportResult) HasIndex() bool`
+`func (o *BatchCreateImportedApiKeysResult) HasIndex() bool`
 
 HasIndex returns a boolean if a field has been set.
 

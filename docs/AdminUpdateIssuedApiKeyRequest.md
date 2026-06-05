@@ -1,4 +1,4 @@
-# AdminUpdateIssuedAPIKeyRequest
+# AdminUpdateIssuedApiKeyRequest
 
 ## Properties
 
@@ -21,370 +21,370 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewAdminUpdateIssuedAPIKeyRequest
+### NewAdminUpdateIssuedApiKeyRequest
 
-`func NewAdminUpdateIssuedAPIKeyRequest() *AdminUpdateIssuedAPIKeyRequest`
+`func NewAdminUpdateIssuedApiKeyRequest() *AdminUpdateIssuedApiKeyRequest`
 
-NewAdminUpdateIssuedAPIKeyRequest instantiates a new AdminUpdateIssuedAPIKeyRequest object
+NewAdminUpdateIssuedApiKeyRequest instantiates a new AdminUpdateIssuedApiKeyRequest object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewAdminUpdateIssuedAPIKeyRequestWithDefaults
+### NewAdminUpdateIssuedApiKeyRequestWithDefaults
 
-`func NewAdminUpdateIssuedAPIKeyRequestWithDefaults() *AdminUpdateIssuedAPIKeyRequest`
+`func NewAdminUpdateIssuedApiKeyRequestWithDefaults() *AdminUpdateIssuedApiKeyRequest`
 
-NewAdminUpdateIssuedAPIKeyRequestWithDefaults instantiates a new AdminUpdateIssuedAPIKeyRequest object
+NewAdminUpdateIssuedApiKeyRequestWithDefaults instantiates a new AdminUpdateIssuedApiKeyRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetActorId
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetActorId() string`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetActorId() string`
 
 GetActorId returns the ActorId field if non-nil, zero value otherwise.
 
 ### GetActorIdOk
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetActorIdOk() (*string, bool)`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetActorIdOk() (*string, bool)`
 
 GetActorIdOk returns a tuple with the ActorId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetActorId
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) SetActorId(v string)`
+`func (o *AdminUpdateIssuedApiKeyRequest) SetActorId(v string)`
 
 SetActorId sets ActorId field to given value.
 
 ### HasActorId
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) HasActorId() bool`
+`func (o *AdminUpdateIssuedApiKeyRequest) HasActorId() bool`
 
 HasActorId returns a boolean if a field has been set.
 
 ### GetCreateTime
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetCreateTime() time.Time`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetCreateTime() time.Time`
 
 GetCreateTime returns the CreateTime field if non-nil, zero value otherwise.
 
 ### GetCreateTimeOk
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetCreateTimeOk() (*time.Time, bool)`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetCreateTimeOk() (*time.Time, bool)`
 
 GetCreateTimeOk returns a tuple with the CreateTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreateTime
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) SetCreateTime(v time.Time)`
+`func (o *AdminUpdateIssuedApiKeyRequest) SetCreateTime(v time.Time)`
 
 SetCreateTime sets CreateTime field to given value.
 
 ### HasCreateTime
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) HasCreateTime() bool`
+`func (o *AdminUpdateIssuedApiKeyRequest) HasCreateTime() bool`
 
 HasCreateTime returns a boolean if a field has been set.
 
 ### GetExpireTime
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetExpireTime() time.Time`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetExpireTime() time.Time`
 
 GetExpireTime returns the ExpireTime field if non-nil, zero value otherwise.
 
 ### GetExpireTimeOk
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetExpireTimeOk() (*time.Time, bool)`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetExpireTimeOk() (*time.Time, bool)`
 
 GetExpireTimeOk returns a tuple with the ExpireTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExpireTime
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) SetExpireTime(v time.Time)`
+`func (o *AdminUpdateIssuedApiKeyRequest) SetExpireTime(v time.Time)`
 
 SetExpireTime sets ExpireTime field to given value.
 
 ### HasExpireTime
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) HasExpireTime() bool`
+`func (o *AdminUpdateIssuedApiKeyRequest) HasExpireTime() bool`
 
 HasExpireTime returns a boolean if a field has been set.
 
 ### GetIpRestriction
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetIpRestriction() IPRestriction`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetIpRestriction() IPRestriction`
 
 GetIpRestriction returns the IpRestriction field if non-nil, zero value otherwise.
 
 ### GetIpRestrictionOk
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetIpRestrictionOk() (*IPRestriction, bool)`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetIpRestrictionOk() (*IPRestriction, bool)`
 
 GetIpRestrictionOk returns a tuple with the IpRestriction field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpRestriction
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) SetIpRestriction(v IPRestriction)`
+`func (o *AdminUpdateIssuedApiKeyRequest) SetIpRestriction(v IPRestriction)`
 
 SetIpRestriction sets IpRestriction field to given value.
 
 ### HasIpRestriction
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) HasIpRestriction() bool`
+`func (o *AdminUpdateIssuedApiKeyRequest) HasIpRestriction() bool`
 
 HasIpRestriction returns a boolean if a field has been set.
 
 ### GetLastUsedTime
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetLastUsedTime() time.Time`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetLastUsedTime() time.Time`
 
 GetLastUsedTime returns the LastUsedTime field if non-nil, zero value otherwise.
 
 ### GetLastUsedTimeOk
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetLastUsedTimeOk() (*time.Time, bool)`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetLastUsedTimeOk() (*time.Time, bool)`
 
 GetLastUsedTimeOk returns a tuple with the LastUsedTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastUsedTime
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) SetLastUsedTime(v time.Time)`
+`func (o *AdminUpdateIssuedApiKeyRequest) SetLastUsedTime(v time.Time)`
 
 SetLastUsedTime sets LastUsedTime field to given value.
 
 ### HasLastUsedTime
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) HasLastUsedTime() bool`
+`func (o *AdminUpdateIssuedApiKeyRequest) HasLastUsedTime() bool`
 
 HasLastUsedTime returns a boolean if a field has been set.
 
 ### GetMetadata
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetMetadata() map[string]interface{}`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetMetadata() map[string]interface{}`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetMetadataOk() (*map[string]interface{}, bool)`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetMetadataOk() (*map[string]interface{}, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) SetMetadata(v map[string]interface{})`
+`func (o *AdminUpdateIssuedApiKeyRequest) SetMetadata(v map[string]interface{})`
 
 SetMetadata sets Metadata field to given value.
 
 ### HasMetadata
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) HasMetadata() bool`
+`func (o *AdminUpdateIssuedApiKeyRequest) HasMetadata() bool`
 
 HasMetadata returns a boolean if a field has been set.
 
 ### GetName
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetName() string`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetNameOk() (*string, bool)`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) SetName(v string)`
+`func (o *AdminUpdateIssuedApiKeyRequest) SetName(v string)`
 
 SetName sets Name field to given value.
 
 ### HasName
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) HasName() bool`
+`func (o *AdminUpdateIssuedApiKeyRequest) HasName() bool`
 
 HasName returns a boolean if a field has been set.
 
 ### GetRateLimitPolicy
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetRateLimitPolicy() RateLimitPolicy`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetRateLimitPolicy() RateLimitPolicy`
 
 GetRateLimitPolicy returns the RateLimitPolicy field if non-nil, zero value otherwise.
 
 ### GetRateLimitPolicyOk
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetRateLimitPolicyOk() (*RateLimitPolicy, bool)`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetRateLimitPolicyOk() (*RateLimitPolicy, bool)`
 
 GetRateLimitPolicyOk returns a tuple with the RateLimitPolicy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRateLimitPolicy
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) SetRateLimitPolicy(v RateLimitPolicy)`
+`func (o *AdminUpdateIssuedApiKeyRequest) SetRateLimitPolicy(v RateLimitPolicy)`
 
 SetRateLimitPolicy sets RateLimitPolicy field to given value.
 
 ### HasRateLimitPolicy
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) HasRateLimitPolicy() bool`
+`func (o *AdminUpdateIssuedApiKeyRequest) HasRateLimitPolicy() bool`
 
 HasRateLimitPolicy returns a boolean if a field has been set.
 
 ### GetRevocationDescription
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetRevocationDescription() string`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetRevocationDescription() string`
 
 GetRevocationDescription returns the RevocationDescription field if non-nil, zero value otherwise.
 
 ### GetRevocationDescriptionOk
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetRevocationDescriptionOk() (*string, bool)`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetRevocationDescriptionOk() (*string, bool)`
 
 GetRevocationDescriptionOk returns a tuple with the RevocationDescription field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevocationDescription
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) SetRevocationDescription(v string)`
+`func (o *AdminUpdateIssuedApiKeyRequest) SetRevocationDescription(v string)`
 
 SetRevocationDescription sets RevocationDescription field to given value.
 
 ### HasRevocationDescription
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) HasRevocationDescription() bool`
+`func (o *AdminUpdateIssuedApiKeyRequest) HasRevocationDescription() bool`
 
 HasRevocationDescription returns a boolean if a field has been set.
 
 ### GetRevocationReason
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetRevocationReason() RevocationReason`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetRevocationReason() RevocationReason`
 
 GetRevocationReason returns the RevocationReason field if non-nil, zero value otherwise.
 
 ### GetRevocationReasonOk
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetRevocationReasonOk() (*RevocationReason, bool)`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetRevocationReasonOk() (*RevocationReason, bool)`
 
 GetRevocationReasonOk returns a tuple with the RevocationReason field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevocationReason
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) SetRevocationReason(v RevocationReason)`
+`func (o *AdminUpdateIssuedApiKeyRequest) SetRevocationReason(v RevocationReason)`
 
 SetRevocationReason sets RevocationReason field to given value.
 
 ### HasRevocationReason
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) HasRevocationReason() bool`
+`func (o *AdminUpdateIssuedApiKeyRequest) HasRevocationReason() bool`
 
 HasRevocationReason returns a boolean if a field has been set.
 
 ### GetScopes
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetScopes() []string`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetScopes() []string`
 
 GetScopes returns the Scopes field if non-nil, zero value otherwise.
 
 ### GetScopesOk
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetScopesOk() (*[]string, bool)`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetScopesOk() (*[]string, bool)`
 
 GetScopesOk returns a tuple with the Scopes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetScopes
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) SetScopes(v []string)`
+`func (o *AdminUpdateIssuedApiKeyRequest) SetScopes(v []string)`
 
 SetScopes sets Scopes field to given value.
 
 ### HasScopes
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) HasScopes() bool`
+`func (o *AdminUpdateIssuedApiKeyRequest) HasScopes() bool`
 
 HasScopes returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetStatus() KeyStatus`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetStatus() KeyStatus`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetStatusOk() (*KeyStatus, bool)`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetStatusOk() (*KeyStatus, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) SetStatus(v KeyStatus)`
+`func (o *AdminUpdateIssuedApiKeyRequest) SetStatus(v KeyStatus)`
 
 SetStatus sets Status field to given value.
 
 ### HasStatus
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) HasStatus() bool`
+`func (o *AdminUpdateIssuedApiKeyRequest) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
 
 ### GetUpdateTime
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetUpdateTime() time.Time`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetUpdateTime() time.Time`
 
 GetUpdateTime returns the UpdateTime field if non-nil, zero value otherwise.
 
 ### GetUpdateTimeOk
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetUpdateTimeOk() (*time.Time, bool)`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetUpdateTimeOk() (*time.Time, bool)`
 
 GetUpdateTimeOk returns a tuple with the UpdateTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdateTime
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) SetUpdateTime(v time.Time)`
+`func (o *AdminUpdateIssuedApiKeyRequest) SetUpdateTime(v time.Time)`
 
 SetUpdateTime sets UpdateTime field to given value.
 
 ### HasUpdateTime
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) HasUpdateTime() bool`
+`func (o *AdminUpdateIssuedApiKeyRequest) HasUpdateTime() bool`
 
 HasUpdateTime returns a boolean if a field has been set.
 
 ### GetVisibility
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetVisibility() KeyVisibility`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetVisibility() KeyVisibility`
 
 GetVisibility returns the Visibility field if non-nil, zero value otherwise.
 
 ### GetVisibilityOk
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) GetVisibilityOk() (*KeyVisibility, bool)`
+`func (o *AdminUpdateIssuedApiKeyRequest) GetVisibilityOk() (*KeyVisibility, bool)`
 
 GetVisibilityOk returns a tuple with the Visibility field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVisibility
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) SetVisibility(v KeyVisibility)`
+`func (o *AdminUpdateIssuedApiKeyRequest) SetVisibility(v KeyVisibility)`
 
 SetVisibility sets Visibility field to given value.
 
 ### HasVisibility
 
-`func (o *AdminUpdateIssuedAPIKeyRequest) HasVisibility() bool`
+`func (o *AdminUpdateIssuedApiKeyRequest) HasVisibility() bool`
 
 HasVisibility returns a boolean if a field has been set.
 

@@ -1,4 +1,4 @@
-# ImportAPIKeyRequest
+# ImportApiKeyRequest
 
 ## Properties
 
@@ -17,270 +17,270 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewImportAPIKeyRequest
+### NewImportApiKeyRequest
 
-`func NewImportAPIKeyRequest() *ImportAPIKeyRequest`
+`func NewImportApiKeyRequest() *ImportApiKeyRequest`
 
-NewImportAPIKeyRequest instantiates a new ImportAPIKeyRequest object
+NewImportApiKeyRequest instantiates a new ImportApiKeyRequest object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewImportAPIKeyRequestWithDefaults
+### NewImportApiKeyRequestWithDefaults
 
-`func NewImportAPIKeyRequestWithDefaults() *ImportAPIKeyRequest`
+`func NewImportApiKeyRequestWithDefaults() *ImportApiKeyRequest`
 
-NewImportAPIKeyRequestWithDefaults instantiates a new ImportAPIKeyRequest object
+NewImportApiKeyRequestWithDefaults instantiates a new ImportApiKeyRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetActorId
 
-`func (o *ImportAPIKeyRequest) GetActorId() string`
+`func (o *ImportApiKeyRequest) GetActorId() string`
 
 GetActorId returns the ActorId field if non-nil, zero value otherwise.
 
 ### GetActorIdOk
 
-`func (o *ImportAPIKeyRequest) GetActorIdOk() (*string, bool)`
+`func (o *ImportApiKeyRequest) GetActorIdOk() (*string, bool)`
 
 GetActorIdOk returns a tuple with the ActorId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetActorId
 
-`func (o *ImportAPIKeyRequest) SetActorId(v string)`
+`func (o *ImportApiKeyRequest) SetActorId(v string)`
 
 SetActorId sets ActorId field to given value.
 
 ### HasActorId
 
-`func (o *ImportAPIKeyRequest) HasActorId() bool`
+`func (o *ImportApiKeyRequest) HasActorId() bool`
 
 HasActorId returns a boolean if a field has been set.
 
 ### GetIpRestriction
 
-`func (o *ImportAPIKeyRequest) GetIpRestriction() IPRestriction`
+`func (o *ImportApiKeyRequest) GetIpRestriction() IPRestriction`
 
 GetIpRestriction returns the IpRestriction field if non-nil, zero value otherwise.
 
 ### GetIpRestrictionOk
 
-`func (o *ImportAPIKeyRequest) GetIpRestrictionOk() (*IPRestriction, bool)`
+`func (o *ImportApiKeyRequest) GetIpRestrictionOk() (*IPRestriction, bool)`
 
 GetIpRestrictionOk returns a tuple with the IpRestriction field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpRestriction
 
-`func (o *ImportAPIKeyRequest) SetIpRestriction(v IPRestriction)`
+`func (o *ImportApiKeyRequest) SetIpRestriction(v IPRestriction)`
 
 SetIpRestriction sets IpRestriction field to given value.
 
 ### HasIpRestriction
 
-`func (o *ImportAPIKeyRequest) HasIpRestriction() bool`
+`func (o *ImportApiKeyRequest) HasIpRestriction() bool`
 
 HasIpRestriction returns a boolean if a field has been set.
 
 ### GetMetadata
 
-`func (o *ImportAPIKeyRequest) GetMetadata() map[string]interface{}`
+`func (o *ImportApiKeyRequest) GetMetadata() map[string]interface{}`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *ImportAPIKeyRequest) GetMetadataOk() (*map[string]interface{}, bool)`
+`func (o *ImportApiKeyRequest) GetMetadataOk() (*map[string]interface{}, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *ImportAPIKeyRequest) SetMetadata(v map[string]interface{})`
+`func (o *ImportApiKeyRequest) SetMetadata(v map[string]interface{})`
 
 SetMetadata sets Metadata field to given value.
 
 ### HasMetadata
 
-`func (o *ImportAPIKeyRequest) HasMetadata() bool`
+`func (o *ImportApiKeyRequest) HasMetadata() bool`
 
 HasMetadata returns a boolean if a field has been set.
 
 ### GetName
 
-`func (o *ImportAPIKeyRequest) GetName() string`
+`func (o *ImportApiKeyRequest) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *ImportAPIKeyRequest) GetNameOk() (*string, bool)`
+`func (o *ImportApiKeyRequest) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *ImportAPIKeyRequest) SetName(v string)`
+`func (o *ImportApiKeyRequest) SetName(v string)`
 
 SetName sets Name field to given value.
 
 ### HasName
 
-`func (o *ImportAPIKeyRequest) HasName() bool`
+`func (o *ImportApiKeyRequest) HasName() bool`
 
 HasName returns a boolean if a field has been set.
 
 ### GetRateLimitPolicy
 
-`func (o *ImportAPIKeyRequest) GetRateLimitPolicy() RateLimitPolicy`
+`func (o *ImportApiKeyRequest) GetRateLimitPolicy() RateLimitPolicy`
 
 GetRateLimitPolicy returns the RateLimitPolicy field if non-nil, zero value otherwise.
 
 ### GetRateLimitPolicyOk
 
-`func (o *ImportAPIKeyRequest) GetRateLimitPolicyOk() (*RateLimitPolicy, bool)`
+`func (o *ImportApiKeyRequest) GetRateLimitPolicyOk() (*RateLimitPolicy, bool)`
 
 GetRateLimitPolicyOk returns a tuple with the RateLimitPolicy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRateLimitPolicy
 
-`func (o *ImportAPIKeyRequest) SetRateLimitPolicy(v RateLimitPolicy)`
+`func (o *ImportApiKeyRequest) SetRateLimitPolicy(v RateLimitPolicy)`
 
 SetRateLimitPolicy sets RateLimitPolicy field to given value.
 
 ### HasRateLimitPolicy
 
-`func (o *ImportAPIKeyRequest) HasRateLimitPolicy() bool`
+`func (o *ImportApiKeyRequest) HasRateLimitPolicy() bool`
 
 HasRateLimitPolicy returns a boolean if a field has been set.
 
 ### GetRawKey
 
-`func (o *ImportAPIKeyRequest) GetRawKey() string`
+`func (o *ImportApiKeyRequest) GetRawKey() string`
 
 GetRawKey returns the RawKey field if non-nil, zero value otherwise.
 
 ### GetRawKeyOk
 
-`func (o *ImportAPIKeyRequest) GetRawKeyOk() (*string, bool)`
+`func (o *ImportApiKeyRequest) GetRawKeyOk() (*string, bool)`
 
 GetRawKeyOk returns a tuple with the RawKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRawKey
 
-`func (o *ImportAPIKeyRequest) SetRawKey(v string)`
+`func (o *ImportApiKeyRequest) SetRawKey(v string)`
 
 SetRawKey sets RawKey field to given value.
 
 ### HasRawKey
 
-`func (o *ImportAPIKeyRequest) HasRawKey() bool`
+`func (o *ImportApiKeyRequest) HasRawKey() bool`
 
 HasRawKey returns a boolean if a field has been set.
 
 ### GetRequestId
 
-`func (o *ImportAPIKeyRequest) GetRequestId() string`
+`func (o *ImportApiKeyRequest) GetRequestId() string`
 
 GetRequestId returns the RequestId field if non-nil, zero value otherwise.
 
 ### GetRequestIdOk
 
-`func (o *ImportAPIKeyRequest) GetRequestIdOk() (*string, bool)`
+`func (o *ImportApiKeyRequest) GetRequestIdOk() (*string, bool)`
 
 GetRequestIdOk returns a tuple with the RequestId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRequestId
 
-`func (o *ImportAPIKeyRequest) SetRequestId(v string)`
+`func (o *ImportApiKeyRequest) SetRequestId(v string)`
 
 SetRequestId sets RequestId field to given value.
 
 ### HasRequestId
 
-`func (o *ImportAPIKeyRequest) HasRequestId() bool`
+`func (o *ImportApiKeyRequest) HasRequestId() bool`
 
 HasRequestId returns a boolean if a field has been set.
 
 ### GetScopes
 
-`func (o *ImportAPIKeyRequest) GetScopes() []string`
+`func (o *ImportApiKeyRequest) GetScopes() []string`
 
 GetScopes returns the Scopes field if non-nil, zero value otherwise.
 
 ### GetScopesOk
 
-`func (o *ImportAPIKeyRequest) GetScopesOk() (*[]string, bool)`
+`func (o *ImportApiKeyRequest) GetScopesOk() (*[]string, bool)`
 
 GetScopesOk returns a tuple with the Scopes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetScopes
 
-`func (o *ImportAPIKeyRequest) SetScopes(v []string)`
+`func (o *ImportApiKeyRequest) SetScopes(v []string)`
 
 SetScopes sets Scopes field to given value.
 
 ### HasScopes
 
-`func (o *ImportAPIKeyRequest) HasScopes() bool`
+`func (o *ImportApiKeyRequest) HasScopes() bool`
 
 HasScopes returns a boolean if a field has been set.
 
 ### GetTtl
 
-`func (o *ImportAPIKeyRequest) GetTtl() string`
+`func (o *ImportApiKeyRequest) GetTtl() string`
 
 GetTtl returns the Ttl field if non-nil, zero value otherwise.
 
 ### GetTtlOk
 
-`func (o *ImportAPIKeyRequest) GetTtlOk() (*string, bool)`
+`func (o *ImportApiKeyRequest) GetTtlOk() (*string, bool)`
 
 GetTtlOk returns a tuple with the Ttl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTtl
 
-`func (o *ImportAPIKeyRequest) SetTtl(v string)`
+`func (o *ImportApiKeyRequest) SetTtl(v string)`
 
 SetTtl sets Ttl field to given value.
 
 ### HasTtl
 
-`func (o *ImportAPIKeyRequest) HasTtl() bool`
+`func (o *ImportApiKeyRequest) HasTtl() bool`
 
 HasTtl returns a boolean if a field has been set.
 
 ### GetVisibility
 
-`func (o *ImportAPIKeyRequest) GetVisibility() KeyVisibility`
+`func (o *ImportApiKeyRequest) GetVisibility() KeyVisibility`
 
 GetVisibility returns the Visibility field if non-nil, zero value otherwise.
 
 ### GetVisibilityOk
 
-`func (o *ImportAPIKeyRequest) GetVisibilityOk() (*KeyVisibility, bool)`
+`func (o *ImportApiKeyRequest) GetVisibilityOk() (*KeyVisibility, bool)`
 
 GetVisibilityOk returns a tuple with the Visibility field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVisibility
 
-`func (o *ImportAPIKeyRequest) SetVisibility(v KeyVisibility)`
+`func (o *ImportApiKeyRequest) SetVisibility(v KeyVisibility)`
 
 SetVisibility sets Visibility field to given value.
 
 ### HasVisibility
 
-`func (o *ImportAPIKeyRequest) HasVisibility() bool`
+`func (o *ImportApiKeyRequest) HasVisibility() bool`
 
 HasVisibility returns a boolean if a field has been set.
 

@@ -1,32 +1,33 @@
-# \APIKeysAPI
+# \ApiKeysAPI
 
 All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AdminBatchImportAPIKeys**](APIKeysAPI.md#AdminBatchImportAPIKeys) | **Post** /v2alpha1/admin/importedApiKeys:batchImport | Batch Import API Keys
-[**AdminBatchVerifyAPIKeys**](APIKeysAPI.md#AdminBatchVerifyAPIKeys) | **Post** /v2alpha1/admin/apiKeys:batchVerify | Batch Verify API Keys
-[**AdminDeleteImportedAPIKey**](APIKeysAPI.md#AdminDeleteImportedAPIKey) | **Delete** /v2alpha1/admin/importedApiKeys/{key_id} | Delete Imported API Key
-[**AdminDeriveToken**](APIKeysAPI.md#AdminDeriveToken) | **Post** /v2alpha1/admin/apiKeys:derive | Derive Token
-[**AdminGetImportedAPIKey**](APIKeysAPI.md#AdminGetImportedAPIKey) | **Get** /v2alpha1/admin/importedApiKeys/{key_id} | Get Imported API Key
-[**AdminGetIssuedAPIKey**](APIKeysAPI.md#AdminGetIssuedAPIKey) | **Get** /v2alpha1/admin/issuedApiKeys/{key_id} | Get Issued API Key
-[**AdminImportAPIKey**](APIKeysAPI.md#AdminImportAPIKey) | **Post** /v2alpha1/admin/importedApiKeys | Import API Key
-[**AdminIssueAPIKey**](APIKeysAPI.md#AdminIssueAPIKey) | **Post** /v2alpha1/admin/issuedApiKeys | Issue API Key
-[**AdminListImportedAPIKeys**](APIKeysAPI.md#AdminListImportedAPIKeys) | **Get** /v2alpha1/admin/importedApiKeys | List Imported API Keys
-[**AdminListIssuedAPIKeys**](APIKeysAPI.md#AdminListIssuedAPIKeys) | **Get** /v2alpha1/admin/issuedApiKeys | List Issued API Keys
-[**AdminRevokeAPIKey**](APIKeysAPI.md#AdminRevokeAPIKey) | **Post** /v2alpha1/admin/apiKeys/{key_id}:revoke | Revoke API Key
-[**AdminRotateIssuedAPIKey**](APIKeysAPI.md#AdminRotateIssuedAPIKey) | **Post** /v2alpha1/admin/issuedApiKeys/{key_id}:rotate | Rotate Issued API Key
-[**AdminUpdateImportedAPIKey**](APIKeysAPI.md#AdminUpdateImportedAPIKey) | **Patch** /v2alpha1/admin/importedApiKeys/{key_id} | Update Imported API Key
-[**AdminUpdateIssuedAPIKey**](APIKeysAPI.md#AdminUpdateIssuedAPIKey) | **Patch** /v2alpha1/admin/issuedApiKeys/{key_id} | Update Issued API Key
-[**AdminVerifyAPIKey**](APIKeysAPI.md#AdminVerifyAPIKey) | **Post** /v2alpha1/admin/apiKeys:verify | Verify API Key
-[**GetJWKS**](APIKeysAPI.md#GetJWKS) | **Get** /v2alpha1/derivedKeys/jwks.json | Get JWKS
-[**RevokeAPIKey**](APIKeysAPI.md#RevokeAPIKey) | **Post** /v2alpha1/apiKeys:selfRevoke | Revoke API Key (self-service)
+[**AdminBatchCreateImportedApiKeys**](ApiKeysAPI.md#AdminBatchCreateImportedApiKeys) | **Post** /v2alpha1/admin/importedApiKeys:batchCreate | Batch Import API Keys
+[**AdminBatchVerifyApiKeys**](ApiKeysAPI.md#AdminBatchVerifyApiKeys) | **Post** /v2alpha1/admin/apiKeys:batchVerify | Batch Verify API Keys
+[**AdminDeleteImportedApiKey**](ApiKeysAPI.md#AdminDeleteImportedApiKey) | **Delete** /v2alpha1/admin/importedApiKeys/{key_id} | Delete Imported API Key
+[**AdminDeriveToken**](ApiKeysAPI.md#AdminDeriveToken) | **Post** /v2alpha1/admin/apiKeys:derive | Derive Token
+[**AdminGetImportedApiKey**](ApiKeysAPI.md#AdminGetImportedApiKey) | **Get** /v2alpha1/admin/importedApiKeys/{key_id} | Get Imported API Key
+[**AdminGetIssuedApiKey**](ApiKeysAPI.md#AdminGetIssuedApiKey) | **Get** /v2alpha1/admin/issuedApiKeys/{key_id} | Get Issued API Key
+[**AdminImportApiKey**](ApiKeysAPI.md#AdminImportApiKey) | **Post** /v2alpha1/admin/importedApiKeys | Import API Key
+[**AdminIssueApiKey**](ApiKeysAPI.md#AdminIssueApiKey) | **Post** /v2alpha1/admin/issuedApiKeys | Issue API Key
+[**AdminListImportedApiKeys**](ApiKeysAPI.md#AdminListImportedApiKeys) | **Get** /v2alpha1/admin/importedApiKeys | List Imported API Keys
+[**AdminListIssuedApiKeys**](ApiKeysAPI.md#AdminListIssuedApiKeys) | **Get** /v2alpha1/admin/issuedApiKeys | List Issued API Keys
+[**AdminRevokeImportedApiKey**](ApiKeysAPI.md#AdminRevokeImportedApiKey) | **Post** /v2alpha1/admin/importedApiKeys/{key_id}:revoke | Revoke Imported API Key
+[**AdminRevokeIssuedApiKey**](ApiKeysAPI.md#AdminRevokeIssuedApiKey) | **Post** /v2alpha1/admin/issuedApiKeys/{key_id}:revoke | Revoke Issued API Key
+[**AdminRotateIssuedApiKey**](ApiKeysAPI.md#AdminRotateIssuedApiKey) | **Post** /v2alpha1/admin/issuedApiKeys/{key_id}:rotate | Rotate Issued API Key
+[**AdminUpdateImportedApiKey**](ApiKeysAPI.md#AdminUpdateImportedApiKey) | **Patch** /v2alpha1/admin/importedApiKeys/{key_id} | Update Imported API Key
+[**AdminUpdateIssuedApiKey**](ApiKeysAPI.md#AdminUpdateIssuedApiKey) | **Patch** /v2alpha1/admin/issuedApiKeys/{key_id} | Update Issued API Key
+[**AdminVerifyApiKey**](ApiKeysAPI.md#AdminVerifyApiKey) | **Post** /v2alpha1/admin/apiKeys:verify | Verify API Key
+[**GetJwks**](ApiKeysAPI.md#GetJwks) | **Get** /v2alpha1/derivedKeys/jwks.json | Get JWKS
+[**RevokeApiKey**](ApiKeysAPI.md#RevokeApiKey) | **Post** /v2alpha1/apiKeys:selfRevoke | Revoke API Key (self-service)
 
 
 
-## AdminBatchImportAPIKeys
+## AdminBatchCreateImportedApiKeys
 
-> BatchImportAPIKeysResponse AdminBatchImportAPIKeys(ctx).BatchImportAPIKeysRequest(batchImportAPIKeysRequest).Execute()
+> BatchCreateImportedApiKeysResponse AdminBatchCreateImportedApiKeys(ctx).BatchCreateImportedApiKeysRequest(batchCreateImportedApiKeysRequest).Execute()
 
 Batch Import API Keys
 
@@ -45,17 +46,17 @@ import (
 )
 
 func main() {
-	batchImportAPIKeysRequest := *openapiclient.NewBatchImportAPIKeysRequest() // BatchImportAPIKeysRequest | BatchImportAPIKeysRequest imports multiple external API keys in one request. The maximum batch size is 1000 keys.
+	batchCreateImportedApiKeysRequest := *openapiclient.NewBatchCreateImportedApiKeysRequest() // BatchCreateImportedApiKeysRequest | BatchCreateImportedApiKeysRequest imports multiple external API keys in one request. The maximum batch size is 1000 keys.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.APIKeysAPI.AdminBatchImportAPIKeys(context.Background()).BatchImportAPIKeysRequest(batchImportAPIKeysRequest).Execute()
+	resp, r, err := apiClient.ApiKeysAPI.AdminBatchCreateImportedApiKeys(context.Background()).BatchCreateImportedApiKeysRequest(batchCreateImportedApiKeysRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `APIKeysAPI.AdminBatchImportAPIKeys``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.AdminBatchCreateImportedApiKeys``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AdminBatchImportAPIKeys`: BatchImportAPIKeysResponse
-	fmt.Fprintf(os.Stdout, "Response from `APIKeysAPI.AdminBatchImportAPIKeys`: %v\n", resp)
+	// response from `AdminBatchCreateImportedApiKeys`: BatchCreateImportedApiKeysResponse
+	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.AdminBatchCreateImportedApiKeys`: %v\n", resp)
 }
 ```
 
@@ -65,16 +66,16 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdminBatchImportAPIKeysRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAdminBatchCreateImportedApiKeysRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **batchImportAPIKeysRequest** | [**BatchImportAPIKeysRequest**](BatchImportAPIKeysRequest.md) | BatchImportAPIKeysRequest imports multiple external API keys in one request. The maximum batch size is 1000 keys. | 
+ **batchCreateImportedApiKeysRequest** | [**BatchCreateImportedApiKeysRequest**](BatchCreateImportedApiKeysRequest.md) | BatchCreateImportedApiKeysRequest imports multiple external API keys in one request. The maximum batch size is 1000 keys. | 
 
 ### Return type
 
-[**BatchImportAPIKeysResponse**](BatchImportAPIKeysResponse.md)
+[**BatchCreateImportedApiKeysResponse**](BatchCreateImportedApiKeysResponse.md)
 
 ### Authorization
 
@@ -90,9 +91,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AdminBatchVerifyAPIKeys
+## AdminBatchVerifyApiKeys
 
-> BatchVerifyAPIKeysResponse AdminBatchVerifyAPIKeys(ctx).BatchVerifyAPIKeysRequest(batchVerifyAPIKeysRequest).CacheControl(cacheControl).Pragma(pragma).Execute()
+> BatchVerifyApiKeysResponse AdminBatchVerifyApiKeys(ctx).BatchVerifyApiKeysRequest(batchVerifyApiKeysRequest).CacheControl(cacheControl).Pragma(pragma).Execute()
 
 Batch Verify API Keys
 
@@ -111,19 +112,19 @@ import (
 )
 
 func main() {
-	batchVerifyAPIKeysRequest := *openapiclient.NewBatchVerifyAPIKeysRequest() // BatchVerifyAPIKeysRequest | 
+	batchVerifyApiKeysRequest := *openapiclient.NewBatchVerifyApiKeysRequest() // BatchVerifyApiKeysRequest | 
 	cacheControl := "cacheControl_example" // string | Cache-directive controlling the verifier cache. `no-cache` forces a fresh database lookup (cache read is bypassed). `no-store` additionally prevents the result from being written to the cache. Any other value is ignored. (optional)
 	pragma := "pragma_example" // string | HTTP/1.0 alias for `Cache-Control: no-cache`. Behaves identically when set to `no-cache`; ignored otherwise. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.APIKeysAPI.AdminBatchVerifyAPIKeys(context.Background()).BatchVerifyAPIKeysRequest(batchVerifyAPIKeysRequest).CacheControl(cacheControl).Pragma(pragma).Execute()
+	resp, r, err := apiClient.ApiKeysAPI.AdminBatchVerifyApiKeys(context.Background()).BatchVerifyApiKeysRequest(batchVerifyApiKeysRequest).CacheControl(cacheControl).Pragma(pragma).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `APIKeysAPI.AdminBatchVerifyAPIKeys``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.AdminBatchVerifyApiKeys``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AdminBatchVerifyAPIKeys`: BatchVerifyAPIKeysResponse
-	fmt.Fprintf(os.Stdout, "Response from `APIKeysAPI.AdminBatchVerifyAPIKeys`: %v\n", resp)
+	// response from `AdminBatchVerifyApiKeys`: BatchVerifyApiKeysResponse
+	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.AdminBatchVerifyApiKeys`: %v\n", resp)
 }
 ```
 
@@ -133,18 +134,18 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdminBatchVerifyAPIKeysRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAdminBatchVerifyApiKeysRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **batchVerifyAPIKeysRequest** | [**BatchVerifyAPIKeysRequest**](BatchVerifyAPIKeysRequest.md) |  | 
+ **batchVerifyApiKeysRequest** | [**BatchVerifyApiKeysRequest**](BatchVerifyApiKeysRequest.md) |  | 
  **cacheControl** | **string** | Cache-directive controlling the verifier cache. &#x60;no-cache&#x60; forces a fresh database lookup (cache read is bypassed). &#x60;no-store&#x60; additionally prevents the result from being written to the cache. Any other value is ignored. | 
  **pragma** | **string** | HTTP/1.0 alias for &#x60;Cache-Control: no-cache&#x60;. Behaves identically when set to &#x60;no-cache&#x60;; ignored otherwise. | 
 
 ### Return type
 
-[**BatchVerifyAPIKeysResponse**](BatchVerifyAPIKeysResponse.md)
+[**BatchVerifyApiKeysResponse**](BatchVerifyApiKeysResponse.md)
 
 ### Authorization
 
@@ -160,9 +161,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AdminDeleteImportedAPIKey
+## AdminDeleteImportedApiKey
 
-> interface{} AdminDeleteImportedAPIKey(ctx, keyId).Execute()
+> interface{} AdminDeleteImportedApiKey(ctx, keyId).Execute()
 
 Delete Imported API Key
 
@@ -185,13 +186,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.APIKeysAPI.AdminDeleteImportedAPIKey(context.Background(), keyId).Execute()
+	resp, r, err := apiClient.ApiKeysAPI.AdminDeleteImportedApiKey(context.Background(), keyId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `APIKeysAPI.AdminDeleteImportedAPIKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.AdminDeleteImportedApiKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AdminDeleteImportedAPIKey`: interface{}
-	fmt.Fprintf(os.Stdout, "Response from `APIKeysAPI.AdminDeleteImportedAPIKey`: %v\n", resp)
+	// response from `AdminDeleteImportedApiKey`: interface{}
+	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.AdminDeleteImportedApiKey`: %v\n", resp)
 }
 ```
 
@@ -205,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdminDeleteImportedAPIKeyRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAdminDeleteImportedApiKeyRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -255,13 +256,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.APIKeysAPI.AdminDeriveToken(context.Background()).DeriveTokenRequest(deriveTokenRequest).Execute()
+	resp, r, err := apiClient.ApiKeysAPI.AdminDeriveToken(context.Background()).DeriveTokenRequest(deriveTokenRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `APIKeysAPI.AdminDeriveToken``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.AdminDeriveToken``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 	// response from `AdminDeriveToken`: DeriveTokenResponse
-	fmt.Fprintf(os.Stdout, "Response from `APIKeysAPI.AdminDeriveToken`: %v\n", resp)
+	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.AdminDeriveToken`: %v\n", resp)
 }
 ```
 
@@ -296,9 +297,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AdminGetImportedAPIKey
+## AdminGetImportedApiKey
 
-> ImportedAPIKey AdminGetImportedAPIKey(ctx, keyId).Execute()
+> ImportedApiKey AdminGetImportedApiKey(ctx, keyId).Execute()
 
 Get Imported API Key
 
@@ -321,13 +322,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.APIKeysAPI.AdminGetImportedAPIKey(context.Background(), keyId).Execute()
+	resp, r, err := apiClient.ApiKeysAPI.AdminGetImportedApiKey(context.Background(), keyId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `APIKeysAPI.AdminGetImportedAPIKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.AdminGetImportedApiKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AdminGetImportedAPIKey`: ImportedAPIKey
-	fmt.Fprintf(os.Stdout, "Response from `APIKeysAPI.AdminGetImportedAPIKey`: %v\n", resp)
+	// response from `AdminGetImportedApiKey`: ImportedApiKey
+	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.AdminGetImportedApiKey`: %v\n", resp)
 }
 ```
 
@@ -341,7 +342,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdminGetImportedAPIKeyRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAdminGetImportedApiKeyRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -350,7 +351,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ImportedAPIKey**](ImportedAPIKey.md)
+[**ImportedApiKey**](ImportedApiKey.md)
 
 ### Authorization
 
@@ -366,9 +367,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AdminGetIssuedAPIKey
+## AdminGetIssuedApiKey
 
-> IssuedAPIKey AdminGetIssuedAPIKey(ctx, keyId).Execute()
+> IssuedApiKey AdminGetIssuedApiKey(ctx, keyId).Execute()
 
 Get Issued API Key
 
@@ -391,13 +392,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.APIKeysAPI.AdminGetIssuedAPIKey(context.Background(), keyId).Execute()
+	resp, r, err := apiClient.ApiKeysAPI.AdminGetIssuedApiKey(context.Background(), keyId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `APIKeysAPI.AdminGetIssuedAPIKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.AdminGetIssuedApiKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AdminGetIssuedAPIKey`: IssuedAPIKey
-	fmt.Fprintf(os.Stdout, "Response from `APIKeysAPI.AdminGetIssuedAPIKey`: %v\n", resp)
+	// response from `AdminGetIssuedApiKey`: IssuedApiKey
+	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.AdminGetIssuedApiKey`: %v\n", resp)
 }
 ```
 
@@ -411,7 +412,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdminGetIssuedAPIKeyRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAdminGetIssuedApiKeyRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -420,7 +421,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IssuedAPIKey**](IssuedAPIKey.md)
+[**IssuedApiKey**](IssuedApiKey.md)
 
 ### Authorization
 
@@ -436,9 +437,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AdminImportAPIKey
+## AdminImportApiKey
 
-> ImportedAPIKey AdminImportAPIKey(ctx).ImportAPIKeyRequest(importAPIKeyRequest).Execute()
+> ImportedApiKey AdminImportApiKey(ctx).ImportApiKeyRequest(importApiKeyRequest).Execute()
 
 Import API Key
 
@@ -457,17 +458,17 @@ import (
 )
 
 func main() {
-	importAPIKeyRequest := *openapiclient.NewImportAPIKeyRequest() // ImportAPIKeyRequest | Example:   {     \"raw_key\": \"sk_live_abc123xyz789\",     \"name\": \"Stripe Production Key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"stripe\", \"environment\": \"production\"}   }
+	importApiKeyRequest := *openapiclient.NewImportApiKeyRequest() // ImportApiKeyRequest | Example:   {     \"raw_key\": \"sk_live_abc123xyz789\",     \"name\": \"Stripe Production Key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"stripe\", \"environment\": \"production\"}   }
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.APIKeysAPI.AdminImportAPIKey(context.Background()).ImportAPIKeyRequest(importAPIKeyRequest).Execute()
+	resp, r, err := apiClient.ApiKeysAPI.AdminImportApiKey(context.Background()).ImportApiKeyRequest(importApiKeyRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `APIKeysAPI.AdminImportAPIKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.AdminImportApiKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AdminImportAPIKey`: ImportedAPIKey
-	fmt.Fprintf(os.Stdout, "Response from `APIKeysAPI.AdminImportAPIKey`: %v\n", resp)
+	// response from `AdminImportApiKey`: ImportedApiKey
+	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.AdminImportApiKey`: %v\n", resp)
 }
 ```
 
@@ -477,16 +478,16 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdminImportAPIKeyRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAdminImportApiKeyRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **importAPIKeyRequest** | [**ImportAPIKeyRequest**](ImportAPIKeyRequest.md) | Example:   {     \&quot;raw_key\&quot;: \&quot;sk_live_abc123xyz789\&quot;,     \&quot;name\&quot;: \&quot;Stripe Production Key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;stripe\&quot;, \&quot;environment\&quot;: \&quot;production\&quot;}   } | 
+ **importApiKeyRequest** | [**ImportApiKeyRequest**](ImportApiKeyRequest.md) | Example:   {     \&quot;raw_key\&quot;: \&quot;sk_live_abc123xyz789\&quot;,     \&quot;name\&quot;: \&quot;Stripe Production Key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;stripe\&quot;, \&quot;environment\&quot;: \&quot;production\&quot;}   } | 
 
 ### Return type
 
-[**ImportedAPIKey**](ImportedAPIKey.md)
+[**ImportedApiKey**](ImportedApiKey.md)
 
 ### Authorization
 
@@ -502,9 +503,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AdminIssueAPIKey
+## AdminIssueApiKey
 
-> IssueAPIKeyResponse AdminIssueAPIKey(ctx).IssueAPIKeyRequest(issueAPIKeyRequest).Execute()
+> IssueApiKeyResponse AdminIssueApiKey(ctx).IssueApiKeyRequest(issueApiKeyRequest).Execute()
 
 Issue API Key
 
@@ -523,17 +524,17 @@ import (
 )
 
 func main() {
-	issueAPIKeyRequest := *openapiclient.NewIssueAPIKeyRequest() // IssueAPIKeyRequest | 
+	issueApiKeyRequest := *openapiclient.NewIssueApiKeyRequest() // IssueApiKeyRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.APIKeysAPI.AdminIssueAPIKey(context.Background()).IssueAPIKeyRequest(issueAPIKeyRequest).Execute()
+	resp, r, err := apiClient.ApiKeysAPI.AdminIssueApiKey(context.Background()).IssueApiKeyRequest(issueApiKeyRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `APIKeysAPI.AdminIssueAPIKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.AdminIssueApiKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AdminIssueAPIKey`: IssueAPIKeyResponse
-	fmt.Fprintf(os.Stdout, "Response from `APIKeysAPI.AdminIssueAPIKey`: %v\n", resp)
+	// response from `AdminIssueApiKey`: IssueApiKeyResponse
+	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.AdminIssueApiKey`: %v\n", resp)
 }
 ```
 
@@ -543,16 +544,16 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdminIssueAPIKeyRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAdminIssueApiKeyRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **issueAPIKeyRequest** | [**IssueAPIKeyRequest**](IssueAPIKeyRequest.md) |  | 
+ **issueApiKeyRequest** | [**IssueApiKeyRequest**](IssueApiKeyRequest.md) |  | 
 
 ### Return type
 
-[**IssueAPIKeyResponse**](IssueAPIKeyResponse.md)
+[**IssueApiKeyResponse**](IssueApiKeyResponse.md)
 
 ### Authorization
 
@@ -568,9 +569,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AdminListImportedAPIKeys
+## AdminListImportedApiKeys
 
-> ListImportedAPIKeysResponse AdminListImportedAPIKeys(ctx).PageSize(pageSize).PageToken(pageToken).Filter(filter).Execute()
+> ListImportedApiKeysResponse AdminListImportedApiKeys(ctx).PageSize(pageSize).PageToken(pageToken).Filter(filter).Execute()
 
 List Imported API Keys
 
@@ -595,13 +596,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.APIKeysAPI.AdminListImportedAPIKeys(context.Background()).PageSize(pageSize).PageToken(pageToken).Filter(filter).Execute()
+	resp, r, err := apiClient.ApiKeysAPI.AdminListImportedApiKeys(context.Background()).PageSize(pageSize).PageToken(pageToken).Filter(filter).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `APIKeysAPI.AdminListImportedAPIKeys``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.AdminListImportedApiKeys``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AdminListImportedAPIKeys`: ListImportedAPIKeysResponse
-	fmt.Fprintf(os.Stdout, "Response from `APIKeysAPI.AdminListImportedAPIKeys`: %v\n", resp)
+	// response from `AdminListImportedApiKeys`: ListImportedApiKeysResponse
+	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.AdminListImportedApiKeys`: %v\n", resp)
 }
 ```
 
@@ -611,7 +612,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdminListImportedAPIKeysRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAdminListImportedApiKeysRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -622,7 +623,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListImportedAPIKeysResponse**](ListImportedAPIKeysResponse.md)
+[**ListImportedApiKeysResponse**](ListImportedApiKeysResponse.md)
 
 ### Authorization
 
@@ -638,9 +639,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AdminListIssuedAPIKeys
+## AdminListIssuedApiKeys
 
-> ListIssuedAPIKeysResponse AdminListIssuedAPIKeys(ctx).PageSize(pageSize).PageToken(pageToken).Filter(filter).Execute()
+> ListIssuedApiKeysResponse AdminListIssuedApiKeys(ctx).PageSize(pageSize).PageToken(pageToken).Filter(filter).Execute()
 
 List Issued API Keys
 
@@ -665,13 +666,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.APIKeysAPI.AdminListIssuedAPIKeys(context.Background()).PageSize(pageSize).PageToken(pageToken).Filter(filter).Execute()
+	resp, r, err := apiClient.ApiKeysAPI.AdminListIssuedApiKeys(context.Background()).PageSize(pageSize).PageToken(pageToken).Filter(filter).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `APIKeysAPI.AdminListIssuedAPIKeys``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.AdminListIssuedApiKeys``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AdminListIssuedAPIKeys`: ListIssuedAPIKeysResponse
-	fmt.Fprintf(os.Stdout, "Response from `APIKeysAPI.AdminListIssuedAPIKeys`: %v\n", resp)
+	// response from `AdminListIssuedApiKeys`: ListIssuedApiKeysResponse
+	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.AdminListIssuedApiKeys`: %v\n", resp)
 }
 ```
 
@@ -681,7 +682,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdminListIssuedAPIKeysRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAdminListIssuedApiKeysRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -692,7 +693,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListIssuedAPIKeysResponse**](ListIssuedAPIKeysResponse.md)
+[**ListIssuedApiKeysResponse**](ListIssuedApiKeysResponse.md)
 
 ### Authorization
 
@@ -708,11 +709,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AdminRevokeAPIKey
+## AdminRevokeImportedApiKey
 
-> interface{} AdminRevokeAPIKey(ctx, keyId).AdminRevokeAPIKeyBody(adminRevokeAPIKeyBody).Execute()
+> interface{} AdminRevokeImportedApiKey(ctx, keyId).AdminRevokeImportedApiKeyBody(adminRevokeImportedApiKeyBody).Execute()
 
-Revoke API Key
+Revoke Imported API Key
 
 
 
@@ -729,18 +730,18 @@ import (
 )
 
 func main() {
-	keyId := "keyId_example" // string | Identifier of the API key resource.
-	adminRevokeAPIKeyBody := *openapiclient.NewAdminRevokeAPIKeyBody() // AdminRevokeAPIKeyBody | 
+	keyId := "keyId_example" // string | SHA-512/256 hash of the imported key (REQUIRED)
+	adminRevokeImportedApiKeyBody := *openapiclient.NewAdminRevokeImportedApiKeyBody() // AdminRevokeImportedApiKeyBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.APIKeysAPI.AdminRevokeAPIKey(context.Background(), keyId).AdminRevokeAPIKeyBody(adminRevokeAPIKeyBody).Execute()
+	resp, r, err := apiClient.ApiKeysAPI.AdminRevokeImportedApiKey(context.Background(), keyId).AdminRevokeImportedApiKeyBody(adminRevokeImportedApiKeyBody).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `APIKeysAPI.AdminRevokeAPIKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.AdminRevokeImportedApiKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AdminRevokeAPIKey`: interface{}
-	fmt.Fprintf(os.Stdout, "Response from `APIKeysAPI.AdminRevokeAPIKey`: %v\n", resp)
+	// response from `AdminRevokeImportedApiKey`: interface{}
+	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.AdminRevokeImportedApiKey`: %v\n", resp)
 }
 ```
 
@@ -750,17 +751,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**keyId** | **string** | Identifier of the API key resource. | 
+**keyId** | **string** | SHA-512/256 hash of the imported key (REQUIRED) | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdminRevokeAPIKeyRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAdminRevokeImportedApiKeyRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **adminRevokeAPIKeyBody** | [**AdminRevokeAPIKeyBody**](AdminRevokeAPIKeyBody.md) |  | 
+ **adminRevokeImportedApiKeyBody** | [**AdminRevokeImportedApiKeyBody**](AdminRevokeImportedApiKeyBody.md) |  | 
 
 ### Return type
 
@@ -780,9 +781,81 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AdminRotateIssuedAPIKey
+## AdminRevokeIssuedApiKey
 
-> RotateIssuedAPIKeyResponse AdminRotateIssuedAPIKey(ctx, keyId).AdminRotateIssuedAPIKeyBody(adminRotateIssuedAPIKeyBody).Execute()
+> interface{} AdminRevokeIssuedApiKey(ctx, keyId).AdminRevokeIssuedApiKeyBody(adminRevokeIssuedApiKeyBody).Execute()
+
+Revoke Issued API Key
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+	keyId := "keyId_example" // string | UUID of the issued key (REQUIRED)
+	adminRevokeIssuedApiKeyBody := *openapiclient.NewAdminRevokeIssuedApiKeyBody() // AdminRevokeIssuedApiKeyBody | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ApiKeysAPI.AdminRevokeIssuedApiKey(context.Background(), keyId).AdminRevokeIssuedApiKeyBody(adminRevokeIssuedApiKeyBody).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.AdminRevokeIssuedApiKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AdminRevokeIssuedApiKey`: interface{}
+	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.AdminRevokeIssuedApiKey`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**keyId** | **string** | UUID of the issued key (REQUIRED) | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAdminRevokeIssuedApiKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **adminRevokeIssuedApiKeyBody** | [**AdminRevokeIssuedApiKeyBody**](AdminRevokeIssuedApiKeyBody.md) |  | 
+
+### Return type
+
+**interface{}**
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AdminRotateIssuedApiKey
+
+> RotateIssuedApiKeyResponse AdminRotateIssuedApiKey(ctx, keyId).AdminRotateIssuedApiKeyBody(adminRotateIssuedApiKeyBody).Execute()
 
 Rotate Issued API Key
 
@@ -802,17 +875,17 @@ import (
 
 func main() {
 	keyId := "keyId_example" // string | key_id is the ID of the existing API key to rotate
-	adminRotateIssuedAPIKeyBody := *openapiclient.NewAdminRotateIssuedAPIKeyBody() // AdminRotateIssuedAPIKeyBody | 
+	adminRotateIssuedApiKeyBody := *openapiclient.NewAdminRotateIssuedApiKeyBody() // AdminRotateIssuedApiKeyBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.APIKeysAPI.AdminRotateIssuedAPIKey(context.Background(), keyId).AdminRotateIssuedAPIKeyBody(adminRotateIssuedAPIKeyBody).Execute()
+	resp, r, err := apiClient.ApiKeysAPI.AdminRotateIssuedApiKey(context.Background(), keyId).AdminRotateIssuedApiKeyBody(adminRotateIssuedApiKeyBody).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `APIKeysAPI.AdminRotateIssuedAPIKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.AdminRotateIssuedApiKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AdminRotateIssuedAPIKey`: RotateIssuedAPIKeyResponse
-	fmt.Fprintf(os.Stdout, "Response from `APIKeysAPI.AdminRotateIssuedAPIKey`: %v\n", resp)
+	// response from `AdminRotateIssuedApiKey`: RotateIssuedApiKeyResponse
+	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.AdminRotateIssuedApiKey`: %v\n", resp)
 }
 ```
 
@@ -826,17 +899,17 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdminRotateIssuedAPIKeyRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAdminRotateIssuedApiKeyRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **adminRotateIssuedAPIKeyBody** | [**AdminRotateIssuedAPIKeyBody**](AdminRotateIssuedAPIKeyBody.md) |  | 
+ **adminRotateIssuedApiKeyBody** | [**AdminRotateIssuedApiKeyBody**](AdminRotateIssuedApiKeyBody.md) |  | 
 
 ### Return type
 
-[**RotateIssuedAPIKeyResponse**](RotateIssuedAPIKeyResponse.md)
+[**RotateIssuedApiKeyResponse**](RotateIssuedApiKeyResponse.md)
 
 ### Authorization
 
@@ -852,9 +925,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AdminUpdateImportedAPIKey
+## AdminUpdateImportedApiKey
 
-> ImportedAPIKey AdminUpdateImportedAPIKey(ctx, keyId).AdminUpdateImportedAPIKeyRequest(adminUpdateImportedAPIKeyRequest).UpdateMask(updateMask).Execute()
+> ImportedApiKey AdminUpdateImportedApiKey(ctx, keyId).AdminUpdateImportedApiKeyRequest(adminUpdateImportedApiKeyRequest).UpdateMask(updateMask).Execute()
 
 Update Imported API Key
 
@@ -874,18 +947,18 @@ import (
 
 func main() {
 	keyId := "keyId_example" // string | SHA-512/256 hash of credential
-	adminUpdateImportedAPIKeyRequest := *openapiclient.NewAdminUpdateImportedAPIKeyRequest() // AdminUpdateImportedAPIKeyRequest | 
+	adminUpdateImportedApiKeyRequest := *openapiclient.NewAdminUpdateImportedApiKeyRequest() // AdminUpdateImportedApiKeyRequest | 
 	updateMask := "updateMask_example" // string | The list of fields to update. See AIP-134. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.APIKeysAPI.AdminUpdateImportedAPIKey(context.Background(), keyId).AdminUpdateImportedAPIKeyRequest(adminUpdateImportedAPIKeyRequest).UpdateMask(updateMask).Execute()
+	resp, r, err := apiClient.ApiKeysAPI.AdminUpdateImportedApiKey(context.Background(), keyId).AdminUpdateImportedApiKeyRequest(adminUpdateImportedApiKeyRequest).UpdateMask(updateMask).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `APIKeysAPI.AdminUpdateImportedAPIKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.AdminUpdateImportedApiKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AdminUpdateImportedAPIKey`: ImportedAPIKey
-	fmt.Fprintf(os.Stdout, "Response from `APIKeysAPI.AdminUpdateImportedAPIKey`: %v\n", resp)
+	// response from `AdminUpdateImportedApiKey`: ImportedApiKey
+	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.AdminUpdateImportedApiKey`: %v\n", resp)
 }
 ```
 
@@ -899,18 +972,18 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdminUpdateImportedAPIKeyRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAdminUpdateImportedApiKeyRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **adminUpdateImportedAPIKeyRequest** | [**AdminUpdateImportedAPIKeyRequest**](AdminUpdateImportedAPIKeyRequest.md) |  | 
+ **adminUpdateImportedApiKeyRequest** | [**AdminUpdateImportedApiKeyRequest**](AdminUpdateImportedApiKeyRequest.md) |  | 
  **updateMask** | **string** | The list of fields to update. See AIP-134. | 
 
 ### Return type
 
-[**ImportedAPIKey**](ImportedAPIKey.md)
+[**ImportedApiKey**](ImportedApiKey.md)
 
 ### Authorization
 
@@ -926,9 +999,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AdminUpdateIssuedAPIKey
+## AdminUpdateIssuedApiKey
 
-> IssuedAPIKey AdminUpdateIssuedAPIKey(ctx, keyId).AdminUpdateIssuedAPIKeyRequest(adminUpdateIssuedAPIKeyRequest).UpdateMask(updateMask).Execute()
+> IssuedApiKey AdminUpdateIssuedApiKey(ctx, keyId).AdminUpdateIssuedApiKeyRequest(adminUpdateIssuedApiKeyRequest).UpdateMask(updateMask).Execute()
 
 Update Issued API Key
 
@@ -948,18 +1021,18 @@ import (
 
 func main() {
 	keyId := "keyId_example" // string | Identifier of the API key resource.
-	adminUpdateIssuedAPIKeyRequest := *openapiclient.NewAdminUpdateIssuedAPIKeyRequest() // AdminUpdateIssuedAPIKeyRequest | 
+	adminUpdateIssuedApiKeyRequest := *openapiclient.NewAdminUpdateIssuedApiKeyRequest() // AdminUpdateIssuedApiKeyRequest | 
 	updateMask := "updateMask_example" // string | The list of fields to update. See AIP-134. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.APIKeysAPI.AdminUpdateIssuedAPIKey(context.Background(), keyId).AdminUpdateIssuedAPIKeyRequest(adminUpdateIssuedAPIKeyRequest).UpdateMask(updateMask).Execute()
+	resp, r, err := apiClient.ApiKeysAPI.AdminUpdateIssuedApiKey(context.Background(), keyId).AdminUpdateIssuedApiKeyRequest(adminUpdateIssuedApiKeyRequest).UpdateMask(updateMask).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `APIKeysAPI.AdminUpdateIssuedAPIKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.AdminUpdateIssuedApiKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AdminUpdateIssuedAPIKey`: IssuedAPIKey
-	fmt.Fprintf(os.Stdout, "Response from `APIKeysAPI.AdminUpdateIssuedAPIKey`: %v\n", resp)
+	// response from `AdminUpdateIssuedApiKey`: IssuedApiKey
+	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.AdminUpdateIssuedApiKey`: %v\n", resp)
 }
 ```
 
@@ -973,18 +1046,18 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdminUpdateIssuedAPIKeyRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAdminUpdateIssuedApiKeyRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **adminUpdateIssuedAPIKeyRequest** | [**AdminUpdateIssuedAPIKeyRequest**](AdminUpdateIssuedAPIKeyRequest.md) |  | 
+ **adminUpdateIssuedApiKeyRequest** | [**AdminUpdateIssuedApiKeyRequest**](AdminUpdateIssuedApiKeyRequest.md) |  | 
  **updateMask** | **string** | The list of fields to update. See AIP-134. | 
 
 ### Return type
 
-[**IssuedAPIKey**](IssuedAPIKey.md)
+[**IssuedApiKey**](IssuedApiKey.md)
 
 ### Authorization
 
@@ -1000,9 +1073,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AdminVerifyAPIKey
+## AdminVerifyApiKey
 
-> VerifyAPIKeyResponse AdminVerifyAPIKey(ctx).VerifyAPIKeyRequest(verifyAPIKeyRequest).CacheControl(cacheControl).Pragma(pragma).Execute()
+> VerifyApiKeyResponse AdminVerifyApiKey(ctx).VerifyApiKeyRequest(verifyApiKeyRequest).CacheControl(cacheControl).Pragma(pragma).Execute()
 
 Verify API Key
 
@@ -1021,19 +1094,19 @@ import (
 )
 
 func main() {
-	verifyAPIKeyRequest := *openapiclient.NewVerifyAPIKeyRequest() // VerifyAPIKeyRequest | 
+	verifyApiKeyRequest := *openapiclient.NewVerifyApiKeyRequest() // VerifyApiKeyRequest | 
 	cacheControl := "cacheControl_example" // string | Cache-directive controlling the verifier cache. `no-cache` forces a fresh database lookup (cache read is bypassed). `no-store` additionally prevents the result from being written to the cache. Any other value is ignored. (optional)
 	pragma := "pragma_example" // string | HTTP/1.0 alias for `Cache-Control: no-cache`. Behaves identically when set to `no-cache`; ignored otherwise. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.APIKeysAPI.AdminVerifyAPIKey(context.Background()).VerifyAPIKeyRequest(verifyAPIKeyRequest).CacheControl(cacheControl).Pragma(pragma).Execute()
+	resp, r, err := apiClient.ApiKeysAPI.AdminVerifyApiKey(context.Background()).VerifyApiKeyRequest(verifyApiKeyRequest).CacheControl(cacheControl).Pragma(pragma).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `APIKeysAPI.AdminVerifyAPIKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.AdminVerifyApiKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AdminVerifyAPIKey`: VerifyAPIKeyResponse
-	fmt.Fprintf(os.Stdout, "Response from `APIKeysAPI.AdminVerifyAPIKey`: %v\n", resp)
+	// response from `AdminVerifyApiKey`: VerifyApiKeyResponse
+	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.AdminVerifyApiKey`: %v\n", resp)
 }
 ```
 
@@ -1043,18 +1116,18 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdminVerifyAPIKeyRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAdminVerifyApiKeyRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **verifyAPIKeyRequest** | [**VerifyAPIKeyRequest**](VerifyAPIKeyRequest.md) |  | 
+ **verifyApiKeyRequest** | [**VerifyApiKeyRequest**](VerifyApiKeyRequest.md) |  | 
  **cacheControl** | **string** | Cache-directive controlling the verifier cache. &#x60;no-cache&#x60; forces a fresh database lookup (cache read is bypassed). &#x60;no-store&#x60; additionally prevents the result from being written to the cache. Any other value is ignored. | 
  **pragma** | **string** | HTTP/1.0 alias for &#x60;Cache-Control: no-cache&#x60;. Behaves identically when set to &#x60;no-cache&#x60;; ignored otherwise. | 
 
 ### Return type
 
-[**VerifyAPIKeyResponse**](VerifyAPIKeyResponse.md)
+[**VerifyApiKeyResponse**](VerifyApiKeyResponse.md)
 
 ### Authorization
 
@@ -1070,9 +1143,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetJWKS
+## GetJwks
 
-> GetJWKSResponse GetJWKS(ctx).Execute()
+> GetJWKSResponse GetJwks(ctx).Execute()
 
 Get JWKS
 
@@ -1094,13 +1167,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.APIKeysAPI.GetJWKS(context.Background()).Execute()
+	resp, r, err := apiClient.ApiKeysAPI.GetJwks(context.Background()).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `APIKeysAPI.GetJWKS``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.GetJwks``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetJWKS`: GetJWKSResponse
-	fmt.Fprintf(os.Stdout, "Response from `APIKeysAPI.GetJWKS`: %v\n", resp)
+	// response from `GetJwks`: GetJWKSResponse
+	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.GetJwks`: %v\n", resp)
 }
 ```
 
@@ -1110,7 +1183,7 @@ This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetJWKSRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetJwksRequest struct via the builder pattern
 
 
 ### Return type
@@ -1131,9 +1204,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## RevokeAPIKey
+## RevokeApiKey
 
-> map[string]interface{} RevokeAPIKey(ctx).SelfRevokeAPIKeyRequest(selfRevokeAPIKeyRequest).Execute()
+> map[string]interface{} RevokeApiKey(ctx).SelfRevokeApiKeyRequest(selfRevokeApiKeyRequest).Execute()
 
 Revoke API Key (self-service)
 
@@ -1152,17 +1225,17 @@ import (
 )
 
 func main() {
-	selfRevokeAPIKeyRequest := *openapiclient.NewSelfRevokeAPIKeyRequest() // SelfRevokeAPIKeyRequest | SelfRevokeAPIKeyRequest allows an API key holder to revoke their own key by providing the full key secret as proof of possession.
+	selfRevokeApiKeyRequest := *openapiclient.NewSelfRevokeApiKeyRequest() // SelfRevokeApiKeyRequest | SelfRevokeApiKeyRequest allows an API key holder to revoke their own key by providing the full key secret as proof of possession.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.APIKeysAPI.RevokeAPIKey(context.Background()).SelfRevokeAPIKeyRequest(selfRevokeAPIKeyRequest).Execute()
+	resp, r, err := apiClient.ApiKeysAPI.RevokeApiKey(context.Background()).SelfRevokeApiKeyRequest(selfRevokeApiKeyRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `APIKeysAPI.RevokeAPIKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.RevokeApiKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RevokeAPIKey`: map[string]interface{}
-	fmt.Fprintf(os.Stdout, "Response from `APIKeysAPI.RevokeAPIKey`: %v\n", resp)
+	// response from `RevokeApiKey`: map[string]interface{}
+	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.RevokeApiKey`: %v\n", resp)
 }
 ```
 
@@ -1172,12 +1245,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRevokeAPIKeyRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiRevokeApiKeyRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **selfRevokeAPIKeyRequest** | [**SelfRevokeAPIKeyRequest**](SelfRevokeAPIKeyRequest.md) | SelfRevokeAPIKeyRequest allows an API key holder to revoke their own key by providing the full key secret as proof of possession. | 
+ **selfRevokeApiKeyRequest** | [**SelfRevokeApiKeyRequest**](SelfRevokeApiKeyRequest.md) | SelfRevokeApiKeyRequest allows an API key holder to revoke their own key by providing the full key secret as proof of possession. | 
 
 ### Return type
 

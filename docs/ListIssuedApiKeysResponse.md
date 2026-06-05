@@ -1,78 +1,78 @@
-# ListIssuedAPIKeysResponse
+# ListIssuedApiKeysResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IssuedApiKeys** | Pointer to [**[]IssuedAPIKey**](IssuedAPIKey.md) |  | [optional] 
+**IssuedApiKeys** | Pointer to [**[]IssuedApiKey**](IssuedApiKey.md) |  | [optional] 
 **NextPageToken** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
-### NewListIssuedAPIKeysResponse
+### NewListIssuedApiKeysResponse
 
-`func NewListIssuedAPIKeysResponse() *ListIssuedAPIKeysResponse`
+`func NewListIssuedApiKeysResponse() *ListIssuedApiKeysResponse`
 
-NewListIssuedAPIKeysResponse instantiates a new ListIssuedAPIKeysResponse object
+NewListIssuedApiKeysResponse instantiates a new ListIssuedApiKeysResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewListIssuedAPIKeysResponseWithDefaults
+### NewListIssuedApiKeysResponseWithDefaults
 
-`func NewListIssuedAPIKeysResponseWithDefaults() *ListIssuedAPIKeysResponse`
+`func NewListIssuedApiKeysResponseWithDefaults() *ListIssuedApiKeysResponse`
 
-NewListIssuedAPIKeysResponseWithDefaults instantiates a new ListIssuedAPIKeysResponse object
+NewListIssuedApiKeysResponseWithDefaults instantiates a new ListIssuedApiKeysResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetIssuedApiKeys
 
-`func (o *ListIssuedAPIKeysResponse) GetIssuedApiKeys() []IssuedAPIKey`
+`func (o *ListIssuedApiKeysResponse) GetIssuedApiKeys() []IssuedApiKey`
 
 GetIssuedApiKeys returns the IssuedApiKeys field if non-nil, zero value otherwise.
 
 ### GetIssuedApiKeysOk
 
-`func (o *ListIssuedAPIKeysResponse) GetIssuedApiKeysOk() (*[]IssuedAPIKey, bool)`
+`func (o *ListIssuedApiKeysResponse) GetIssuedApiKeysOk() (*[]IssuedApiKey, bool)`
 
 GetIssuedApiKeysOk returns a tuple with the IssuedApiKeys field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIssuedApiKeys
 
-`func (o *ListIssuedAPIKeysResponse) SetIssuedApiKeys(v []IssuedAPIKey)`
+`func (o *ListIssuedApiKeysResponse) SetIssuedApiKeys(v []IssuedApiKey)`
 
 SetIssuedApiKeys sets IssuedApiKeys field to given value.
 
 ### HasIssuedApiKeys
 
-`func (o *ListIssuedAPIKeysResponse) HasIssuedApiKeys() bool`
+`func (o *ListIssuedApiKeysResponse) HasIssuedApiKeys() bool`
 
 HasIssuedApiKeys returns a boolean if a field has been set.
 
 ### GetNextPageToken
 
-`func (o *ListIssuedAPIKeysResponse) GetNextPageToken() string`
+`func (o *ListIssuedApiKeysResponse) GetNextPageToken() string`
 
 GetNextPageToken returns the NextPageToken field if non-nil, zero value otherwise.
 
 ### GetNextPageTokenOk
 
-`func (o *ListIssuedAPIKeysResponse) GetNextPageTokenOk() (*string, bool)`
+`func (o *ListIssuedApiKeysResponse) GetNextPageTokenOk() (*string, bool)`
 
 GetNextPageTokenOk returns a tuple with the NextPageToken field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNextPageToken
 
-`func (o *ListIssuedAPIKeysResponse) SetNextPageToken(v string)`
+`func (o *ListIssuedApiKeysResponse) SetNextPageToken(v string)`
 
 SetNextPageToken sets NextPageToken field to given value.
 
 ### HasNextPageToken
 
-`func (o *ListIssuedAPIKeysResponse) HasNextPageToken() bool`
+`func (o *ListIssuedApiKeysResponse) HasNextPageToken() bool`
 
 HasNextPageToken returns a boolean if a field has been set.
 
