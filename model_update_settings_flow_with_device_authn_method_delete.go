@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.56
+API version: v1.22.57
 Contact: support@ory.sh
 */
 
@@ -13,70 +13,64 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
-// checks if the ConsistencyRequestParameters type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ConsistencyRequestParameters{}
+// checks if the UpdateSettingsFlowWithDeviceAuthnMethodDelete type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateSettingsFlowWithDeviceAuthnMethodDelete{}
 
-// ConsistencyRequestParameters Control API consistency guarantees
-type ConsistencyRequestParameters struct {
-	// Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
-	Consistency *string `json:"consistency,omitempty"`
+// UpdateSettingsFlowWithDeviceAuthnMethodDelete struct for UpdateSettingsFlowWithDeviceAuthnMethodDelete
+type UpdateSettingsFlowWithDeviceAuthnMethodDelete struct {
+	// ClientKeyID is the key id/alias on the device.
+	ClientKeyId string `json:"client_key_id"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _ConsistencyRequestParameters ConsistencyRequestParameters
+type _UpdateSettingsFlowWithDeviceAuthnMethodDelete UpdateSettingsFlowWithDeviceAuthnMethodDelete
 
-// NewConsistencyRequestParameters instantiates a new ConsistencyRequestParameters object
+// NewUpdateSettingsFlowWithDeviceAuthnMethodDelete instantiates a new UpdateSettingsFlowWithDeviceAuthnMethodDelete object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConsistencyRequestParameters() *ConsistencyRequestParameters {
-	this := ConsistencyRequestParameters{}
+func NewUpdateSettingsFlowWithDeviceAuthnMethodDelete(clientKeyId string) *UpdateSettingsFlowWithDeviceAuthnMethodDelete {
+	this := UpdateSettingsFlowWithDeviceAuthnMethodDelete{}
+	this.ClientKeyId = clientKeyId
 	return &this
 }
 
-// NewConsistencyRequestParametersWithDefaults instantiates a new ConsistencyRequestParameters object
+// NewUpdateSettingsFlowWithDeviceAuthnMethodDeleteWithDefaults instantiates a new UpdateSettingsFlowWithDeviceAuthnMethodDelete object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewConsistencyRequestParametersWithDefaults() *ConsistencyRequestParameters {
-	this := ConsistencyRequestParameters{}
+func NewUpdateSettingsFlowWithDeviceAuthnMethodDeleteWithDefaults() *UpdateSettingsFlowWithDeviceAuthnMethodDelete {
+	this := UpdateSettingsFlowWithDeviceAuthnMethodDelete{}
 	return &this
 }
 
-// GetConsistency returns the Consistency field value if set, zero value otherwise.
-func (o *ConsistencyRequestParameters) GetConsistency() string {
-	if o == nil || IsNil(o.Consistency) {
+// GetClientKeyId returns the ClientKeyId field value
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodDelete) GetClientKeyId() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Consistency
+
+	return o.ClientKeyId
 }
 
-// GetConsistencyOk returns a tuple with the Consistency field value if set, nil otherwise
+// GetClientKeyIdOk returns a tuple with the ClientKeyId field value
 // and a boolean to check if the value has been set.
-func (o *ConsistencyRequestParameters) GetConsistencyOk() (*string, bool) {
-	if o == nil || IsNil(o.Consistency) {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodDelete) GetClientKeyIdOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Consistency, true
+	return &o.ClientKeyId, true
 }
 
-// HasConsistency returns a boolean if a field has been set.
-func (o *ConsistencyRequestParameters) HasConsistency() bool {
-	if o != nil && !IsNil(o.Consistency) {
-		return true
-	}
-
-	return false
+// SetClientKeyId sets field value
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodDelete) SetClientKeyId(v string) {
+	o.ClientKeyId = v
 }
 
-// SetConsistency gets a reference to the given string and assigns it to the Consistency field.
-func (o *ConsistencyRequestParameters) SetConsistency(v string) {
-	o.Consistency = &v
-}
-
-func (o ConsistencyRequestParameters) MarshalJSON() ([]byte, error) {
+func (o UpdateSettingsFlowWithDeviceAuthnMethodDelete) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -84,11 +78,9 @@ func (o ConsistencyRequestParameters) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ConsistencyRequestParameters) ToMap() (map[string]interface{}, error) {
+func (o UpdateSettingsFlowWithDeviceAuthnMethodDelete) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Consistency) {
-		toSerialize["consistency"] = o.Consistency
-	}
+	toSerialize["client_key_id"] = o.ClientKeyId
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -97,59 +89,80 @@ func (o ConsistencyRequestParameters) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ConsistencyRequestParameters) UnmarshalJSON(data []byte) (err error) {
-	varConsistencyRequestParameters := _ConsistencyRequestParameters{}
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodDelete) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"client_key_id",
+	}
 
-	err = json.Unmarshal(data, &varConsistencyRequestParameters)
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateSettingsFlowWithDeviceAuthnMethodDelete := _UpdateSettingsFlowWithDeviceAuthnMethodDelete{}
+
+	err = json.Unmarshal(data, &varUpdateSettingsFlowWithDeviceAuthnMethodDelete)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ConsistencyRequestParameters(varConsistencyRequestParameters)
+	*o = UpdateSettingsFlowWithDeviceAuthnMethodDelete(varUpdateSettingsFlowWithDeviceAuthnMethodDelete)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "consistency")
+		delete(additionalProperties, "client_key_id")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableConsistencyRequestParameters struct {
-	value *ConsistencyRequestParameters
+type NullableUpdateSettingsFlowWithDeviceAuthnMethodDelete struct {
+	value *UpdateSettingsFlowWithDeviceAuthnMethodDelete
 	isSet bool
 }
 
-func (v NullableConsistencyRequestParameters) Get() *ConsistencyRequestParameters {
+func (v NullableUpdateSettingsFlowWithDeviceAuthnMethodDelete) Get() *UpdateSettingsFlowWithDeviceAuthnMethodDelete {
 	return v.value
 }
 
-func (v *NullableConsistencyRequestParameters) Set(val *ConsistencyRequestParameters) {
+func (v *NullableUpdateSettingsFlowWithDeviceAuthnMethodDelete) Set(val *UpdateSettingsFlowWithDeviceAuthnMethodDelete) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableConsistencyRequestParameters) IsSet() bool {
+func (v NullableUpdateSettingsFlowWithDeviceAuthnMethodDelete) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableConsistencyRequestParameters) Unset() {
+func (v *NullableUpdateSettingsFlowWithDeviceAuthnMethodDelete) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableConsistencyRequestParameters(val *ConsistencyRequestParameters) *NullableConsistencyRequestParameters {
-	return &NullableConsistencyRequestParameters{value: val, isSet: true}
+func NewNullableUpdateSettingsFlowWithDeviceAuthnMethodDelete(val *UpdateSettingsFlowWithDeviceAuthnMethodDelete) *NullableUpdateSettingsFlowWithDeviceAuthnMethodDelete {
+	return &NullableUpdateSettingsFlowWithDeviceAuthnMethodDelete{value: val, isSet: true}
 }
 
-func (v NullableConsistencyRequestParameters) MarshalJSON() ([]byte, error) {
+func (v NullableUpdateSettingsFlowWithDeviceAuthnMethodDelete) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableConsistencyRequestParameters) UnmarshalJSON(src []byte) error {
+func (v *NullableUpdateSettingsFlowWithDeviceAuthnMethodDelete) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
