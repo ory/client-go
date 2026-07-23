@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.63
+API version: v1.22.64
 Contact: support@ory.sh
 */
 
@@ -16,61 +16,61 @@ import (
 	"fmt"
 )
 
-// checks if the UpdateSettingsFlowWithDeviceAuthnMethodDelete type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &UpdateSettingsFlowWithDeviceAuthnMethodDelete{}
+// checks if the GetOrganizationsByHostnameResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationsByHostnameResponse{}
 
-// UpdateSettingsFlowWithDeviceAuthnMethodDelete struct for UpdateSettingsFlowWithDeviceAuthnMethodDelete
-type UpdateSettingsFlowWithDeviceAuthnMethodDelete struct {
-	// ClientKeyID is the deterministic fingerprint of the key to remove: the lowercase-hex SHA-256 of the device public key in PKIX, ASN.1 DER (SubjectPublicKeyInfo) form. Keys enrolled before the server derived the id use their original client-chosen value.
-	ClientKeyId string `json:"client_key_id"`
+// GetOrganizationsByHostnameResponse getOrganizationsByHostnameResponse is the list of B2B SSO organizations for the project resolved from the request host.
+type GetOrganizationsByHostnameResponse struct {
+	// Organizations is the list of organizations for the project.
+	Organizations []OrganizationByHostname `json:"organizations"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _UpdateSettingsFlowWithDeviceAuthnMethodDelete UpdateSettingsFlowWithDeviceAuthnMethodDelete
+type _GetOrganizationsByHostnameResponse GetOrganizationsByHostnameResponse
 
-// NewUpdateSettingsFlowWithDeviceAuthnMethodDelete instantiates a new UpdateSettingsFlowWithDeviceAuthnMethodDelete object
+// NewGetOrganizationsByHostnameResponse instantiates a new GetOrganizationsByHostnameResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateSettingsFlowWithDeviceAuthnMethodDelete(clientKeyId string) *UpdateSettingsFlowWithDeviceAuthnMethodDelete {
-	this := UpdateSettingsFlowWithDeviceAuthnMethodDelete{}
-	this.ClientKeyId = clientKeyId
+func NewGetOrganizationsByHostnameResponse(organizations []OrganizationByHostname) *GetOrganizationsByHostnameResponse {
+	this := GetOrganizationsByHostnameResponse{}
+	this.Organizations = organizations
 	return &this
 }
 
-// NewUpdateSettingsFlowWithDeviceAuthnMethodDeleteWithDefaults instantiates a new UpdateSettingsFlowWithDeviceAuthnMethodDelete object
+// NewGetOrganizationsByHostnameResponseWithDefaults instantiates a new GetOrganizationsByHostnameResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateSettingsFlowWithDeviceAuthnMethodDeleteWithDefaults() *UpdateSettingsFlowWithDeviceAuthnMethodDelete {
-	this := UpdateSettingsFlowWithDeviceAuthnMethodDelete{}
+func NewGetOrganizationsByHostnameResponseWithDefaults() *GetOrganizationsByHostnameResponse {
+	this := GetOrganizationsByHostnameResponse{}
 	return &this
 }
 
-// GetClientKeyId returns the ClientKeyId field value
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodDelete) GetClientKeyId() string {
+// GetOrganizations returns the Organizations field value
+func (o *GetOrganizationsByHostnameResponse) GetOrganizations() []OrganizationByHostname {
 	if o == nil {
-		var ret string
+		var ret []OrganizationByHostname
 		return ret
 	}
 
-	return o.ClientKeyId
+	return o.Organizations
 }
 
-// GetClientKeyIdOk returns a tuple with the ClientKeyId field value
+// GetOrganizationsOk returns a tuple with the Organizations field value
 // and a boolean to check if the value has been set.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodDelete) GetClientKeyIdOk() (*string, bool) {
+func (o *GetOrganizationsByHostnameResponse) GetOrganizationsOk() ([]OrganizationByHostname, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ClientKeyId, true
+	return o.Organizations, true
 }
 
-// SetClientKeyId sets field value
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodDelete) SetClientKeyId(v string) {
-	o.ClientKeyId = v
+// SetOrganizations sets field value
+func (o *GetOrganizationsByHostnameResponse) SetOrganizations(v []OrganizationByHostname) {
+	o.Organizations = v
 }
 
-func (o UpdateSettingsFlowWithDeviceAuthnMethodDelete) MarshalJSON() ([]byte, error) {
+func (o GetOrganizationsByHostnameResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -78,9 +78,9 @@ func (o UpdateSettingsFlowWithDeviceAuthnMethodDelete) MarshalJSON() ([]byte, er
 	return json.Marshal(toSerialize)
 }
 
-func (o UpdateSettingsFlowWithDeviceAuthnMethodDelete) ToMap() (map[string]interface{}, error) {
+func (o GetOrganizationsByHostnameResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["client_key_id"] = o.ClientKeyId
+	toSerialize["organizations"] = o.Organizations
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -89,12 +89,12 @@ func (o UpdateSettingsFlowWithDeviceAuthnMethodDelete) ToMap() (map[string]inter
 	return toSerialize, nil
 }
 
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodDelete) UnmarshalJSON(data []byte) (err error) {
+func (o *GetOrganizationsByHostnameResponse) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"client_key_id",
+		"organizations",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -111,58 +111,58 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodDelete) UnmarshalJSON(data []byt
 		}
 	}
 
-	varUpdateSettingsFlowWithDeviceAuthnMethodDelete := _UpdateSettingsFlowWithDeviceAuthnMethodDelete{}
+	varGetOrganizationsByHostnameResponse := _GetOrganizationsByHostnameResponse{}
 
-	err = json.Unmarshal(data, &varUpdateSettingsFlowWithDeviceAuthnMethodDelete)
+	err = json.Unmarshal(data, &varGetOrganizationsByHostnameResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = UpdateSettingsFlowWithDeviceAuthnMethodDelete(varUpdateSettingsFlowWithDeviceAuthnMethodDelete)
+	*o = GetOrganizationsByHostnameResponse(varGetOrganizationsByHostnameResponse)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "client_key_id")
+		delete(additionalProperties, "organizations")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableUpdateSettingsFlowWithDeviceAuthnMethodDelete struct {
-	value *UpdateSettingsFlowWithDeviceAuthnMethodDelete
+type NullableGetOrganizationsByHostnameResponse struct {
+	value *GetOrganizationsByHostnameResponse
 	isSet bool
 }
 
-func (v NullableUpdateSettingsFlowWithDeviceAuthnMethodDelete) Get() *UpdateSettingsFlowWithDeviceAuthnMethodDelete {
+func (v NullableGetOrganizationsByHostnameResponse) Get() *GetOrganizationsByHostnameResponse {
 	return v.value
 }
 
-func (v *NullableUpdateSettingsFlowWithDeviceAuthnMethodDelete) Set(val *UpdateSettingsFlowWithDeviceAuthnMethodDelete) {
+func (v *NullableGetOrganizationsByHostnameResponse) Set(val *GetOrganizationsByHostnameResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateSettingsFlowWithDeviceAuthnMethodDelete) IsSet() bool {
+func (v NullableGetOrganizationsByHostnameResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateSettingsFlowWithDeviceAuthnMethodDelete) Unset() {
+func (v *NullableGetOrganizationsByHostnameResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateSettingsFlowWithDeviceAuthnMethodDelete(val *UpdateSettingsFlowWithDeviceAuthnMethodDelete) *NullableUpdateSettingsFlowWithDeviceAuthnMethodDelete {
-	return &NullableUpdateSettingsFlowWithDeviceAuthnMethodDelete{value: val, isSet: true}
+func NewNullableGetOrganizationsByHostnameResponse(val *GetOrganizationsByHostnameResponse) *NullableGetOrganizationsByHostnameResponse {
+	return &NullableGetOrganizationsByHostnameResponse{value: val, isSet: true}
 }
 
-func (v NullableUpdateSettingsFlowWithDeviceAuthnMethodDelete) MarshalJSON() ([]byte, error) {
+func (v NullableGetOrganizationsByHostnameResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateSettingsFlowWithDeviceAuthnMethodDelete) UnmarshalJSON(src []byte) error {
+func (v *NullableGetOrganizationsByHostnameResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

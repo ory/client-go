@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.63
+API version: v1.22.64
 Contact: support@ory.sh
 */
 
@@ -16,49 +16,51 @@ import (
 	"fmt"
 )
 
-// checks if the UpdateSettingsFlowWithDeviceAuthnMethodAdd type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &UpdateSettingsFlowWithDeviceAuthnMethodAdd{}
+// checks if the UpdateSettingsFlowWithDeviceAuthnMethodRegister type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateSettingsFlowWithDeviceAuthnMethodRegister{}
 
-// UpdateSettingsFlowWithDeviceAuthnMethodAdd struct for UpdateSettingsFlowWithDeviceAuthnMethodAdd
-type UpdateSettingsFlowWithDeviceAuthnMethodAdd struct {
+// UpdateSettingsFlowWithDeviceAuthnMethodRegister Enrolls a new device key from a hardware-backed platform attestation. Provide exactly one of certificate_chain_android or attestation_ios. The attestation must embed the enrollment challenge, computed as follows:  1. Base64-decode the settings flow's hidden `deviceauthn_nonce` UI node value, parse the result as JSON, and base64-decode its `nonce` field. 2. For a key without a PIN, the raw nonce bytes are the challenge. For a PIN-protected key, the challenge is the SHA-256 of the raw nonce concatenated with the raw transport_public_key bytes, which binds the transport key into the attestation.  For a PIN-protected key the server returns a one-time sealed pin_secret in the flow's `continue_with` items (action `show_pin_entry_ui`).
+type UpdateSettingsFlowWithDeviceAuthnMethodRegister struct {
+	// The CBOR-encoded Apple App Attest attestation object for the new key. Generate the key with `DCAppAttestService.generateKey`, then obtain the attestation with `DCAppAttestService.attestKey`, passing the enrollment challenge described above as the `clientDataHash` argument — do not hash it again — and submit the result unchanged. Set exactly one of certificate_chain_android or attestation_ios.
 	AttestationIos *string `json:"attestation_ios,omitempty"`
-	// CertificateChainAndroid is a list of base64 strings for creating a key on Android. Each element is a certificate. The first element is the leaf, corresponding to the on-device key, the last is the root (Google CA).
+	// The Android Key Attestation certificate chain for the new key, one base64-encoded DER certificate per element, leaf first: the first element certifies the on-device key, the last is the Google attestation root.  Generate the key on-device (imported keys are rejected) in the hardware-backed keystore as an elliptic-curve (P-224, P-256, P-384, or P-521) signing key: `KeyGenParameterSpec.Builder(alias, PURPOSE_SIGN)` with `DIGEST_SHA256` and `setAttestationChallenge(challenge)`, where challenge is the enrollment challenge described above. Then submit the chain returned by `KeyStore.getCertificateChain`. Set exactly one of certificate_chain_android or attestation_ios.
 	CertificateChainAndroid []string `json:"certificate_chain_android,omitempty"`
-	// DeviceName is a human-readable name for the device e.g. 'My work phone'.
+	// A human-readable name for the device, e.g. 'My work phone'. It helps the user tell this key apart from others.
 	DeviceName string `json:"device_name"`
-	// PINProtected indicates that the key is protected by a PIN. When true, the server must issue a sealed pin_secret in the response.
+	// Set to true to enroll the key as PIN-protected. The server then mints a 32-byte pin_secret and returns it exactly once, in the settings-flow response: the `continue_with` array contains an item with action `show_pin_entry_ui` whose `data.enc` (HPKE encapsulated key) and `data.ciphertext` (sealed pin_secret) fields are base64-encoded and sealed to transport_public_key. Open them on the device with the transport private key using HPKE with DHKEM(X25519, HKDF-SHA256), HKDF-SHA256, AES-128-GCM, the ASCII info string \"ory/deviceauthn/pin-secret/v1\", and the client_key_id (its ASCII hex form) as the AAD, then bind the secret to the user's PIN locally. The sealed secret is never delivered again; logins with the key must then include a pin_proof.
 	PinProtected *bool `json:"pin_protected,omitempty"`
-	// TransportPubKey is the transport public key (HPKE) used to seal the returned pin_secret so only this device can open it. It is base64-encoded in JSON and decoded to raw bytes here.
+	// The device's X25519 transport public key (32 bytes, base64-encoded) used to seal the returned pin_secret so only this device can open it. Required when pin_protected is true, ignored otherwise.  Generate a fresh, random X25519 key pair for each request — for example with CryptoKit's `Curve25519.KeyAgreement.PrivateKey()` on iOS or `KeyPairGenerator.getInstance(\"XDH\")` on Android — and submit the raw 32-byte public key. It is a transport-encryption key, distinct from the attested signing key. Keep the private key only until the sealed pin_secret from the response has been opened, then discard it. The HPKE suite is DHKEM(X25519, HKDF-SHA256), HKDF-SHA256, AES-128-GCM.
 	TransportPublicKey *string `json:"transport_public_key,omitempty"`
-	// Declares how the key's holder is verified at use time. One of \"pin\", \"platform\", or \"none\" (or empty, which maps to \"none\"). \"pin\" is implied by pin_protected and need not be set explicitly. For \"platform\" the server cross-checks the attestation on Android and trusts the declaration on iOS, since App Attest cannot prove biometric gating.
+	// Declares how the key's holder is verified at use time. One of \"pin\", \"platform\", or \"none\" (or empty, which maps to \"none\"). \"pin\" is implied by pin_protected and need not be set explicitly.  For \"platform\" on Android, generate the key with `setUserAuthenticationRequired(true)`: the server rejects the claim unless the attestation shows user-authentication gating (KeyMint user_auth_type). On iOS the declaration is trusted, since App Attest cannot prove biometric gating; iOS platform keys therefore count as a sole first factor only when the project enables ios_biometric_first_factor.
 	UserVerification *UserVerification `json:"user_verification,omitempty"`
-	// Version is the version number for the cryptography. For now only `1` is supported which corresponds to SHA256 + EC.
-	Version *int64 `json:"version,omitempty"`
+	// The cryptography version to enroll the key with. Only `1` is currently supported, which corresponds to ECDSA with SHA-256 on an elliptic curve (P-224, P-256, P-384, or P-521).
+	Version int64 `json:"version"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _UpdateSettingsFlowWithDeviceAuthnMethodAdd UpdateSettingsFlowWithDeviceAuthnMethodAdd
+type _UpdateSettingsFlowWithDeviceAuthnMethodRegister UpdateSettingsFlowWithDeviceAuthnMethodRegister
 
-// NewUpdateSettingsFlowWithDeviceAuthnMethodAdd instantiates a new UpdateSettingsFlowWithDeviceAuthnMethodAdd object
+// NewUpdateSettingsFlowWithDeviceAuthnMethodRegister instantiates a new UpdateSettingsFlowWithDeviceAuthnMethodRegister object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateSettingsFlowWithDeviceAuthnMethodAdd(deviceName string) *UpdateSettingsFlowWithDeviceAuthnMethodAdd {
-	this := UpdateSettingsFlowWithDeviceAuthnMethodAdd{}
+func NewUpdateSettingsFlowWithDeviceAuthnMethodRegister(deviceName string, version int64) *UpdateSettingsFlowWithDeviceAuthnMethodRegister {
+	this := UpdateSettingsFlowWithDeviceAuthnMethodRegister{}
 	this.DeviceName = deviceName
+	this.Version = version
 	return &this
 }
 
-// NewUpdateSettingsFlowWithDeviceAuthnMethodAddWithDefaults instantiates a new UpdateSettingsFlowWithDeviceAuthnMethodAdd object
+// NewUpdateSettingsFlowWithDeviceAuthnMethodRegisterWithDefaults instantiates a new UpdateSettingsFlowWithDeviceAuthnMethodRegister object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateSettingsFlowWithDeviceAuthnMethodAddWithDefaults() *UpdateSettingsFlowWithDeviceAuthnMethodAdd {
-	this := UpdateSettingsFlowWithDeviceAuthnMethodAdd{}
+func NewUpdateSettingsFlowWithDeviceAuthnMethodRegisterWithDefaults() *UpdateSettingsFlowWithDeviceAuthnMethodRegister {
+	this := UpdateSettingsFlowWithDeviceAuthnMethodRegister{}
 	return &this
 }
 
 // GetAttestationIos returns the AttestationIos field value if set, zero value otherwise.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetAttestationIos() string {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) GetAttestationIos() string {
 	if o == nil || IsNil(o.AttestationIos) {
 		var ret string
 		return ret
@@ -68,7 +70,7 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetAttestationIos() string 
 
 // GetAttestationIosOk returns a tuple with the AttestationIos field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetAttestationIosOk() (*string, bool) {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) GetAttestationIosOk() (*string, bool) {
 	if o == nil || IsNil(o.AttestationIos) {
 		return nil, false
 	}
@@ -76,7 +78,7 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetAttestationIosOk() (*str
 }
 
 // HasAttestationIos returns a boolean if a field has been set.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) HasAttestationIos() bool {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) HasAttestationIos() bool {
 	if o != nil && !IsNil(o.AttestationIos) {
 		return true
 	}
@@ -85,12 +87,12 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) HasAttestationIos() bool {
 }
 
 // SetAttestationIos gets a reference to the given string and assigns it to the AttestationIos field.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) SetAttestationIos(v string) {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) SetAttestationIos(v string) {
 	o.AttestationIos = &v
 }
 
 // GetCertificateChainAndroid returns the CertificateChainAndroid field value if set, zero value otherwise.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetCertificateChainAndroid() []string {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) GetCertificateChainAndroid() []string {
 	if o == nil || IsNil(o.CertificateChainAndroid) {
 		var ret []string
 		return ret
@@ -100,7 +102,7 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetCertificateChainAndroid(
 
 // GetCertificateChainAndroidOk returns a tuple with the CertificateChainAndroid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetCertificateChainAndroidOk() ([]string, bool) {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) GetCertificateChainAndroidOk() ([]string, bool) {
 	if o == nil || IsNil(o.CertificateChainAndroid) {
 		return nil, false
 	}
@@ -108,7 +110,7 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetCertificateChainAndroidO
 }
 
 // HasCertificateChainAndroid returns a boolean if a field has been set.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) HasCertificateChainAndroid() bool {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) HasCertificateChainAndroid() bool {
 	if o != nil && !IsNil(o.CertificateChainAndroid) {
 		return true
 	}
@@ -117,12 +119,12 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) HasCertificateChainAndroid(
 }
 
 // SetCertificateChainAndroid gets a reference to the given []string and assigns it to the CertificateChainAndroid field.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) SetCertificateChainAndroid(v []string) {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) SetCertificateChainAndroid(v []string) {
 	o.CertificateChainAndroid = v
 }
 
 // GetDeviceName returns the DeviceName field value
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetDeviceName() string {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) GetDeviceName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -133,7 +135,7 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetDeviceName() string {
 
 // GetDeviceNameOk returns a tuple with the DeviceName field value
 // and a boolean to check if the value has been set.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetDeviceNameOk() (*string, bool) {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) GetDeviceNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -141,12 +143,12 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetDeviceNameOk() (*string,
 }
 
 // SetDeviceName sets field value
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) SetDeviceName(v string) {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) SetDeviceName(v string) {
 	o.DeviceName = v
 }
 
 // GetPinProtected returns the PinProtected field value if set, zero value otherwise.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetPinProtected() bool {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) GetPinProtected() bool {
 	if o == nil || IsNil(o.PinProtected) {
 		var ret bool
 		return ret
@@ -156,7 +158,7 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetPinProtected() bool {
 
 // GetPinProtectedOk returns a tuple with the PinProtected field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetPinProtectedOk() (*bool, bool) {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) GetPinProtectedOk() (*bool, bool) {
 	if o == nil || IsNil(o.PinProtected) {
 		return nil, false
 	}
@@ -164,7 +166,7 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetPinProtectedOk() (*bool,
 }
 
 // HasPinProtected returns a boolean if a field has been set.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) HasPinProtected() bool {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) HasPinProtected() bool {
 	if o != nil && !IsNil(o.PinProtected) {
 		return true
 	}
@@ -173,12 +175,12 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) HasPinProtected() bool {
 }
 
 // SetPinProtected gets a reference to the given bool and assigns it to the PinProtected field.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) SetPinProtected(v bool) {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) SetPinProtected(v bool) {
 	o.PinProtected = &v
 }
 
 // GetTransportPublicKey returns the TransportPublicKey field value if set, zero value otherwise.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetTransportPublicKey() string {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) GetTransportPublicKey() string {
 	if o == nil || IsNil(o.TransportPublicKey) {
 		var ret string
 		return ret
@@ -188,7 +190,7 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetTransportPublicKey() str
 
 // GetTransportPublicKeyOk returns a tuple with the TransportPublicKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetTransportPublicKeyOk() (*string, bool) {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) GetTransportPublicKeyOk() (*string, bool) {
 	if o == nil || IsNil(o.TransportPublicKey) {
 		return nil, false
 	}
@@ -196,7 +198,7 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetTransportPublicKeyOk() (
 }
 
 // HasTransportPublicKey returns a boolean if a field has been set.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) HasTransportPublicKey() bool {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) HasTransportPublicKey() bool {
 	if o != nil && !IsNil(o.TransportPublicKey) {
 		return true
 	}
@@ -205,12 +207,12 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) HasTransportPublicKey() boo
 }
 
 // SetTransportPublicKey gets a reference to the given string and assigns it to the TransportPublicKey field.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) SetTransportPublicKey(v string) {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) SetTransportPublicKey(v string) {
 	o.TransportPublicKey = &v
 }
 
 // GetUserVerification returns the UserVerification field value if set, zero value otherwise.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetUserVerification() UserVerification {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) GetUserVerification() UserVerification {
 	if o == nil || IsNil(o.UserVerification) {
 		var ret UserVerification
 		return ret
@@ -220,7 +222,7 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetUserVerification() UserV
 
 // GetUserVerificationOk returns a tuple with the UserVerification field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetUserVerificationOk() (*UserVerification, bool) {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) GetUserVerificationOk() (*UserVerification, bool) {
 	if o == nil || IsNil(o.UserVerification) {
 		return nil, false
 	}
@@ -228,7 +230,7 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetUserVerificationOk() (*U
 }
 
 // HasUserVerification returns a boolean if a field has been set.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) HasUserVerification() bool {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) HasUserVerification() bool {
 	if o != nil && !IsNil(o.UserVerification) {
 		return true
 	}
@@ -237,43 +239,35 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) HasUserVerification() bool 
 }
 
 // SetUserVerification gets a reference to the given UserVerification and assigns it to the UserVerification field.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) SetUserVerification(v UserVerification) {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) SetUserVerification(v UserVerification) {
 	o.UserVerification = &v
 }
 
-// GetVersion returns the Version field value if set, zero value otherwise.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetVersion() int64 {
-	if o == nil || IsNil(o.Version) {
+// GetVersion returns the Version field value
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) GetVersion() int64 {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.Version
+
+	return o.Version
 }
 
-// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
+// GetVersionOk returns a tuple with the Version field value
 // and a boolean to check if the value has been set.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetVersionOk() (*int64, bool) {
-	if o == nil || IsNil(o.Version) {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) GetVersionOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Version, true
+	return &o.Version, true
 }
 
-// HasVersion returns a boolean if a field has been set.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) HasVersion() bool {
-	if o != nil && !IsNil(o.Version) {
-		return true
-	}
-
-	return false
+// SetVersion sets field value
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) SetVersion(v int64) {
+	o.Version = v
 }
 
-// SetVersion gets a reference to the given int64 and assigns it to the Version field.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) SetVersion(v int64) {
-	o.Version = &v
-}
-
-func (o UpdateSettingsFlowWithDeviceAuthnMethodAdd) MarshalJSON() ([]byte, error) {
+func (o UpdateSettingsFlowWithDeviceAuthnMethodRegister) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -281,7 +275,7 @@ func (o UpdateSettingsFlowWithDeviceAuthnMethodAdd) MarshalJSON() ([]byte, error
 	return json.Marshal(toSerialize)
 }
 
-func (o UpdateSettingsFlowWithDeviceAuthnMethodAdd) ToMap() (map[string]interface{}, error) {
+func (o UpdateSettingsFlowWithDeviceAuthnMethodRegister) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AttestationIos) {
 		toSerialize["attestation_ios"] = o.AttestationIos
@@ -299,9 +293,7 @@ func (o UpdateSettingsFlowWithDeviceAuthnMethodAdd) ToMap() (map[string]interfac
 	if !IsNil(o.UserVerification) {
 		toSerialize["user_verification"] = o.UserVerification
 	}
-	if !IsNil(o.Version) {
-		toSerialize["version"] = o.Version
-	}
+	toSerialize["version"] = o.Version
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -310,12 +302,13 @@ func (o UpdateSettingsFlowWithDeviceAuthnMethodAdd) ToMap() (map[string]interfac
 	return toSerialize, nil
 }
 
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) UnmarshalJSON(data []byte) (err error) {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodRegister) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"device_name",
+		"version",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -332,15 +325,15 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) UnmarshalJSON(data []byte) 
 		}
 	}
 
-	varUpdateSettingsFlowWithDeviceAuthnMethodAdd := _UpdateSettingsFlowWithDeviceAuthnMethodAdd{}
+	varUpdateSettingsFlowWithDeviceAuthnMethodRegister := _UpdateSettingsFlowWithDeviceAuthnMethodRegister{}
 
-	err = json.Unmarshal(data, &varUpdateSettingsFlowWithDeviceAuthnMethodAdd)
+	err = json.Unmarshal(data, &varUpdateSettingsFlowWithDeviceAuthnMethodRegister)
 
 	if err != nil {
 		return err
 	}
 
-	*o = UpdateSettingsFlowWithDeviceAuthnMethodAdd(varUpdateSettingsFlowWithDeviceAuthnMethodAdd)
+	*o = UpdateSettingsFlowWithDeviceAuthnMethodRegister(varUpdateSettingsFlowWithDeviceAuthnMethodRegister)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -358,38 +351,38 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) UnmarshalJSON(data []byte) 
 	return err
 }
 
-type NullableUpdateSettingsFlowWithDeviceAuthnMethodAdd struct {
-	value *UpdateSettingsFlowWithDeviceAuthnMethodAdd
+type NullableUpdateSettingsFlowWithDeviceAuthnMethodRegister struct {
+	value *UpdateSettingsFlowWithDeviceAuthnMethodRegister
 	isSet bool
 }
 
-func (v NullableUpdateSettingsFlowWithDeviceAuthnMethodAdd) Get() *UpdateSettingsFlowWithDeviceAuthnMethodAdd {
+func (v NullableUpdateSettingsFlowWithDeviceAuthnMethodRegister) Get() *UpdateSettingsFlowWithDeviceAuthnMethodRegister {
 	return v.value
 }
 
-func (v *NullableUpdateSettingsFlowWithDeviceAuthnMethodAdd) Set(val *UpdateSettingsFlowWithDeviceAuthnMethodAdd) {
+func (v *NullableUpdateSettingsFlowWithDeviceAuthnMethodRegister) Set(val *UpdateSettingsFlowWithDeviceAuthnMethodRegister) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateSettingsFlowWithDeviceAuthnMethodAdd) IsSet() bool {
+func (v NullableUpdateSettingsFlowWithDeviceAuthnMethodRegister) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateSettingsFlowWithDeviceAuthnMethodAdd) Unset() {
+func (v *NullableUpdateSettingsFlowWithDeviceAuthnMethodRegister) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateSettingsFlowWithDeviceAuthnMethodAdd(val *UpdateSettingsFlowWithDeviceAuthnMethodAdd) *NullableUpdateSettingsFlowWithDeviceAuthnMethodAdd {
-	return &NullableUpdateSettingsFlowWithDeviceAuthnMethodAdd{value: val, isSet: true}
+func NewNullableUpdateSettingsFlowWithDeviceAuthnMethodRegister(val *UpdateSettingsFlowWithDeviceAuthnMethodRegister) *NullableUpdateSettingsFlowWithDeviceAuthnMethodRegister {
+	return &NullableUpdateSettingsFlowWithDeviceAuthnMethodRegister{value: val, isSet: true}
 }
 
-func (v NullableUpdateSettingsFlowWithDeviceAuthnMethodAdd) MarshalJSON() ([]byte, error) {
+func (v NullableUpdateSettingsFlowWithDeviceAuthnMethodRegister) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateSettingsFlowWithDeviceAuthnMethodAdd) UnmarshalJSON(src []byte) error {
+func (v *NullableUpdateSettingsFlowWithDeviceAuthnMethodRegister) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
