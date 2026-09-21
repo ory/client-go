@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.66
+API version: v1.22.78
 Contact: support@ory.sh
 */
 
@@ -16,88 +16,61 @@ import (
 	"fmt"
 )
 
-// checks if the Plan type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &Plan{}
+// checks if the WebAuthnRelatedOrigins type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &WebAuthnRelatedOrigins{}
 
-// Plan struct for Plan
-type Plan struct {
-	// Name is the name of the plan.
-	Name string `json:"name"`
-	// Version is the version of the plan. The combination of `name@version` must be unique.
-	Version int64 `json:"version"`
+// WebAuthnRelatedOrigins The list of web origins allowed to use this domain as their WebAuthn relying party ID.
+type WebAuthnRelatedOrigins struct {
+	// The related web origins.
+	Origins []string `json:"origins"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _Plan Plan
+type _WebAuthnRelatedOrigins WebAuthnRelatedOrigins
 
-// NewPlan instantiates a new Plan object
+// NewWebAuthnRelatedOrigins instantiates a new WebAuthnRelatedOrigins object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPlan(name string, version int64) *Plan {
-	this := Plan{}
-	this.Name = name
-	this.Version = version
+func NewWebAuthnRelatedOrigins(origins []string) *WebAuthnRelatedOrigins {
+	this := WebAuthnRelatedOrigins{}
+	this.Origins = origins
 	return &this
 }
 
-// NewPlanWithDefaults instantiates a new Plan object
+// NewWebAuthnRelatedOriginsWithDefaults instantiates a new WebAuthnRelatedOrigins object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPlanWithDefaults() *Plan {
-	this := Plan{}
+func NewWebAuthnRelatedOriginsWithDefaults() *WebAuthnRelatedOrigins {
+	this := WebAuthnRelatedOrigins{}
 	return &this
 }
 
-// GetName returns the Name field value
-func (o *Plan) GetName() string {
+// GetOrigins returns the Origins field value
+func (o *WebAuthnRelatedOrigins) GetOrigins() []string {
 	if o == nil {
-		var ret string
+		var ret []string
 		return ret
 	}
 
-	return o.Name
+	return o.Origins
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetOriginsOk returns a tuple with the Origins field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetNameOk() (*string, bool) {
+func (o *WebAuthnRelatedOrigins) GetOriginsOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Origins, true
 }
 
-// SetName sets field value
-func (o *Plan) SetName(v string) {
-	o.Name = v
+// SetOrigins sets field value
+func (o *WebAuthnRelatedOrigins) SetOrigins(v []string) {
+	o.Origins = v
 }
 
-// GetVersion returns the Version field value
-func (o *Plan) GetVersion() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.Version
-}
-
-// GetVersionOk returns a tuple with the Version field value
-// and a boolean to check if the value has been set.
-func (o *Plan) GetVersionOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Version, true
-}
-
-// SetVersion sets field value
-func (o *Plan) SetVersion(v int64) {
-	o.Version = v
-}
-
-func (o Plan) MarshalJSON() ([]byte, error) {
+func (o WebAuthnRelatedOrigins) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -105,10 +78,9 @@ func (o Plan) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o Plan) ToMap() (map[string]interface{}, error) {
+func (o WebAuthnRelatedOrigins) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
-	toSerialize["version"] = o.Version
+	toSerialize["origins"] = o.Origins
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -117,13 +89,12 @@ func (o Plan) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *Plan) UnmarshalJSON(data []byte) (err error) {
+func (o *WebAuthnRelatedOrigins) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"name",
-		"version",
+		"origins",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -140,59 +111,58 @@ func (o *Plan) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varPlan := _Plan{}
+	varWebAuthnRelatedOrigins := _WebAuthnRelatedOrigins{}
 
-	err = json.Unmarshal(data, &varPlan)
+	err = json.Unmarshal(data, &varWebAuthnRelatedOrigins)
 
 	if err != nil {
 		return err
 	}
 
-	*o = Plan(varPlan)
+	*o = WebAuthnRelatedOrigins(varWebAuthnRelatedOrigins)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "version")
+		delete(additionalProperties, "origins")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullablePlan struct {
-	value *Plan
+type NullableWebAuthnRelatedOrigins struct {
+	value *WebAuthnRelatedOrigins
 	isSet bool
 }
 
-func (v NullablePlan) Get() *Plan {
+func (v NullableWebAuthnRelatedOrigins) Get() *WebAuthnRelatedOrigins {
 	return v.value
 }
 
-func (v *NullablePlan) Set(val *Plan) {
+func (v *NullableWebAuthnRelatedOrigins) Set(val *WebAuthnRelatedOrigins) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePlan) IsSet() bool {
+func (v NullableWebAuthnRelatedOrigins) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePlan) Unset() {
+func (v *NullableWebAuthnRelatedOrigins) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePlan(val *Plan) *NullablePlan {
-	return &NullablePlan{value: val, isSet: true}
+func NewNullableWebAuthnRelatedOrigins(val *WebAuthnRelatedOrigins) *NullableWebAuthnRelatedOrigins {
+	return &NullableWebAuthnRelatedOrigins{value: val, isSet: true}
 }
 
-func (v NullablePlan) MarshalJSON() ([]byte, error) {
+func (v NullableWebAuthnRelatedOrigins) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePlan) UnmarshalJSON(src []byte) error {
+func (v *NullableWebAuthnRelatedOrigins) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
